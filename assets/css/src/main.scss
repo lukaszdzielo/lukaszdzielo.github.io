@@ -1,0 +1,80 @@
+@import "variables";
+
+// Bootstrap Start
+// @import "../../lib/bootstrap/scss/bootstrap";
+// Configuration
+@import "../../lib/bootstrap/scss/functions";
+@import "../../lib/bootstrap/scss/variables";
+@import "../../lib/bootstrap/scss/mixins";
+@import "../../lib/bootstrap/scss/utilities";
+// Layout & components
+@import "../../lib/bootstrap/scss/root";
+@import "../../lib/bootstrap/scss/reboot";
+@import "../../lib/bootstrap/scss/type";
+// @import "../../lib/bootstrap/scss/images";
+@import "../../lib/bootstrap/scss/containers";
+@import "../../lib/bootstrap/scss/grid";
+// @import "../../lib/bootstrap/scss/tables";
+@import "../../lib/bootstrap/scss/forms";
+@import "../../lib/bootstrap/scss/buttons";
+@import "../../lib/bootstrap/scss/transitions";
+// @import "../../lib/bootstrap/scss/dropdown";
+// @import "../../lib/bootstrap/scss/button-group";
+@import "../../lib/bootstrap/scss/nav";
+@import "../../lib/bootstrap/scss/navbar";
+// @import "../../lib/bootstrap/scss/card";
+// @import "../../lib/bootstrap/scss/accordion";
+@import "../../lib/bootstrap/scss/breadcrumb";
+@import "../../lib/bootstrap/scss/pagination";
+// @import "../../lib/bootstrap/scss/badge";
+// @import "../../lib/bootstrap/scss/alert";
+// @import "../../lib/bootstrap/scss/progress";
+// @import "../../lib/bootstrap/scss/list-group";
+@import "../../lib/bootstrap/scss/close";
+// @import "../../lib/bootstrap/scss/toasts";
+@import "../../lib/bootstrap/scss/modal";
+// @import "../../lib/bootstrap/scss/tooltip";
+// @import "../../lib/bootstrap/scss/popover";
+// @import "../../lib/bootstrap/scss/carousel";
+@import "../../lib/bootstrap/scss/spinners";
+// Helpers
+@import "../../lib/bootstrap/scss/helpers";
+// Utilities
+@import "../../lib/bootstrap/scss/utilities/api";
+// Bootstrap end
+
+// Swiper
+@import "../../lib/swiper/swiper.scss";
+// @import "../../lib/swiper/components/a11y/a11y.scss";
+// @import "../../lib/swiper/components/controller/controller.scss";
+// @import "../../lib/swiper/components/effect-coverflow/effect-coverflow.scss";
+// @import "../../lib/swiper/components/effect-cube/effect-cube.scss";
+// @import "../../lib/swiper/components/effect-fade/effect-fade.scss";
+// @import "../../lib/swiper/components/effect-flip/effect-flip.scss";
+// @import "../../lib/swiper/components/lazy/lazy.scss";
+// @import "../../lib/swiper/components/navigation/navigation.scss";
+@import "../../lib/swiper/components/pagination/pagination.scss";
+// @import "../../lib/swiper/components/scrollbar/scrollbar.scss";
+// @import "../../lib/swiper/components/thumbs/thumbs.scss";
+// @import "../../lib/swiper/components/zoom/zoom.scss";
+// Swiper end
+
+// FontAwesome
+$fa-font-path:        "../../fonts/fontawesome/webfonts";
+@import "../../fonts/fontawesome/scss/fontawesome.scss";
+@import "../../fonts/fontawesome/scss/regular.scss";
+@import "../../fonts/fontawesome/scss/solid.scss";
+@import "../../fonts/fontawesome/scss/brands.scss";
+// D:\laragon\www\ec4-spinki\assets\fonts\fontawesome\scss\fontawesome.scss
+// FontAwesome end
+
+
+@import "general";
+@import "header";
+@import "footer";
+@import "slider";
+@import "carousel";
+@import "sections";
+@import "forms";
+@import "card";
+@import "modals";

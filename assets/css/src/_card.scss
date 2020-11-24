@@ -1,0 +1,54 @@
+.card__project {
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+    background: $white;
+    box-shadow: 0 0 10px rgba($gray-800,.2);
+    transition: $transition-base;
+    &:hover {
+        transform: translateY(-5px);
+    }
+    &--image {
+        position: relative;
+        img {
+            border-radius: 10px;
+        }
+    }
+    &--link {
+        position: absolute;
+        right: 15px;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid $white;
+        border-radius: 100%;
+        width: 36px;
+        height: 36px;
+        background: $primary;
+        color: $white !important;
+        transform: translate(0, 50%);
+        text-decoration: none;
+        transition: $transition-base;
+        i {
+            line-height: 30px;
+        }
+        &:hover {
+            transform: translate(0, 50%) scale(1.15);
+        }
+    }
+    &:hover &--link {
+        opacity: 1;
+    }
+    &--body {
+        padding: 15px 0px 0;
+        background: $white;
+        @include font-size(0.875rem);
+    }
+    &--heading {
+        color: $primary;
+        @include font-size(1.5rem);
+        font-weight: $font-weight-bold;
+    }
+}
