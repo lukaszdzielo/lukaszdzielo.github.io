@@ -1,0 +1,63 @@
+header {
+    border-top: 4px solid $primary;
+}
+
+.navbar-toggler {
+    $toggler-size: 36px;
+    $toggler-height: 2px;
+    $toggler-radius: 99px;
+    $toggler-transition: .25s;
+ 
+    position: relative;
+    padding: 0;
+    border: 0;
+    width: $toggler-size;
+    height: $toggler-size;
+    &:focus {
+        outline: none;
+     }
+    .toggler-line {
+       position: absolute;
+       width: 100%;
+       height: $toggler-height;
+       border-radius: $toggler-radius;
+       transform: translatey(-50%);
+       &:nth-of-type(1),
+       &:nth-of-type(4) {
+          transition: width $toggler-transition 0s,
+                      top $toggler-transition $toggler-transition,
+                      opacity 0s $toggler-transition;
+       } 
+       &:nth-of-type(1) {top: round($toggler-size/4);}
+       &:nth-of-type(4) {right: 0; top: round($toggler-size/4*3);}
+       &:nth-of-type(2),
+       &:nth-of-type(3) {
+          transition: transform $toggler-transition 0s;
+       }
+    }
+    &:not(.collapsed) {
+       .toggler-line {
+          &:nth-of-type(1),
+          &:nth-of-type(4) {
+             top: 50%;
+             opacity: 0;
+             transition: top $toggler-transition 0s,
+                         opacity 0s $toggler-transition,
+                         width $toggler-transition 0s;
+          }
+          &:nth-of-type(2),
+          &:nth-of-type(3) {
+             top: 50%;
+             transition: transform $toggler-transition $toggler-transition;
+          }
+          &:nth-of-type(2) {transform: translatey(-50%) rotate(45deg)}
+          &:nth-of-type(3) {transform: translatey(-50%) rotate(-45deg)}
+       }
+    }
+    &:hover .toggler-line {
+         @include media-breakpoint-up(lg) {
+             &:nth-of-type(1),
+             &:nth-of-type(4) {width: 50%;}
+         }
+    }
+}
