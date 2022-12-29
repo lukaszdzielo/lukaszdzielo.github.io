@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+<section class="py-50 py-lg-100 bg-light">
+    <div class="container">
+        {{ .Content }}
+        <div class="row row-cols-1 row-cols-md-2 g-20 g-lg-50">
+            {{ range ( where .Site.RegularPages "Type" "testimonials" ) }}
+            <div class="col" data-aos="fade-up">
+                {{ .Render "card" }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{ end }}

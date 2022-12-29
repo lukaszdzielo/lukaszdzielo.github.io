@@ -1,0 +1,37 @@
+.card__project {
+    position: relative;
+    border-radius: 4px;
+    height: 100%;
+    background: $white;
+    box-shadow: 0 0 15px rgba($gray-800,.2);
+    overflow: hidden;
+    &--link {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        width: 36px;
+        height: 36px;
+        background: $white;
+        color: $primary;
+        text-decoration: none;
+        transition: $transition-base;
+        z-index: 1;
+        i {
+            line-height: 30px;
+        }
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+    &--body {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 80%);
+    }
+}

@@ -1,0 +1,13 @@
+disableHugoGeneratorInject = true
+
+baseURL = "https://lukaszdzielo.github.io"
+languageCode = "en-us"
+title = "Łukasz Dzieło | Front-end developer"
+
+googleAnalytics = "G-XMZWQCCKKG"
+
+# disable tags and categories
+# disableKinds = ["taxonomy", "taxonomyTerm"]
+
+[params]
+    description = "I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client."
