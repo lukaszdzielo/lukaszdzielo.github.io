@@ -1,0 +1,15 @@
+<head>
+    <!-- Google Analytics -->
+    {{ if .Site.GoogleAnalytics }}
+	    {{ template "_internal/google_analytics_async.html" . }}
+	{{ end }}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/img/favicon.png" sizes="96x96" type="image/png">
+    <title>{{ with .Params.Title }}{{ . }} - {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}" />
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {{ $css := resources.Get "/css/main.scss" | toCSS | minify | fingerprint }}
+    <link href="{{ $css.RelPermalink }}" rel="stylesheet">
+</head>

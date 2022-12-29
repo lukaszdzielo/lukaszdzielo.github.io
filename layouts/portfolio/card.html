@@ -1,0 +1,21 @@
+<div class="card__project">
+    <div class="card__project--image">
+        <img src="/portfolio/{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+        {{ if .Params.live_url }}
+            <a href="{{ .Params.live_url }}" aria-label="{{ .Title }}" class="card__project--link" target="_blank" rel="noopener"><i class="fas fa-link fa-xs"></i></a>
+        {{ end }}
+    </div>
+    <div class="card__project--body pt-50 p-20">
+        <div class="fw-bold text-white">{{ .Title }}</div>
+        <div class="small lh-sm text-white">
+            <time class="card__project--date" datetime='{{ .PublishDate.Format "2006-01" }}'>{{ .PublishDate.Format "January 2006" }}</time>
+            {{ if and .Params.categories .Params.client }}
+                <div>{{ .Params.categories }} for: {{ .Params.client }}</div>
+            {{ else if .Params.categories }}
+                <div>{{ .Params.categories }}</div>
+            {{ else }}
+                <div>For: {{ .Params.client }}</div>
+            {{ end }}
+        </div>
+    </div>
+</div>

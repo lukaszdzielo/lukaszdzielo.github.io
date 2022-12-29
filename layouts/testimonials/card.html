@@ -1,0 +1,6 @@
+<div class="rounded p-20 p-lg-30 bg-white">
+    <em>"{{ .Params.client_comment | safeHTML }}"</em>
+    <div class="text-end fw-bold mt-10 mt-lg-15">
+        {{ .Params.client_name }} / <a href="{{ .Params.client_url }}" class="text-decoration-none">{{ .Params.client_company }}</a>
+    </div>
+</div>

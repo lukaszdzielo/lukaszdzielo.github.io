@@ -1,0 +1,10 @@
+# menu
+primary:
+  - name: "About"
+    url:  "/#about"
+  - name: "Skills"
+    url:  "/#skills"
+  - name: "Portfolio"
+    url:  "/#portfolio"
+  - name: "Testimonials"
+    url:  "/#testimonials"

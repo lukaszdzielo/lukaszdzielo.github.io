@@ -1,0 +1,29 @@
+# welcome
+about:
+    enable: true
+    title: 'Hi<span class="text-primary">!</span> I<span class="text-primary">’</span>m Łukasz'
+    subtitle: 'Front<span class="text-primary">-</span>End Developer'
+    content: '<p>I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client. Im working on upgrading my qualifications so prospectively I will learn JS to fulfill the expectations of my Clients.</p>'
+
+# skills
+skills:
+    enable: true
+    title: 'Skills'
+    content: '<p>Mainly companies for which I provide services work on <span class="fw-bold text-primary">Bootstrap</span>, so and everything that others do in Javascript, I make up for it using <span class="fw-bold text-primary">SCSS</span> and <span class="fw-bold text-primary">HTML</span>. I mainly get a graphic design and cut it to a clean code, and then it is hooked up to a dedicated CMS system. I also worked on <span class="fw-bold text-primary">Wordpress</span> using Enfold, Divi, Bridge and Jupiter. Learning <span class="fw-bold text-primary">Vue</span> and <span class="fw-bold text-primary">React</span> is my goal for the near future.</p>'
+    icons:
+    -   title: 'HTML5'
+        fontawesome: 'fab fa-html5'
+    -   title: 'CSS3'
+        fontawesome: 'fab fa-css3-alt'
+    -   title: 'SCSS'
+        fontawesome: 'fab fa-sass'
+    -   title: 'Bootstrap'
+        fontawesome: 'fab fa-bootstrap'
+    -   title: 'Git'
+        fontawesome: 'fab fa-git-alt'
+    -   title: 'Jira'
+        fontawesome: 'fab fa-jira'
+    -   title: 'Gulp'
+        fontawesome: 'fab fa-gulp'
+    -   title: 'Wordpress'
+        fontawesome: 'fab fa-wordpress'

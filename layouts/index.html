@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+{{ if .Site.Data.homepage.about.enable }}
+<section id="about" class="py-50 py-lg-100">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-2 align-items-center g-50">
+            <div class="col" data-aos="fade-right">
+                <h1 class="mb-0 text-dark">{{ .Site.Data.homepage.about.title | safeHTML }}</h1>
+                <div class="h1 fw-light">{{ .Site.Data.homepage.about.subtitle | safeHTML }}</div>
+                {{ .Site.Data.homepage.about.content | safeHTML }}
+                {{ if .Site.Data.socials.enable }}
+                <div class="mt-50">
+                    {{ range .Site.Data.socials.icons }}
+                        <a href="{{ .url }}" aria-label="{{ .title }}" class="text-decoration-none text-dark me-30 " target="_blank" rel="noopener">
+                            <i class="{{ .fontawesome }}"></i>
+                        </a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+            <div class="col" data-aos="fade-left">
+                <div class="about-image p-20 p-lg-30">
+                    <div class="image-before rounded bg-light">
+                        <img src="img/avatar.webp" alt="Avatar" loading="lazy">
+                    </div>
+                    <img src="img/laptop.webp" alt="Laptop" loading="lazy">
+                    <div class="image-after rounded bg-primary"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{ if .Site.Data.homepage.skills.enable }}
+<section id="skills" class="py-50 py-lg-100 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-2 align-items-center g-50">
+            <div class="col" data-aos="fade-right">
+                <div class="h1 text-dark">{{ .Site.Data.homepage.skills.title }}</div>
+                <p>{{ .Site.Data.homepage.skills.content | safeHTML }}</p>
+            </div>
+            <div class="col" data-aos="fade-left">
+                <div class="row row-cols-4 row-cols-sm-6 row-cols-lg-4 row-cols-xxl-6 g-20">
+                    {{ range .Site.Data.homepage.skills.icons }}
+                    <div class="col">
+                        <div class="ratio ratio-1x1">
+                            <div class="d-flex justify-content-center align-items-center bg-white rounded">
+                                <i class="{{ .fontawesome }} fa-2x text-primary d-md-none"></i>
+                                <i class="{{ .fontawesome }} fa-3x text-primary d-none d-md-block"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+<section id="portfolio" class="py-50 py-lg-100" data-aos="fade-up">
+    <div class="container">
+        <div class="h1 text-dark">
+            Latest projects
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-20 g-lg-50">
+            {{ range first 6 ( where .Site.RegularPages "Type" "portfolio" ) }}
+                <div class="col" data-aos="fade-up">
+                    {{ .Render "card" }}
+                </div>
+            {{ end }}
+        </div>
+        <div class="row gx-20 gx-lg-50 mt-20 mt-lg-50" data-aos="fade-up">
+            <div class="d-grid gap-2 col-md-6 col-xl-4 mx-auto">
+                <a href="/portfolio" class="btn btn-primary" role="button">View all</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials"class="py-50 py-lg-100 bg-light" data-aos="fade-up">
+    <div class="container">
+        <div class="h1 text-dark">
+            Testimonials
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-20 g-lg-50">
+            {{ range first 6 ( where .Site.RegularPages "Type" "testimonials" ) }}
+                <div class="col">
+                    {{ .Render "card" }}
+                </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{ end }}

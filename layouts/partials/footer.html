@@ -1,0 +1,11 @@
+<footer class="py-50 py-lg-100 bg-dark">
+    <div class="container text-center">
+        {{ if .Site.Data.socials.enable }}
+            {{ range .Site.Data.socials.icons }}
+                <a href="{{ .url }}" aria-label="{{ .title }}" class="text-decoration-none text-light mx-15" target="_blank" rel="noopener">
+                    <i class="{{ .fontawesome }}"></i>
+                </a>
+            {{ end }}
+        {{ end }}
+    </div>
+</footer>
