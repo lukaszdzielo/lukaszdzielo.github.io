@@ -1,5 +1,10 @@
+<script setup>
+import TheHeader from '~/components/layout/TheHeader.vue'
+import TheFooter from '~/components/layout/TheFooter.vue'
+</script>
+
 <template>
-  <AppHeader />
+  <TheHeader />
 
   <main>
     <div class="container">
@@ -9,5 +14,5 @@
     </div>
   </main>
 
-  <AppFooter />
+  <TheFooter />
 </template>
