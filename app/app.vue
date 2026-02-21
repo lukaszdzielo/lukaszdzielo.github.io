@@ -6,11 +6,9 @@ import TheFooter from '~/components/layout/TheFooter.vue'
 <template>
   <TheHeader />
 
-  <main>
+  <main class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
     <div class="container">
-
-      <NuxtRouteAnnouncer />
-  <NuxtPage />
+      <NuxtPage />
     </div>
   </main>
 
