@@ -1,4 +1,18 @@
+::sections-home-hero
 # Hi! I’m Łukasz <br> Front-End Developer
+::
+
+Tech Stack
+
+Projects
+
+Experience
+
+Blog
+
+Contact
+
+
 
 I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client. Im working on upgrading my qualifications so prospectively I will learn JS to fulfill the expectations of my Clients.
 
@@ -14,11 +28,8 @@ You can find an example of querying contents and rendering them in a [catch-all 
 
 ## Integrate Vue Component
 
-::alert{color="green"}
-The current [alert](https://github.com/nuxt/starter/blob/content/app/components/Alert.vue) and the [counter](https://github.com/nuxt/starter/blob/content/app/components/Counter.vue) below are `Vue` components integrated into the Markdown.
-::
-
-::counter
-::
 
 Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more.
+
+::sections-footer-cta 
+::
