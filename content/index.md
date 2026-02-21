@@ -1,6 +1,6 @@
-# Welcome to Nuxt Content Starter
+# Hi! I’m Łukasz <br> Front-End Developer
 
-This is the main page displaying Markdown located at [content/index.md](https://github.com/nuxt/starter/blob/content/content/index.md).
+I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client. Im working on upgrading my qualifications so prospectively I will learn JS to fulfill the expectations of my Clients.
 
 Move to [about](/about) page.
 

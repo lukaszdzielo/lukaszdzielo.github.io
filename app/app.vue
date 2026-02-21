@@ -2,8 +2,7 @@
   <AppHeader />
 
   <main>
-    <div class="w-[calc(100%-24px)] max-w-7xl mx-auto ">
-      test
+    <div class="container">
 
       <NuxtRouteAnnouncer />
   <NuxtPage />
