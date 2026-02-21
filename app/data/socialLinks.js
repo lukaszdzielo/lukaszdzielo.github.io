@@ -1,17 +1,22 @@
 export default [
-    { 
-        'name': 'linkedin' 
+    {
+        name: 'linkedin',
+        link: '#'
     },
-    { 
-        'name': 'instagram' 
+    {
+        name: 'instagram',
+        link: '#'
     },
-    { 
-        'name': 'github 👋' 
+    {
+        name: 'github 👋',
+        link: '#'
     },
-    { 
-        'name': 'behance' 
+    {
+        name: 'behance',
+        link: '#'
     },
-    { 
-        'name': 'codepen'
-     }
+    {
+        name: 'codepen',
+        link: '#'
+    }
 ]
