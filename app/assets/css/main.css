@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+body {
+    @apply min-h-svh;
+}
+
+.container {
+    @apply w-[calc(100%-36px)] sm:w-4/5 max-w-7xl mx-auto;
+}
