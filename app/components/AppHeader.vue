@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="w-[calc(100%-24px)] max-w-7xl mx-auto">
+        <div class="container">
         APP Header
         </div>
     </header>
