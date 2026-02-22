@@ -39,7 +39,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog/**',
       schema: z.object({
-        date: z.string().optional(),
+        date: z.string(),
         slug: z.string(),
         title: z.string(),
         description: z.string(),
