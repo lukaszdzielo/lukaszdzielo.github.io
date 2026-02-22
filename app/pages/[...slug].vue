@@ -2,17 +2,16 @@
 const route = useRoute()
 
 const { data: page } = await useAsyncData('page-' + route.path, () => {
-  return queryCollection('content').path(route.path).first()
+	return queryCollection('content').path(route.path).first()
 })
-
-if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
 </script>
 
 <template>
-  <ContentRenderer
-    v-if="page"
-    :value="page"
-  />
+	<section class="py-10">
+
+		<ContentRenderer v-if="page" :value="page" />
+
+		<p v-else>Strona nie został znaleziony.</p>
+
+	</section>
 </template>
