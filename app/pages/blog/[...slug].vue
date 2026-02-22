@@ -1,17 +1,24 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const today = new Date().toISOString().split('T')[0] || ''
+
 const slugParam = Array.isArray(route.params.slug)
     ? route.params.slug[0]
     : route.params.slug
 
-const { data: post } = await useAsyncData(route.path, () => {
+const { data: post } = await useAsyncData(`blog-${slugParam}`, () => {
     return queryCollection('blog')
         .where('slug', '=', slugParam)
         .first()
 })
 
-const isPublished = computed(() => !!post.value?.date)
+const isPublished = computed(() => {
+    if (!post.value?.date) return false;
+    const postDate = post.value.date.split('T')[0];
+    if (!postDate) return false;
+    return postDate <= today
+})
 </script>
 
 <template>

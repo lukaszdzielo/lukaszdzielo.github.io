@@ -1,35 +1,38 @@
 <script setup lang="ts">
-const route = useRoute()
-const limit = 12
+const route = useRoute();
+const limit = 12;
 
-const currentPage = computed(() => parseInt(route.query.page as string) || 1)
+const now = new Date().toISOString();
+
+const currentPage = computed(() => parseInt(route.query.page as string) || 1);
 
 const { data: posts } = await useAsyncData('blog-list', () => {
     return queryCollection('blog')
         .where('date', '<>', undefined) // Filter: Must have a date
         .where('slug', '<>', undefined) // Filter: Must have a slug
+        .where('date', '<=', now)
         .order('date', 'DESC')
         .limit(limit)
         .skip((currentPage.value - 1) * limit)
         .all()
 }, {
     watch: [currentPage]
-})
+});
 
 const { data: totalPosts } = await useAsyncData('blog-count', () => {
     return queryCollection('blog')
         .where('date', '<>', undefined)
         .where('slug', '<>', undefined)
         .count() // Returns just the number
-})
+});
 
-const totalPages = computed(() => Math.ceil((totalPosts.value || 0) / limit))
+const totalPages = computed(() => Math.ceil((totalPosts.value || 0) / limit));
 </script>
 
 <template>
     <div>
         <ul v-if="posts?.length" class="grid md:grid-cols-2 gap-5 py-10">
-            <li v-for="post in posts" :key="post.path">
+            <li v-for="post in posts" :key="post.path" class="border p-5">
                 <NuxtLink :to="'/blog/' + post.slug" class="block">
                     <small>{{ post.date }}</small>
                     <h2>{{ post.title }}</h2>
