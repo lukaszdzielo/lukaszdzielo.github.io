@@ -1,9 +1,13 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const slugParam = Array.isArray(route.params.slug)
+    ? route.params.slug[0]
+    : route.params.slug
+
 const { data: post } = await useAsyncData(route.path, () => {
     return queryCollection('blog')
-        .path(route.path)
+        .where('slug', '=', slugParam)
         .first()
 })
 
