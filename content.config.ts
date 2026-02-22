@@ -10,6 +10,14 @@ const createImageSchema = () => z.object({
   alt: z.string()
 })
 
+const createAuthorSchema = () => z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  username: z.string().optional(),
+  to: z.string().optional(),
+  avatar: createImageSchema().optional()
+})
+
 const createTestimonialSchema = () => z.object({
   quote: z.string(),
   author: createAuthorSchema()
