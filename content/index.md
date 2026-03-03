@@ -1,12 +1,16 @@
-:sections-home-hero
+::sections-home-hero
 # Hi! I’m Łukasz <br> Front-End Developer
-:
+::
 
 Tech Stack
 
+Experience
+
 Projects
 
-Experience
+::sections-home-portfolio
+asd
+::
 
 Blog
 
@@ -31,5 +35,5 @@ You can find an example of querying contents and rendering them in a [catch-all 
 
 Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more. -->
 
-:sections-footer-cta 
-:
+::sections-footer-cta 
+::
