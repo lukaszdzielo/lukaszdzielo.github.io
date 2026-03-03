@@ -1,39 +1,46 @@
 <script setup lang="ts">
+import Pagination from '~/components/common/Pagination.vue';
+
 const route = useRoute();
+const router = useRouter();
 const limit = 12;
 
-const now = new Date().toISOString();
+const { data: total } = await useAsyncData('blog-count', () =>
+    queryCollection('blog').where('draft', '=', false).count()
+);
 
-const currentPage = computed(() => parseInt(route.query.page as string) || 1);
+const totalPages = computed(() => Math.ceil((total.value ?? 0) / limit));
 
-const { data: posts } = await useAsyncData('blog-list', () => {
-    return queryCollection('blog')
-        .where('date', '<>', undefined) // Filter: Must have a date
-        .where('slug', '<>', undefined) // Filter: Must have a slug
-        .where('date', '<=', now)
+const currentPage = computed(() => {
+    const page = parseInt(route.query.page as string);
+    if (isNaN(page) || page < 1) return 1;
+    return Math.min(page, totalPages.value);
+});
+
+watch(() => route.query.page, () => {
+    const raw = parseInt(route.query.page as string);
+    if (isNaN(raw) || raw < 1 || raw > totalPages.value) {
+        router.replace({ query: { page: currentPage.value } });
+    }
+}, { immediate: true });
+
+const { data: posts } = await useAsyncData('blog-list', () =>
+    queryCollection('blog')
+        .where('draft', '=', false)
         .order('date', 'DESC')
         .limit(limit)
         .skip((currentPage.value - 1) * limit)
-        .all()
-}, {
-    watch: [currentPage]
-});
-
-const { data: totalPosts } = await useAsyncData('blog-count', () => {
-    return queryCollection('blog')
-        .where('date', '<>', undefined)
-        .where('slug', '<>', undefined)
-        .count() // Returns just the number
-});
-
-const totalPages = computed(() => Math.ceil((totalPosts.value || 0) / limit));
+        .all(),
+    { watch: [currentPage] }
+);
 </script>
 
 <template>
-    <div>
-        <ul v-if="posts?.length" class="grid md:grid-cols-2 gap-5 py-10">
+    <section class="py-10">
+        <ul v-if="posts?.length" class="grid grid-cols-2 gap-5">
             <li v-for="post in posts" :key="post.path" class="border p-5">
-                <NuxtLink :to="'/blog/' + post.slug" class="block">
+                <NuxtLink :to="post.path" class="block">
+                    <div>{{ post.slug }}</div>
                     <small>{{ post.date }}</small>
                     <h2>{{ post.title }}</h2>
                     <p><small>{{ post.description }}</small></p>
@@ -42,18 +49,6 @@ const totalPages = computed(() => Math.ceil((totalPosts.value || 0) / limit));
         </ul>
         <p v-else>No published posts yet.</p>
 
-        <div v-if="totalPages > 1" class="flex justify-center gap-4 mt-10">
-            <NuxtLink v-if="currentPage > 1" :to="{ query: { page: currentPage - 1 } }"
-                class="px-4 py-2 bg-gray-200 rounded">
-                Previous
-            </NuxtLink>
-
-            <span class="py-2">Page {{ currentPage }} of {{ totalPages }}</span>
-
-            <NuxtLink v-if="currentPage < totalPages" :to="{ query: { page: currentPage + 1 } }"
-                class="px-4 py-2 bg-gray-200 rounded">
-                Next
-            </NuxtLink>
-        </div>
-    </div>
+        <Pagination :current-page="currentPage" :total-pages="totalPages" />
+    </section>
 </template>

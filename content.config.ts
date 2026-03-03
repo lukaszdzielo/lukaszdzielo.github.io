@@ -20,7 +20,8 @@ const createAuthorSchema = () => z.object({
 
 const createTestimonialSchema = () => z.object({
   quote: z.string(),
-  author: createAuthorSchema()
+  author: createAuthorSchema(),
+  image: z.string(),
 })
 
 export default defineContentConfig({
@@ -41,10 +42,10 @@ export default defineContentConfig({
       schema: z.object({
         date: z.string(),
         slug: z.string(),
-        title: z.string(),
         description: z.string(),
         tags: z.array(z.string()),
         image: z.string(),
+        draft: z.boolean().default(false),
       })
     }),
     portfolio: defineCollection({
@@ -52,11 +53,10 @@ export default defineContentConfig({
       source: 'portfolio/**',
       schema: z.object({
         date: z.string(),
-        title: z.string(),
         description: z.string(),
         tags: z.array(z.string()),
         image: z.string(),
-        hasPage: z.boolean().default(true)
+        draft: z.boolean().default(false),
       })
     }),
   },
