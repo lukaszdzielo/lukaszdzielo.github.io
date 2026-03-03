@@ -1,30 +1,19 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const today = new Date().toISOString().split('T')[0] || ''
-
-const slugParam = Array.isArray(route.params.slug)
-    ? route.params.slug[0]
-    : route.params.slug
-
-const { data: post } = await useAsyncData(`blog-${slugParam}`, () => {
+const { data: post } = await useAsyncData(`blog-post`, () => {
     return queryCollection('blog')
-        .where('slug', '=', slugParam)
+        .where('draft', '=', false)
+        .where('path', '=', route.path)
         .first()
 })
 
-const isPublished = computed(() => {
-    if (!post.value?.date) return false;
-    const postDate = post.value.date.split('T')[0];
-    if (!postDate) return false;
-    return postDate <= today
-})
 </script>
 
 <template>
     <section class="py-10">
 
-        <article v-if="post && isPublished">
+        <article v-if="post">
             <h1>{{ post.title }}</h1>
             <p class="text-gray-500">Published: {{ post.date }}</p>
             <hr class="my-4" />
