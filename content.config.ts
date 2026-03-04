@@ -57,6 +57,7 @@ export default defineContentConfig({
         tags: z.array(z.string()),
         image: z.string(),
         draft: z.boolean().default(false),
+        highlight: z.boolean().default(false),
       })
     }),
   },
