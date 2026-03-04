@@ -2,9 +2,9 @@
 date: 2016-10-01
 title: San-Medical
 description:
-image: https://lukaszdzielo.github.io/portfolio/201610_sanmedical.webp
+image: ./portfolio/2016/san-medical/thumbnail.webp
 tech: [WordPress]
-highlight: false
+highlight: true
 agency: eConnect4u
 links:
     live: https://www.san-medical.pl/
