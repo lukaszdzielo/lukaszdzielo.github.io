@@ -1,17 +1,17 @@
 <script setup lang="ts">
-const route = useRoute()
+// const route = useRoute()
 
-const { data: post } = await useAsyncData(`blog-post`, () => {
-    return queryCollection('blog')
-        .where('draft', '=', false)
-        .where('path', '=', route.path)
-        .first()
-})
+// const { data: post } = await useAsyncData(`blog-post`, () => {
+//     return queryCollection('blog')
+//         .where('draft', '=', false)
+//         .where('path', '=', route.path)
+//         .first()
+// })
 
 </script>
 
 <template>
-    <section class="py-10">
+    <!-- <section class="py-10">
 
         <article v-if="post">
             <h1>{{ post.title }}</h1>
@@ -28,5 +28,5 @@ const { data: post } = await useAsyncData(`blog-post`, () => {
             </NuxtLink>
         </div>
 
-    </section>
+    </section> -->
 </template>

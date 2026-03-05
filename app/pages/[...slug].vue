@@ -7,11 +7,7 @@ const { data: page } = await useAsyncData('page-' + route.path, () => {
 </script>
 
 <template>
-	<section class="py-10">
+	<ContentRenderer v-if="page" :value="page" />
 
-		<ContentRenderer v-if="page" :value="page" />
-
-		<p v-else>Strona nie został znaleziony.</p>
-
-	</section>
+	<p v-else>Strona nie został znaleziony.</p>
 </template>

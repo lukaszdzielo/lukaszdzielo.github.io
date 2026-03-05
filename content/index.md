@@ -1,5 +1,23 @@
 ::sections-home-hero
-# Hi! I’m Łukasz <br> Front-End Developer
+
+<div class="container flex flex-col gap-4">
+
+# Hi there! Glad you found me. 👋
+
+I'm currently refactoring my digital space. I’m moving beyond a simple portfolio to create a hub for my projects and a new blog where I'll share "behind-the-scenes" looks at my code, Vue.js patterns, and how I leverage AI to build faster.
+
+The new version is mounting... 🚀
+
+In the meantime, let's connect elsewhere:
+
+
+::common-social-links
+::
+
+
+</div>
+
+
 
 <!-- I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client. Im working on upgrading my qualifications so prospectively I will learn JS to fulfill the expectations of my Clients. -->
 ::

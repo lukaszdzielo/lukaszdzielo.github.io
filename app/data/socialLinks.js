@@ -1,22 +1,18 @@
 export default [
     {
         name: 'linkedin',
-        link: '#'
+        href: 'https://www.linkedin.com/in/lukasz-dzielo-0428b4148/'
     },
     {
-        name: 'instagram',
-        link: '#'
+        name: 'Instagram',
+        href: 'https://www.instagram.com/lukasz.dev'
     },
     {
-        name: 'github 👋',
-        link: '#'
+        name: 'GitHub',
+        href: 'https://github.com/lukaszdzielo'
     },
     {
         name: 'behance',
-        link: '#'
+        href: 'https://www.behance.net/lukaszdzielo'
     },
-    {
-        name: 'codepen',
-        link: '#'
-    }
 ]
