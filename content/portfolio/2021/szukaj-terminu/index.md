@@ -2,7 +2,7 @@
 date: 2021-01-01
 title: Szukaj Terminu
 description:
-image: ./portfolio/2021/szukaj-terminu/thumbnail.webp
+image: ./portfolio/2021/szukaj-terminu/thumbnail.avif
 tech: [wordpress]
 highlight: false
 links:
