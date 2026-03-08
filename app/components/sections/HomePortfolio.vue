@@ -24,7 +24,7 @@ const bottomCarousel = computed(() => {
 
 <template>
 
-    <section class="py-20 overflow-hidden flex flex-col gap-10">
+    <section class="my-20 overflow-hidden flex flex-col gap-10">
 
         <div class="container flex flex-col gap-5">
 
@@ -42,14 +42,14 @@ const bottomCarousel = computed(() => {
         </div>
 
         <div class="flex flex-col gap-2  md:gap-4 2xl:gap-6">
-            <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-l_120s_linear_infinite]">
+            <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-l_100s_linear_infinite]">
                 <div v-for="el in topCarousel" :key="el.title" class="flex-none px-1 md:px-2 2xl:px-3">
                     <img :src="el.image"
                         class="rounded-md md:rounded-xl lg:rounded-2xl bg-white w-[clamp(160px,26vw,400px)] aspect-video object-cover object-top" />
                 </div>
             </div>
 
-            <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-r_120s_linear_infinite]">
+            <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-r_100s_linear_infinite]">
                 <div v-for="el in bottomCarousel" :key="el.title" class="flex-none px-1 md:px-2 2xl:px-3">
                     <img :src="el.image"
                         class="rounded-md md:rounded-xl lg:rounded-2xl bg-white w-[clamp(160px,26vw,400px)] aspect-video object-cover object-top" />

@@ -6,7 +6,7 @@ import TheFooter from '~/components/layout/TheFooter.vue'
 <template>
   <!-- <TheHeader /> -->
 
-  <main class="bg-slate-100  text-slate-700 ">
+  <main>
     <!-- <div class="container"> -->
     <NuxtPage />
     <!-- </div> -->

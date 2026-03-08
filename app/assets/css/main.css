@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
 body {
-    @apply min-h-svh;
+    @apply min-h-svh bg-slate-200;
+}
+
+#__nuxt {
+    @apply w-full max-w-640 mx-auto bg-slate-100;
 }
 
 .container {
