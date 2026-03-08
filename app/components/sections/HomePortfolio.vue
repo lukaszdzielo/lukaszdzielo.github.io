@@ -35,8 +35,8 @@ const bottomCarousel = computed(() => {
                 <span class="font-medium uppercase">Projects</span>
             </div>
 
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-pretty">
-                Discover my <em class="text-blue-500 underline">selected</em> works
+            <h2 class=" text-[clamp(1.5rem,3.5vw,3rem)]/[1.2] font-extrabold text-pretty">
+                Discover my <em class="text-blue-500 ">selected</em> works
             </h2>
 
         </div>
@@ -45,14 +45,14 @@ const bottomCarousel = computed(() => {
             <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-l_120s_linear_infinite]">
                 <div v-for="el in topCarousel" :key="el.title" class="flex-none px-1 md:px-2 2xl:px-3">
                     <img :src="el.image"
-                        class="rounded-md bg-white w-40 md:w-60 lg:w-80 2xl:w-100 aspect-video object-cover object-top" />
+                        class="rounded-md md:rounded-xl lg:rounded-2xl bg-white w-[clamp(160px,26vw,400px)] aspect-video object-cover object-top" />
                 </div>
             </div>
 
             <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-r_120s_linear_infinite]">
                 <div v-for="el in bottomCarousel" :key="el.title" class="flex-none px-1 md:px-2 2xl:px-3">
                     <img :src="el.image"
-                        class="rounded-md bg-white w-40 md:w-60 lg:w-80 2xl:w-100 aspect-video object-cover object-top" />
+                        class="rounded-md md:rounded-xl lg:rounded-2xl bg-white w-[clamp(160px,26vw,400px)] aspect-video object-cover object-top" />
                 </div>
             </div>
         </div>
