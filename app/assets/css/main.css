@@ -5,5 +5,5 @@ body {
 }
 
 .container {
-    @apply w-[calc(100%-36px)] sm:w-4/5 max-w-6xl mx-auto;
+    @apply w-[calc(100%-40px)] sm:w-4/5 max-w-6xl mx-auto;
 }
