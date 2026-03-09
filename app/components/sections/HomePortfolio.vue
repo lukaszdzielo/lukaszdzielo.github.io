@@ -29,14 +29,14 @@ const bottomCarousel = computed(() => {
         <div class="container flex flex-col gap-5">
 
             <div
-                class="flex items-center gap-2.5 after:content-[''] after:block after:w-12 after:h-0.75 after:bg-blue-500 after:rounded-full ">
+                class="flex items-center gap-2.5 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-blue-500 after:rounded-full ">
                 <span class="opacity-40">01</span>
                 <span class="opacity-40">/</span>
-                <span class="font-medium uppercase">Projects</span>
+                <span class="font-semibold uppercase">Projects</span>
             </div>
 
-            <h2 class=" text-[clamp(1.5rem,3.5vw,3rem)]/[1.2] font-extrabold text-pretty">
-                Discover my <em class="text-blue-500 ">selected</em> works
+            <h2 class=" text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-pretty">
+                Bringing <em class="text-blue-500 ">pixels</em> to life
             </h2>
 
         </div>
@@ -44,15 +44,15 @@ const bottomCarousel = computed(() => {
         <div class="flex flex-col gap-2  md:gap-4 2xl:gap-6">
             <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-l_100s_linear_infinite]">
                 <div v-for="el in topCarousel" :key="el.title" class="flex-none px-1 md:px-2 2xl:px-3">
-                    <img :src="el.image"
-                        class="rounded-md md:rounded-xl lg:rounded-2xl bg-white w-[clamp(160px,26vw,400px)] aspect-video object-cover object-top" />
+                    <NuxtImg :src="el.image" :alt="el.title" sizes="160px sm:240px md:320px lg:400px"
+                        class="rounded-md md:rounded-xl lg:rounded-2xl bg-white aspect-video object-cover object-top" />
                 </div>
             </div>
 
             <div class="flex w-max hover:[animation-play-state:paused] animate-[scroll-r_100s_linear_infinite]">
                 <div v-for="el in bottomCarousel" :key="el.title" class="flex-none px-1 md:px-2 2xl:px-3">
-                    <img :src="el.image"
-                        class="rounded-md md:rounded-xl lg:rounded-2xl bg-white w-[clamp(160px,26vw,400px)] aspect-video object-cover object-top" />
+                    <NuxtImg :src="el.image" :alt="el.title" sizes="160px sm:240px md:320px lg:400px"
+                        class="rounded-md md:rounded-xl lg:rounded-2xl bg-white aspect-video object-cover object-top" />
                 </div>
             </div>
         </div>
