@@ -2,7 +2,7 @@
 date: 2019-09-02
 title: Ancora Collection
 description:
-image: ./portfolio/2019/ancora-collection/thumbnail.webp
+image: ./portfolio/2019/ancora-collection/thumbnail.avif
 tech: [wordpress]
 highlight: false
 agency: eConnect4u
