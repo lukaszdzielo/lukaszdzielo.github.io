@@ -2,7 +2,7 @@
 date: 2020-08-01
 title: Monarca
 description:
-image: ./portfolio/2020/monarca/thumbnail.webp
+image: ./portfolio/2020/monarca/thumbnail.avif
 tech: [wordpress]
 highlight: true
 links:

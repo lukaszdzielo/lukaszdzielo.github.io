@@ -2,7 +2,7 @@
 date: 2020-04-01
 title: BOHOmaz
 description:
-image: ./portfolio/2020/bohomaz/thumbnail.webp
+image: ./portfolio/2020/bohomaz/thumbnail.avif
 tech: [wordpress]
 highlight: true
 agency: eConnect4u

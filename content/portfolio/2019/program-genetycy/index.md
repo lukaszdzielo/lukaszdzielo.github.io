@@ -2,7 +2,7 @@
 date: 2019-08-02
 title: Program Genetycy
 description:
-image: ./portfolio/2019/program-genetycy/thumbnail.webp
+image: ./portfolio/2019/program-genetycy/thumbnail.avif
 tech: [wordpress]
 highlight: true
 links:
