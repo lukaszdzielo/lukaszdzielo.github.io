@@ -1,19 +1,12 @@
 ::sections-home-hero
 
-<div class="container flex flex-col gap-4">
+<div class=" flex flex-col gap-5" >
 
 # Hi there! Glad you found me. 👋
 
 I'm currently refactoring my digital space. I’m moving beyond a simple portfolio to create a hub for my projects and a new blog where I'll share "behind-the-scenes" looks at my code, Vue.js patterns, and how I leverage AI to build faster.
 
 The new version is mounting... 🚀
-
-In the meantime, let's connect elsewhere:
-
-
-::common-social-links
-::
-
 
 </div>
 
