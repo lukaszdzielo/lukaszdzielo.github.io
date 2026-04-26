@@ -18,9 +18,6 @@ export default defineNuxtConfig({
           `,
         },
       ],
-      bodyAttrs: {
-        class: 'w-full max-w-640 mx-auto bg-slate-200 text-slate-700'
-      }
     },
   },
   image: {

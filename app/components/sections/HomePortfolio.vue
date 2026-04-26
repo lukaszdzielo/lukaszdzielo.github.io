@@ -24,7 +24,7 @@ const bottomCarousel = computed(() => {
 
 <template>
 
-    <section class="my-15 sm:my-20 md:my-40 overflow-hidden flex flex-col gap-10">
+    <section class="my-15 sm:my-20 md:my-40 overflow-hidden flex flex-col gap-10 ">
 
         <div class="container flex flex-col gap-5">
 
