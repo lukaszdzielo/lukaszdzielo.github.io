@@ -1,13 +1,15 @@
 @import "tailwindcss";
+@source "../../../content/**/*.md";
+@source "../../../content/**/*.json";
 
 body {
-    @apply min-h-svh bg-slate-200;
+    @apply min-h-svh ;
 }
 
 #__nuxt {
-    @apply w-full max-w-480 mx-auto bg-slate-100 text-slate-700;
+    @apply w-full max-w-480 mx-auto bg-slate-50 text-slate-700;
 }
 
 .container {
-    @apply w-[calc(100%-40px)] sm:w-4/5 max-w-6xl mx-auto;
+    @apply w-[calc(100%-40px)] sm:w-4/5 max-w-7xl mx-auto;
 }

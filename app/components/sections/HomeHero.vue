@@ -1,13 +1,19 @@
 <template>
-    <section class="relative p-5 flex flex-col min-h-[450px]">
-        <!-- <div class="absolute logo size-[60px] rounded-[24px] bg-red-400">asd</div> -->
-        <div id="hero" class="grow grid md:grid-cols-2 gap-5 size-full before:bg-slate-200 ">
-            <div class="flex items-center h-full pt-[120px] md:pt-[84px] px-5 text-center md:text-start md:order-2">
-                <slot />
-            </div>
+    <section class="relative flex flex-col min-h-112.5">
+        <div class="grow container flex flex-col mt-6">
+            <div id="hero" class="grow grid md:grid-cols-9 gap-5 md:gap-10 size-full before:bg-slate-200">
 
-            <NuxtImg src="/digital-avatar.avif" sizes="1280px"
-                class="self-end md:order-1 w-full max-w-[400px] md:max-w-none mx-auto aspect-square" />
+                <div
+                    class="flex items-center h-full pt-30 md:pt-21 text-center md:text-start md:order-2 md:col-span-5 px-5 md:ps-0 md:pe-10 lg:pe-15">
+                    <slot />
+                </div>
+
+                <div class="flex items-end md:order-1 md:col-span-4 px-5 md:pt-10 md:ps-10 md:pe-0 lg:px-10">
+                    <NuxtImg src="/digital-avatar.avif" sizes="160px md:400px"
+                        class="w-full max-w-40 md:max-w-100 mx-auto" />
+                </div>
+
+            </div>
         </div>
     </section>
 </template>
@@ -17,16 +23,16 @@
     --r: 24px;
     --s: 36px;
 
-    --x-left: 36px;
-    --y-left: 24px;
+    /* --x-left: 36px; */
+    /* --y-left: 24px; */
 
     --x-right: 0;
 
     @media (min-width: theme('screens.md')) {
-        --x-right: 200px;
+        /* --x-right: 200px; */
     }
 
-    --y-right: 24px;
+    /* --y-right: 24px; */
 
     --_d: calc(var(--s) + var(--r));
     --_m: /calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%, #0000 72%);
