@@ -1,6 +1,6 @@
 ::sections-home-hero
 
-<div class=" flex flex-col gap-5" >
+::div{.flex .flex-col .gap-5}
 
 # Hi there! Glad you found me. 👋
 
@@ -8,7 +8,7 @@ I'm currently refactoring my digital space. I’m moving beyond a simple portfol
 
 The new version is mounting... 🚀
 
-</div>
+::
 
 
 
