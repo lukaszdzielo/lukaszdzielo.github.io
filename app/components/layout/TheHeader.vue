@@ -1,13 +1,13 @@
 <script setup>
-import navigation from '~/data/navigation'
 
 </script>
+
 <template>
-    <header class="py-5">
-        <div class="container">
-            <ul class="flex justify-center gap-10">
-                <li v-for="item in navigation" :key="item.name">
-                    <NuxtLink :to="item.link">{{ item.name }}</NuxtLink>
+    <header class="sticky inset-s-0 inset-x-0 z-1  ">
+        <div class="container flex">
+            <ul class="flex ms-auto p-8 rounded-es-3xl bg-slate-50">
+                <li>
+                    Feature menu parts ;)
                 </li>
             </ul>
         </div>

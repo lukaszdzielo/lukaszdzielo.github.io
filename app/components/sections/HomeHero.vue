@@ -24,15 +24,15 @@
     --s: 36px;
 
     /* --x-left: 36px; */
-    /* --y-left: 24px; */
+    --y-left: 24px;
 
     --x-right: 0;
 
     @media (min-width: theme('screens.md')) {
-        /* --x-right: 200px; */
+        --x-right: 200px;
     }
 
-    /* --y-right: 24px; */
+    --y-right: 24px;
 
     --_d: calc(var(--s) + var(--r));
     --_m: /calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%, #0000 72%);
