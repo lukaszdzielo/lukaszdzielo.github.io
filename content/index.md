@@ -2,11 +2,9 @@
 
 ::div{.flex .flex-col .gap-5}
 
-# Hi there! Glad you found me. 👋
+# <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">Front-End Engineer</span> <br><span class="text-md lg:text-lg xl:text-xl font-medium">with a Technical Design Background</span>
 
-I'm currently refactoring my digital space. I’m moving beyond a simple portfolio to create a hub for my projects and a new blog where I'll share "behind-the-scenes" looks at my code, Vue.js patterns, and how I leverage AI to build faster.
-
-The new version is mounting... 🚀
+I focus on building robust Vue 3 applications with a focus on high-fidelity UI implementation. My background in Graphic Design is my technical edge—it allows me to bridge the gap between complex visual concepts and maintainable, scalable code.
 
 ::
 
