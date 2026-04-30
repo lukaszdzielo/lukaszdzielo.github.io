@@ -2,7 +2,7 @@
 
 ::div{.flex .flex-col .gap-5}
 
-# <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">Front-End Engineer</span> <br><span class="text-md lg:text-lg xl:text-xl font-medium">with a Technical Design Background</span>
+# <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">Front-End Developer</span> <br><span class="text-md lg:text-lg xl:text-xl font-medium">with a design background</span>
 
 I focus on building robust Vue 3 applications with a focus on high-fidelity UI implementation. My background in Graphic Design is my technical edge—it allows me to bridge the gap between complex visual concepts and maintainable, scalable code.
 
