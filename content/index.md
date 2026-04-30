@@ -1,16 +1,29 @@
 ::sections-home-hero
 
-::div{.flex .flex-col .gap-5}
+#image
+<NuxtImg
+  src="/digital-avatar.avif"
+  sizes="160px md:400px"
+  class="w-full max-w-50 md:max-w-90 mx-auto"
+/>
 
-# <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">Front-End Developer</span> <br><span class="text-md lg:text-lg xl:text-xl font-medium">with a design background</span>
+#content
+<div class="flex flex-col gap-3 md:gap-4">
 
-I focus on building robust Vue 3 applications with a focus on high-fidelity UI implementation. My background in Graphic Design is my technical edge—it allows me to bridge the gap between complex visual concepts and maintainable, scalable code.
+<div class="flex flex-col gap-1 ">
 
-::
+<span class="text-lg font-semibold opacity-80">Front-End Developer</span>
 
+<h1 class="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-balance">I build clear, responsive interfaces with Vue</h1>
 
+</div>
 
-<!-- I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client. Im working on upgrading my qualifications so prospectively I will learn JS to fulfill the expectations of my Clients. -->
+<p class="opacity-80">
+I focus on practical front-end work: maintainable UI, responsive layouts, reusable components, and cleaner user experiences across commercial and personal projects.
+</p>
+
+</div>
+
 ::
 
 <!-- ## Skills
