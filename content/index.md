@@ -2,12 +2,13 @@
 
 #image
 <NuxtImg
-  src="/digital-avatar.avif"
+  src="/home-hero/digital-avatar.avif"
   sizes="160px md:400px"
   class="w-full max-w-50 md:max-w-90 mx-auto"
 />
 
 #content
+
 <div class="flex flex-col gap-3 md:gap-4">
 
 <div class="flex flex-col gap-1 ">
@@ -37,8 +38,6 @@ HTML5, CSS3, Sass, Bootstrap, GitHub, Jira, Gulp, Wordpress, -->
 Experience
 
 Projects -->
-
-
 
 ::sections-home-portfolio
 ::
@@ -72,5 +71,5 @@ You can find an example of querying contents and rendering them in a [catch-all 
 
 Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more. -->
 
-<!-- ::sections-footer-cta 
+<!-- ::sections-footer-cta
 :: -->
