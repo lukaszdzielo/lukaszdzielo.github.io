@@ -5,6 +5,7 @@
   src="/home-hero/digital-avatar.avif"
   sizes="160px md:400px"
   class="w-full max-w-50 md:max-w-90 mx-auto"
+  alt="Digital avatar of Łukasz Dzieło"
 />
 
 #content
