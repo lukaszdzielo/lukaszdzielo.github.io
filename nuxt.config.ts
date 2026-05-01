@@ -4,6 +4,20 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   app: {
     head: {
+      title: 'Lukasz Dzieło | Front-End Developer',
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon/favicon-96x96.png', sizes: '96x96' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon/favicon.svg' },
+        { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/favicon/site.webmanifest' }
+      ],
+      meta: [
+        { name: 'apple-mobile-web-app-title', content: 'lukasz.dev' },
+        { name: 'description', content: 'Front-End Developer focused on Vue, responsive UI, reusable components, and maintainable interfaces across commercial and personal projects.' },
+        { name: 'author', content: 'Lukasz Dzieło' },
+        { name: 'robots', content: 'index, follow' }
+      ],
       script: [
         {
           src: 'https://www.googletagmanager.com/gtag/js?id=G-VGN46K0G19',

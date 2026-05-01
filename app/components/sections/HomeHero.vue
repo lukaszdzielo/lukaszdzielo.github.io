@@ -1,6 +1,6 @@
 <template>
     <section class="relative flex flex-col">
-        <div class="grow container flex flex-col mt-6">
+        <div class="grow container flex flex-col md:mt-6">
             <div
                 class="relative grow grid md:grid-cols-2 lg:grid-cols-[auto_1fr] gap-5 md:gap-10 lg:gap-15 xl:gap-20 2xl:gap-30 size-full rounded-4xl before:absolute before:inset-bs-20 before:inset-be-0 before:inset-x-0 before:rounded-3xl before:bg-slate-200">
                 <div
