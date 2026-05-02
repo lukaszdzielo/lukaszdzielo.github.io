@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @source "../../../content/**/*.md";
 @source "../../../content/**/*.json";
 
 body {
-    @apply min-h-svh ;
+    @apply min-h-svh;
+    font-family: 'Inter', sans-serif;
 }
 
 #__nuxt {
