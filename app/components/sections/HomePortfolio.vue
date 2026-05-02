@@ -29,14 +29,14 @@ const bottomCarousel = computed(() => {
         <div class="container flex flex-col gap-5">
 
             <div
-                class="flex items-center gap-2.5 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-blue-500 after:rounded-full ">
+                class="flex items-center gap-2.5 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full ">
                 <span class="opacity-40">01</span>
                 <span class="opacity-40">/</span>
                 <span class="font-semibold uppercase">Projects</span>
             </div>
 
             <h2 class=" text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-pretty">
-                Bringing <em class="text-blue-500 ">pixels</em> to life
+                Bringing <em class="text-sky-500 ">pixels</em> to life
             </h2>
 
         </div>
