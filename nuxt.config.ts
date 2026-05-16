@@ -39,6 +39,9 @@ export default defineNuxtConfig({
         { property: 'og:description', content: SITE_DESCRIPTION },
         { property: 'og:url', content: SITE_URL },
         { property: 'og:image', content: OG_IMAGE },
+        { property: 'og:image:type', content: 'image/jpeg' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
         { property: 'og:image:alt', content: `Homepage of ${SITE_NAME}, ${SITE_ROLE}` },
         { property: 'og:locale', content: 'en_US' },
 
