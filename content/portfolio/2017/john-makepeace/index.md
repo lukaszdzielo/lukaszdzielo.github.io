@@ -4,6 +4,6 @@ title: John Makepeace
 description:
 image: ./portfolio/2017/john-makepeace/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

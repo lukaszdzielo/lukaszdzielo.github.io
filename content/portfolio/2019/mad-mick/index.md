@@ -4,7 +4,7 @@ title: Mad Mick
 description:
 image:
 tech: [wordpress]
-highlight: false
+featured: false
 links:
-    behance: https://www.behance.net/gallery/87882427/Mad-Mick-website
+  behance: https://www.behance.net/gallery/87882427/Mad-Mick-website
 ---

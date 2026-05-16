@@ -4,7 +4,7 @@ title: NatFit.pl
 description:
 image: ./portfolio/2019/wessex-dragons/thumbnail.avif
 tech: [wordpress]
-highlight: false
+featured: false
 links:
     behance: https://www.behance.net/gallery/87475813/NatFitpl-website
 ---

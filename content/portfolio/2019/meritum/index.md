@@ -4,7 +4,7 @@ title: Meritum
 description:
 image:
 tech: [wordpress]
-highlight: false
+featured: false
 links:
     behance: https://www.behance.net/gallery/89017667/Meritum-website
 ---

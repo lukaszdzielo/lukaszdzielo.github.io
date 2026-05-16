@@ -4,7 +4,7 @@ title: Szukaj Terminu
 description:
 image: ./portfolio/2021/szukaj-terminu/thumbnail.avif
 tech: [wordpress]
-highlight: false
+featured: false
 links:
     behance: https://www.behance.net/gallery/111772821/Szukaj-terminu-website
 ---

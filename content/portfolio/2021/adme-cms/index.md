@@ -6,5 +6,5 @@ image: ./portfolio/2021/adme-cms/thumbnail.avif
 tech: [html]
 tags: [html, cms]
 agency: Bespoke 4 Business
-highlight: false
+featured: false
 ---

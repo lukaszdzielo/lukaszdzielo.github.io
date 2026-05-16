@@ -4,7 +4,7 @@ title: Potancówki i prywatki
 description:
 image: ./portfolio/2019/potancowki-i-prywatki/thumbnail.avif
 tech: [wordpress]
-highlight: false
+featured: false
 links:
-    behance: https://www.behance.net/gallery/88022719/Potancowki-i-prywatki-website
+  behance: https://www.behance.net/gallery/88022719/Potancowki-i-prywatki-website
 ---

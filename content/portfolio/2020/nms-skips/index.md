@@ -4,6 +4,6 @@ title: NMS Skips
 description:
 image: ./portfolio/2020/nms-skips/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

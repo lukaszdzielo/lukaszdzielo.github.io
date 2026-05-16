@@ -4,6 +4,6 @@ title: Morrish Homes
 description:
 image: ./portfolio/2020/morrish-homes/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 agency: Bespoke 4 Business
 ---

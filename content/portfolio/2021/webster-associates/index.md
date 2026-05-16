@@ -4,7 +4,7 @@ title: Webster Associates
 description:
 image: ./portfolio/2021/webster-associates/thumbnail.avif
 tech: [wordpress]
-highlight: true
+featured: true
 agency: Bespoke 4 Business
 links:
     live: https://www.webster-associates.co.uk/

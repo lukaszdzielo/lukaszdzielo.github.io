@@ -4,6 +4,6 @@ title: Adme
 description:
 image: ./portfolio/2020/adme/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 agency: Bespoke 4 Business
 ---

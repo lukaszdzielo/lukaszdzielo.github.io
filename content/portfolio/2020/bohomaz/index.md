@@ -4,7 +4,7 @@ title: BOHOmaz
 description:
 image: ./portfolio/2020/bohomaz/thumbnail.avif
 tech: [wordpress]
-highlight: true
+featured: true
 agency: eConnect4u
 links:
     behance: https://www.behance.net/gallery/97311111/BOHOmaz-website

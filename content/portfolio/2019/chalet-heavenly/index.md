@@ -4,6 +4,6 @@ title: Chalet Heavenly
 description:
 image: ./portfolio/2019/chalet-heavenly/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

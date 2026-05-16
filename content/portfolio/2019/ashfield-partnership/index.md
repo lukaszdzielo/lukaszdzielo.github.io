@@ -4,6 +4,6 @@ title: Ashfield Partnership
 description:
 image: ./portfolio/2019/ashfield-partnership/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 agency: Bespoke 4 Business
 ---

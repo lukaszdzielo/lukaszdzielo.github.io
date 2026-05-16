@@ -4,7 +4,7 @@ title: BTM
 description:
 image: ./portfolio/2021/btm/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 links:
     behance: https://www.behance.net/gallery/121908225/BTM-system
 ---

@@ -4,7 +4,7 @@ title: eConnect4u
 description:
 image: ./portfolio/2017/econnect4u/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 agency: eConnect4u
 links:
       live: https://www.econnect4u.pl/

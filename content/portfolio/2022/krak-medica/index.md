@@ -4,7 +4,7 @@ title: Krak Medica
 description:
 image: 
 tech: [wordpress]
-highlight: false
+featured: false
 agency: Health Marketing
 links:
     behance: https://www.behance.net/gallery/140614947/Krak-Medica-website

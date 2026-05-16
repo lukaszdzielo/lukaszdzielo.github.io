@@ -4,7 +4,7 @@ title: Hair InXs
 description:
 image: ./portfolio/2019/hair-inxs/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 links:
     live: https://www.hairinxs.com/
