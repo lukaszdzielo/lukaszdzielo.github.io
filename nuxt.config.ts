@@ -6,7 +6,7 @@ const SITE_TITLE = `${SITE_NAME} — ${SITE_ROLE}`
 const SITE_DESCRIPTION =
   'Front-End Developer focused on Vue, responsive UI, reusable components, and maintainable interfaces across commercial and personal projects.'
 const SITE_URL = 'https://lukaszdzielo.github.io/'
-const OG_IMAGE = `${SITE_URL}/og/og-cover.jpg`
+const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
 const APPLE_TITLE = SITE_NAME
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
