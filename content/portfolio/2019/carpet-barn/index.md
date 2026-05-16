@@ -4,6 +4,6 @@ title: Carpet Barn
 description:
 image: ./portfolio/2019/carpet-barn/thumbnail.avif
 tech: []
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

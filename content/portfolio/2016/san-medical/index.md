@@ -4,7 +4,7 @@ title: San-Medical
 description:
 image: ./portfolio/2016/san-medical/thumbnail.avif
 tech: [WordPress]
-highlight: true
+featured: true
 agency: eConnect4u
 links:
     live: https://www.san-medical.pl/

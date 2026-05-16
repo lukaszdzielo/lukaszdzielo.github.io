@@ -4,7 +4,7 @@ title: SOHO
 description:
 image: 
 tech: [wordpress]
-highlight: false
+featured: false
 agency: eConnect4u
 links:
     behance: https://www.behance.net/gallery/180769869/SOHO-website

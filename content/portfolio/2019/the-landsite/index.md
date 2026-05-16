@@ -4,6 +4,6 @@ title: The Landsite
 description:
 image: ./portfolio/2019/the-landsite/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

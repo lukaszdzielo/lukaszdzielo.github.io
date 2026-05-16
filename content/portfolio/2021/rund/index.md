@@ -4,7 +4,7 @@ title: Rund
 description:
 image: ./portfolio/2021/rund/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 agency: Bespoke 4 Business
 links:
     live: https://www.rund.co.uk/

@@ -4,7 +4,7 @@ title: 4xtrahands
 description:
 image: ./portfolio/2019/4xtrahands/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 links:
     live: https://www.4xtrahands.com/

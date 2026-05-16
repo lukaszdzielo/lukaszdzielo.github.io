@@ -4,7 +4,7 @@ title: ABCD
 description:Krótki opis projektu bez podstrony.
 image: /images/p1.jpg
 tech: [Vue, Nuxt]
-highlight: true
+featured: true
 draft: true
 ---
 
