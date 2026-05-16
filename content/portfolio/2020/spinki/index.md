@@ -4,7 +4,7 @@ title: Spinki
 description:
 image: ./portfolio/2020/spinki/thumbnail.avif
 tech: [html]
-highlight: true
+featured: true
 agency: eConnect4u
 links:
     github: https://lukaszdzielo.github.io/ec4-spinki/

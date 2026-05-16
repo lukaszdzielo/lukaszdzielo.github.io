@@ -4,6 +4,6 @@ title: Classic Fine Foods
 description:
 image: ./portfolio/2019/classic-fine-foods/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

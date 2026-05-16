@@ -4,7 +4,7 @@ title: OCR & GO
 description:
 image: 
 tech: [wordpress]
-highlight: false
+featured: false
 links:
     behance: https://www.behance.net/gallery/90054141/OCR-GO-website
 ---

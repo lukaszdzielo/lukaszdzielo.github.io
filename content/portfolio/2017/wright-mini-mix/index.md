@@ -4,6 +4,6 @@ title: Wright Mini Mix
 description:
 image: ./portfolio/2017/wright-mini-mix/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---

@@ -4,6 +4,6 @@ title: Kings Lodge
 description:
 image: ./portfolio/2019/kings-lodge/thumbnail.avif
 tech: [html]
-highlight: false
+featured: false
 agency: Bespoke 4 Business
 ---
