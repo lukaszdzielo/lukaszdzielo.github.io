@@ -42,14 +42,14 @@ export default defineNuxtConfig({
         { property: 'og:image:type', content: 'image/jpeg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: `Homepage of ${SITE_NAME}, ${SITE_ROLE}` },
+        { property: 'og:image:alt', content: `Avatar of ${SITE_NAME} with the title "${SITE_ROLE}"` },
         { property: 'og:locale', content: 'en_US' },
 
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: SITE_TITLE },
         { name: 'twitter:description', content: SITE_DESCRIPTION },
         { name: 'twitter:image', content: OG_IMAGE },
-        { name: 'twitter:image:alt', content: `Homepage of ${SITE_NAME}, ${SITE_ROLE}` }
+        { name: 'twitter:image:alt', content: `Avatar of ${SITE_NAME} with the title "${SITE_ROLE}"` }
       ],
       script: [
         {
