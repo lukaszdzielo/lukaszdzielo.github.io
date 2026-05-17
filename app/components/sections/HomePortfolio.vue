@@ -2,8 +2,8 @@
 
 const limit = 20;
 
-const { data: projects } = await useAsyncData('portfolio-list', () =>
-    queryCollection('portfolio')
+const { data: projects } = await useAsyncData('projects-home-list', () =>
+    queryCollection('projects')
         .where('draft', '=', false)
         .where('featured', '=', true)
         .order('date', 'DESC')

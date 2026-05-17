@@ -4,8 +4,8 @@ export default [
         link: '/'
     },
     {
-        name: 'Portfolio',
-        link: '/portfolio'
+        name: 'Projects',
+        link: '/projects'
     },
     {
         name: 'Blog',

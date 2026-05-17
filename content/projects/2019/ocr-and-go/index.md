@@ -2,9 +2,9 @@
 date: 2019-12-01
 title: OCR & GO
 description:
-image: 
+image:
 tech: [wordpress]
 featured: false
 links:
-    behance: https://www.behance.net/gallery/90054141/OCR-GO-website
+  behance: https://www.behance.net/gallery/90054141/OCR-GO-website
 ---
