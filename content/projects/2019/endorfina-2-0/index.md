@@ -6,5 +6,5 @@ image:
 tech: [wordpress]
 featured: false
 links:
-    behance: https://www.behance.net/gallery/85574077/Endorfina-20-website
+  behance: https://www.behance.net/gallery/85574077/Endorfina-20-website
 ---

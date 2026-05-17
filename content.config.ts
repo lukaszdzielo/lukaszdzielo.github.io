@@ -32,7 +32,7 @@ export default defineContentConfig({
         include: '**',
         exclude: [
           'blog/**',
-          'portfolio/**'
+          'projects/**'
         ]
       }
     }),
@@ -48,9 +48,9 @@ export default defineContentConfig({
         draft: z.boolean().default(false),
       })
     }),
-    portfolio: defineCollection({
+    projects: defineCollection({
       type: 'page',
-      source: 'portfolio/**',
+      source: 'projects/**',
       schema: z.object({
         date: z.string(),
         description: z.string(),
