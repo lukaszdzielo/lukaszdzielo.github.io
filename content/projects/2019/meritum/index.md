@@ -6,5 +6,5 @@ image:
 tech: [wordpress]
 featured: false
 links:
-    behance: https://www.behance.net/gallery/89017667/Meritum-website
+  behance: https://www.behance.net/gallery/89017667/Meritum-website
 ---

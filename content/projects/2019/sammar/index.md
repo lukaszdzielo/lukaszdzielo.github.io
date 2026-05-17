@@ -6,5 +6,5 @@ image:
 tech: [html]
 featured: false
 links:
-    behance: https://www.behance.net/gallery/88473405/Sammar-website
+  behance: https://www.behance.net/gallery/88473405/Sammar-website
 ---

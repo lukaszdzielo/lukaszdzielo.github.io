@@ -6,5 +6,5 @@ image:
 tech: [wordpress]
 featured: false
 links:
-    behance: https://www.behance.net/gallery/87475813/NatFitpl-website
+  behance: https://www.behance.net/gallery/87475813/NatFitpl-website
 ---
