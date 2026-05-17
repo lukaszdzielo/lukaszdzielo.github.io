@@ -2,7 +2,7 @@
 date: 2019-11-05
 title: MAX-GYM
 description:
-image: /portfolio/2019/max-gym/thumbnail.avif
+image:
 tech: [wordpress]
 featured: false
 links:
