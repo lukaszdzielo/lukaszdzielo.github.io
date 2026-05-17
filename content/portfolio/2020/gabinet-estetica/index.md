@@ -2,10 +2,10 @@
 date: 2020-02-01
 title: Gabinet Estetica
 description:
-image: ./portfolio/2020/gabinet-estetica/thumbnail.avif
+image: /portfolio/2020/gabinet-estetica/thumbnail.avif
 tech: [wordpress]
 featured: false
 agency: eConnect4u
 links:
-    live: https://www.gabinetestetica.com.pl/
+  live: https://www.gabinetestetica.com.pl/
 ---
