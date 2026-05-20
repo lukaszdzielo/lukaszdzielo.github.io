@@ -2,7 +2,7 @@
 date: 2019-11-01
 title: Potancówki i prywatki
 description:
-image: /portfolio/2019/potancowki-i-prywatki/thumbnail.avif
+image: /projects/2019/potancowki-i-prywatki/thumbnail.avif
 tech: [wordpress]
 featured: false
 links:

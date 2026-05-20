@@ -2,7 +2,7 @@
 date: 2016-08-01
 title: akserw gifts
 description:
-image: /portfolio/2016/akserw-gifts/thumbnail.avif
+image: /projects/2016/akserw-gifts/thumbnail.avif
 tech: [html]
 featured: false
 agency: eConnect4u
