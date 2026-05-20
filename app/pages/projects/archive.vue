@@ -46,6 +46,20 @@ const hasContent = (project: any): boolean => {
     const body = project?.body as { value?: unknown[] } | undefined;
     return Array.isArray(body?.value) && body!.value!.length > 0;
 };
+
+const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    if (parts.length < 2) return dateStr;
+    const year = parts[0];
+    const monthIndex = parseInt(parts[1], 10) - 1;
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    if (monthIndex < 0 || monthIndex > 11) return dateStr;
+    return `${months[monthIndex]} ${year}`;
+};
 </script>
 
 <template>
@@ -74,13 +88,13 @@ const hasContent = (project: any): boolean => {
                     <NuxtImg :src="project.image" :alt="project.title" sizes="320px md:400px lg:480px" loading="lazy"
                         class="rounded-md md:rounded-xl lg:rounded-2xl bg-white aspect-video object-cover object-top w-full transition-transform group-hover:scale-[1.02]" />
                     <h2 class="mt-3 font-semibold">{{ project.title }}</h2>
-                    <small class="opacity-60">{{ project.date }}</small>
+                    <small class="opacity-60">{{ formatDate(project.date) }}</small>
                 </NuxtLink>
                 <div v-else class="block cursor-default">
                     <NuxtImg :src="project.image" :alt="project.title" sizes="320px md:400px lg:480px" loading="lazy"
                         class="rounded-md md:rounded-xl lg:rounded-2xl bg-white aspect-video object-cover object-top w-full" />
                     <h2 class="mt-3 font-semibold">{{ project.title }}</h2>
-                    <small class="opacity-60">{{ project.date }}</small>
+                    <small class="opacity-60">{{ formatDate(project.date) }}</small>
                 </div>
             </li>
         </ul>
