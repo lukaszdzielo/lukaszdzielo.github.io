@@ -27,8 +27,9 @@ watch(() => route.query.page, () => {
     }
 }, { immediate: true });
 
-const { data: projects } = await useAsyncData('projects-featured-list', () =>
-    queryCollection('projects')
+const { data: projects } = await useAsyncData(
+    () => `projects-featured-list-${currentPage.value}`,
+    () => queryCollection('projects')
         .where('draft', '=', false)
         .where('featured', '=', true)
         .order('date', 'DESC')
