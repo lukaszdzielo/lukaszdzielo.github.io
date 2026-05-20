@@ -2,7 +2,7 @@
 date: 2019-11-03
 title: Sammar
 description:
-image:
+image: /projects/2019/sammar/thumbnail.avif
 tech: [html]
 featured: false
 links:

@@ -2,7 +2,7 @@
 date: 2019-12-01
 title: OCR & GO
 description:
-image:
+image: /projects/2019/ocr-and-go/thumbnail.avif
 tech: [wordpress]
 featured: false
 links:
