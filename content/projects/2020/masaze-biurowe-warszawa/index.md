@@ -2,7 +2,7 @@
 date: 2020-02-03
 title: Masaże Biurowe Warszawa
 description:
-image: /portfolio/2020/masaze-biurowe-warszawa/thumbnail.avif
+image: /projects/2020/masaze-biurowe-warszawa/thumbnail.avif
 tech: [wordpress]
 featured: false
 links:
