@@ -26,8 +26,9 @@ watch(() => route.query.page, () => {
     }
 }, { immediate: true });
 
-const { data: projects } = await useAsyncData('projects-archive-list', () =>
-    queryCollection('projects')
+const { data: projects } = await useAsyncData(
+    () => `projects-archive-list-${currentPage.value}`,
+    () => queryCollection('projects')
         .where('draft', '=', false)
         .order('date', 'DESC')
         .limit(limit)
