@@ -137,6 +137,10 @@ export default defineNuxtConfig({
   image: {
     format: ['avif'],
   },
+  sourcemap: {
+    server: false,
+    client: false,
+  },
   nitro: {
     prerender: {
       routes: prerenderRoutes
