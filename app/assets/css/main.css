@@ -3,15 +3,17 @@
 @source "../../../content/**/*.md";
 @source "../../../content/**/*.json";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 body {
-    @apply min-h-svh;
-    font-family: 'Inter', sans-serif;
+  @apply min-h-svh;
+  font-family: "Inter", sans-serif;
 }
 
 #__nuxt {
-    @apply w-full max-w-480 mx-auto bg-slate-50 text-slate-700;
+  @apply w-full max-w-480 mx-auto bg-slate-50 text-slate-700 dark:bg-slate-800 dark:text-slate-200;
 }
 
 .container {
-    @apply w-[calc(100%-40px)] sm:w-4/5 max-w-7xl mx-auto;
+  @apply w-[calc(100%-40px)] sm:w-4/5 max-w-7xl mx-auto;
 }

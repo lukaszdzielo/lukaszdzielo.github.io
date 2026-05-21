@@ -120,6 +120,10 @@ export default defineNuxtConfig({
       ],
       script: [
         {
+          innerHTML: `(()=>{try{const t=localStorage.getItem('theme');const d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+          tagPosition: 'head',
+        },
+        {
           src: 'https://www.googletagmanager.com/gtag/js?id=G-VGN46K0G19',
           async: true,
         },
