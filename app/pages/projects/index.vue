@@ -19,13 +19,12 @@ const totalPages = computed(() => Math.max(1, Math.ceil((total.value ?? 0) / lim
 
 const currentPage = computed(() => {
     const pageParam = route.params.page as string | undefined;
-    if (pageParam) {
-        const page = parseInt(pageParam, 10);
-        if (!isNaN(page) && page >= 1) {
-            return Math.min(page, totalPages.value);
-        }
+    if (!pageParam) return 1;
+    const parsed = Number(pageParam);
+    if (!Number.isInteger(parsed) || parsed < 1 || parsed > totalPages.value) {
+        throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
     }
-    return 1;
+    return parsed;
 });
 
 const { data: projects } = await useAsyncData(
