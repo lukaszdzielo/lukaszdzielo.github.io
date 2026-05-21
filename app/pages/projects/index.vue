@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import ThePagination from '~/components/common/ThePagination.vue';
 
+definePageMeta({
+    alias: ['/projects/page/:page']
+});
+
 const route = useRoute();
-const router = useRouter();
 const limit = 18;
 
 const { data: total } = await useAsyncData('projects-featured-count', () =>
@@ -15,17 +18,15 @@ const { data: total } = await useAsyncData('projects-featured-count', () =>
 const totalPages = computed(() => Math.max(1, Math.ceil((total.value ?? 0) / limit)));
 
 const currentPage = computed(() => {
-    const page = parseInt(route.query.page as string);
-    if (isNaN(page) || page < 1) return 1;
-    return Math.min(page, totalPages.value);
-});
-
-watch(() => route.query.page, () => {
-    const raw = parseInt(route.query.page as string);
-    if (!isNaN(raw) && (raw < 1 || raw > totalPages.value)) {
-        router.replace({ query: { page: currentPage.value } });
+    const pageParam = route.params.page as string | undefined;
+    if (pageParam) {
+        const page = parseInt(pageParam, 10);
+        if (!isNaN(page) && page >= 1) {
+            return Math.min(page, totalPages.value);
+        }
     }
-}, { immediate: true });
+    return 1;
+});
 
 const { data: projects } = await useAsyncData(
     () => `projects-featured-list-${currentPage.value}`,
@@ -102,6 +103,6 @@ const formatDate = (dateStr: string) => {
         </ul>
         <p v-else class="opacity-60">No featured projects yet.</p>
 
-        <ThePagination :current-page="currentPage" :total-pages="totalPages" />
+        <ThePagination :current-page="currentPage" :total-pages="totalPages" base-path="/projects" />
     </section>
 </template>
