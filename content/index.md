@@ -1,47 +1,43 @@
 ::sections-home-hero
 
 #image
-<NuxtImg
-  src="/home-hero/digital-avatar.avif"
-  sizes="160px md:400px"
-  class="w-full max-w-40 md:max-w-90 mx-auto"
-  alt="Digital avatar of Łukasz Dzieło"
-/>
+:nuxt-img{src="/home-hero/digital-avatar.avif" sizes="160px md:400px" class="w-full max-w-40 md:max-w-90 mx-auto" alt="Digital avatar of Łukasz Dzieło"}
 
-#content
+#eyebrow
+Front-End Developer
 
-<div class="flex flex-col gap-3 md:gap-4">
+#title
+I build clear, responsive interfaces with Vue
 
-<div class="flex flex-col gap-1 ">
-
-<span class="text-lg font-semibold opacity-80">Front-End Developer</span>
-
-<h1 class="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-balance">I build clear, responsive interfaces with Vue</h1>
-
-</div>
-
-<p class="opacity-80">
+#description
 I focus on practical front-end work: maintainable UI, responsive layouts, reusable components, and cleaner user experiences across commercial and personal projects.
-</p>
-
-</div>
-
 ::
-
-<!-- ## Skills
-
-Mainly companies for which I provide services work on Bootstrap, so and everything that others do in Javascript, I make up for it using SCSS and HTML. I mainly get a graphic design and cut it to a clean code, and then it is hooked up to a dedicated CMS system. I also worked on Wordpress using Enfold, Divi, Bridge and Jupiter. Learning Vue and React is my goal for the near future.
-
-HTML5, CSS3, Sass, Bootstrap, GitHub, Jira, Gulp, Wordpress, -->
-
-<!-- Tech Stack
-
-Experience
-
-Projects -->
 
 ::sections-home-portfolio
 ::
+
+<!-- poczatek sekcji about -->
+
+<!-- Eyebrow:
+About
+
+Heading:
+I enjoy building front-end that stays clear as products grow.
+
+Paragraph:
+I’m a Front-End Developer who enjoys practical product work: building interfaces, creating reusable components, improving code structure, and solving problems along the way. I work best when the direction is clear and the goal is to turn a finished idea into responsive, maintainable front-end that can grow with the project.
+
+Points / cards:
+
+Building interfaces for web applications and websites.
+
+Creating reusable components and cleaner UI structure.
+
+Turning finished designs into responsive front-end.
+
+Supporting product teams with reliable implementation. -->
+
+<!-- koniec sekcji about -->
 
 <!-- Blog
 
