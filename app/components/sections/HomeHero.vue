@@ -10,7 +10,21 @@
           <div
             class="pt-10 pb-5 md:py-5 lg:py-0 px-5 md:px-0 text-center md:text-start"
           >
-            <slot name="content" />
+            <div class="flex flex-col gap-3 md:gap-4">
+              <div class="flex flex-col gap-1">
+                <span class="text-lg font-semibold opacity-80">
+                  <slot name="eyebrow" mdc-unwrap="p" />
+                </span>
+                <h1
+                  class="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-balance"
+                >
+                  <slot name="title" mdc-unwrap="p" />
+                </h1>
+              </div>
+              <p class="opacity-80">
+                <slot name="description" mdc-unwrap="p" />
+              </p>
+            </div>
           </div>
         </div>
 
