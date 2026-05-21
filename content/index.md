@@ -16,28 +16,24 @@ I focus on practical front-end work: maintainable UI, responsive layouts, reusab
 ::sections-home-portfolio
 ::
 
-<!-- poczatek sekcji about -->
+::sections-home-about
+---
+cards:
+  - Building interfaces for web applications and websites.
+  - Creating reusable components and cleaner UI structure.
+  - Turning finished designs into responsive front-end.
+  - Supporting product teams with reliable implementation.
+---
 
-<!-- Eyebrow:
+#eyebrow
 About
 
-Heading:
+#title
 I enjoy building front-end that stays clear as products grow.
 
-Paragraph:
+#description
 I’m a Front-End Developer who enjoys practical product work: building interfaces, creating reusable components, improving code structure, and solving problems along the way. I work best when the direction is clear and the goal is to turn a finished idea into responsive, maintainable front-end that can grow with the project.
-
-Points / cards:
-
-Building interfaces for web applications and websites.
-
-Creating reusable components and cleaner UI structure.
-
-Turning finished designs into responsive front-end.
-
-Supporting product teams with reliable implementation. -->
-
-<!-- koniec sekcji about -->
+::
 
 <!-- Blog
 
