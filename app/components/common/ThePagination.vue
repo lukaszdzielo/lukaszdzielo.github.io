@@ -4,11 +4,15 @@ const router = useRouter();
 const props = defineProps<{
     currentPage: number;
     totalPages: number;
+    basePath: string;
 }>();
 
 const page = computed({
     get: () => props.currentPage,
-    set: (val: number) => { router.push({ query: { page: val } }); }
+    set: (val: number) => {
+        const path = val === 1 ? props.basePath : `${props.basePath}/page/${val}`;
+        router.push(path);
+    }
 });
 
 const hasMultiplePages = computed(() => props.totalPages > 1);

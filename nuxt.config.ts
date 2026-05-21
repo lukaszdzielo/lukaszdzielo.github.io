@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import tailwindcss from "@tailwindcss/vite";
 
 const SITE_NAME = 'Łukasz Dzieło'
@@ -8,6 +10,71 @@ const SITE_DESCRIPTION =
 const SITE_URL = 'https://lukaszdzielo.github.io/'
 const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
 const APPLE_TITLE = SITE_NAME
+
+// Dynamic routes generator to automatically prerender all paginated pages
+const getPrerenderRoutes = (): string[] => {
+  const routes: string[] = [];
+  const projectDir = path.resolve(process.cwd(), 'content/projects');
+
+  const getProjectFiles = (dir: string): string[] => {
+    let results: string[] = [];
+    if (!fs.existsSync(dir)) return results;
+    const list = fs.readdirSync(dir);
+    list.forEach((file) => {
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+      if (stat && stat.isDirectory()) {
+        results = results.concat(getProjectFiles(filePath));
+      } else if (file.endsWith('.md')) {
+        results.push(filePath);
+      }
+    });
+    return results;
+  };
+
+  const files = getProjectFiles(projectDir);
+  let totalArchive = 0;
+  let totalFeatured = 0;
+
+  files.forEach((file) => {
+    try {
+      const content = fs.readFileSync(file, 'utf-8');
+      const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (match) {
+        const yaml = match[1];
+        const draft = /draft:\s*true/.test(yaml);
+        const featured = /featured:\s*true/.test(yaml);
+
+        if (!draft) {
+          totalArchive++;
+          if (featured) {
+            totalFeatured++;
+          }
+        }
+      }
+    } catch (e) {
+      console.error(`Error reading ${file} for prerender count:`, e);
+    }
+  });
+
+  const featuredLimit = 18;
+  const archiveLimit = 24;
+
+  const featuredPages = Math.max(1, Math.ceil(totalFeatured / featuredLimit));
+  const archivePages = Math.max(1, Math.ceil(totalArchive / archiveLimit));
+
+  // Prerender pages from page 2 onwards (page 1 is crawled naturally)
+  for (let i = 2; i <= featuredPages; i++) {
+    routes.push(`/projects/page/${i}`);
+  }
+  for (let i = 2; i <= archivePages; i++) {
+    routes.push(`/projects/archive/page/${i}`);
+  }
+
+  return routes;
+};
+
+const prerenderRoutes = getPrerenderRoutes();
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -69,6 +136,11 @@ export default defineNuxtConfig({
   },
   image: {
     format: ['avif'],
+  },
+  nitro: {
+    prerender: {
+      routes: prerenderRoutes
+    }
   },
   modules: ['@nuxt/content', '@nuxt/image'],
   devtools: { enabled: true },
