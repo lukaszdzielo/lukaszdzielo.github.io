@@ -47,19 +47,6 @@ const hasContent = (project: any): boolean => {
     return Array.isArray(body?.value) && body!.value!.length > 0;
 };
 
-const formatDate = (dateStr: string) => {
-    if (!dateStr) return '';
-    const parts = dateStr.split('-');
-    if (parts.length < 2) return dateStr;
-    const year = parts[0];
-    const monthIndex = parseInt(parts[1], 10) - 1;
-    const months = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    if (monthIndex < 0 || monthIndex > 11) return dateStr;
-    return `${months[monthIndex]} ${year}`;
-};
 </script>
 
 <template>
@@ -67,7 +54,7 @@ const formatDate = (dateStr: string) => {
 
         <header class="flex flex-col gap-5">
             <div
-                class="flex items-center gap-2.5 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full">
+                class="flex items-center gap-2 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full">
                 <span class="opacity-40">01</span>
                 <span class="opacity-40">/</span>
                 <span class="font-semibold uppercase">Archive</span>

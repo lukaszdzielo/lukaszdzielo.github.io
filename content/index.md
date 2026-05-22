@@ -25,6 +25,9 @@ cards:
   - Supporting product teams with reliable implementation.
 ---
 
+#image
+:nuxt-img{src="/home-hero/digital-avatar.avif" sizes="200px md:400px" class="w-full max-w-50 md:max-w-90" alt="Digital avatar of Łukasz Dzieło"}
+
 #eyebrow
 About
 
