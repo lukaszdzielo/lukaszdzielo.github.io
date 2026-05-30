@@ -26,7 +26,7 @@ const hasContent = (project: any): boolean => {
 </script>
 
 <template>
-    <section class="my-15 sm:my-20 md:my-40 flex flex-col gap-10">
+    <section class="my-15 sm:my-20 md:my-30 flex flex-col gap-10">
 
         <div class="container flex flex-col gap-5">
             <div
