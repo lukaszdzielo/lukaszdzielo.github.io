@@ -1,11 +1,16 @@
 <script setup lang="ts">
+interface AboutCard {
+  icon: string;
+  text: string;
+}
+
 defineProps<{
-  cards?: string[];
+  cards?: AboutCard[];
 }>();
 </script>
 
 <template>
-  <section class="my-15 sm:my-20 md:my-30">
+  <section class="py-20 md:py-30 bg-slate-300 dark:bg-slate-800">
     <div class="container flex flex-col gap-10 lg:gap-15">
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-15">
         <div class="flex flex-col justify-center gap-5">
@@ -32,8 +37,9 @@ defineProps<{
 
       <ul v-if="cards?.length" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <li v-for="(card, i) in cards" :key="i"
-          class="flex py-3 px-4 rounded-xl bg-slate-200 dark:bg-white/5 font-medium">
-          {{ card }}
+          class="flex flex-col gap-4 p-5 rounded-xl bg-slate-100 dark:bg-white/5 font-medium border border-slate-200 dark:border-white/10">
+          <Icon :name="card.icon" class="text-4xl text-sky-500" aria-hidden="true" />
+          {{ card.text }}
         </li>
       </ul>
     </div>

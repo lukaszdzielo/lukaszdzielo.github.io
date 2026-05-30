@@ -1,15 +1,11 @@
-<script setup>
+<script setup lang="ts">
 
 </script>
 
 <template>
-    <header class="sticky inset-s-0 inset-x-0 z-1  ">
-        <div class="container flex">
-            <ul class="flex ms-auto p-8 rounded-es-3xl bg-slate-50">
-                <li>
-                    Feature menu parts ;)
-                </li>
-            </ul>
+    <header class="fixed top-0 inset-x-0 z-50">
+        <div class="container flex items-center py-4">
+            <CommonColorModeToggle class="ms-auto" />
         </div>
     </header>
 </template>

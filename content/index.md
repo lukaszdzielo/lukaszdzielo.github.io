@@ -19,10 +19,14 @@ I focus on practical front-end work: maintainable UI, responsive layouts, reusab
 ::sections-home-about
 ---
 cards:
-  - Building interfaces for web applications and websites.
-  - Creating reusable components and cleaner UI structure.
-  - Turning finished designs into responsive front-end.
-  - Supporting product teams with reliable implementation.
+  - icon: lucide:layout-dashboard
+    text: Building interfaces for web applications and websites.
+  - icon: lucide:blocks
+    text: Creating reusable components and cleaner UI structure.
+  - icon: lucide:monitor-smartphone
+    text: Turning finished designs into responsive front-end.
+  - icon: lucide:users
+    text: Supporting product teams with reliable implementation.
 ---
 
 #image

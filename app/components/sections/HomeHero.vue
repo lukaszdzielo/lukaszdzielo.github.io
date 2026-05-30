@@ -1,5 +1,5 @@
 <template>
-    <section class="relative flex flex-col bg-slate-200 dark:bg-slate-700 pt-20">
+    <section class="relative flex flex-col bg-slate-300 dark:bg-slate-800 pt-20 md:pt-30">
         <div class="container grid lg:grid-cols-2 gap-10 lg:gap-15">
             <div class="flex items-center h-full lg:order-2 lg:col-span-1 text-center lg:text-start">
                 <div class="flex flex-col gap-3 md:gap-4">

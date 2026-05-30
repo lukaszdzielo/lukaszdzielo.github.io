@@ -75,7 +75,7 @@ const hasContent = (project: any): boolean => {
                     <h2 class="mt-3 font-semibold">{{ project.title }}</h2>
                     <small class="opacity-60">{{ formatDate(project.date) }}</small>
                 </NuxtLink>
-                <div v-else class="block cursor-default">
+                <div v-else class="block">
                     <NuxtImg :src="project.image" :alt="project.title" sizes="320px md:400px lg:480px" loading="lazy"
                         class="rounded-md md:rounded-xl lg:rounded-2xl bg-white aspect-video object-cover object-top w-full" />
                     <h2 class="mt-3 font-semibold">{{ project.title }}</h2>
