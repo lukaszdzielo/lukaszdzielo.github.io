@@ -1,7 +1,7 @@
 ::sections-home-hero
 
 #image
-:nuxt-img{src="/avatar/digital-avatar.avif" sizes="200px md:400px" width="1189" height="1915" class="w-full max-w-50 md:max-w-90" alt="Digital avatar of Łukasz Dzieło"}
+:nuxt-img{src="/avatar/portrait.avif" sizes="100vw sm:80vw lg:40vw" width="1915" height="1915" class="w-full  " alt="Digital avatar of Łukasz Dzieło"}
 
 #eyebrow
 Front-End Developer
@@ -26,7 +26,7 @@ cards:
 ---
 
 #image
-:nuxt-img{src="/avatar/digital-avatar.avif" sizes="200px md:400px" width="1189" height="1915" class="w-full max-w-50 md:max-w-90" alt="Digital avatar of Łukasz Dzieło"}
+:nuxt-img{src="/avatar/workspace-front.avif" sizes="100vw sm:80vw lg:40vw" width="2048" height="2048" class="w-full " alt="Łukasz Dzieło working at a desk"}
 
 #eyebrow
 About
