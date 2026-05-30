@@ -21,7 +21,7 @@ defineProps<{
             </span>
           </div>
           <h2
-            class="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-pretty"
+            class="text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-pretty"
           >
             <slot name="title" mdc-unwrap="p" />
           </h2>
