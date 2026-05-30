@@ -26,7 +26,7 @@ const hasContent = (project: any): boolean => {
 </script>
 
 <template>
-    <section class="my-15 sm:my-20 md:my-30 flex flex-col gap-10">
+    <section class="py-20 md:py-30 flex flex-col gap-10 bg-slate-200 dark:bg-slate-700">
 
         <div class="container flex flex-col gap-5">
             <div
@@ -36,7 +36,7 @@ const hasContent = (project: any): boolean => {
                 <span class="font-semibold uppercase">Projects</span>
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-pretty">
-                Bringing <em class="text-sky-500">pixels</em> to life
+                Bringing <span class="text-sky-500">pixels</span> to life
             </h2>
         </div>
 
@@ -50,7 +50,7 @@ const hasContent = (project: any): boolean => {
                         <h3 class="mt-3 font-semibold">{{ project.title }}</h3>
                         <small class="opacity-60">{{ formatDate(project.date) }}</small>
                     </NuxtLink>
-                    <div v-else class="block cursor-default">
+                    <div v-else class="block">
                         <NuxtImg :src="project.image" :alt="project.title" sizes="320px md:400px lg:480px"
                             loading="lazy"
                             class="rounded-md md:rounded-xl lg:rounded-2xl bg-white aspect-video object-cover object-top w-full" />
