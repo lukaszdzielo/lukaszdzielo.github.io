@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import ThePagination from '~/components/common/ThePagination.vue';
 
-definePageMeta({
-    alias: ['/projects/archive/page/:page']
-});
-
 const route = useRoute();
 const limit = 24;
 
