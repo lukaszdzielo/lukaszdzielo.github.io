@@ -13,5 +13,7 @@ import TheHeader from '~/components/layout/TheHeader.vue';
     <!-- </div> -->
   </main>
 
+  <CommonColorModeToggle class="fixed top-4 right-4 z-50" />
+
   <TheFooter />
 </template>

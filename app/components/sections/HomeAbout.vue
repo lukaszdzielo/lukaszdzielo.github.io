@@ -5,24 +5,19 @@ defineProps<{
 </script>
 
 <template>
-  <section class="my-15 sm:my-20 md:my-40">
-    <div
-      class="container grid md:grid-cols-2 lg:grid-cols-[1fr_auto] gap-10 md:gap-10 lg:gap-15 xl:gap-20 2xl:gap-30"
-    >
-      <div class="flex flex-col gap-10">
-        <div class="flex flex-col gap-5">
+  <section class="my-15 sm:my-20 md:my-30">
+    <div class="container flex flex-col gap-10 lg:gap-15">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-15">
+        <div class="flex flex-col justify-center gap-5">
           <div
-            class="flex items-center gap-2 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full"
-          >
+            class="flex items-center gap-2 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full">
             <span class="opacity-40">02</span>
             <span class="opacity-40">/</span>
             <span class="font-semibold uppercase">
               <slot name="eyebrow" mdc-unwrap="p" />
             </span>
           </div>
-          <h2
-            class="text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-pretty"
-          >
+          <h2 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-pretty">
             <slot name="title" mdc-unwrap="p" />
           </h2>
           <p class="opacity-80">
@@ -30,23 +25,17 @@ defineProps<{
           </p>
         </div>
 
-        <ul
-          v-if="cards?.length"
-          class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5"
-        >
-          <li
-            v-for="(card, i) in cards"
-            :key="i"
-            class="flex p-5 md:p-6 rounded-2xl bg-slate-200 dark:bg-slate-700 font-medium"
-          >
-            {{ card }}
-          </li>
-        </ul>
+        <div class="flex items-center justify-center lg:justify-end">
+          <slot name="image" />
+        </div>
       </div>
 
-      <div class="flex items-end justify-center md:justify-end">
-        <slot name="image" />
-      </div>
+      <ul v-if="cards?.length" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <li v-for="(card, i) in cards" :key="i"
+          class="flex py-3 px-4 rounded-xl bg-slate-200 dark:bg-white/5 font-medium">
+          {{ card }}
+        </li>
+      </ul>
     </div>
   </section>
 </template>
