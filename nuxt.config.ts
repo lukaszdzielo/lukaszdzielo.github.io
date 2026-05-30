@@ -150,6 +150,22 @@ export default defineNuxtConfig({
       routes: prerenderRoutes
     }
   },
+  hooks: {
+    'pages:extend'(pages) {
+      pages.push(
+        {
+          name: 'projects-page',
+          path: '/projects/page/:page',
+          file: '~/pages/projects/index.vue'
+        },
+        {
+          name: 'projects-archive-page',
+          path: '/projects/archive/page/:page',
+          file: '~/pages/projects/archive.vue'
+        }
+      );
+    }
+  },
   modules: ['@nuxt/content', '@nuxt/image'],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
