@@ -3,7 +3,7 @@ date: 2020-04-01
 title: BOHOmaz
 description:
 image: /projects/2020/bohomaz/thumbnail.avif
-tech: [wordpress]
+tags: [wordpress]
 featured: true
 agency: eConnect4u
 links:

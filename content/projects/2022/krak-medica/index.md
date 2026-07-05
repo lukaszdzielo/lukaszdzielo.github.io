@@ -3,7 +3,7 @@ date: 2022-03-01
 title: Krak Medica
 description:
 image: /projects/2022/krak-medica/thumbnail.avif
-tech: [wordpress]
+tags: [wordpress]
 featured: false
 agency: Health Marketing
 links:
