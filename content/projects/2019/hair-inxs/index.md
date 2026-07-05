@@ -3,7 +3,7 @@ date: 2019-02-01
 title: Hair InXs
 description:
 image: /projects/2019/hair-inxs/thumbnail.avif
-tech: [html]
+tags: [html]
 featured: false
 agency: Bespoke 4 Business
 links:

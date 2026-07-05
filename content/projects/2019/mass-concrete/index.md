@@ -3,7 +3,7 @@ date: 2019-11-02
 title: Mass Concrete
 description:
 image: /projects/2019/mass-concrete/thumbnail.avif
-tech: [html]
+tags: [html]
 featured: true
 agency: Bespoke 4 Business
 links:

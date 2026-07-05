@@ -3,7 +3,7 @@ date: 2019-09-01
 title: Kings Lodge
 description:
 image: /projects/2019/kings-lodge/thumbnail.avif
-tech: [html]
+tags: [html]
 featured: false
 agency: Bespoke 4 Business
 ---

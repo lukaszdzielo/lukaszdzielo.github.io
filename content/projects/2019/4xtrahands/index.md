@@ -3,7 +3,7 @@ date: 2019-10-01
 title: 4xtrahands
 description:
 image: /projects/2019/4xtrahands/thumbnail.avif
-tech: [html]
+tags: [html]
 featured: false
 agency: Bespoke 4 Business
 links:

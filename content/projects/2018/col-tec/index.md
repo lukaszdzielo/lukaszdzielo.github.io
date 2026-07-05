@@ -3,7 +3,7 @@ date: 2018-08-02
 title: Col-Tec
 description:
 image: /projects/2018/col-tec/thumbnail.avif
-tech: [html]
+tags: [html]
 featured: false
 agency: Bespoke 4 Business
 ---

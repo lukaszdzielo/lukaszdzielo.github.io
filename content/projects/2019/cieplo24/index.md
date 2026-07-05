@@ -3,7 +3,7 @@ date: 2019-05-01
 title: Cieplo24
 description:
 image: /projects/2019/cieplo24/thumbnail.avif
-tech: [html]
+tags: [html]
 featured: false
 agency: eConnect4u
 links:

@@ -3,7 +3,7 @@ date: 2019-09-02
 title: Ancora Collection
 description:
 image: /projects/2019/ancora-collection/thumbnail.avif
-tech: [wordpress]
+tags: [wordpress]
 featured: false
 agency: eConnect4u
 links:
