@@ -3,7 +3,7 @@ date: 2021-06-01
 title: Webster Associates
 description:
 image: /projects/2021/webster-associates/thumbnail.avif
-tech: [wordpress]
+tags: [wordpress]
 featured: true
 agency: Bespoke 4 Business
 links:
