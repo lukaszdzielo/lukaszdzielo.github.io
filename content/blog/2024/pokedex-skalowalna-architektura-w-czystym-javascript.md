@@ -5,7 +5,7 @@ description: Case study aplikacji Pokedex w czystym JS — redukcja zapytań HTT
 tags: [javascript, vanilla-js, oop, pokeapi, performance, case-study]
 kind: case-study
 project: /projects/2024/pokedex
-draft: false
+draft: true
 ---
 
 ## 📌 Metryki projektu

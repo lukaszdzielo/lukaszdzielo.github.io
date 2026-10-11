@@ -4,7 +4,7 @@ title: Jak zbudowałem Pokedex w czystym JS i dlaczego nauczyło mnie to więcej
 description: Czy da się zbudować zaawansowaną aplikację dla 1000+ użytkowników bez użycia frameworków? Poznaj historię mojego Pokedexa w czystym JavaScript i zobacz, jak realna walka z asynchronicznością, pamięcią cache i optymalizacją API uczy więcej niż setki teoretycznych tutoriali.
 tags: [javascript, vanilla-js, programowanie, frontend, api, performance]
 project: /projects/2024/pokedex
-draft: false
+draft: true
 ---
 
 ## Wyjście poza bezpieczną strefę UI
