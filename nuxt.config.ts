@@ -50,6 +50,10 @@ const getPrerenderRoutes = (): string[] => {
           if (featured) {
             totalFeatured++;
           }
+
+          const relative = path.relative(projectDir, file).split(path.sep).join('/');
+          const routePath = '/projects/' + relative.replace(/\/index\.md$/, '').replace(/\.md$/, '');
+          routes.push(routePath);
         }
       }
     } catch (e) {
@@ -139,7 +143,13 @@ export default defineNuxtConfig({
     },
   },
   image: {
-    format: ['avif'],
+    // Source images live outside /public so the originals are never deployed;
+    // only the optimised variants generated into /_ipx end up in the build.
+    dir: 'assets/images',
+    format: ['avif', 'webp'],
+    // Not in the defaults; lets `sizes` use `xs:` for the mobile rule
+    // (an unprefixed value would produce useless 1w/2w candidates).
+    screens: { xs: 320 },
   },
   sourcemap: {
     server: false,
@@ -151,6 +161,16 @@ export default defineNuxtConfig({
     }
   },
   hooks: {
+    // @nuxt/image registers its source dir as a public asset dir, which would copy
+    // every original into the build. Drop it for production builds - IPX still reads
+    // the originals from disk while prerendering.
+    'nitro:init'(nitro) {
+      if (nitro.options.dev) return;
+      const imagesDir = path.resolve(process.cwd(), 'app/assets/images');
+      nitro.options.publicAssets = nitro.options.publicAssets.filter(
+        (asset) => path.resolve(asset.dir) !== imagesDir
+      );
+    },
     'pages:extend'(pages) {
       pages.push(
         {
@@ -167,9 +187,19 @@ export default defineNuxtConfig({
     }
   },
   modules: ['@nuxt/content', '@nuxt/image', '@nuxt/icon'],
+  runtimeConfig: {
+    public: {
+      // Disable the anchor <a> links that MDC wraps around headings (h2/h3/h4 by default)
+      mdc: {
+        headings: {
+          anchorLinks: false,
+        },
+      },
+    },
+  },
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
-  css: ['./app/assets/css/main.css'],
+  css: ['~/assets/css/main.css'],
   vite: {
     plugins: [
       tailwindcss() as any,

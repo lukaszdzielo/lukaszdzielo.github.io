@@ -16,8 +16,8 @@ defineProps<{
         <div class="flex flex-col justify-center gap-5">
           <div
             class="flex items-center gap-2 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full">
-            <span class="opacity-40">02</span>
-            <span class="opacity-40">/</span>
+            <span class="text-slate-400 dark:text-slate-500">02</span>
+            <span class="text-slate-400 dark:text-slate-500">/</span>
             <span class="font-semibold uppercase">
               <slot name="eyebrow" mdc-unwrap="p" />
             </span>
@@ -25,7 +25,7 @@ defineProps<{
           <h2 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-pretty">
             <slot name="title" mdc-unwrap="p" />
           </h2>
-          <p class="opacity-80">
+          <p class="text-slate-700 dark:text-slate-300">
             <slot name="description" mdc-unwrap="p" />
           </p>
         </div>
@@ -35,7 +35,7 @@ defineProps<{
         </div>
       </div>
 
-      <ul v-if="cards?.length" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <ul v-if="cards?.length" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 text-slate-700 dark:text-slate-300">
         <li v-for="(card, i) in cards" :key="i"
           class="flex flex-col gap-4 p-5 rounded-xl bg-slate-100 dark:bg-white/5 font-medium border border-slate-200 dark:border-white/10">
           <Icon :name="card.icon" class="text-4xl text-sky-500" aria-hidden="true" />

@@ -9,12 +9,15 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.111",
-    "@nuxt/content": "^3.14.0",
-    "@nuxt/icon": "^2.2.2",
-    "@nuxt/image": "^2.0.0",
-    "@tailwindcss/vite": "^4.3.0",
-    "better-sqlite3": "^12.10.0",
-    "nuxt": "^4.4.5"
+    "@iconify-json/lucide": "^1.2.142",
+    "@nuxt/content": "^3.16.1",
+    "@nuxt/icon": "^2.5.1",
+    "@nuxt/image": "~2.0.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "better-sqlite3": "^13.0.3",
+    "nuxt": "^4.6.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20"
   }
 }
