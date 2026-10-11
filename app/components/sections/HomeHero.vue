@@ -3,15 +3,18 @@
         <div class="container grid lg:grid-cols-2 gap-10 lg:gap-15">
             <div class="flex items-center h-full lg:order-2 lg:col-span-1 text-center lg:text-start">
                 <div class="flex flex-col gap-3 md:gap-4">
-                    <div class="flex flex-col gap-1">
-                        <span class="text-xl font-semibold opacity-80">
-                            <slot name="eyebrow" mdc-unwrap="p" />
-                        </span>
+                    <div class="flex flex-col gap-3 lg:gap-2">
+                        <div
+                            class="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-3 after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full">
+                            <span class="text-xl font-semibold uppercase text-slate-500 dark:text-slate-400">
+                                <slot name="eyebrow" mdc-unwrap="p" />
+                            </span>
+                        </div>
                         <h1 class="text-3xl lg:text-4xl xl:text-5xl font-extrabold text-balance">
                             <slot name="title" mdc-unwrap="p" />
                         </h1>
                     </div>
-                    <p class="opacity-80">
+                    <p class="text-slate-700 dark:text-slate-300">
                         <slot name="description" mdc-unwrap="p" />
                     </p>
                 </div>
