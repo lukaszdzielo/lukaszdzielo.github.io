@@ -26,7 +26,7 @@ export const featuredProjects: FeaturedProject[] = [
     imageDark: '/featured/emotion-karting-dark.webp',
   },
   {
-    title: 'reblyx.com',
+    title: 'ReblyX',
     date: '2026-09',
     description: 'Strona centrum obróbki stali – projekt i wdrożenie, treści edytowane w Gutenbergu.',
     chips: ['WordPress', 'Gutenberg'],
@@ -42,15 +42,14 @@ export const featuredProjects: FeaturedProject[] = [
     url: 'e-cargo',
     image: '/featured/ecargo.webp',
   },
-  // Czeka na nowy zrzut ekranu – wróci po dodaniu `image` (usuń `hidden`)
+  // Nie cały serwis – moja część w Arris Agency: karuzele na Swiperze
   {
     title: 'superauto.pl',
     date: '2025-03',
-    description: 'Serwis z realnym ruchem; karuzele zebrane w jeden spójny Swiper.',
-    chips: ['Twig', 'JavaScript', 'Swiper'],
+    description: 'Nie cały serwis, tylko moja część: karuzele na Swiperze – m.in. galeria auta – zebrane w jeden spójny komponent.',
+    chips: ['Swiper', 'JavaScript', 'Twig'],
     url: 'superauto.pl',
-    mock: 'superauto',
-    hidden: true,
+    image: '/featured/superauto.webp',
   },
   {
     title: 'Pokedex',
