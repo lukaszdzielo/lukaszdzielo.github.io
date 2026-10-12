@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - main
+  # Codzienna przebudowa (ok. 3:30–4:30 w Polsce): koniec promocji w cenniku (app/data/pricing.ts)
+  # znika sam dzień po dacie `until`. GitHub wyłącza harmonogram po 60 dniach bez commitów w repo.
+  schedule:
+    - cron: '30 2 * * *'
 
 # Domyślnie tylko odczyt repozytorium; zapis do Pages ma tylko job deploy
 permissions:
