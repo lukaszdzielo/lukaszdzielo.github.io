@@ -4,45 +4,7 @@
 // Na desktopie (lg) paska już nie ma – jest zwykła siatka, więc całość się chowa.
 const props = defineProps<{ target: HTMLElement | null }>()
 
-const canPrev = ref(false)
-const canNext = ref(false)
-
-function update() {
-  const el = props.target
-  if (!el) return
-  canPrev.value = el.scrollLeft > 4
-  canNext.value = el.scrollLeft + el.clientWidth < el.scrollWidth - 4
-}
-
-function go(direction: 1 | -1) {
-  const el = props.target
-  if (!el) return
-  // O jeden kafelek (szerokość pierwszego elementu + odstęp)
-  const item = el.firstElementChild as HTMLElement | null
-  const gap = Number.parseFloat(getComputedStyle(el).columnGap) || 0
-  const step = item ? item.offsetWidth + gap : el.clientWidth * 0.8
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  el.scrollBy({ left: direction * step, behavior: reduce ? 'auto' : 'smooth' })
-}
-
-let observer: ResizeObserver | undefined
-watch(
-  () => props.target,
-  (el, old) => {
-    old?.removeEventListener('scroll', update)
-    observer?.disconnect()
-    if (!el) return
-    el.addEventListener('scroll', update, { passive: true })
-    observer = new ResizeObserver(update)
-    observer.observe(el)
-    update()
-  },
-  { immediate: true, flush: 'post' },
-)
-onBeforeUnmount(() => {
-  props.target?.removeEventListener('scroll', update)
-  observer?.disconnect()
-})
+const { canPrev, canNext, go } = useScrollEdges(() => props.target)
 
 const button =
   'grid size-10 cursor-pointer place-items-center rounded-full border border-slate-900/16 text-slate-900 transition hover:bg-white disabled:cursor-default disabled:opacity-35 disabled:hover:bg-transparent dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900'

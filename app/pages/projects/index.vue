@@ -2,6 +2,7 @@
 // Projekty: nagłówek z liczbami, wyróżnione kafelki (te same co na głównej) i archiwum z filtrem.
 // Link z filtrem: /projects?tech=wordpress#archive (np. z oferty dla firm).
 import { projectKind } from '~/utils/projectKind'
+import { visibleFeaturedProjects } from '~/data/featuredProjects'
 
 const { data: projects } = await useAsyncData('projects-archive-all', () =>
   queryCollection('projects')
@@ -13,6 +14,9 @@ const { data: projects } = await useAsyncData('projects-archive-all', () =>
 const { data: linkedProjectPaths } = await useLinkedProjectPaths()
 const linkedPaths = computed(() => new Set(linkedProjectPaths.value ?? []))
 
+// Wyróżnione (app/data/featuredProjects.ts) rozpoznajemy po tytule – w archiwum dostają odznakę
+const featuredTitles = new Set(visibleFeaturedProjects().map(p => p.title.toLocaleLowerCase('pl')))
+
 const archive = computed(() =>
   (projects.value ?? []).map(p => ({
     path: p.path,
@@ -23,6 +27,7 @@ const archive = computed(() =>
     image: p.image,
     links: p.links,
     hasPage: hasBody(p) || linkedPaths.value.has(p.path),
+    featured: featuredTitles.has(p.title.toLocaleLowerCase('pl')),
   })),
 )
 
