@@ -59,7 +59,7 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
         <span class="grid size-12 place-items-center rounded-full bg-primary-500/10 text-primary-500 dark:bg-primary-400/10 dark:text-primary-400">
           <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
         </span>
-        <p class="text-lg font-semibold text-slate-900 dark:text-white">Aktualnie brak wpisów</p>
+        <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">Aktualnie brak wpisów</p>
         <p class="max-w-md text-[0.9375rem]/relaxed text-slate-500 dark:text-slate-400">
           Pierwsze case study i wpisy o tym, nad czym pracuję, pojawią się tutaj wkrótce.
         </p>

@@ -28,16 +28,18 @@ const NuxtLink = resolveComponent('NuxtLink')
     :href="to ? undefined : href"
     :target="!to && href ? '_blank' : undefined"
     :rel="!to && href ? 'noopener noreferrer' : undefined"
-    class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 dark:border-white/10 dark:text-white dark:hover:shadow-black/40"
+    class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 dark:border-white/10 dark:text-brand-50 dark:hover:shadow-black/40"
   >
     <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić -->
     <div class="relative z-1 min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
-      <div class="flex items-start justify-between gap-[3cqw]">
-        <ul class="flex flex-wrap gap-[1.4cqw] pt-[1.4cqw]">
+      <!-- --ar: średnica strzałki, --ch: wysokość etykiety. Odstęp nad etykietami = połowa różnicy,
+           więc pierwszy rząd etykiet jest zawsze na środku strzałki (też gdy na telefonie działają minimalne rozmiary). -->
+      <div class="flex items-start justify-between gap-[3cqw] [--ar:max(1.75rem,8.5cqw)] [--ch:max(1.625rem,7cqw)]">
+        <ul class="flex flex-wrap gap-[1.4cqw] pt-[calc((var(--ar)-var(--ch))/2)]">
           <li
             v-for="(chip, i) in chips"
             :key="chip"
-            class="rounded-full border px-[max(0.5rem,2.4cqw)] py-[max(0.125rem,1cqw)] text-[max(0.75rem,2.9cqw)]"
+            class="flex h-(--ch) items-center rounded-full border px-[max(0.5rem,2.4cqw)] text-[max(0.75rem,2.9cqw)]"
             :class="i === 0 ? 'border-transparent bg-brand-900 text-white dark:bg-slate-100 dark:text-brand-950' : 'border-slate-900/16 text-slate-600 dark:border-white/20 dark:text-slate-300'"
           >
             {{ chip }}
@@ -45,7 +47,7 @@ const NuxtLink = resolveComponent('NuxtLink')
         </ul>
         <span
           v-if="to || href"
-          class="grid size-[8.5cqw] shrink-0 place-items-center rounded-full bg-primary-500 text-[3.8cqw] text-white transition-transform duration-300 group-hover:rotate-45 dark:bg-primary-400 dark:text-brand-950"
+          class="grid size-(--ar) shrink-0 place-items-center rounded-full bg-primary-500 text-[3.8cqw] text-white transition-transform duration-300 group-hover:rotate-45 dark:bg-primary-400 dark:text-brand-950"
           aria-hidden="true"
         >
           <Icon name="lucide:arrow-up-right" />

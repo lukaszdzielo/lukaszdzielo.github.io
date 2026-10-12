@@ -24,7 +24,7 @@ defineProps<{ services?: Service[] }>()
           :class="
             i === 0
               ? 'border-transparent bg-brand-900 text-white dark:bg-slate-100 dark:text-brand-950'
-              : 'border-slate-900/10 bg-white text-slate-900 shadow-sm dark:border-white/10 dark:bg-brand-900 dark:text-white'
+              : 'border-slate-900/10 bg-white text-slate-900 shadow-sm dark:border-white/10 dark:bg-brand-900 dark:text-brand-50'
           "
         >
           <span

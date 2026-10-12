@@ -27,7 +27,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
               v-for="item in daily"
               :key="item"
               :class="chip"
-              class="border-transparent bg-primary-500/10 text-slate-900 dark:bg-primary-400/14 dark:text-white"
+              class="border-transparent bg-primary-500/10 text-slate-900 dark:bg-primary-400/14 dark:text-brand-50"
             >
               {{ item }}
             </li>
@@ -41,7 +41,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
               v-for="item in known"
               :key="item"
               :class="chip"
-              class="border-slate-900/10 bg-slate-50 text-slate-900 dark:border-white/10 dark:bg-[#15213f] dark:text-white"
+              class="border-slate-900/10 bg-slate-50 text-slate-900 dark:border-white/10 dark:bg-[#15213f] dark:text-brand-50"
             >
               {{ item }}
             </li>
@@ -60,7 +60,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
               :key="item.name"
               class="flex items-center justify-between gap-3 rounded-xl border border-slate-900/10 bg-white px-4 py-3.5 dark:border-white/10 dark:bg-brand-900"
             >
-              <span class="text-lg font-medium text-slate-900 dark:text-white">{{ item.name }}</span>
+              <span class="text-lg font-medium text-slate-900 dark:text-brand-50">{{ item.name }}</span>
               <span
                 class="rounded-full px-2 py-1 text-xs"
                 :class="i === 0 ? 'bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950' : 'border border-slate-900/16 text-slate-600 dark:border-white/20 dark:text-slate-300'"

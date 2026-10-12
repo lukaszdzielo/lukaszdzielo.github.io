@@ -99,7 +99,7 @@ useSeoMeta({
         <p class="text-sm font-semibold tracking-widest text-primary-500 uppercase dark:text-primary-400">
           Błąd {{ code }}
         </p>
-        <h1 class="mt-4 text-4xl leading-none font-semibold tracking-tighter text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+        <h1 class="mt-4 text-4xl leading-none font-semibold tracking-tighter text-slate-900 sm:text-5xl lg:text-6xl dark:text-brand-50">
           <span class="block">{{ copy.title }}</span>
           <span class="block pt-[0.08em] text-primary-500 dark:text-primary-400">{{ accent }}</span>
         </h1>
@@ -126,7 +126,7 @@ useSeoMeta({
           </NuxtLink>
           <NuxtLink
             :to="copy.secondary.to"
-            class="inline-flex h-14 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-white dark:hover:bg-brand-900"
+            class="inline-flex h-14 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
           >
             {{ copy.secondary.label }}
           </NuxtLink>
@@ -136,7 +136,7 @@ useSeoMeta({
 
     <!-- Wpis: najnowsze wpisy pod spodem -->
     <div v-if="suggestions.length" class="container pb-22 md:pb-28">
-      <h2 class="text-2xl font-medium tracking-tight text-slate-900 dark:text-white">Najnowsze wpisy</h2>
+      <h2 class="text-2xl font-medium tracking-tight text-slate-900 dark:text-brand-50">Najnowsze wpisy</h2>
       <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <li v-for="post in suggestions" :key="post.path">
           <CommonPostCard :post="post" />

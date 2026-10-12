@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
 })
 
 const button =
-  'grid size-10 cursor-pointer place-items-center rounded-full border border-slate-900/16 text-slate-900 transition hover:bg-white disabled:cursor-default disabled:opacity-35 disabled:hover:bg-transparent dark:border-white/20 dark:text-white dark:hover:bg-brand-900'
+  'grid size-10 cursor-pointer place-items-center rounded-full border border-slate-900/16 text-slate-900 transition hover:bg-white disabled:cursor-default disabled:opacity-35 disabled:hover:bg-transparent dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900'
 </script>
 
 <template>

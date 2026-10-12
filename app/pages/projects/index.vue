@@ -46,7 +46,7 @@ useSeoMeta({
           <span aria-hidden="true"> / </span>
           <span aria-current="page">Projekty</span>
         </nav>
-        <h1 class="mt-3.5 text-5xl leading-none font-semibold tracking-tighter text-slate-900 sm:mt-5 lg:text-7xl dark:text-white">
+        <h1 class="mt-3.5 text-5xl leading-none font-semibold tracking-tighter text-slate-900 sm:mt-5 lg:text-7xl dark:text-brand-50">
           Projekty
         </h1>
         <p class="mt-4 max-w-160 text-base/relaxed text-slate-600 sm:mt-6 sm:text-lg/relaxed dark:text-slate-300">
@@ -55,17 +55,17 @@ useSeoMeta({
         <dl class="mt-7 flex max-w-180 gap-5 border-t border-slate-900/16 pt-4.5 sm:mt-10 sm:gap-10 sm:pt-6 dark:border-white/20">
           <div>
             <dt class="sr-only">Projekty</dt>
-            <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-white">{{ total }}</dd>
+            <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ total }}</dd>
             <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">projektów</dd>
           </div>
           <div>
             <dt class="sr-only">WordPress</dt>
-            <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-white">{{ wordpress }}</dd>
+            <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ wordpress }}</dd>
             <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">stron na WordPressie</dd>
           </div>
           <div>
             <dt class="sr-only">Od roku</dt>
-            <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-white">od {{ since }}</dd>
+            <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">od {{ since }}</dd>
             <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">w archiwum</dd>
           </div>
         </dl>
