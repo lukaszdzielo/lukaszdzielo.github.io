@@ -19,7 +19,7 @@ const { data: relatedProject } = await useAsyncData('blog-project-' + route.path
 });
 
 useSeoMeta({
-    title: post.value?.title ? `${post.value.title} — Łukasz Dzieło` : 'Blog — Łukasz Dzieło',
+    title: post.value?.title ? `${post.value.title} – Łukasz Dzieło` : 'Wpis – Łukasz Dzieło',
     description: post.value?.description || undefined,
 });
 </script>
@@ -58,7 +58,7 @@ useSeoMeta({
                 class="w-24 shrink-0 rounded-md aspect-video object-cover object-top bg-white" />
             <div class="flex flex-col gap-0.5">
                 <small class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                    About this project
+                    O projekcie
                 </small>
                 <span class="font-semibold group-hover:text-sky-500 transition-colors">
                     {{ relatedProject.title }}

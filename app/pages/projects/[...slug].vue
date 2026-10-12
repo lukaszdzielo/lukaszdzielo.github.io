@@ -8,7 +8,7 @@ const { data: project } = await useAsyncData('project-' + route.path, () =>
         .first()
 );
 
-// Articles written about this project (linked via `project:` in blog frontmatter).
+// Wpisy o tym projekcie (powiązane polem `project:` we wpisie).
 const { data: relatedPosts } = await useAsyncData('project-posts-' + route.path, () =>
     queryCollection('blog')
         .where('draft', '=', false)
@@ -26,13 +26,13 @@ const relatedArticles = computed(() => (relatedPosts.value ?? []).filter(post =>
 const hasOwnPage = computed(() => hasBody(project.value) || (relatedPosts.value?.length ?? 0) > 0);
 
 const externalLinks = computed(() => [
-    { label: 'Live site', href: project.value?.links?.live },
+    { label: 'Strona', href: project.value?.links?.live },
     { label: 'Behance', href: project.value?.links?.behance },
     { label: 'GitHub', href: project.value?.links?.github },
 ].filter((link): link is { label: string; href: string } => Boolean(link.href)));
 
 useSeoMeta({
-    title: project.value?.title ? `${project.value.title} — Łukasz Dzieło` : 'Project — Łukasz Dzieło',
+    title: project.value?.title ? `${project.value.title} – Łukasz Dzieło` : 'Projekt – Łukasz Dzieło',
     description: project.value?.description || undefined,
     ...(project.value && !hasOwnPage.value ? { robots: 'noindex, follow' } : {}),
 });
@@ -52,7 +52,7 @@ useSeoMeta({
                     {{ formatDate(project.date) }}
                 </time>
                 <p v-if="project.agency" class="text-slate-500 dark:text-slate-400">
-                    Agency: {{ project.agency }}
+                    Agencja: {{ project.agency }}
                 </p>
                 <ul v-if="project.tags?.length" class="flex flex-wrap gap-2">
                     <li v-for="tag in project.tags" :key="tag">
@@ -78,7 +78,7 @@ useSeoMeta({
         </article>
 
         <section v-if="caseStudies.length" class="flex flex-col gap-4">
-            <h2 class="text-xl font-bold">Case studies</h2>
+            <h2 class="text-xl font-bold">Case study</h2>
             <ul class="grid gap-4">
                 <li v-for="post in caseStudies" :key="post.path">
                     <NuxtLink :to="post.path"
@@ -92,7 +92,7 @@ useSeoMeta({
         </section>
 
         <section v-if="relatedArticles.length" class="flex flex-col gap-4">
-            <h2 class="text-xl font-bold">Related posts</h2>
+            <h2 class="text-xl font-bold">Wpisy o tym projekcie</h2>
             <ul class="grid gap-4">
                 <li v-for="post in relatedArticles" :key="post.path">
                     <NuxtLink :to="post.path"
@@ -106,8 +106,8 @@ useSeoMeta({
         </section>
 
         <p>
-            <NuxtLink to="/projects" class="text-sky-500 underline underline-offset-4">
-                ← Back to projects
+            <NuxtLink to="/projects#archive" class="text-sky-500 underline underline-offset-4">
+                ← Wszystkie projekty
             </NuxtLink>
         </p>
     </section>
@@ -119,7 +119,7 @@ useSeoMeta({
                 {{ project.title }}
             </h1>
             <p class="text-slate-600 dark:text-slate-400">
-                This project doesn't have a dedicated page — you can find it in the projects list.
+                Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów.
             </p>
             <ul v-if="externalLinks.length" class="flex flex-wrap gap-x-4 gap-y-1">
                 <li v-for="link in externalLinks" :key="link.label">
@@ -131,8 +131,8 @@ useSeoMeta({
                 </li>
             </ul>
             <div>
-                <NuxtLink to="/projects" class="text-sky-500 underline underline-offset-4">
-                    ← Back to projects
+                <NuxtLink to="/projects#archive" class="text-sky-500 underline underline-offset-4">
+                    ← Wszystkie projekty
                 </NuxtLink>
             </div>
         </div>
