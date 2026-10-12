@@ -72,11 +72,17 @@ timeline:
   - period: paź 2025 – teraz
     company: Pesi
     role: Junior Front-End Developer
-    text: Vue 3, Inertia.js, Tailwind, PrimeVue; front-end nowego produktu i wspólne biblioteki komponentów.
+    text: Vue 3, Inertia.js, Tailwind, PrimeVue; front-end aplikacji e-cargo i wspólne biblioteki komponentów.
+    projects:
+      - title: e-cargo
+        to: /#projects
   - period: sty 2023 – cze 2025
     company: Arris Agency
     role: Front-End Developer
     text: Front-end superauto.pl; Figma → Twig / HTML / CSS / JS, animacje Swiper, refaktoryzacja.
+    projects:
+      - title: superauto.pl
+        to: /#projects
   - period: lut – wrz 2022
     company: ValueAdd
     role: UX/UI Designer & HTML/CSS

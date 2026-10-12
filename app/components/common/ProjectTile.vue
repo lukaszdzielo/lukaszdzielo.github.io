@@ -13,22 +13,19 @@ const props = defineProps<{
   mock?: string
   image?: string
   imageDark?: string // zrzut ciemnej wersji strony – podmieniany w ciemnym motywie
-  to?: string // podstrona projektu (gdy powstanie)
-  href?: string // strona na produkcji – otwiera się w nowej karcie
+  to?: string // podstrona projektu (gdy powstanie) – wtedy klikalny jest cały kafelek
+  href?: string // strona na produkcji – link ma tylko niebieska strzałka (nowa karta)
 }>()
 
 const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
-const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
-  <component
-    :is="to ? NuxtLink : href ? 'a' : 'article'"
-    :to="to"
-    :href="to ? undefined : href"
-    :target="!to && href ? '_blank' : undefined"
-    :rel="!to && href ? 'noopener noreferrer' : undefined"
-    class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 dark:border-white/10 dark:text-brand-50 dark:hover:shadow-black/40"
+  <!-- Kafelek sam w sobie nie jest linkiem. Strona na produkcji – tylko strzałka.
+       Gdy projekt dostanie podstronę (to), link jest na tytule i rozciąga się na cały kafelek. -->
+  <article
+    class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 dark:border-white/10 dark:text-brand-50"
+    :class="{ 'hover:shadow-xl hover:shadow-slate-900/10 dark:hover:shadow-black/40': to }"
   >
     <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić -->
     <div class="relative z-1 min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
@@ -45,21 +42,35 @@ const NuxtLink = resolveComponent('NuxtLink')
             {{ chip }}
           </li>
         </ul>
+        <a
+          v-if="href"
+          :href="href"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`${title} – otwórz stronę w nowej karcie`"
+          class="relative z-3 grid size-(--ch) shrink-0 place-items-center rounded-full bg-primary-500 text-sm text-white transition-transform duration-300 hover:rotate-45 focus-visible:rotate-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:bg-primary-400 dark:text-brand-950"
+        >
+          <Icon name="lucide:arrow-up-right" aria-hidden="true" />
+        </a>
         <span
-          v-if="to || href"
+          v-else-if="to"
           class="grid size-(--ch) shrink-0 place-items-center rounded-full bg-primary-500 text-sm text-white transition-transform duration-300 group-hover:rotate-45 dark:bg-primary-400 dark:text-brand-950"
           aria-hidden="true"
         >
           <Icon name="lucide:arrow-up-right" />
         </span>
       </div>
-      <h3 class="mt-[7cqw] text-[10cqw] leading-none font-semibold tracking-tighter">{{ title }}</h3>
+      <h3 class="mt-[7cqw] text-[10cqw] leading-none font-semibold tracking-tighter">
+        <NuxtLink v-if="to" :to="to" class="after:absolute after:inset-0 after:z-2 after:content-['']">{{ title }}</NuxtLink>
+        <template v-else>{{ title }}</template>
+      </h3>
       <p class="mt-[2.8cqw] max-w-[92%] text-[max(0.875rem,3.7cqw)]/[1.35] text-slate-600 dark:text-slate-300">{{ description }}</p>
     </div>
 
     <!-- Okno przeglądarki wychodzące poza kafelek -->
     <div
-      class="relative ml-[6.7cqw] w-[100cqw] origin-top-left -rotate-2 overflow-hidden rounded-[2.4cqw] border border-slate-900/16 bg-white shadow-[0_5cqw_10cqw_-4cqw_rgba(8,14,40,.45)] transition-transform duration-500 ease-out motion-safe:group-hover:-translate-y-[1.2cqw] motion-safe:group-hover:-rotate-1 dark:border-white/20 dark:bg-[#1c2a52]"
+      class="relative ml-[6.7cqw] w-[100cqw] origin-top-left -rotate-2 overflow-hidden rounded-[2.4cqw] border border-slate-900/16 bg-white shadow-[0_5cqw_10cqw_-4cqw_rgba(8,14,40,.45)] transition-transform duration-500 ease-out dark:border-white/20 dark:bg-[#1c2a52]"
+      :class="{ 'motion-safe:group-hover:-translate-y-[1.2cqw] motion-safe:group-hover:-rotate-1': to }"
     >
       <div class="flex h-[5.4cqw] items-center gap-[1.1cqw] bg-[#eef1f7] px-[2.4cqw] dark:bg-[#223260]">
         <i v-for="n in 3" :key="n" class="size-[1.5cqw] rounded-full bg-slate-900/16 dark:bg-white/20" />
@@ -90,5 +101,5 @@ const NuxtLink = resolveComponent('NuxtLink')
         <div v-else-if="svg" class="size-full" v-html="svg" />
       </div>
     </div>
-  </component>
+  </article>
 </template>
