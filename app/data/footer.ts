@@ -1,6 +1,5 @@
 // Treści stopki. Dwa warianty: portfolio (domyślny) i strona dla firm.
-// Linki do podstron, których jeszcze nie ma (np. strona dla firm), dopisz,
-// gdy strona powstanie – inaczej `nuxt generate` zgłosi błąd 404 przy prerenderingu.
+// Linki do podstron dopisuj dopiero, gdy strona istnieje – inaczej `nuxt generate` zgłosi błąd 404 przy prerenderingu.
 // Kotwice (#about-me itd.) są po angielsku. Po dodaniu wersji językowych (@nuxtjs/i18n)
 // mogą przyjść z tłumaczeń, np. #o-mnie w polskiej i #about-me w angielskiej.
 
@@ -29,6 +28,7 @@ export const footerContent: Record<FooterVariant, FooterContent> = {
           { label: 'O mnie', to: '/#about-me' },
           { label: 'Wpisy', to: '/#posts' },
           { label: 'Kontakt', to: '/#contact' },
+          { label: 'Strony dla firm', to: '/strony-dla-firm' },
         ],
       },
       {
@@ -52,17 +52,17 @@ export const footerContent: Record<FooterVariant, FooterContent> = {
       {
         title: 'Oferta',
         links: [
-          { label: 'Co dostajesz', to: '#offer' },
-          { label: 'Realizacje', to: '#projects' },
-          { label: 'Jak pracuję', to: '#process' },
-          { label: 'Opieka', to: '#care' },
-          { label: 'FAQ', to: '#faq' },
+          { label: 'Co dostajesz', to: '/strony-dla-firm#offer' },
+          { label: 'Realizacje', to: '/strony-dla-firm#projects' },
+          { label: 'Jak pracuję', to: '/strony-dla-firm#process' },
+          { label: 'Opieka', to: '/strony-dla-firm#care' },
+          { label: 'FAQ', to: '/strony-dla-firm#faq' },
         ],
       },
       {
         title: 'Kontakt',
         links: [
-          { label: 'Formularz zapytania', to: '#contact' },
+          { label: 'Formularz zapytania', to: '/strony-dla-firm#contact' },
           { label: 'LinkedIn', to: LINKEDIN, external: true },
         ],
       },

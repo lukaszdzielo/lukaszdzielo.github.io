@@ -3,12 +3,24 @@
 // bez odcięcia), po przewinięciu dostaje półprzezroczyste tło z rozmyciem i dolną linię.
 // Od 900 px: sygnet, menu, przełącznik motywu i „Kontakt”.
 // Poniżej: sygnet, przełącznik motywu, „Kontakt” i przycisk menu, które otwiera panel z linkami.
-const menu = [
+// Wariant „business” (strona dla firm): menu z sekcjami oferty i przycisk „Wyceń stronę”.
+import { businessMenu } from '~/data/business'
+
+const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
+
+const portfolioMenu = [
   { label: 'Projekty', to: '/#projects' },
   { label: 'Współpraca', to: '/#services' },
   { label: 'O mnie', to: '/#about-me' },
   { label: 'Wpisy', to: '/#posts' },
 ]
+const business = computed(() => props.variant === 'business')
+const menu = computed(() => (business.value ? businessMenu : portfolioMenu))
+const cta = computed(() =>
+  business.value
+    ? { label: 'Wyceń stronę', to: '/strony-dla-firm#contact', mobile: 'Opisz swój projekt' }
+    : { label: 'Kontakt', to: '/#contact', mobile: 'Napisz do mnie' },
+)
 
 const stuck = ref(false)
 const open = ref(false)
@@ -74,8 +86,14 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
     ]"
   >
     <div class="container flex items-center gap-6">
-      <NuxtLink to="/" class="inline-flex size-10 items-center text-slate-900 dark:text-brand-50" aria-label="Łukasz Dzieło – strona główna" @click="close()">
+      <NuxtLink
+        :to="business ? '/strony-dla-firm' : '/'"
+        class="inline-flex h-10 shrink-0 items-center gap-3 text-slate-900 dark:text-brand-50"
+        :aria-label="business ? 'Łukasz Dzieło – strony dla firm' : 'Łukasz Dzieło – strona główna'"
+        @click="close()"
+      >
         <CommonAppLogo class="size-9 shrink-0" :stroke-width="13" />
+        <span v-if="business" class="hidden border-l border-slate-900/16 pl-3 text-sm text-slate-500 sm:inline dark:border-white/20 dark:text-slate-400">Strony dla firm</span>
       </NuxtLink>
 
       <nav class="mx-auto hidden gap-4.5 text-[0.84375rem] whitespace-nowrap text-slate-600 min-[900px]:flex lg:gap-7 lg:text-sm dark:text-slate-300" aria-label="Główna nawigacja">
@@ -87,11 +105,11 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
       <div class="ml-auto flex items-center gap-2 min-[900px]:ml-0">
         <CommonColorModeToggle />
         <NuxtLink
-          to="/#contact"
-          class="group inline-flex h-11 items-center gap-2.5 rounded-full bg-brand-900 py-1.75 pr-1.75 pl-4.5 text-sm font-medium text-white dark:bg-slate-100 dark:text-brand-950"
+          :to="cta.to"
+          class="group inline-flex h-11 items-center gap-2.5 rounded-full bg-brand-900 py-1.75 pr-1.75 pl-4.5 text-sm font-medium whitespace-nowrap text-white dark:bg-slate-100 dark:text-brand-950"
           @click="close()"
         >
-          Kontakt
+          {{ cta.label }}
           <span class="grid size-7.5 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
             <Icon name="lucide:arrow-up-right" class="transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px" aria-hidden="true" />
           </span>
@@ -152,11 +170,19 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
         </ul>
         <div class="container flex flex-wrap gap-3 pb-8">
           <NuxtLink
-            to="/#contact"
+            :to="cta.to"
             class="inline-flex h-12 items-center rounded-full bg-brand-900 px-6 font-medium text-white dark:bg-slate-100 dark:text-brand-950"
             @click="close()"
           >
-            Napisz do mnie
+            {{ cta.mobile }}
+          </NuxtLink>
+          <NuxtLink
+            v-if="business"
+            to="/"
+            class="inline-flex h-12 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 dark:border-white/20 dark:text-brand-50"
+            @click="close()"
+          >
+            Portfolio programisty
           </NuxtLink>
         </div>
       </nav>
