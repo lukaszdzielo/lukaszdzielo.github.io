@@ -187,6 +187,10 @@ export default defineNuxtConfig({
     }
   },
   modules: ['@nuxt/content', '@nuxt/image', '@nuxt/icon'],
+  icon: {
+    // Ikony użyte w kodzie trafiają do paczki – bez zapytań do api.iconify.design w przeglądarce.
+    clientBundle: { scan: true },
+  },
   runtimeConfig: {
     public: {
       // Disable the anchor <a> links that MDC wraps around headings (h2/h3/h4 by default)

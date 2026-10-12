@@ -1,64 +1,63 @@
 <script setup lang="ts">
-import ProjectCard from '~/components/common/ProjectCard.vue';
+// Rzeczy, które zbudowałem – 6 wyróżnionych projektów jako kafelki w stylu posta z Instagrama.
+// Lista projektów jest w content/index.md. Kafelek bez `to` nie jest linkiem (podstron projektów jeszcze nie ma).
+type Project = {
+  title: string
+  description: string
+  chips?: string[]
+  url: string
+  mock?: string
+  image?: string
+  imageDark?: string
+  to?: string
+  href?: string
+  date?: string // RRRR-MM – kafelki układają się od najnowszego
+  hidden?: boolean
+}
 
-const { data: projects } = await useAsyncData('projects-home-list', () =>
-    queryCollection('projects')
-        .where('draft', '=', false)
-        .where('featured', '=', true)
-        .order('date', 'DESC')
-        .limit(8)
-        .all(),
-);
-
-const homeProjects = computed(() => projects.value ?? []);
-
-const { data: linkedProjectPaths } = await useLinkedProjectPaths();
-const linkedPaths = computed(() => new Set(linkedProjectPaths.value ?? []));
-
-const hasPage = (project: { path: string; body?: { value?: unknown[] } | null }): boolean =>
-    hasBody(project) || linkedPaths.value.has(project.path);
-
-// Alternative: hand-pick specific projects by slug.
-// Replace `homeProjects` above with this when you want manual curation.
-// const manualSlugs: string[] = ['rund', 'key-drummond'];
-// const homeProjects = computed(() =>
-//     manualSlugs
-//         .map(slug => (projects.value ?? []).find(p => p.path?.endsWith('/' + slug)))
-//         .filter((p): p is NonNullable<typeof p> => Boolean(p))
-// );
+const props = defineProps<{ projects?: Project[] }>()
+// `hidden: true` w content/index.md chowa projekt ze strony głównej (dane zostają)
+const visible = computed(() =>
+  (props.projects ?? [])
+    .filter(p => !p.hidden)
+    .sort((a, b) => String(b.date ?? '').localeCompare(String(a.date ?? ''))),
+)
+const scroller = useTemplateRef<HTMLElement>('scroller')
 </script>
 
 <template>
-    <section class="py-20 md:py-30 flex flex-col gap-10 bg-slate-200 dark:bg-slate-700">
+  <section id="projects" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+    <CommonCodeBackdrop name="projects" side="right" class="top-6" />
+    <div class="container">
+      <CommonSectionHead title="Rzeczy, które zbudowałem" lead="Aplikacje, strony komercyjne i projekty, na których się uczę.">
+        <template #aside>
+          <!-- Strona /projects w nowym wyglądzie powstanie później – link na razie nieaktywny. -->
+          <span
+            aria-disabled="true"
+            title="Wkrótce"
+            class="inline-flex cursor-not-allowed items-center gap-2 border-b border-slate-900/10 pb-1 text-sm whitespace-nowrap text-slate-400 dark:border-white/10 dark:text-slate-500"
+          >
+            Wszystkie projekty
+            <Icon name="lucide:arrow-right" class="text-sm" aria-hidden="true" />
+          </span>
+        </template>
+      </CommonSectionHead>
 
-        <div class="container flex flex-col gap-5">
-            <div
-                class="flex items-center gap-2 font-medium after:content-[''] after:block after:w-12 after:h-0.75 after:bg-sky-500 after:rounded-full">
-                <span class="text-slate-400 dark:text-slate-500">01</span>
-                <span class="text-slate-400 dark:text-slate-500">/</span>
-                <span class="font-semibold uppercase">Projects</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-pretty">
-                Bringing <span class="text-sky-500">pixels</span> to life
-            </h2>
-        </div>
-
-        <div class="container flex flex-col gap-8">
-            <ul v-if="homeProjects.length" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <li v-for="project in homeProjects" :key="project.path" class="flex flex-col">
-                    <ProjectCard :project="project" :has-page="hasPage(project)" title-tag="h3" />
-                </li>
-            </ul>
-            <p v-else class="">No featured projects yet.</p>
-
-            <div v-if="homeProjects.length" class="flex justify-center">
-                <NuxtLink to="/projects"
-                    class="group inline-flex items-center gap-1.5 rounded-full border border-sky-500 px-4 py-1.5 text-sm font-medium text-sky-600 dark:text-sky-400 transition-colors hover:bg-sky-500 hover:text-white dark:hover:text-white">
-                    See more projects
-                    <Icon name="lucide:arrow-right"
-                        class="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                </NuxtLink>
-            </div>
-        </div>
-    </section>
+      <!-- Desktop: 3 kolumny. Tablet i telefon: pasek przewijany w bok. -->
+      <ul
+        ref="scroller"
+        class="-mx-pad mt-8 grid snap-x snap-mandatory auto-cols-[72%] grid-flow-col gap-3.5 overflow-x-auto scroll-px-pad px-pad pb-2 [scrollbar-width:none] sm:auto-cols-[56%] md:auto-cols-[40%] lg:mx-0 lg:mt-10 lg:grid-flow-row lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0"
+      >
+        <li
+          v-for="(project, i) in visible"
+          :key="project.title"
+          v-reveal="(i % 3) * 80"
+          class="snap-start transition-[opacity,translate] duration-700 ease-out"
+        >
+          <CommonProjectTile v-bind="project" />
+        </li>
+      </ul>
+      <CommonScrollControls :target="scroller" />
+    </div>
+  </section>
 </template>

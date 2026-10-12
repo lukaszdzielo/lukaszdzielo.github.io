@@ -1,0 +1,49 @@
+/* Kolory makiet w kafelkach projektów (SVG z app/data/mockups.ts) */
+.mk {
+  --mk-bg: #fff; --mk-block: #eef1f6; --mk-line: #e1e5ee;
+  --mk-accent: #2f6bff; --mk-accent-soft: rgba(47, 107, 255, .10);
+  --mk-ink: #18203a; --mk-ink2: #4f5870; --mk-ink3: #7a8299;
+  --mk-hair: rgba(24, 32, 58, .09); --mk-line2: rgba(24, 32, 58, .16);
+  font-family: inherit;
+}
+.dark .mk {
+  --mk-bg: #1c2a52; --mk-block: rgba(255, 255, 255, .06); --mk-line: rgba(255, 255, 255, .10);
+  --mk-accent: #6f9cff; --mk-accent-soft: rgba(111, 156, 255, .14);
+  --mk-ink: #eef2fb; --mk-ink2: #aab4cf; --mk-ink3: #7883a3;
+  --mk-hair: rgba(160, 185, 255, .11); --mk-line2: rgba(160, 185, 255, .20);
+}
+.p-scr.mkw,.p-scr.img{padding:0;display:block;height:calc(100% - 5.4cqw);overflow:hidden}
+.p-phone .s.mkw{padding:0;display:block;overflow:hidden}
+
+.mk .bg{fill:var(--mk-bg)}.mk .k{fill:var(--mk-block)}.mk .l{fill:var(--mk-line)}
+.mk .a{fill:var(--mk-accent)}.mk .as{fill:var(--mk-accent-soft)}.mk .a2{fill:var(--mk-accent)}
+.mk .st{fill:none;stroke:var(--mk-line2);stroke-width:.7}.mk .ln{stroke:var(--mk-hair);stroke-width:.6}
+.mk text{fill:var(--mk-ink2)}.mk text.ink{fill:var(--mk-ink)}.mk text.t3{fill:var(--mk-ink3)}.mk text.t2{fill:var(--mk-ink2)}.mk text.on{fill:#fff}.mk text.a2,.mk tspan.a2{fill:var(--mk-accent)}
+.mk text.tg{fill:#1c7a46}.mk text.ty{fill:#9a6a06}.mk text.tb{fill:#2f5fd8}
+.mk path.pg,.mk .pg{fill:#5fbf86}.mk .pr{fill:#ef7b6b}.mk .pb{fill:#6b97f2}.mk .py{fill:#f0c24b}.mk .pv{fill:#a27ae6}
+.mk rect.pg,.mk rect.py,.mk rect.pb,.mk rect.pr,.mk rect.pv{opacity:.28}
+.mk .spg{fill:#5fbf86;opacity:.16}.mk .spr{fill:#ef7b6b;opacity:.16}.mk .spb{fill:#6b97f2;opacity:.16}.mk .spy{fill:#f0c24b;opacity:.2}.mk .spv{fill:#a27ae6;opacity:.16}
+.mk .sa1{fill:#c9d4ea}.mk .sa2{fill:#d7dbe4}.mk .sa3{fill:#cfe0dc}
+.mk .car{fill:#2c3a5e}.mk .whl{fill:#141b30;stroke:#c9d0de;stroke-width:1.6}
+.mk .cf{fill:#8a5a3b}.mk .cfs{fill:#8a5a3b;opacity:.16}.mk text.cft{fill:#8a5a3b}
+.mk .cfa{fill:#efe2d4}.mk .cfb{fill:#e8d6c3}.mk .cfc{fill:#dfe6ea}
+.mk .cw{fill:#fff;stroke:#8a5a3b;stroke-width:1.2}.mk .cws{fill:none;stroke:#8a5a3b;stroke-width:1.2;stroke-linecap:round}
+.mk .ph1{fill:#c8d6ec}.mk .ph2{fill:#e9d9c6}.mk .ph3{fill:#cfe2d8}.mk .ph4{fill:#ddd5ec}
+.mk .mt{fill:#24314f;opacity:.55}.mk .sun{fill:#fff;opacity:.85}
+.dark .mk .sa1,.dark .mk .sa2,.dark .mk .sa3{opacity:.82}
+.dark .mk text.tg{fill:#7fe0a6}.dark .mk text.ty{fill:#f3cf6e}.dark .mk text.tb{fill:#9dbaff}
+.dark .mk text.cft{fill:#e0b48f}.dark .mk .cfa,.dark .mk .cfb,.dark .mk .cfc,.dark .mk .ph1,.dark .mk .ph2,.dark .mk .ph3,.dark .mk .ph4{opacity:.85}
+
+/* Tło kafelka projektu – jak post na Instagramie (jasny i ciemny wariant) */
+.ig-tile {
+  background:
+    radial-gradient(70% 45% at 78% 16%, rgba(255, 255, 255, .95), transparent 70%),
+    radial-gradient(60% 42% at 8% 100%, rgba(47, 107, 255, .10), transparent 70%),
+    #f2f4f9;
+}
+.dark .ig-tile {
+  background:
+    radial-gradient(70% 45% at 75% 18%, rgba(76, 116, 255, .28), transparent 70%),
+    radial-gradient(60% 40% at 10% 100%, rgba(76, 116, 255, .14), transparent 70%),
+    #0a1227;
+}
