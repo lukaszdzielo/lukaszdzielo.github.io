@@ -69,7 +69,7 @@ defineProps<{
                ale zawsze z odstępem od tekstu (przy 1024 px stoi na portrecie, żeby nie zasłaniać opisu). -->
           <div
             id="hero-tile-anchor"
-            class="pointer-events-none invisible absolute top-[36%] left-0 aspect-[4/5] w-[52%] xl:-left-[25%] xl:w-[62%] 2xl:-left-[40%] 2xl:w-[66%]"
+            class="pointer-events-none invisible absolute top-[36%] left-0 aspect-[4/5] w-[52%] xl:top-[26%] xl:-left-[26%] xl:w-[70%] 2xl:top-[24%] 2xl:-left-[50%] 2xl:w-[74%]"
             aria-hidden="true"
           />
         </div>
