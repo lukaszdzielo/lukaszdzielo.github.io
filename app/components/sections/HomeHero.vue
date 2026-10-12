@@ -26,11 +26,11 @@ defineProps<{
           </span>
         </h1>
 
-        <p class="mt-5.5 max-w-112.5 text-base/relaxed text-slate-600 dark:text-slate-300">
+        <p class="mt-5.5 max-w-112.5 text-base/relaxed text-slate-600 motion-safe:animate-fade-up motion-safe:[animation-delay:160ms] dark:text-slate-300">
           <slot name="description" mdc-unwrap="p" />
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center gap-3">
+        <div class="mt-8 flex flex-wrap items-center gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:240ms]">
           <NuxtLink
             to="/#projects"
             class="group inline-flex h-14 items-center gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950"
@@ -42,7 +42,7 @@ defineProps<{
           </NuxtLink>
         </div>
 
-        <ul v-if="stack?.length" class="mt-7 flex flex-wrap gap-2">
+        <ul v-if="stack?.length" class="mt-7 flex flex-wrap gap-2 motion-safe:animate-fade-up motion-safe:[animation-delay:320ms]">
           <li
             v-for="item in stack"
             :key="item"
@@ -59,11 +59,13 @@ defineProps<{
            więc na węższych ekranach postać się zmniejsza zamiast wchodzić na tekst.
            Odstęp od góry (mt-4 / mt-6) – włosy nie dotykają przyklejonego menu.
            Bez drop-shadow – cień wpadał w przezroczystą szczelinę między ręką a tułowiem. -->
-      <div class="@container relative order-first mt-4 h-99 sm:mt-6 sm:h-140 lg:order-none lg:mt-6 lg:h-183">
+      <div class="@container relative order-first mt-4 h-99 motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:mt-6 sm:h-140 lg:order-none lg:mt-6 lg:h-183">
         <div
           class="absolute bottom-0 left-1/2 aspect-[820/1317] h-full -translate-x-1/2 lg:h-[min(100%,160.6cqw)] lg:right-0 lg:left-auto lg:translate-x-0 [&_img]:size-full [&_img]:object-cover [&_img]:mask-[linear-gradient(to_bottom,#000_72%,transparent_99%)]"
         >
           <slot name="image" />
+          <!-- Miejsce startu „latającego” kafelka (pierwszy wyróżniony projekt, tylko od lg) – useFlyTile -->
+          <div id="hero-tile-anchor" class="pointer-events-none invisible absolute top-[36%] -left-[30%] aspect-[4/5] w-[52%]" aria-hidden="true" />
         </div>
       </div>
     </div>
