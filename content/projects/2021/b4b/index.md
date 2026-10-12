@@ -5,5 +5,5 @@ description:
 image: /projects/2021/b4b/thumbnail.avif
 tags: [html]
 featured: true
-agency: Bespoke 4 Business
+agency: b4b
 ---
