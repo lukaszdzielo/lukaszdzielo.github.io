@@ -12,7 +12,7 @@
   --color-primary-400: #6f9cff; /* akcent w ciemnym motywie */
   --color-primary-500: #2f6bff; /* akcent w jasnym motywie */
   --color-primary-600: #2457d6; /* hover / aktywny */
-  --color-brand-50: #edf0f6;    /* tło strony – jasny motyw */
+  --color-brand-50: #edf0f6;    /* tło strony – jasny motyw; nagłówki w ciemnym (zamiast czystej bieli) */
   --color-brand-700: #1d3170;   /* gradient okładek wpisów */
   --color-brand-900: #111b36;   /* karty – ciemny motyw */
   --color-brand-950: #0a1227;   /* tło strony – ciemny motyw */
@@ -68,10 +68,9 @@
   --tw-prose-td-borders: var(--color-slate-700);
 }
 
-html {
-  /* Płynne przewijanie do kotwic (#projects, #contact…) – wyłączone przy „ogranicz ruch” */
-  @apply motion-safe:scroll-smooth;
-}
+/* Bez `scroll-behavior: smooth` – płynność tylko przy kliknięciu kotwicy na tej samej stronie
+   (app/router.options.ts i plugins/anchor-scroll.client.ts). Wejście z linku z #sekcja i odświeżenie
+   ustawiają stronę od razu w sekcji. */
 
 body {
   @apply min-h-svh;
