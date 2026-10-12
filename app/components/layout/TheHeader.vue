@@ -1,5 +1,6 @@
 <script setup lang="ts">
-// Przyklejona nawigacja. Po przewinięciu pojawia się dolna linia.
+// Przyklejona nawigacja. Na samej górze strony jest przezroczysta (poświata hero przechodzi pod nią
+// bez odcięcia), po przewinięciu dostaje półprzezroczyste tło z rozmyciem i dolną linię.
 // Od 900 px: sygnet, menu, przełącznik motywu i „Kontakt”.
 // Poniżej: sygnet, przełącznik motywu, „Kontakt” i przycisk menu, które otwiera panel z linkami.
 const menu = [
@@ -66,10 +67,10 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-white'
 
 <template>
   <header
-    class="sticky top-0 z-50 border-b py-3.5 backdrop-blur-md transition-colors duration-300"
+    class="sticky top-0 z-50 border-b py-3.5 transition duration-300"
     :class="[
       stuck || open ? 'border-slate-900/10 dark:border-white/10' : 'border-transparent',
-      open ? 'bg-brand-50 dark:bg-brand-950' : 'bg-brand-50/76 dark:bg-brand-950/76',
+      open ? 'bg-brand-50 dark:bg-brand-950' : stuck ? 'bg-brand-50/76 backdrop-blur-md dark:bg-brand-950/76' : 'bg-transparent',
     ]"
   >
     <div class="container flex items-center gap-6">
