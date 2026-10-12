@@ -111,7 +111,8 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          innerHTML: `(()=>{try{const t=localStorage.getItem('theme');const d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+          // Przed pierwszym malowaniem: klasa .dark i data-mode (auto/light/dark) – ikona przełącznika motywu nie skacze
+          innerHTML: `(()=>{const r=document.documentElement;try{const t=localStorage.getItem('theme');r.dataset.mode=t==='light'||t==='dark'?t:'auto';const d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)r.classList.add('dark');}catch(e){r.dataset.mode='auto'}})();`,
           tagPosition: 'head',
         },
         // Google Analytics ładuje się dopiero po zgodzie – app/plugins/analytics.client.ts

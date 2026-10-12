@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// Ikona zależy od atrybutu data-mode na <html>, który ustawia skrypt w <head> jeszcze przed
+// pierwszym malowaniem – dzięki temu ikona nie przeskakuje po załadowaniu strony.
+// Etykieta dla czytników ekranu zmienia się dopiero po zamontowaniu (bez błędu hydracji).
 const { mode, cycle } = useColorMode();
 
 const mounted = ref(false);
@@ -24,7 +27,7 @@ const labels = {
     @click="cycle"
   >
     <svg
-      v-if="display === 'auto'"
+      class="block in-data-[mode=dark]:hidden in-data-[mode=light]:hidden"
       xmlns="http://www.w3.org/2000/svg"
       width="18"
       height="18"
@@ -42,7 +45,7 @@ const labels = {
     </svg>
 
     <svg
-      v-else-if="display === 'light'"
+      class="hidden in-data-[mode=light]:block"
       xmlns="http://www.w3.org/2000/svg"
       width="18"
       height="18"
@@ -66,7 +69,7 @@ const labels = {
     </svg>
 
     <svg
-      v-else
+      class="hidden in-data-[mode=dark]:block"
       xmlns="http://www.w3.org/2000/svg"
       width="18"
       height="18"
