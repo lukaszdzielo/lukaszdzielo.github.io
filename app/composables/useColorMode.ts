@@ -33,6 +33,15 @@ function init() {
     .addEventListener('change', () => {
       if (mode.value === 'auto') apply()
     })
+
+  // Synchronizacja kart: zmiana motywu w jednej karcie od razu przełącza pozostałe.
+  // Zdarzenie `storage` przeglądarka wysyła sama do innych kart tej samej strony, gdy zmieni się
+  // localStorage – wybór i tak musi zostać zapisany, więc BroadcastChannel byłby tu drugim kanałem do tego samego.
+  window.addEventListener('storage', (e) => {
+    if (e.key !== STORAGE_KEY && e.key !== null) return
+    mode.value = e.newValue === 'light' || e.newValue === 'dark' ? e.newValue : 'auto'
+    apply()
+  })
 }
 
 export function useColorMode() {
