@@ -116,7 +116,7 @@ learningNote: 'W kolejce: TypeScript, testy w Vitest, Node.js i React Native. Ki
 
 ::sections-home-about
 ---
-quote: '„Szukam miejsca, w którym mogę skupić się na kodzie i budować dobre produkty razem z zespołem.”'
+quote: '„Najlepiej pracuje mi się tam, gdzie mogę skupić się na kodzie i budować dobre produkty razem z zespołem.”'
 timeline:
   - period: paź 2025 – teraz
     company: Pesi

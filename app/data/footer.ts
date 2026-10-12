@@ -1,5 +1,3 @@
-import { cv } from './cv'
-
 // Treści stopki. Dwa warianty: portfolio (domyślny) i strona dla firm.
 // Linki do podstron, których jeszcze nie ma (np. strona dla firm), dopisz,
 // gdy strona powstanie – inaczej `nuxt generate` zgłosi błąd 404 przy prerenderingu.
@@ -46,7 +44,6 @@ export const footerContent: Record<FooterVariant, FooterContent> = {
       title: 'Teraz',
       now: 'Front-end w Vue 3, etat',
       lines: ['Katowice · zdalnie lub hybrydowo', 'Polski · angielski B2'],
-      link: { label: 'Pobierz CV', to: cv.href, external: true },
     },
   },
   business: {

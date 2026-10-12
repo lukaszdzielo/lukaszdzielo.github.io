@@ -17,9 +17,9 @@
   --color-brand-900: #111b36;   /* karty – ciemny motyw */
   --color-brand-950: #0a1227;   /* tło strony – ciemny motyw */
 
-  /* Boczny margines treści jak w projekcie: 16 px na telefonie, 7,85% szerokości, maks. 113 px.
+  /* Boczny margines treści: na telefonie 16 px, od sm 7,85% szerokości (maks. 113 px) – niżej w @media.
      Daje klasy px-pad, -mx-pad, scroll-px-pad. */
-  --spacing-pad: clamp(1rem, 7.85vw, 7.0625rem);
+  --spacing-pad: 1rem;
 
   /* Wjazd linii nagłówka w hero */
   --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -76,6 +76,12 @@ html {
 body {
   @apply min-h-svh;
   font-family: "Inter", sans-serif;
+}
+
+@media (width >= 40rem) {
+  :root {
+    --spacing-pad: clamp(1rem, 7.85vw, 7.0625rem);
+  }
 }
 
 #__nuxt {

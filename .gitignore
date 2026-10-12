@@ -26,3 +26,8 @@ logs
 pnpm-lock.yaml
 # Kopie zrzutów i projektów (m.in. dane klientów na zrzutach e-cargo) – tylko lokalnie, nie na GitHubie
 _archive/
+
+# CV nie trafia do repozytorium ani na stronę (dane prywatne)
+public/cv/
+*.cv.pdf
+CV*.pdf

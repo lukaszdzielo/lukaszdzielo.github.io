@@ -1,7 +1,5 @@
 <script setup lang="ts">
 // O mnie: ilustracja + tekst. Treść (akapity, oś czasu, cytat) jest w content/index.md.
-import { cv } from '~/data/cv'
-
 type TimelineItem = { period: string; company: string; role: string; text: string }
 
 defineProps<{
@@ -66,17 +64,6 @@ defineProps<{
         >
           <b class="font-medium text-slate-900 dark:text-white">{{ hobbiesLabel }}</b> {{ hobbies }}
         </p>
-        <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <a
-            :href="cv.href"
-            :download="cv.fileName"
-            class="inline-flex h-14 items-center gap-2.5 rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition hover:bg-white motion-safe:hover:-translate-y-0.5 dark:border-white/20 dark:text-white dark:hover:bg-brand-900"
-          >
-            <Icon name="lucide:download" class="text-lg" aria-hidden="true" />
-            Pobierz CV (PDF)
-          </a>
-          <span class="text-sm text-slate-500 dark:text-slate-400">Aktualizacja: {{ cv.updatedLabel }}</span>
-        </div>
       </div>
     </div>
   </section>
