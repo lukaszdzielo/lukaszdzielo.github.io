@@ -4,11 +4,30 @@
 import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT, contactTopics } from '~/data/contact'
 
 type Status = 'idle' | 'sending' | 'success' | 'error'
+type Topic = { value: string; label: string }
+
+// Domyślnie formularz z portfolio; strona dla firm podaje własne tematy, etykiety i źródło w temacie maila
+const props = withDefaults(
+  defineProps<{
+    topics?: readonly Topic[]
+    topicLabel?: string
+    messageLabel?: string
+    messagePlaceholder?: string
+    source?: string // trafia do tematu maila, np. „Portfolio” albo „Strony dla firm”
+  }>(),
+  {
+    topics: () => contactTopics,
+    topicLabel: 'W sprawie',
+    messageLabel: 'Wiadomość',
+    messagePlaceholder: 'Kilka zdań o projekcie albo stanowisku…',
+    source: 'Portfolio',
+  },
+)
 
 const form = reactive({
   name: '',
   email: '',
-  topic: contactTopics[0].value as string,
+  topic: props.topics[0]?.value ?? '',
   message: '',
   botcheck: false, // pole-pułapka na boty – człowiek go nie widzi
 })
@@ -25,8 +44,8 @@ async function submit() {
 
   const payload = {
     access_key: WEB3FORMS_ACCESS_KEY,
-    subject: `Portfolio: ${form.topic} – ${form.name}`,
-    from_name: 'Formularz z portfolio',
+    subject: `${props.source}: ${form.topic} – ${form.name}`,
+    from_name: `Formularz – ${props.source}`,
     name: form.name,
     email: form.email,
     topic: form.topic, // dodatkowe pole – Web3Forms dołącza do maila każde pole bez konfiguracji
@@ -44,7 +63,7 @@ async function submit() {
 
     if (res.ok && data.success) {
       status.value = 'success'
-      Object.assign(form, { name: '', email: '', topic: contactTopics[0].value, message: '' })
+      Object.assign(form, { name: '', email: '', topic: props.topics[0]?.value ?? '', message: '' })
     } else {
       status.value = 'error'
       errorMessage.value = data.message || 'Nie udało się wysłać wiadomości.'
@@ -115,11 +134,11 @@ const field =
         </label>
 
         <label :class="label" class="sm:col-span-2">
-          W sprawie
+          {{ topicLabel }}
           <span class="relative">
             <!-- Natywny select: na telefonie otwiera systemowy wybór, działa z klawiaturą i czytnikami ekranu -->
             <select v-model="form.topic" :class="field" class="cursor-pointer appearance-none pr-11" name="topic">
-              <option v-for="topic in contactTopics" :key="topic.value" :value="topic.value" class="bg-white text-slate-900">
+              <option v-for="topic in topics" :key="topic.value" :value="topic.value" class="bg-white text-slate-900">
                 {{ topic.label }}
               </option>
             </select>
@@ -132,13 +151,13 @@ const field =
         </label>
 
         <label :class="label" class="sm:col-span-2">
-          Wiadomość
+          {{ messageLabel }}
           <textarea
             v-model.trim="form.message"
             :class="field"
             class="h-28 resize-y py-3"
             name="message"
-            placeholder="Kilka zdań o projekcie albo stanowisku…"
+            :placeholder="messagePlaceholder"
             required
           />
         </label>

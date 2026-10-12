@@ -71,6 +71,30 @@ const data = await res.json().catch(() => ({}))`,
   if (currentPath.value.startsWith('/projects')) return 'project'
   return 'page'
 })`,
+
+  // Strona dla firm – kod WordPressa (bloki, theme.json), na którym budowane są strony klientów
+  bizOffer: `add_action( 'init', function () {
+    register_block_type( __DIR__ . '/build/blocks/hero' );
+    register_block_type( __DIR__ . '/build/blocks/offer' );
+} );`,
+  bizWork: `{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": { "appearanceTools": true },
+  "styles": { "color": { "background": "var(--wp--preset--color--base)" } }`,
+  bizProcess: `{
+  "apiVersion": 3,
+  "name": "ld/offer",
+  "title": "Oferta",
+  "category": "theme",
+  "editorScript": "file:./index.js"`,
+  bizCare: `add_theme_support( 'editor-styles' );
+add_editor_style( 'assets/css/editor.css' );
+remove_theme_support( 'core-block-patterns' );`,
+  bizFaq: `$query = new WP_Query( [
+    'post_type'      => 'post',
+    'posts_per_page' => 3,
+] );`,
 } as const
 
 export type CodeFragment = keyof typeof codeFragments

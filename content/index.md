@@ -50,6 +50,7 @@ services:
       - Pomoc z hostingiem i domeną – konto zostaje na Ciebie
       - 20+ stron dla firm od 2013 roku
     linkLabel: Zobacz ofertę dla firm
+    to: /strony-dla-firm
 ---
 ::
 

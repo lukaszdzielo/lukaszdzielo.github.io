@@ -1,5 +1,11 @@
 <script setup lang="ts">
+// Kontakt nad stopką. Wariant „business” (strona dla firm): inny nagłówek, zamiast profili –
+// informacja o czasie odpowiedzi, a w formularzu tematy dla firm.
+import { businessContact } from '~/data/business'
 import { contactSocials } from '~/data/contact'
+
+const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
+const business = computed(() => props.variant === 'business')
 </script>
 
 <template>
@@ -18,12 +24,16 @@ import { contactSocials } from '~/data/contact'
 
         <div class="relative">
           <h2 class="text-3xl/[1.1] font-medium tracking-tight text-balance lg:text-5xl/[1.1]">
-            Masz projekt do zrobienia?
+            {{ business ? businessContact.title : 'Masz projekt do zrobienia?' }}
           </h2>
           <p class="mt-3.5 max-w-115 text-base/relaxed opacity-75">
-            Albo szukasz kogoś do zespołu? Napisz kilka zdań – odpowiem w ciągu 72 godzin.
+            {{ business ? businessContact.lead : 'Albo szukasz kogoś do zespołu? Napisz kilka zdań – odpowiem w ciągu 72 godzin.' }}
           </p>
-          <ul class="mt-8 flex flex-wrap gap-2.5">
+          <p v-if="business" class="mt-8 inline-flex items-center gap-2.5 text-sm">
+            <span class="size-2 rounded-full bg-emerald-400" aria-hidden="true" />
+            {{ businessContact.response }}
+          </p>
+          <ul v-else class="mt-8 flex flex-wrap gap-2.5">
             <li v-for="social in contactSocials" :key="social.href">
               <a
                 :href="social.href"
@@ -37,7 +47,16 @@ import { contactSocials } from '~/data/contact'
           </ul>
         </div>
 
-        <CommonContactForm class="relative" />
+        <CommonContactForm
+          v-if="business"
+          class="relative"
+          :topics="businessContact.topics"
+          topic-label="Czego potrzebujesz?"
+          message-label="Kilka słów o projekcie"
+          :message-placeholder="businessContact.placeholder"
+          source="Strony dla firm"
+        />
+        <CommonContactForm v-else class="relative" />
       </div>
     </div>
   </section>
