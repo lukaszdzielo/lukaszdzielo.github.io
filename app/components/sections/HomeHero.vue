@@ -1,8 +1,6 @@
 <script setup lang="ts">
 // Hero: „Front-end developer.” po lewej, ilustracja po prawej (na tablecie i telefonie nad tekstem).
 // Za portretem jasna poświata (.hero-glow w main.css), w tle fragment kodu (CommonCodeBackdrop).
-import { cv } from '~/data/cv'
-
 defineProps<{
   title?: string
   titleAccent?: string
@@ -41,14 +39,6 @@ defineProps<{
             <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
               <Icon name="lucide:arrow-down" class="transition-transform motion-safe:group-hover:translate-y-0.5" aria-hidden="true" />
             </span>
-          </a>
-          <a
-            :href="cv.href"
-            :download="cv.fileName"
-            :title="`CV – aktualizacja: ${cv.updatedLabel}`"
-            class="inline-flex h-14 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition hover:bg-white motion-safe:hover:-translate-y-0.5 dark:border-white/20 dark:text-white dark:hover:bg-brand-900"
-          >
-            Pobierz CV
           </a>
         </div>
 

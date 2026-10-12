@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { cv } from '~/data/cv'
-
 // Przyklejona nawigacja. Po przewinięciu pojawia się dolna linia.
 // Od 900 px: sygnet, menu, przełącznik motywu i „Kontakt”.
 // Poniżej: sygnet, przełącznik motywu, „Kontakt” i przycisk menu, które otwiera panel z linkami.
@@ -159,14 +157,6 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-white'
           >
             Napisz do mnie
           </NuxtLink>
-          <a
-            :href="cv.href"
-            :download="cv.fileName"
-            :title="`CV – aktualizacja: ${cv.updatedLabel}`"
-            class="inline-flex h-12 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 dark:border-white/20 dark:text-white"
-          >
-            Pobierz CV
-          </a>
         </div>
       </nav>
     </Transition>

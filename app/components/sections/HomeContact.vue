@@ -8,7 +8,7 @@ import { contactSocials } from '~/data/contact'
     <div class="container">
       <div
         v-reveal
-        class="relative grid gap-10 overflow-hidden rounded-3xl bg-brand-900 p-8 text-white transition-[opacity,translate] duration-700 ease-out md:p-10 lg:grid-cols-[1.2fr_1fr] lg:p-16 dark:bg-slate-100 dark:text-brand-950"
+        class="relative grid gap-10 overflow-hidden rounded-3xl bg-brand-900 p-5 text-white sm:p-8 transition-[opacity,translate] duration-700 ease-out md:p-10 lg:grid-cols-[1.2fr_1fr] lg:p-16 dark:bg-slate-100 dark:text-brand-950"
       >
         <!-- Poświata w rogu karty -->
         <div

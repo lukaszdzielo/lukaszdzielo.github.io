@@ -53,6 +53,8 @@ async function renderCaptcha() {
     captchaToken.value = ''
     captchaId = hcaptcha.render(captchaEl.value, {
       sitekey: HCAPTCHA_SITEKEY,
+      // Zwykły widżet ma stałe 303 px – na bardzo wąskim ekranie używamy kompaktowego, żeby nie rozpychał formularza
+      size: captchaEl.value.clientWidth < 303 ? 'compact' : 'normal',
       theme: isDarkSite() ? 'light' : 'dark',
       callback: (token: string) => {
         captchaToken.value = token
@@ -150,7 +152,7 @@ const field =
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative min-w-0">
     <Transition
       mode="out-in"
       enter-active-class="motion-safe:transition motion-safe:duration-300 ease-out"
@@ -227,7 +229,7 @@ const field =
         </label>
 
         <!-- hCaptcha (widżet rysowany w renderCaptcha). min-h rezerwuje miejsce, żeby nic nie skakało. -->
-        <div ref="captchaEl" class="min-h-19.5 sm:col-span-2" />
+        <div ref="captchaEl" class="min-h-19.5 max-w-full min-w-0 sm:col-span-2" />
 
         <!-- Pułapka na boty (honeypot) -->
         <input v-model="form.botcheck" type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">

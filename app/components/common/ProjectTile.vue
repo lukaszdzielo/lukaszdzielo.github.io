@@ -2,6 +2,7 @@
 // Kafelek projektu w układzie posta z Instagrama (4:5): technologie, tytuł, opis
 // i przechylone okno przeglądarki z makietą (SVG) albo zrzutem ekranu.
 // Wymiary w cqw – kafelek skaluje się jak grafika, niezależnie od szerokości kolumny.
+// Tekst ma dolną granicę (max(…, cqw)), żeby na telefonie nie robił się nieczytelnie mały.
 import { mockups } from '~/data/mockups'
 
 const props = defineProps<{
@@ -29,13 +30,14 @@ const NuxtLink = resolveComponent('NuxtLink')
     :rel="!to && href ? 'noopener noreferrer' : undefined"
     class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 dark:border-white/10 dark:text-white dark:hover:shadow-black/40"
   >
-    <div class="relative z-1 px-[6.7cqw] pt-[6.7cqw]">
+    <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić -->
+    <div class="relative z-1 min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
       <div class="flex items-start justify-between gap-[3cqw]">
         <ul class="flex flex-wrap gap-[1.4cqw] pt-[1.4cqw]">
           <li
             v-for="(chip, i) in chips"
             :key="chip"
-            class="rounded-full border px-[2.4cqw] py-[1cqw] text-[2.9cqw]"
+            class="rounded-full border px-[max(0.5rem,2.4cqw)] py-[max(0.125rem,1cqw)] text-[max(0.75rem,2.9cqw)]"
             :class="i === 0 ? 'border-transparent bg-brand-900 text-white dark:bg-slate-100 dark:text-brand-950' : 'border-slate-900/16 text-slate-600 dark:border-white/20 dark:text-slate-300'"
           >
             {{ chip }}
@@ -50,12 +52,12 @@ const NuxtLink = resolveComponent('NuxtLink')
         </span>
       </div>
       <h3 class="mt-[7cqw] text-[10cqw] leading-none font-semibold tracking-tighter">{{ title }}</h3>
-      <p class="mt-[2.8cqw] max-w-[92%] text-[3.7cqw]/[1.35] text-slate-600 dark:text-slate-300">{{ description }}</p>
+      <p class="mt-[2.8cqw] max-w-[92%] text-[max(0.875rem,3.7cqw)]/[1.35] text-slate-600 dark:text-slate-300">{{ description }}</p>
     </div>
 
     <!-- Okno przeglądarki wychodzące poza kafelek -->
     <div
-      class="absolute top-[57cqw] left-[6.7cqw] w-[100cqw] origin-top-left -rotate-2 overflow-hidden rounded-[2.4cqw] border border-slate-900/16 bg-white shadow-[0_5cqw_10cqw_-4cqw_rgba(8,14,40,.45)] transition-transform duration-500 ease-out motion-safe:group-hover:-translate-y-[1.2cqw] motion-safe:group-hover:-rotate-1 dark:border-white/20 dark:bg-[#1c2a52]"
+      class="relative ml-[6.7cqw] w-[100cqw] origin-top-left -rotate-2 overflow-hidden rounded-[2.4cqw] border border-slate-900/16 bg-white shadow-[0_5cqw_10cqw_-4cqw_rgba(8,14,40,.45)] transition-transform duration-500 ease-out motion-safe:group-hover:-translate-y-[1.2cqw] motion-safe:group-hover:-rotate-1 dark:border-white/20 dark:bg-[#1c2a52]"
     >
       <div class="flex h-[5.4cqw] items-center gap-[1.1cqw] bg-[#eef1f7] px-[2.4cqw] dark:bg-[#223260]">
         <i v-for="n in 3" :key="n" class="size-[1.5cqw] rounded-full bg-slate-900/16 dark:bg-white/20" />
