@@ -11,7 +11,7 @@ const SITE_URL = 'https://lukaszdzielo.github.io/'
 const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
 const APPLE_TITLE = SITE_NAME
 
-// Prerender every project page (/projects/<year>/<slug>) – the list itself is a single page
+// Prerender every project page (/projects/<year>/<slug>) and the paginated post list
 const getPrerenderRoutes = (): string[] => {
   const routes: string[] = [];
   const projectDir = path.resolve(process.cwd(), 'content/projects');
@@ -52,6 +52,15 @@ const getPrerenderRoutes = (): string[] => {
       console.error(`Error reading ${file} for prerender count:`, e);
     }
   });
+
+  // Lista wpisów: /blog i /blog/page/2… (13 wpisów na pierwszej stronie, potem po 12 – app/utils/blogPaging.ts)
+  const publishedPosts = getProjectFiles(path.resolve(process.cwd(), 'content/blog')).filter((file) => {
+    const match = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    return !(match && /draft:\s*true/.test(match[1]));
+  }).length;
+  const blogPages = 1 + Math.ceil(Math.max(0, publishedPosts - 13) / 12);
+  routes.push('/blog');
+  for (let page = 2; page <= blogPages; page++) routes.push(`/blog/page/${page}`);
 
   return routes;
 };

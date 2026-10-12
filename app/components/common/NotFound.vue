@@ -9,9 +9,8 @@ type Variant = 'page' | 'post' | 'project' | 'error'
 
 const props = defineProps<{ variant?: Variant; path?: string }>()
 
-// Lista wpisów: dopóki nie ma nowej strony /blog, prowadzimy do sekcji na głównej.
-// Gdy powstanie /blog (punkt „Strona Wpisy”), zmień na '/blog'.
-const POSTS_LIST = '/#posts'
+// Lista wpisów
+const POSTS_LIST = '/blog'
 
 const route = useRoute()
 const currentPath = computed(() => props.path ?? route.path)

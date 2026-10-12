@@ -20,9 +20,17 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
         lead="Case study i krótsze wpisy – o tym, co zbudowałem, poprawiłem i czego się nauczyłem."
       >
         <template #aside>
-          <!-- Strony bloga jeszcze nie ma – link jest widoczny, ale nieaktywny.
-               Gdy powstanie /blog, zamień <span> na <NuxtLink to="/blog">. -->
+          <!-- Link do /blog jest aktywny, gdy jest co najmniej jeden opublikowany wpis -->
+          <NuxtLink
+            v-if="posts?.length"
+            to="/blog"
+            class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 text-sm whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400"
+          >
+            Wszystkie wpisy
+            <Icon name="lucide:arrow-right" class="text-sm transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+          </NuxtLink>
           <span
+            v-else
             aria-disabled="true"
             title="Wkrótce"
             class="inline-flex cursor-not-allowed items-center gap-2 border-b border-slate-900/10 pb-1 text-sm whitespace-nowrap text-slate-400 dark:border-white/10 dark:text-slate-500"
