@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
   lockPage(false)
 })
 
-const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-white'
+const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50'
 </script>
 
 <template>
@@ -74,7 +74,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-white'
     ]"
   >
     <div class="container flex items-center gap-6">
-      <NuxtLink to="/" class="inline-flex size-10 items-center text-slate-900 dark:text-white" aria-label="Łukasz Dzieło – strona główna" @click="close()">
+      <NuxtLink to="/" class="inline-flex size-10 items-center text-slate-900 dark:text-brand-50" aria-label="Łukasz Dzieło – strona główna" @click="close()">
         <CommonAppLogo class="size-9 shrink-0" :stroke-width="13" />
       </NuxtLink>
 
@@ -101,7 +101,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-white'
         <button
           ref="toggleBtn"
           type="button"
-          class="relative grid size-11 cursor-pointer place-items-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white min-[900px]:hidden dark:border-white/20 dark:text-white dark:hover:bg-brand-900"
+          class="relative grid size-11 cursor-pointer place-items-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white min-[900px]:hidden dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
           :aria-expanded="open"
           aria-controls="mobile-menu"
           :aria-label="open ? 'Zamknij menu' : 'Otwórz menu'"
@@ -142,7 +142,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-white'
           <li v-for="item in menu" :key="item.to" class="border-b border-slate-900/10 dark:border-white/10">
             <NuxtLink
               :to="item.to"
-              class="group flex items-center justify-between py-4 text-3xl font-medium tracking-tight text-slate-900 dark:text-white"
+              class="group flex items-center justify-between py-4 text-3xl font-medium tracking-tight text-slate-900 dark:text-brand-50"
               @click="close()"
             >
               {{ item.label }}

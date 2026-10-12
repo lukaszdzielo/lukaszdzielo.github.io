@@ -34,7 +34,7 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
         <template v-if="allLink" #aside>
           <NuxtLink
             to="/projects"
-            class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 text-sm whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-white dark:hover:border-primary-400 dark:hover:text-primary-400"
+            class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 text-sm whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400"
           >
             Wszystkie projekty
             <Icon name="lucide:arrow-right" class="text-sm transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />

@@ -20,7 +20,7 @@ const labels = {
     type="button"
     :aria-label="labels[display]"
     :title="labels[display]"
-    class="inline-flex size-11 cursor-pointer items-center justify-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-white dark:hover:bg-brand-900"
+    class="inline-flex size-11 cursor-pointer items-center justify-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
     @click="cycle"
   >
     <svg

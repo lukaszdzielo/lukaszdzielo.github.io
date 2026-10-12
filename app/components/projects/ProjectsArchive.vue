@@ -102,7 +102,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
       <div class="flex gap-2" role="group" aria-label="Rodzaj projektu">
         <button
           type="button"
-          :class="[chip, kind === 'all' ? 'bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950' : 'bg-white text-slate-600 hover:text-slate-900 dark:bg-brand-900 dark:text-slate-300 dark:hover:text-white']"
+          :class="[chip, kind === 'all' ? 'bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950' : 'bg-white text-slate-600 hover:text-slate-900 dark:bg-brand-900 dark:text-slate-300 dark:hover:text-brand-50']"
           :aria-pressed="kind === 'all'"
           @click="setKind('all')"
         >
@@ -112,7 +112,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           v-for="k in kinds"
           :key="k"
           type="button"
-          :class="[chip, kind === k ? 'bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950' : 'bg-white text-slate-600 hover:text-slate-900 dark:bg-brand-900 dark:text-slate-300 dark:hover:text-white']"
+          :class="[chip, kind === k ? 'bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950' : 'bg-white text-slate-600 hover:text-slate-900 dark:bg-brand-900 dark:text-slate-300 dark:hover:text-brand-50']"
           :aria-pressed="kind === k"
           @click="setKind(k)"
         >
@@ -127,7 +127,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           v-model="query"
           type="search"
           placeholder="Szukaj projektu…"
-          class="h-11 w-44 rounded-full border border-slate-900/16 bg-white pr-4 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30 focus:outline-none sm:w-full dark:border-white/20 dark:bg-brand-900 dark:text-white"
+          class="h-11 w-44 rounded-full border border-slate-900/16 bg-white pr-4 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30 focus:outline-none sm:w-full dark:border-white/20 dark:bg-brand-900 dark:text-brand-50"
         >
       </label>
     </div>
@@ -143,7 +143,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         :key="y.year"
         :href="`#y${y.year}`"
         class="shrink-0 rounded-full px-3.5 py-2 text-sm transition-colors"
-        :class="i === 0 ? 'bg-primary-500/10 font-medium text-primary-500 dark:bg-primary-400/14 dark:text-primary-400' : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'"
+        :class="i === 0 ? 'bg-primary-500/10 font-medium text-primary-500 dark:bg-primary-400/14 dark:text-primary-400' : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-brand-50'"
         @click="open(y.year)"
       >{{ y.year }}</a>
     </nav>
@@ -164,7 +164,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         class="flex items-baseline justify-between border-b border-slate-900/10 py-2.5 sm:block sm:border-0 sm:py-0 dark:border-white/10"
         :class="{ 'max-sm:hidden': !isOpen(y.year, i) }"
       >
-        <h3 class="text-3xl leading-none font-medium tracking-tight sm:text-5xl" :class="isOpen(y.year, i) ? 'text-slate-900 dark:text-white' : 'text-slate-500 sm:text-3xl dark:text-slate-400'">
+        <h3 class="text-3xl leading-none font-medium tracking-tight sm:text-5xl" :class="isOpen(y.year, i) ? 'text-slate-900 dark:text-brand-50' : 'text-slate-500 sm:text-3xl dark:text-slate-400'">
           {{ y.year }}
         </h3>
         <small class="text-sm text-slate-500 sm:mt-2 sm:block dark:text-slate-400">{{ y.list.length }} {{ plural(y.list.length) }}</small>
@@ -179,8 +179,8 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         @click="open(y.year)"
       >
         <span class="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3.5">
-          <span class="text-2xl/tight font-medium tracking-tight text-slate-900 sm:hidden dark:text-white">{{ y.year }}</span>
-          <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-white">Pokaż {{ y.list.length }} {{ plural(y.list.length) }}</b>
+          <span class="text-2xl/tight font-medium tracking-tight text-slate-900 sm:hidden dark:text-brand-50">{{ y.year }}</span>
+          <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">Pokaż {{ y.list.length }} {{ plural(y.list.length) }}</b>
           <em class="truncate text-sm text-slate-500 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ' i inne' : '' }}</em>
         </span>
         <Icon name="lucide:chevron-down" class="shrink-0 text-lg text-primary-500 dark:text-primary-400" aria-hidden="true" />
@@ -211,7 +211,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             </div>
             <div class="min-w-0">
               <div class="flex items-baseline justify-between gap-2 sm:mt-3">
-                <b class="truncate text-[0.9375rem] font-medium text-slate-900 dark:text-white">{{ p.title }}</b>
+                <b class="truncate text-[0.9375rem] font-medium text-slate-900 dark:text-brand-50">{{ p.title }}</b>
                 <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">Więcej →</span>
                 <span v-else-if="linkOf(p)" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
               </div>
