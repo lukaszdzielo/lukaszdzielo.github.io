@@ -2,7 +2,8 @@
 // O mnie: ilustracja + tekst. Treść (akapity, oś czasu, cytat) jest w content/index.md.
 // Na desktopie wykształcenie i „Poza kodem” stoją pod ilustracją (lewa kolumna nie zostaje pusta),
 // na telefonie i tablecie – na końcu, pod osią czasu, na całą szerokość. Ilustracja jest tam wyśrodkowana.
-type TimelineItem = { period: string; company: string; role: string; text: string }
+// projects – projekty z danego miejsca pracy (link w górę strony, do kafelków „Rzeczy, które zbudowałem”)
+type TimelineItem = { period: string; company: string; role: string; text: string; projects?: { title: string; to: string }[] }
 
 defineProps<{
   quote?: string
@@ -54,6 +55,17 @@ defineProps<{
                 {{ item.company }} <span class="font-normal text-slate-500 dark:text-slate-400">· {{ item.role }}</span>
               </p>
               <p class="mt-1.5 text-sm/normal text-slate-600 dark:text-slate-300">{{ item.text }}</p>
+              <ul v-if="item.projects?.length" class="mt-2.5 flex flex-wrap gap-1.5" :aria-label="`Projekty – ${item.company}`">
+                <li v-for="project in item.projects" :key="project.title">
+                  <NuxtLink
+                    :to="project.to"
+                    class="inline-flex h-7 items-center gap-1 rounded-full bg-primary-500/10 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20"
+                  >
+                    {{ project.title }}
+                    <Icon name="lucide:arrow-up" class="text-xs" aria-hidden="true" />
+                  </NuxtLink>
+                </li>
+              </ul>
             </div>
           </li>
         </ol>

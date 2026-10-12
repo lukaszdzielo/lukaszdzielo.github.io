@@ -109,6 +109,11 @@ function plural(n: number) {
   return d >= 2 && d <= 4 && !(h >= 12 && h <= 14) ? 'projekty' : 'projektów'
 }
 
+// Podpis pod tytułem: rodzaj i agencja / pracodawca. Przy włączonym filtrze rodzaj jest już
+// w filtrze, więc go nie powtarzamy. Projekty własne i zlecenia bez agencji – sam rodzaj.
+const metaOf = (p: ArchiveProject & { kind: ProjectKind }) =>
+  [kind.value === 'all' ? projectKindLabels[p.kind] : '', p.agency ?? ''].filter(Boolean).join(' · ')
+
 const linkOf = (p: ArchiveProject) => {
   if (p.links?.live) return { href: p.links.live, label: 'Strona' }
   if (p.links?.behance) return { href: p.links.behance, label: 'Behance' }
@@ -290,9 +295,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
                 <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">Więcej →</span>
                 <span v-else-if="linkOf(p)" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
               </div>
-              <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
-                {{ projectKindLabels[p.kind] }} · {{ p.agency || 'zlecenie własne' }}
-              </p>
+              <p v-if="metaOf(p)" class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">{{ metaOf(p) }}</p>
             </div>
           </component>
         </li>
