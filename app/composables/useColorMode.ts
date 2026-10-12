@@ -16,7 +16,9 @@ function resolved() {
 }
 
 function apply() {
-  document.documentElement.classList.toggle('dark', resolved())
+  const root = document.documentElement
+  root.classList.toggle('dark', resolved())
+  root.dataset.mode = mode.value // ikona w przełączniku (ColorModeToggle) wybiera się w CSS
 }
 
 function init() {
