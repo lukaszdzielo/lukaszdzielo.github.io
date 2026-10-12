@@ -7,6 +7,10 @@ on:
     branches:
       - main
 
+# Domyślnie tylko odczyt repozytorium; zapis do Pages ma tylko job deploy
+permissions:
+  contents: read
+
 # Zapewnia, że w tym samym czasie działa tylko jedno wdrożenie na GitHub Pages
 concurrency:
   group: "pages"
@@ -18,9 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Enable Corepack
-        run: corepack enable
-        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
