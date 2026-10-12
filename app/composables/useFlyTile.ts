@@ -2,15 +2,20 @@
 // i podczas przewijania płynnie ląduje na swoim miejscu w siatce projektów.
 // Tylko od lg (siatka 3 kolumny) i bez „ogranicz ruch” – inaczej kafelek stoi zwyczajnie w siatce.
 // Na miejscu docelowym widać przerywany obrys („duch”), który znika, gdy kafelek dolatuje.
+//
+// Płynność: w każdej klatce zmieniamy tylko transform kafelka i opacity cienia/ducha (to liczy karta
+// graficzna, bez przeliczania układu strony). Pozycję docelową mierzymy na „duchu”, który stoi dokładnie
+// tam, gdzie kafelek, ale nigdy się nie przesuwa – pomiar nie wymaga zdejmowania transformacji.
 type Options = {
   tile: Readonly<Ref<HTMLElement | null>> // element, który leci (kafelek)
-  ghost: Readonly<Ref<HTMLElement | null>> // obrys miejsca docelowego
+  ghost: Readonly<Ref<HTMLElement | null>> // obrys miejsca docelowego (w tym samym miejscu co kafelek)
+  shadow: Readonly<Ref<HTMLElement | null>> // warstwa z dużym cieniem – widoczna w locie
   grid: Readonly<Ref<HTMLElement | null>> // siatka projektów
   anchorId?: string // miejsce startu w hero
   rotate?: number // obrót na starcie (stopnie)
 }
 
-export function useFlyTile({ tile, ghost, grid, anchorId = 'hero-tile-anchor', rotate = -7 }: Options) {
+export function useFlyTile({ tile, ghost, shadow, grid, anchorId = 'hero-tile-anchor', rotate = -7 }: Options) {
   let active = false
   let delta: { dx: number; dy: number; s: number } | null = null
   let start = 0 // przewinięcie, przy którym kafelek rusza
@@ -31,17 +36,12 @@ export function useFlyTile({ tile, ghost, grid, anchorId = 'hero-tile-anchor', r
   function apply(p: number) {
     const el = tile.value
     if (!el) return
-    const k = 1 - smooth(p) // 1 = w hero, 0 = w siatce
-    if (active && delta && k > 0.0005) {
-      el.style.transform = `translate3d(${delta.dx * k}px, ${delta.dy * k}px, 0) rotate(${rotate * k}deg) scale(${1 + (delta.s - 1) * k})`
-      el.style.boxShadow = `0 ${Math.round(30 * k)}px ${Math.round(60 * k)}px -20px rgb(8 14 40 / ${(0.45 * k).toFixed(3)})`
-      el.style.willChange = 'transform'
-    } else {
-      el.style.transform = ''
-      el.style.boxShadow = ''
-      el.style.willChange = ''
-    }
-    if (ghost.value) ghost.value.style.opacity = active ? k.toFixed(3) : '0'
+    const k = active && delta ? 1 - smooth(p) : 0 // 1 = w hero, 0 = w siatce
+    el.style.transform = k > 0.0005 && delta
+      ? `translate3d(${(delta.dx * k).toFixed(2)}px, ${(delta.dy * k).toFixed(2)}px, 0) rotate(${(rotate * k).toFixed(3)}deg) scale(${(1 + (delta.s - 1) * k).toFixed(4)})`
+      : ''
+    if (shadow.value) shadow.value.style.opacity = k.toFixed(3)
+    if (ghost.value) ghost.value.style.opacity = k.toFixed(3)
   }
 
   const target = () => (active ? clamp((window.scrollY - start) / (end - start)) : 1)
@@ -49,15 +49,12 @@ export function useFlyTile({ tile, ghost, grid, anchorId = 'hero-tile-anchor', r
   function measure() {
     const el = tile.value
     const anchor = document.getElementById(anchorId)
-    active = !!(el && anchor && grid.value)
+    active = !!(el && anchor && ghost.value && grid.value)
       && window.matchMedia('(min-width: 64rem)').matches
       && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (!el) return
-    // Pomiar w położeniu docelowym (bez przesunięcia)
-    el.style.transition = 'none'
-    el.style.transform = ''
-    if (active && anchor && grid.value) {
-      const from = docRect(el)
+    if (el) el.style.willChange = active ? 'transform' : ''
+    if (active && anchor && ghost.value && grid.value) {
+      const from = docRect(ghost.value) // miejsce docelowe bez transformacji
       const to = docRect(anchor)
       delta = from.w > 0 ? { dx: to.x - from.x, dy: to.y - from.y, s: to.w / from.w } : null
       const gridY = docRect(grid.value).y
@@ -65,10 +62,8 @@ export function useFlyTile({ tile, ghost, grid, anchorId = 'hero-tile-anchor', r
       start = Math.min(Math.max(0, gridY - vh * 1.02), vh * 0.06)
       end = Math.max(start + 140, gridY - vh * 0.42)
     }
-    progress = target()
     apply(progress)
-    void el.offsetWidth
-    el.style.transition = ''
+    onScroll() // dociągnij do aktualnego przewinięcia (płynnie, bez skoku)
   }
 
   // Przewijanie z lekkim „dociąganiem” – kafelek płynnie goni pozycję paska przewijania
@@ -77,8 +72,8 @@ export function useFlyTile({ tile, ghost, grid, anchorId = 'hero-tile-anchor', r
     frame = requestAnimationFrame(function step() {
       frame = 0
       const want = target()
-      progress += (want - progress) * 0.18
-      if (Math.abs(want - progress) < 0.0015) progress = want
+      progress += (want - progress) * 0.2
+      if (Math.abs(want - progress) < 0.001) progress = want
       apply(progress)
       if (progress !== want) frame = requestAnimationFrame(step)
     })
@@ -90,18 +85,24 @@ export function useFlyTile({ tile, ghost, grid, anchorId = 'hero-tile-anchor', r
   }
 
   onMounted(() => {
+    progress = 1
     measure()
+    progress = target()
+    apply(progress)
     // Wejście: kafelek pojawia się w hero po portrecie, zamiast „wskoczyć” po załadowaniu skryptów
     if (active && progress < 1) {
       tile.value?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 600, delay: 200, easing: 'ease-out', fill: 'backwards' })
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
+    // Pozycje zmieniają się tylko, gdy zmieni się hero albo siatka (nie przy doładowaniu obrazków niżej na stronie)
     observer = new ResizeObserver(onResize)
-    observer.observe(document.body)
+    const anchorBox = document.getElementById(anchorId)?.parentElement
+    if (anchorBox) observer.observe(anchorBox)
+    if (grid.value) observer.observe(grid.value)
     document.fonts?.ready.then(measure)
     // Portret w hero ma animację wejścia – mierzymy jeszcze raz, gdy się skończy
-    timers.push(setTimeout(measure, 300), setTimeout(measure, 1200))
+    timers.push(setTimeout(measure, 1000))
   })
 
   onBeforeUnmount(() => {

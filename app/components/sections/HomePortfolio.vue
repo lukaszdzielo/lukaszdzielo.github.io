@@ -29,9 +29,11 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
 // (ref-funkcje, bo elementy są w v-for – zwykły ref dałby tablicę)
 const flyTile = shallowRef<HTMLElement | null>(null)
 const flyGhost = shallowRef<HTMLElement | null>(null)
+const flyShadow = shallowRef<HTMLElement | null>(null)
+const setFlyShadow = (el: unknown) => (flyShadow.value = el as HTMLElement | null)
 const setFlyTile = (el: unknown) => (flyTile.value = el as HTMLElement | null)
 const setFlyGhost = (el: unknown) => (flyGhost.value = el as HTMLElement | null)
-if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, grid: scroller })
+if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShadow, grid: scroller })
 </script>
 
 <template>
@@ -71,6 +73,12 @@ if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, grid: scroller 
             aria-hidden="true"
           />
           <div v-if="i === 0 && backdrop" :ref="setFlyTile" class="relative z-10 origin-top-left rounded-2xl">
+            <!-- Duży cień w locie: osobna warstwa, której zmieniamy tylko opacity (płynniej niż animowany box-shadow) -->
+            <div
+              :ref="setFlyShadow"
+              class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 shadow-[0_30px_60px_-20px_rgb(8_14_40/0.45)]"
+              aria-hidden="true"
+            />
             <CommonProjectTile v-bind="project" />
           </div>
           <CommonProjectTile v-else v-bind="project" />
