@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // O mnie: ilustracja + tekst. Treść (akapity, oś czasu, cytat) jest w content/index.md.
 // Na desktopie wykształcenie i „Poza kodem” stoją pod ilustracją (lewa kolumna nie zostaje pusta),
-// na telefonie i tablecie – na końcu, pod osią czasu.
+// na telefonie i tablecie – na końcu, pod osią czasu, na całą szerokość. Ilustracja jest tam wyśrodkowana.
 type TimelineItem = { period: string; company: string; role: string; text: string }
 
 defineProps<{
@@ -19,7 +19,7 @@ defineProps<{
     <div class="container grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8">
       <figure
         v-reveal
-        class="m-0 aspect-[4/5] overflow-hidden lg:col-start-1 lg:row-start-1 rounded-3xl border border-slate-900/10 bg-linear-[165deg] from-white to-slate-50 transition-[opacity,translate] duration-700 ease-out max-lg:max-w-xl dark:border-white/10 dark:from-brand-900 dark:to-[#15213f] [&_img]:size-full [&_img]:object-cover [&_img]:object-bottom"
+        class="m-0 aspect-[4/5] overflow-hidden lg:col-start-1 lg:row-start-1 rounded-3xl border border-slate-900/10 bg-linear-[165deg] from-white to-slate-50 transition-[opacity,translate] duration-700 ease-out max-lg:mx-auto max-lg:w-full max-lg:max-w-xl dark:border-white/10 dark:from-brand-900 dark:to-[#15213f] [&_img]:size-full [&_img]:object-cover [&_img]:object-bottom"
       >
         <slot name="image" />
       </figure>
@@ -64,7 +64,7 @@ defineProps<{
       <div
         v-if="education || hobbies"
         v-reveal="120"
-        class="-mt-4 space-y-4 transition-[opacity,translate] duration-700 ease-out max-lg:max-w-xl lg:col-start-1 lg:row-start-2 lg:mt-0"
+        class="-mt-4 space-y-4 transition-[opacity,translate] duration-700 ease-out lg:col-start-1 lg:row-start-2 lg:mt-0"
       >
         <div v-if="education" class="rounded-2xl border border-slate-900/10 bg-white px-5 py-4 dark:border-white/10 dark:bg-brand-900">
           <p class="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">Wykształcenie</p>
