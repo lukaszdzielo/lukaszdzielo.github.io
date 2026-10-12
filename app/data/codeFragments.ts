@@ -63,6 +63,14 @@ const scroller = useTemplateRef<HTMLElement>('scroller')`,
   body: JSON.stringify(payload),
 })
 const data = await res.json().catch(() => ({}))`,
+
+  // app/components/common/NotFound.vue – odmiana strony 404 zależnie od adresu
+  notFound: `const variant = computed<Variant>(() => {
+  if (props.variant) return props.variant
+  if (currentPath.value.startsWith('/blog')) return 'post'
+  if (currentPath.value.startsWith('/projects')) return 'project'
+  return 'page'
+})`,
 } as const
 
 export type CodeFragment = keyof typeof codeFragments

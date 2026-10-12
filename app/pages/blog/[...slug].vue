@@ -71,16 +71,6 @@ useSeoMeta({
         </article>
     </section>
 
-    <section v-else class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30">
-        <div class="flex flex-col gap-5 items-start">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold">
-                Page not found
-            </h1>
-            <div>
-                <NuxtLink to="/blog" class="text-sky-500 underline underline-offset-4">
-                    ← Back to blog
-                </NuxtLink>
-            </div>
-        </div>
-    </section>
+    <!-- Nie ma takiego wpisu (albo to szkic) -->
+    <CommonNotFound v-else variant="post" />
 </template>
