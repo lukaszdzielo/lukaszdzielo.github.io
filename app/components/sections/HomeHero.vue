@@ -64,8 +64,14 @@ defineProps<{
           class="absolute bottom-0 left-1/2 aspect-[820/1317] h-full -translate-x-1/2 lg:h-[min(100%,160.6cqw)] lg:right-0 lg:left-auto lg:translate-x-0 [&_img]:size-full [&_img]:object-cover [&_img]:mask-[linear-gradient(to_bottom,#000_72%,transparent_99%)]"
         >
           <slot name="image" />
-          <!-- Miejsce startu „latającego” kafelka (pierwszy wyróżniony projekt, tylko od lg) – useFlyTile -->
-          <div id="hero-tile-anchor" class="pointer-events-none invisible absolute top-[36%] -left-[30%] aspect-[4/5] w-[52%]" aria-hidden="true" />
+          <!-- Miejsce startu „latającego” kafelka (pierwszy wyróżniony projekt, tylko od lg) – useFlyTile.
+               Im szerszy ekran, tym więcej miejsca między tekstem a portretem: kafelek jest większy i wysunięty w lewo,
+               ale zawsze z odstępem od tekstu (przy 1024 px stoi na portrecie, żeby nie zasłaniać opisu). -->
+          <div
+            id="hero-tile-anchor"
+            class="pointer-events-none invisible absolute top-[36%] left-0 aspect-[4/5] w-[52%] xl:-left-[25%] xl:w-[62%] 2xl:-left-[40%] 2xl:w-[66%]"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </div>
