@@ -1,45 +1,154 @@
 ::sections-home-hero
+---
+title: Front-end
+titleAccent: developer.
+stack: [Vue 3, Composition API, Inertia.js, Tailwind CSS, PrimeVue]
+---
 
 #image
-:common-picture{src="/avatar/portrait.avif" sizes="xs:100vw sm:80vw lg:40vw" width="1915" height="1915" class="w-full  " alt="Digital avatar of Łukasz Dzieło"}
-
-#eyebrow
-Front-End Developer
-
-#title
-I build clear, responsive interfaces with Vue
+:common-picture{src="/avatar/portrait.avif" sizes="xs:100vw md:70vw lg:55vw" width="1915" height="1915" alt="Ilustracja: Łukasz Dzieło"}
 
 #description
-I focus on practical front-end work: maintainable UI, responsive layouts, reusable components, and cleaner user experiences across commercial and personal projects.
+Buduję przejrzyste, responsywne interfejsy w Vue 3 – komponenty wielokrotnego użytku, stan i integracje z API. Na co dzień piszę z Composition API, Inertia.js i Tailwindem.
+::
+
+::sections-home-proof
+---
+items:
+  - value: od 2013
+    text: komercyjnie – HTML, CSS i JavaScript
+  - value: '20'
+    suffix: '+'
+    text: stron wdrożonych dla firm
+  - value: Vue 3
+    text: na produkcji, codziennie w Pesi
+  - value: React
+    text: w nauce – potem TypeScript i testy
+---
 ::
 
 ::sections-home-portfolio
+---
+projects:
+  - title: Emotion Karting
+    date: '2026-10'
+    description: Strona toru kartingowego w Bytomiu – jasny i ciemny motyw, cennik i aktualności.
+    chips: [WordPress, Gutenberg]
+    url: emotion-karting
+    image: /featured/emotion-karting.webp
+    imageDark: /featured/emotion-karting-dark.webp
+  - title: e-cargo
+    date: '2026-08'
+    description: Aplikacja webowa – większość front-endu i komponenty używane przez cały zespół.
+    chips: [Vue 3, Inertia.js, PrimeVue]
+    url: e-cargo
+    image: /featured/ecargo.webp
+  - title: superauto.pl
+    date: '2025-03'
+    description: Serwis z realnym ruchem; karuzele zebrane w jeden spójny Swiper.
+    chips: [Twig, JavaScript, Swiper]
+    url: superauto.pl
+    mock: superauto
+  - title: Pokedex
+    date: '2024-01'
+    description: Ponad 1000 pokemonów w czystym JS – kolejność ładowania i lokalna baza w przeglądarce.
+    chips: [JavaScript, OOP, PokéAPI]
+    url: pokedex
+    href: https://lukaszdzielo.github.io/pokedex/
+    mock: pokedex
+  - title: Coffee Recipes
+    date: '2024-01'
+    description: Przepisy – stan, filtry i lokalne API.
+    chips: [Vue, CSS, API]
+    url: coffee-recipes
+    mock: coffee
+  - title: reblyx.com
+    date: '2026-09'
+    description: Strona centrum obróbki stali – projekt i wdrożenie, treści edytowane w Gutenbergu.
+    chips: [WordPress, Gutenberg]
+    url: reblyx.com
+    href: https://reblyx.com
+    image: /featured/reblyx.webp
+  # Niedokończony – wróci na główną po dokończeniu (usuń `hidden`)
+  - title: Marcin Podlaski
+    description: Portfolio z galerią prac – mój pierwszy projekt w Nuxt.
+    chips: [Vue 3, Nuxt, Tailwind]
+    url: marcin-podlaski
+    href: https://lukaszdzielo.github.io/marcin-podlinski/
+    mock: podlaski
+    hidden: true
+---
+::
+
+::sections-home-services
+---
+services:
+  - audience: Dla zespołów produktowych
+    title: Front-end do aplikacji webowych
+    items:
+      - Vue 3 z Composition API, Inertia.js, Tailwind i PrimeVue
+      - Biblioteki komponentów budowane zgodnie z wytycznymi zespołu
+      - Projekty z Figmy zamienione na responsywny, dostępny kod
+      - Porządkowanie starego front-endu bez psucia tego, co działa
+    linkLabel: Zobacz moje projekty
+    to: '#projects'
+  - audience: Dla firm
+    title: Strona, która zarabia na siebie
+    items:
+      - WordPress z edytorem bloków – treści zmieniasz sam
+      - Projekt i wdrożenie w jednych rękach
+      - Pomoc z hostingiem i domeną – konto zostaje na Ciebie
+      - 20+ stron dla firm od 2013 roku
+    linkLabel: Zobacz ofertę dla firm
+---
+::
+
+::sections-home-stack
+---
+daily: [Vue 3, Composition API, JavaScript, Tailwind CSS, SCSS / CSS, HTML5, Inertia.js, PrimeVue, RWD]
+known: [Blade.php, Twig, WordPress + ACF, Swiper, AOS, Bootstrap, jQuery, Git, Figma, Photoshop / XD, Jira / Confluence]
+learning:
+  - name: React
+    status: kurs w toku
+learningNote: 'W kolejce: TypeScript, testy w Vitest, Node.js i React Native. Kierunek: fullstack – od komponentu, przez API, po aplikację mobilną.'
+---
 ::
 
 ::sections-home-about
 ---
-cards:
-  - icon: lucide:layout-dashboard
-    text: Building interfaces for web applications and websites.
-  - icon: lucide:blocks
-    text: Creating reusable components and cleaner UI structure.
-  - icon: lucide:monitor-smartphone
-    text: Turning finished designs into responsive front-end.
-  - icon: lucide:users
-    text: Supporting product teams with reliable implementation.
+quote: '„Szukam miejsca, w którym mogę skupić się na kodzie i budować dobre produkty razem z zespołem.”'
+timeline:
+  - period: paź 2025 – teraz
+    company: Pesi
+    role: Junior Front-End Developer
+    text: Vue 3, Inertia.js, Tailwind, PrimeVue; front-end nowego produktu i wspólne biblioteki komponentów.
+  - period: sty 2023 – cze 2025
+    company: Arris Agency
+    role: Front-End Developer
+    text: Front-end superauto.pl; Figma → Twig / HTML / CSS / JS, animacje Swiper, refaktoryzacja.
+  - period: lut – wrz 2022
+    company: ValueAdd
+    role: UX/UI Designer & HTML/CSS
+    text: Prototypy w Figmie i ich wdrożenie w responsywny HTML/CSS.
+  - period: lip 2013 – lut 2022
+    company: b4b marketing & eConnect4u
+    role: UI Developer
+    text: Strony w HTML, Bootstrapie i jQuery, potem WordPress z ACF i integracje z CMS w PHP; współpraca i spotkania z zespołem z UK.
+education: Akademia WSB – mgr informatyki, grafika komputerowa i multimedia (2019–2021) · WSTI Katowice – lic. grafika (2014–2018)
+hobbiesLabel: 'Poza kodem:'
+hobbies: 'na półce fantasy i książki młodzieżowe, wieczorami z żoną planszówki, Divinity: Original Sin 2 albo Tekken. Przebiegłem też Runmageddon – statuetka weterana i korona stoją teraz między książkami 🏅'
 ---
 
 #image
-:common-picture{src="/avatar/workspace-front.avif" sizes="xs:100vw sm:80vw lg:40vw" width="2048" height="2048" class="w-full " alt="Łukasz Dzieło working at a desk"}
-
-#eyebrow
-About
+:common-picture{src="/avatar/workspace-front.avif" sizes="xs:100vw sm:80vw lg:40vw" width="2048" height="2048" alt="Ilustracja: Łukasz przy biurku pracuje na laptopie"}
 
 #title
-I enjoy building front-end that stays clear as products grow.
+O mnie
 
-#description
-I’m a Front-End Developer who enjoys practical product work: building interfaces, creating reusable components, improving code structure, and solving problems along the way. I work best when the direction is clear and the goal is to turn a finished idea into responsive, maintainable front-end that can grow with the project.
+#default
+Po liceum od razu poszedłem do pracy i wskoczyłem w kod – strony w czystym HTML z Bootstrapem i pierwszymi skryptami w jQuery, które backend developer podpinał pod własny CMS. Potem przyszedł WordPress: Enfold, Jupiter, Bridge, Divi, a dziś czysty Gutenberg. Grafikę studiowałem, ale nawet na etacie UX/UI designera ciągle uciekałem do programowania, aż wróciłem do niego na dobre 🙂
+
+**Lubię analizować i projektować nowe rozwiązania**, szukać błędów i nielogicznych miejsc w kodzie. Dobrze czuję się, zaczynając projekt od zera, ale też wdrażając się w kod, który ktoś już rozpoczął.
 ::
 
 <!-- Blog
@@ -73,3 +182,9 @@ Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) 
 
 <!-- ::sections-footer-cta
 :: -->
+
+::sections-home-posts
+::
+
+::sections-home-contact
+::

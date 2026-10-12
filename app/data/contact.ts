@@ -1,0 +1,23 @@
+// Ustawienia formularza kontaktowego (Web3Forms).
+// Klucz dostępu Web3Forms jest publiczny z założenia – może być w kodzie strony.
+// Adres, na który przychodzą wiadomości, ustawiasz w panelu Web3Forms, nie tutaj.
+export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
+export const WEB3FORMS_ACCESS_KEY = 'dac37178-9e51-46a2-bd27-354d00b005b2'
+
+// hCaptcha – wspólny klucz witryny Web3Forms dla darmowego planu (z dokumentacji Web3Forms).
+// W panelu Web3Forms włącz: Spam Protection → hCaptcha. Od tej chwili wiadomość bez captchy zostanie odrzucona.
+export const HCAPTCHA_SITEKEY = '50b2fe65-b00b-4b9e-ad62-3ba471098be2'
+
+// Opcje pola „W sprawie”. `value` trafia do maila, `label` widzi użytkownik.
+export const contactTopics = [
+  { value: 'Praca w zespole', label: 'Praca w zespole' },
+  { value: 'Projekt w Vue', label: 'Projekt w Vue' },
+  { value: 'Strona dla firmy', label: 'Strona dla firmy' },
+  { value: 'Inne', label: 'Inne' },
+] as const
+
+export const contactSocials = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lukasz-dzielo-0428b4148/' },
+  { label: 'GitHub', href: 'https://github.com/lukaszdzielo' },
+  { label: 'Instagram', href: 'https://www.instagram.com/lukasz.dev' },
+] as const

@@ -1,10 +1,33 @@
 @import "tailwindcss";
 @import "./fonts.css";
+@import "./mockups.css";
 @plugin "@tailwindcss/typography";
 @source "../../../content/**/*.md";
 @source "../../../content/**/*.json";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Kolory projektu – jedyne własne wartości, reszta to domyślne skale Tailwinda (slate, emerald…). */
+@theme {
+  --color-primary-400: #6f9cff; /* akcent w ciemnym motywie */
+  --color-primary-500: #2f6bff; /* akcent w jasnym motywie */
+  --color-primary-600: #2457d6; /* hover / aktywny */
+  --color-brand-50: #edf0f6;    /* tło strony – jasny motyw */
+  --color-brand-700: #1d3170;   /* gradient okładek wpisów */
+  --color-brand-900: #111b36;   /* karty – ciemny motyw */
+  --color-brand-950: #0a1227;   /* tło strony – ciemny motyw */
+
+  /* Boczny margines treści jak w projekcie: 16 px na telefonie, 7,85% szerokości, maks. 113 px.
+     Daje klasy px-pad, -mx-pad, scroll-px-pad. */
+  --spacing-pad: clamp(1rem, 7.85vw, 7.0625rem);
+
+  /* Wjazd linii nagłówka w hero */
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from { transform: translateY(105%); }
+    to { transform: none; }
+  }
+}
 
 /* Markdown content (ContentRenderer) — map `prose` to the site's slate/sky palette.
    Defined unlayered so it overrides the typography plugin's defaults; the `.dark .prose`
@@ -45,15 +68,36 @@
   --tw-prose-td-borders: var(--color-slate-700);
 }
 
+html {
+  /* Płynne przewijanie do kotwic (#projects, #contact…) – wyłączone przy „ogranicz ruch” */
+  @apply motion-safe:scroll-smooth;
+}
+
 body {
   @apply min-h-svh;
   font-family: "Inter", sans-serif;
 }
 
 #__nuxt {
-  @apply w-full max-w-480 mx-auto bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200;
+  /* overflow-x-clip: dekoracje (kod w tle, poświata) nie robią poziomego paska przewijania,
+     a w przeciwieństwie do overflow-hidden nie psują przyklejonego menu */
+  @apply w-full max-w-480 mx-auto overflow-x-clip bg-brand-50 dark:bg-brand-950 text-slate-700 dark:text-slate-200;
 }
 
 .container {
-  @apply w-[calc(100%-40px)] sm:w-4/5 max-w-7xl mx-auto;
+  /* 1440 px szerokości, w środku 1214 px treści – tak jak w projekcie */
+  @apply mx-auto w-full max-w-360 px-pad;
+}
+
+/* Poświata za portretem w hero – jak w projekcie (jasna plama za postacią + delikatny niebieski u góry z lewej) */
+.hero-glow {
+  --glow-1: rgb(255 255 255 / 0.9);
+  --glow-2: rgb(47 107 255 / 0.07);
+  background:
+    radial-gradient(52% 44% at 72% 22%, var(--glow-1), transparent 72%),
+    radial-gradient(40% 36% at 12% 8%, var(--glow-2), transparent 70%);
+}
+.dark .hero-glow {
+  --glow-1: rgb(76 116 255 / 0.2);
+  --glow-2: rgb(76 116 255 / 0.1);
 }

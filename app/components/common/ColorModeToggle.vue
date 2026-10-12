@@ -9,9 +9,9 @@ onMounted(() => {
 const display = computed(() => (mounted.value ? mode.value : "auto"));
 
 const labels = {
-  auto: "Theme: auto (system) — click for light",
-  light: "Theme: light — click for dark",
-  dark: "Theme: dark — click for auto",
+  auto: "Motyw: automatyczny (systemowy) – kliknij, aby włączyć jasny",
+  light: "Motyw: jasny – kliknij, aby włączyć ciemny",
+  dark: "Motyw: ciemny – kliknij, aby włączyć automatyczny",
 } as const;
 </script>
 
@@ -20,14 +20,14 @@ const labels = {
     type="button"
     :aria-label="labels[display]"
     :title="labels[display]"
-    class="inline-flex items-center justify-center size-10 rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+    class="inline-flex size-11 cursor-pointer items-center justify-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-white dark:hover:bg-brand-900"
     @click="cycle"
   >
     <svg
       v-if="display === 'auto'"
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -44,8 +44,8 @@ const labels = {
     <svg
       v-else-if="display === 'light'"
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -68,8 +68,8 @@ const labels = {
     <svg
       v-else
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
