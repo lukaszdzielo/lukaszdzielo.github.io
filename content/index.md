@@ -28,56 +28,6 @@ items:
 ::
 
 ::sections-home-portfolio
----
-projects:
-  - title: Emotion Karting
-    date: '2026-10'
-    description: Strona toru kartingowego w Bytomiu – jasny i ciemny motyw, cennik i aktualności.
-    chips: [WordPress, Gutenberg]
-    url: emotion-karting
-    image: /featured/emotion-karting.webp
-    imageDark: /featured/emotion-karting-dark.webp
-  - title: e-cargo
-    date: '2026-08'
-    description: Aplikacja webowa – większość front-endu i komponenty używane przez cały zespół.
-    chips: [Vue 3, Inertia.js, PrimeVue]
-    url: e-cargo
-    image: /featured/ecargo.webp
-  - title: superauto.pl
-    date: '2025-03'
-    description: Serwis z realnym ruchem; karuzele zebrane w jeden spójny Swiper.
-    chips: [Twig, JavaScript, Swiper]
-    url: superauto.pl
-    mock: superauto
-  - title: Pokedex
-    date: '2024-01'
-    description: Ponad 1000 pokemonów w czystym JS – kolejność ładowania i lokalna baza w przeglądarce.
-    chips: [JavaScript, OOP, PokéAPI]
-    url: pokedex
-    href: https://lukaszdzielo.github.io/pokedex/
-    mock: pokedex
-  - title: Coffee Recipes
-    date: '2024-01'
-    description: Przepisy – stan, filtry i lokalne API.
-    chips: [Vue, CSS, API]
-    url: coffee-recipes
-    mock: coffee
-  - title: reblyx.com
-    date: '2026-09'
-    description: Strona centrum obróbki stali – projekt i wdrożenie, treści edytowane w Gutenbergu.
-    chips: [WordPress, Gutenberg]
-    url: reblyx.com
-    href: https://reblyx.com
-    image: /featured/reblyx.webp
-  # Niedokończony – wróci na główną po dokończeniu (usuń `hidden`)
-  - title: Marcin Podlaski
-    description: Portfolio z galerią prac – mój pierwszy projekt w Nuxt.
-    chips: [Vue 3, Nuxt, Tailwind]
-    url: marcin-podlaski
-    href: https://lukaszdzielo.github.io/marcin-podlinski/
-    mock: podlaski
-    hidden: true
----
 ::
 
 ::sections-home-services

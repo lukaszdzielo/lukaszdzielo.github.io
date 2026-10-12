@@ -12,18 +12,18 @@ export const codeFragments = {
   }`,
 
   // app/components/sections/HomePortfolio.vue
-  projects: `const props = defineProps<{ projects?: Project[] }>()
-
-const visible = computed(() =>
-  (props.projects ?? [])
+  projects: `// app/data/featuredProjects.ts
+export const visibleFeaturedProjects = () =>
+  featuredProjects
     .filter(p => !p.hidden)
-    .sort((a, b) => String(b.date ?? '').localeCompare(String(a.date ?? ''))),
-)
+    .sort((a, b) => String(b.date ?? '').localeCompare(String(a.date ?? '')))
+
+const projects = visibleFeaturedProjects()
 const scroller = useTemplateRef<HTMLElement>('scroller')`,
 
   // app/components/sections/HomePortfolio.vue – szablon
   services: `<li
-  v-for="(project, i) in visible"
+  v-for="(project, i) in projects"
   :key="project.title"
   v-reveal="(i % 3) * 80"
 >

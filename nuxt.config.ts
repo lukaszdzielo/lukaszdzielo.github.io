@@ -11,7 +11,7 @@ const SITE_URL = 'https://lukaszdzielo.github.io/'
 const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
 const APPLE_TITLE = SITE_NAME
 
-// Dynamic routes generator to automatically prerender all paginated pages
+// Prerender every project page (/projects/<year>/<slug>) – the list itself is a single page
 const getPrerenderRoutes = (): string[] => {
   const routes: string[] = [];
   const projectDir = path.resolve(process.cwd(), 'content/projects');
@@ -33,8 +33,6 @@ const getPrerenderRoutes = (): string[] => {
   };
 
   const files = getProjectFiles(projectDir);
-  let totalArchive = 0;
-  let totalFeatured = 0;
 
   files.forEach((file) => {
     try {
@@ -43,14 +41,8 @@ const getPrerenderRoutes = (): string[] => {
       if (match) {
         const yaml = match[1];
         const draft = /draft:\s*true/.test(yaml);
-        const featured = /featured:\s*true/.test(yaml);
 
         if (!draft) {
-          totalArchive++;
-          if (featured) {
-            totalFeatured++;
-          }
-
           const relative = path.relative(projectDir, file).split(path.sep).join('/');
           const routePath = '/projects/' + relative.replace(/\/index\.md$/, '').replace(/\.md$/, '');
           routes.push(routePath);
@@ -60,20 +52,6 @@ const getPrerenderRoutes = (): string[] => {
       console.error(`Error reading ${file} for prerender count:`, e);
     }
   });
-
-  const featuredLimit = 18;
-  const archiveLimit = 24;
-
-  const featuredPages = Math.max(1, Math.ceil(totalFeatured / featuredLimit));
-  const archivePages = Math.max(1, Math.ceil(totalArchive / archiveLimit));
-
-  // Prerender pages from page 2 onwards (page 1 is crawled naturally)
-  for (let i = 2; i <= featuredPages; i++) {
-    routes.push(`/projects/page/${i}`);
-  }
-  for (let i = 2; i <= archivePages; i++) {
-    routes.push(`/projects/archive/page/${i}`);
-  }
 
   return routes;
 };
@@ -169,20 +147,6 @@ export default defineNuxtConfig({
       const imagesDir = path.resolve(process.cwd(), 'app/assets/images');
       nitro.options.publicAssets = nitro.options.publicAssets.filter(
         (asset) => path.resolve(asset.dir) !== imagesDir
-      );
-    },
-    'pages:extend'(pages) {
-      pages.push(
-        {
-          name: 'projects-page',
-          path: '/projects/page/:page',
-          file: '~/pages/projects/index.vue'
-        },
-        {
-          name: 'projects-archive-page',
-          path: '/projects/archive/page/:page',
-          file: '~/pages/projects/archive.vue'
-        }
       );
     }
   },
