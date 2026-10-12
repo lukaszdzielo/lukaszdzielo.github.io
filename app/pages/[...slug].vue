@@ -9,5 +9,5 @@ const { data: page } = await useAsyncData('page-' + route.path, () => {
 <template>
 	<ContentRenderer v-if="page" :value="page" />
 
-	<p v-else>Strona nie został znaleziony.</p>
+	<CommonNotFound v-else />
 </template>
