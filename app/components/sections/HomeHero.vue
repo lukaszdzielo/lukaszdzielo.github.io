@@ -16,7 +16,7 @@ defineProps<{
 
     <div class="container grid items-center lg:min-h-189 lg:grid-cols-2 lg:gap-8 lg:pt-2.5 lg:pb-5">
       <div class="max-w-160 pt-6 lg:-translate-y-3.5 lg:pt-0">
-        <h1 class="text-4xl leading-none font-semibold tracking-tighter text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
+        <h1 class="text-4xl leading-none font-semibold tracking-tighter text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl dark:text-brand-50">
           <!-- Każda linia wjeżdża od dołu (wyłączone przy „ogranicz ruch”) -->
           <span class="-mb-[0.1em] block overflow-hidden pb-[0.14em]">
             <span class="block motion-safe:animate-rise">{{ title }}</span>
@@ -31,15 +31,15 @@ defineProps<{
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a
-            href="#projects"
+          <NuxtLink
+            to="/#projects"
             class="group inline-flex h-14 items-center gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950"
           >
             Zobacz projekty
             <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
               <Icon name="lucide:arrow-down" class="transition-transform motion-safe:group-hover:translate-y-0.5" aria-hidden="true" />
             </span>
-          </a>
+          </NuxtLink>
         </div>
 
         <ul v-if="stack?.length" class="mt-7 flex flex-wrap gap-2">

@@ -41,7 +41,7 @@ services:
       - Projekty z Figmy zamienione na responsywny, dostępny kod
       - Porządkowanie starego front-endu bez psucia tego, co działa
     linkLabel: Zobacz moje projekty
-    to: '#projects'
+    to: '/#projects'
   - audience: Dla firm
     title: Strona, która zarabia na siebie
     items:
