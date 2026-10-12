@@ -4,9 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 const SITE_NAME = 'Łukasz Dzieło'
 const SITE_ROLE = 'Front-End Developer'
-const SITE_TITLE = `${SITE_NAME} — ${SITE_ROLE}`
+const SITE_TITLE = `${SITE_NAME} – ${SITE_ROLE}`
 const SITE_DESCRIPTION =
-  'Front-End Developer focused on Vue, responsive UI, reusable components, and maintainable interfaces across commercial and personal projects.'
+  'Front-End Developer. Buduję responsywne interfejsy w Vue 3 – komponenty wielokrotnego użytku, stan i integracje z API. Robię też strony WordPress dla firm.'
 const SITE_URL = 'https://lukaszdzielo.github.io/'
 const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
 const APPLE_TITLE = SITE_NAME
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: 'en'
+        lang: 'pl'
       },
       title: SITE_TITLE,
       link: [
@@ -100,14 +100,14 @@ export default defineNuxtConfig({
         { property: 'og:image:type', content: 'image/jpeg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: `Avatar of ${SITE_NAME} with the title "${SITE_ROLE}"` },
-        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:image:alt', content: `Awatar – ${SITE_NAME}, ${SITE_ROLE}` },
+        { property: 'og:locale', content: 'pl_PL' },
 
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: SITE_TITLE },
         { name: 'twitter:description', content: SITE_DESCRIPTION },
         { name: 'twitter:image', content: OG_IMAGE },
-        { name: 'twitter:image:alt', content: `Avatar of ${SITE_NAME} with the title "${SITE_ROLE}"` }
+        { name: 'twitter:image:alt', content: `Awatar – ${SITE_NAME}, ${SITE_ROLE}` }
       ],
       script: [
         {
