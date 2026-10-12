@@ -24,6 +24,14 @@ const props = withDefaults(
 // date/hidden służą tylko do sortowania i filtrowania – nie przekazujemy ich do kafelka
 const projects = visibleFeaturedProjects().map(({ date: _date, hidden: _hidden, ...tile }) => tile)
 const scroller = useTemplateRef<HTMLElement>('scroller')
+
+// Pierwszy kafelek „przylatuje” z hero – tylko na stronie głównej (z tłem kodu), nie na /projects
+// (ref-funkcje, bo elementy są w v-for – zwykły ref dałby tablicę)
+const flyTile = shallowRef<HTMLElement | null>(null)
+const flyGhost = shallowRef<HTMLElement | null>(null)
+const setFlyTile = (el: unknown) => (flyTile.value = el as HTMLElement | null)
+const setFlyGhost = (el: unknown) => (flyGhost.value = el as HTMLElement | null)
+if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, grid: scroller })
 </script>
 
 <template>
@@ -52,10 +60,20 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
         <li
           v-for="(project, i) in projects"
           :key="project.title"
-          v-reveal="(i % 3) * 80"
-          class="snap-start transition-[opacity,translate] duration-700 ease-out"
+          v-reveal="i === 0 && backdrop ? false : (i % 3) * 80"
+          class="relative snap-start transition-[opacity,translate] duration-700 ease-out"
         >
-          <CommonProjectTile v-bind="project" />
+          <!-- Obrys miejsca, do którego leci pierwszy kafelek (widoczny tylko podczas lotu) -->
+          <div
+            v-if="i === 0 && backdrop"
+            :ref="setFlyGhost"
+            class="pointer-events-none absolute inset-0 rounded-2xl border border-dashed border-slate-900/16 bg-white/30 opacity-0 dark:border-white/20 dark:bg-brand-900/30"
+            aria-hidden="true"
+          />
+          <div v-if="i === 0 && backdrop" :ref="setFlyTile" class="relative z-10 origin-top-left rounded-2xl">
+            <CommonProjectTile v-bind="project" />
+          </div>
+          <CommonProjectTile v-else v-bind="project" />
         </li>
       </ul>
       <CommonScrollControls :target="scroller" />
