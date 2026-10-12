@@ -70,7 +70,7 @@ export const businessWork = {
   items: [
     { path: '/projects/2026/emotion-karting', text: 'Tor kartingowy w Bytomiu – jasny i ciemny motyw, cennik i aktualności.', tags: ['WordPress', 'Gutenberg'] },
     { path: '/projects/2026/reblyx', text: 'Centrum obróbki stali – nowa strona na pełnym Gutenbergu.', tags: ['WordPress', 'Gutenberg'] },
-    { path: '/projects/2021/webster-associates', text: 'Strona firmowa (UK) · w agencji Bespoke 4 Business.', tags: ['WordPress'] },
+    { path: '/projects/2021/webster-associates', text: 'Strona firmowa (UK) · w agencji b4b.', tags: ['WordPress'] },
     { path: '/projects/2023/soho', title: 'Wyburzenia Polska', text: 'Firma rozbiórkowa · w agencji eConnect4u.', tags: ['WordPress'] },
     { path: '/projects/2021/health-marketing', title: 'Health Marketing', text: 'Strona agencji marketingowej.', tags: ['WordPress', 'Divi'] },
     { path: '/projects/2020/monarca', text: 'Strona firmowa – projekt i wdrożenie.', tags: ['WordPress', 'Divi'] },
@@ -121,7 +121,7 @@ export const businessCare = {
     { label: 'Czas reakcji', value: 'do 72 godzin' },
     { label: 'Minimalny okres', value: '3 miesiące' },
   ],
-  note: 'Naprawa strony po włamaniu nie jest w abonamencie, chyba że wybierzesz pakiet, który ją obejmuje.',
+  note: 'Naprawa strony po włamaniu nie wchodzi w abonament – rozliczam ją według stawki godzinowej. Kopie zapasowe z abonamentu zwykle pozwalają szybko przywrócić działającą wersję.',
 }
 
 export const businessFaq = {

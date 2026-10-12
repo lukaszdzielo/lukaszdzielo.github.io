@@ -5,5 +5,5 @@ description:
 image: /projects/2019/carpet-barn/thumbnail.avif
 tags: []
 featured: false
-agency: Bespoke 4 Business
+agency: b4b
 ---
