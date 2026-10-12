@@ -105,18 +105,7 @@ export default defineNuxtConfig({
           innerHTML: `(()=>{try{const t=localStorage.getItem('theme');const d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           tagPosition: 'head',
         },
-        {
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-VGN46K0G19',
-          async: true,
-        },
-        {
-          innerHTML: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-VGN46K0G19');
-          `,
-        },
+        // Google Analytics ładuje się dopiero po zgodzie – app/plugins/analytics.client.ts
       ],
     },
   },

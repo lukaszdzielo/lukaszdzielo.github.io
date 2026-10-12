@@ -15,4 +15,7 @@ const is404 = computed(() => props.error?.statusCode === 404)
     <CommonNotFound :variant="is404 ? undefined : 'error'" />
   </main>
   <TheFooter />
+  <ClientOnly>
+    <CommonCookieConsent />
+  </ClientOnly>
 </template>

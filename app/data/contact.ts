@@ -1,12 +1,9 @@
 // Ustawienia formularza kontaktowego (Web3Forms).
 // Klucz dostępu Web3Forms jest publiczny z założenia – może być w kodzie strony.
 // Adres, na który przychodzą wiadomości, ustawiasz w panelu Web3Forms, nie tutaj.
+// Ochrona przed spamem: captcha wyłączona (Captcha Protection: None), Advanced Spam Filter: Basic + pole-pułapka w formularzu.
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 export const WEB3FORMS_ACCESS_KEY = 'dac37178-9e51-46a2-bd27-354d00b005b2'
-
-// hCaptcha – wspólny klucz witryny Web3Forms dla darmowego planu (z dokumentacji Web3Forms).
-// W panelu Web3Forms włącz: Spam Protection → hCaptcha. Od tej chwili wiadomość bez captchy zostanie odrzucona.
-export const HCAPTCHA_SITEKEY = '50b2fe65-b00b-4b9e-ad62-3ba471098be2'
 
 // Opcje pola „W sprawie”. `value` trafia do maila, `label` widzi użytkownik.
 export const contactTopics = [
