@@ -6,6 +6,7 @@ const props = withDefaults(defineProps<{ variant?: FooterVariant }>(), {
 })
 
 const content = computed(() => footerContent[props.variant])
+const { openSettings } = useConsent()
 const year = new Date().getFullYear()
 
 function linkAttrs(link: FooterLink) {
@@ -37,7 +38,7 @@ const arrow =
       >
         <!-- Logo i krótki opis -->
         <div v-reveal class="col-span-2 sm:col-span-3 lg:col-span-1" :class="reveal">
-          <p class="inline-flex items-center gap-3 text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+          <p class="inline-flex items-center gap-3 text-xl font-semibold tracking-tight text-slate-900 dark:text-brand-50">
             <CommonAppLogo class="size-10" />
             <span>Łukasz Dzieło</span>
           </p>
@@ -68,7 +69,7 @@ const arrow =
         <!-- Aktualny status. Od sm: Strona, Profile i Teraz w jednym rzędzie (proporcje 2 : 2 : 3) -->
         <div v-reveal="240" class="col-span-2 sm:col-span-1" :class="reveal">
           <h2 :class="heading">{{ content.status.title }}</h2>
-          <p class="flex items-center gap-2 leading-8 text-slate-900 dark:text-white">
+          <p class="flex items-center gap-2 leading-8 text-slate-900 dark:text-brand-50">
             <span class="relative flex size-2 shrink-0" aria-hidden="true">
               <span class="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
               <span class="relative inline-flex size-2 rounded-full bg-emerald-400" />
@@ -92,7 +93,13 @@ const arrow =
       <div
         class="mt-10 flex items-center justify-between gap-4 border-t border-slate-900/10 pt-6 text-sm text-slate-500 lg:mt-16 dark:border-white/10 dark:text-slate-400"
       >
-        <p>© {{ year }} Łukasz Dzieło</p>
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+          <p>© {{ year }} Łukasz Dzieło</p>
+          <NuxtLink to="/polityka-prywatnosci" class="transition-colors hover:text-primary-500 dark:hover:text-primary-400">Polityka prywatności</NuxtLink>
+          <button type="button" class="cursor-pointer transition-colors hover:text-primary-500 dark:hover:text-primary-400" @click="openSettings">
+            Ustawienia cookies
+          </button>
+        </div>
         <!-- Na telefonie sama strzałka w kółku, od sm: napis + strzałka -->
         <button
           type="button"

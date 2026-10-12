@@ -13,4 +13,9 @@ import TheHeader from '~/components/layout/TheHeader.vue';
   </main>
 
   <TheFooter />
+
+  <!-- Zgoda na statystyki – tylko w przeglądarce (decyzja jest w localStorage) -->
+  <ClientOnly>
+    <CommonCookieConsent />
+  </ClientOnly>
 </template>
