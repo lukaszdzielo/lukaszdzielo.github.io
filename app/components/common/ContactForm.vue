@@ -224,23 +224,23 @@ const field =
     "namePlaceholder": "Jane",
     "email": "Email",
     "emailPlaceholder": "jane{'@'}company.com",
-    "topic": "Topic",
+    "topic": "Regarding",
     "message": "Message",
     "messagePlaceholder": "A few sentences about the project or the role…",
     "send": "Send",
     "sending": "Sending…",
     "privacy": {
-      "text": "I use your name, email and message only to reply to you. You can read more in the {link}.",
+      "text": "I'll use your name, email and message only to reply to you. Details in the {link}.",
       "link": "privacy policy"
     },
     "success": {
-      "title": "Thank you, your message was sent!",
-      "lead": "I will reply to your email address within 72 hours.",
+      "title": "Thanks, your message is on its way!",
+      "lead": "I'll reply to the address you gave within 72 hours.",
       "again": "Send another message"
     },
     "errors": {
-      "send": "Your message was not sent.",
-      "offline": "No internet connection. Please try again in a moment."
+      "send": "The message couldn't be sent.",
+      "offline": "No connection. Please try again in a moment."
     }
   },
   "pl": {

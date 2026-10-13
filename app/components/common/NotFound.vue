@@ -157,27 +157,27 @@ useSiteMeta({
     "label": "Error {code}",
     "page": {
       "title": "This page",
-      "lead": "Maybe the address has changed, or I removed the page. Check the address for mistakes or start from the home page."
+      "lead": "The address may have changed or the page was removed. Check it for typos, or start from the home page."
     },
     "post": {
       "title": "This post",
-      "lead": "Maybe I removed the post, or it has a new address. You can find the other posts in the list."
+      "lead": "The post may have been removed or moved to a new address. You'll find the other posts in the list."
     },
     "project": {
       "title": "This project",
-      "lead": "Maybe the project has a new address. All projects – with a filter and search – are in the archive."
+      "lead": "The project may have moved to a new address. All projects – with a filter and search – are in the archive."
     },
     "error": {
       "title": "Something went",
       "lead": "The page didn't load correctly. Refresh it or go back to the home page."
     },
-    "accent": { "missing": "doesn't exist.", "error": "wrong." },
+    "accent": { "missing": "isn't here.", "error": "wrong." },
     "links": {
       "home": "Home page",
       "projects": "See projects",
       "posts": "Back to posts",
       "archive": "All projects",
-      "contact": "Write to me"
+      "contact": "Let me know"
     },
     "latest": "Latest posts",
     "meta": { "notFound": "Page not found – Łukasz Dzieło", "error": "Error – Łukasz Dzieło" }

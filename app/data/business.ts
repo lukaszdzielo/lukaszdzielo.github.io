@@ -6,11 +6,11 @@ export const businessHero = {
   en: {
     title: 'A website for your business that',
     accent: 'you edit yourself.',
-    lead: 'I design and build one-page sites and business websites on WordPress – from the first sketch to the launch. You get a fast site that looks good on phones. In the editor, you can change texts and photos yourself, without my help.',
+    lead: 'I design and build one-page and business websites on WordPress – from the first sketch to launch. You get a fast site that looks good on phones, and an editor where you can change a text or a photo without asking me.',
     facts: [
       { value: 'since 2013', text: 'building WordPress sites' },
       { value: '20+', text: 'business websites launched' },
-      { value: '3–4 days', text: 'for the first design' },
+      { value: '3–4 days', text: 'to the first design draft' },
     ],
   },
   pl: {
@@ -28,14 +28,14 @@ export const businessHero = {
 export const businessFeatures = {
   en: {
     title: 'A website that works for your business',
-    lead: 'No template bought in five minutes and no hundred plugins. Only what your business really needs online.',
+    lead: 'No template bought in five minutes and no hundred plugins. Just what your business actually needs online.',
     items: [
-      { icon: 'pen', title: 'A design for your brand', text: 'First the design, then the code. You see the site and ask for changes before I build it.' },
-      { icon: 'blocks', title: 'WordPress block editor', text: 'You change the content yourself in Gutenberg – without a heavy page builder that slows the site down.' },
-      { icon: 'phone', title: 'Fast and good on phones', text: 'I design for small screens from the start. I don\'t add plugins that the site doesn\'t need.' },
-      { icon: 'search', title: 'SEO basics included', text: 'Correct headings, page descriptions, a sitemap and business details that Google can read well.' },
-      { icon: 'server', title: 'Your hosting and domain stay yours', text: 'You buy them in your own name. I only get access to build the site and look after it. You don\'t depend on me – I help you choose hosting and give you a list of questions for their support team.' },
-      { icon: 'chat', title: 'Short training at the start', text: 'After the launch, I show you how to add a post, change a photo and edit a text – on your own site.' },
+      { icon: 'pen', title: 'Designed for your brand', text: 'Design first, code second. You see the site and request changes before it gets built.' },
+      { icon: 'blocks', title: 'WordPress block editor', text: 'You edit the content yourself in Gutenberg – no heavy page builder slowing the site down.' },
+      { icon: 'phone', title: 'Fast and mobile-friendly', text: 'I design for small screens from the start and don\'t add plugins the site doesn\'t need.' },
+      { icon: 'search', title: 'SEO basics included', text: 'Proper headings, page descriptions, a sitemap and business details that Google can read correctly.' },
+      { icon: 'server', title: 'Your hosting and domain stay yours', text: 'You buy them in your own name, and I only get access to build and maintain the site. You don\'t depend on me – I help you choose hosting and give you a list of questions for their support team.' },
+      { icon: 'chat', title: 'Short training at launch', text: 'After launch, I show you how to add a post, swap a photo and change text – on your own site.' },
     ],
   },
   pl: {
@@ -55,30 +55,30 @@ export const businessFeatures = {
 export const businessOffer = {
   en: {
     title: 'Choose what you need',
-    lead: 'The “from” prices give you a general idea. You get the exact price and deadline after a few messages, before we start any work.',
+    lead: 'The “from” prices give you a rough idea. You get the exact price and timeline after a few messages, before we start anything.',
     plans: [
       {
         name: 'One-page site',
         title: 'One page, all about your business',
-        text: 'For businesses that want to be visible online and easy to reach for clients.',
-        items: ['Sections: about, services, gallery, contact', 'Contact form and a map with directions', 'Mobile version and SEO basics'],
+        text: 'For businesses that want to be visible online and easy for customers to reach.',
+        items: ['Sections: about, services, gallery, contact', 'Contact form and directions map', 'Mobile version and SEO basics'],
         price: 'card' as const,
         suffix: '+ VAT',
       },
       {
         name: 'Business website',
         title: 'Several pages and news',
-        text: 'For businesses with more services that want to add new content regularly.',
-        items: ['Separate pages for services and the team', 'Blog / news and custom blocks in the editor', 'Integrations: maps, bookings, social media'],
+        text: 'For businesses with a wider range of services that want to add content regularly.',
+        items: ['Separate pages for services and team', 'Blog / news and custom blocks in the editor', 'Integrations: maps, bookings, social media'],
         price: 'company' as const,
         suffix: '+ VAT',
         highlight: true,
       },
       {
         name: 'Care plan',
-        title: 'No stress after the launch',
-        text: 'For any WordPress site – also for sites I didn\'t build.',
-        items: ['Updates and backups every month', 'Site monitoring and security', 'Optional hours for small changes'],
+        title: 'Peace of mind after launch',
+        text: 'For any WordPress site – including ones I didn\'t build.',
+        items: ['Monthly updates and backups', 'Uptime monitoring and security', 'Optional hours for small changes'],
         price: 'care' as const,
         suffix: '+ VAT / month',
         more: '#care',
@@ -86,7 +86,7 @@ export const businessOffer = {
     ],
     other: {
       title: 'A different technology?',
-      text: 'I can also build a site in plain HTML, CSS and JS, or an online store on WooCommerce. With Shopify or PrestaShop, I am happy to help after a short consultation.',
+      text: 'I can also build a site in plain HTML, CSS and JS, or a WooCommerce store. For Shopify or PrestaShop, I\'m happy to help after a short consultation.',
     },
   },
   pl: {
@@ -133,10 +133,10 @@ export const businessOffer = {
 export const businessWork = {
   en: {
     title: 'Websites I\'ve built',
-    lead: 'I made some of these projects at agencies where I worked. If a site is no longer online, I link to the project on Behance.',
+    lead: 'Some of these projects were made at agencies I worked for. Where a site is no longer live, I link to the project on Behance.',
     items: [
       { path: '/projects/2026/emotion-karting', text: 'Go-kart track in Bytom – light and dark theme, price list and news.', tags: ['WordPress', 'Gutenberg'], image: '/featured/emotion-karting.webp', imageDark: '/featured/emotion-karting-dark.webp' },
-      { path: '/projects/2026/reblyx', text: 'Steel machining center – a new site built fully in Gutenberg.', tags: ['WordPress', 'Gutenberg'], image: '/featured/reblyx.webp' },
+      { path: '/projects/2026/reblyx', text: 'Steel machining center – a new site built entirely in Gutenberg.', tags: ['WordPress', 'Gutenberg'], image: '/featured/reblyx.webp' },
       { path: '/projects/2021/webster-associates', text: 'Business website (UK) · at the b4b agency.', tags: ['WordPress'] },
       { path: '/projects/2023/soho', title: 'Wyburzenia Polska', text: 'Demolition company · at the eConnect4u agency.', tags: ['WordPress'] },
       { path: '/projects/2021/health-marketing', title: 'Health Marketing', text: 'Website for a marketing agency.', tags: ['WordPress', 'Divi'] },
@@ -164,12 +164,12 @@ export const businessWork = {
 export const businessProcess = {
   en: {
     title: 'From the first message to a finished website',
-    lead: 'You know what stage we are at and what happens next. I don\'t disappear for a month, and there are no surprises on the invoice.',
+    lead: 'You always know what stage we\'re at and what comes next. No disappearing for a month, no surprises on the invoice.',
     steps: [
-      { title: 'Message', text: 'Use the form to tell me what your business does and what you need. I reply with questions and examples of sites that fit your industry.', time: 'reply within 72 h' },
-      { title: 'Quote and design', text: 'You get a specific price and deadline. When you accept them, I prepare a first design. We change it until it is ready.', time: 'design in 3–4 days' },
-      { title: 'Build', text: 'We sign the contract on Useme or Freelancehunt. These platforms handle the contract and the invoice. Then I build the site. At the same time, you set up hosting – with my list of questions for their support team.', time: 'we agree on the deadline at the start' },
-      { title: 'Launch', text: 'Publishing, an SSL certificate, tests on phones and a short guide to editing. After that – if you want – the care plan.', time: 'launch day' },
+      { title: 'Message', text: 'Use the form to tell me what your business does and what you need. I reply with questions and examples of sites that suit your industry.', time: 'reply within 72 h' },
+      { title: 'Quote and design', text: 'You get a specific price and deadline. Once you accept, I prepare a first design draft and we refine it until it\'s ready.', time: 'design in 3–4 days' },
+      { title: 'Build', text: 'We set up the job on Useme or Freelancehunt, freelance platforms that handle the contract and invoice, and I build the site. Meanwhile, you set up hosting – with my list of questions for their support team.', time: 'deadline agreed at the start' },
+      { title: 'Launch', text: 'Publishing, SSL certificate, testing on phones and a short editing guide. After that – if you want – the care plan.', time: 'launch day' },
     ],
   },
   pl: {
@@ -189,11 +189,11 @@ export const businessProcess = {
 export const businessQuotes = {
   en: {
     title: 'A few words from clients',
-    lead: 'Opinions from people I have worked with – I publish them with their permission.',
+    lead: 'Feedback from people I\'ve worked with – published with their permission.',
     items: [
-      { text: 'We asked for a website to show our car offers. We wanted something easy to edit, without high monthly costs – and that is exactly what we got.', name: 'Michał', company: 'Auto Moto Silesia', approved: false },
-      { text: 'Thank you very much for the new design! The site looks great, and our results in Google went up a lot. I am very grateful for that.', name: 'Mateusz', company: 'ReblyX', approved: false },
-      { text: 'Łukasz designed and built the whole Monarca website, starting from zero. From the beginning, he understood how we wanted to show the company. He made changes quickly and without unnecessary questions.', name: 'Mateusz', company: 'Monarca', approved: false },
+      { text: 'We asked for a website to showcase our car listings. We wanted something easy to edit, without high monthly costs – and that\'s exactly what we got.', name: 'Michał', company: 'Auto Moto Silesia', approved: false },
+      { text: 'Thank you so much for the new design! The site looks great, and our Google rankings jumped, which I\'m very grateful for.', name: 'Mateusz', company: 'ReblyX', approved: false },
+      { text: 'Łukasz designed and built the Monarca website from scratch. From the start he understood how we wanted to present the company, and he made changes quickly without unnecessary questions.', name: 'Mateusz', company: 'Monarca', approved: false },
     ],
   },
   pl: {
@@ -212,26 +212,26 @@ type CareLine = readonly [string, string]
 
 export const businessCare = {
   en: {
-    title: 'WordPress needs regular care. I can do it for you.',
-    lead: 'Old plugins are the most common cause of problems with WordPress. In the care plan, I check this for you.',
+    title: 'WordPress needs looking after. I can take that on.',
+    lead: 'Outdated plugins are the most common cause of WordPress problems. With a care plan, I keep an eye on that for you.',
     monthly: [
       ['Updates', 'of WordPress, plugins and theme – always after a backup'],
-      ['Backups', 'stored outside the site\'s server'],
-      ['Monitoring', '– I know when the site stops working'],
-      ['Security', ': two-factor login, a limit on login attempts'],
-      ['Short report', '– about what I did'],
-      ['Plan with hours', ': an extra 1–2 h a month for small changes to content and layout'],
+      ['Backups', 'stored off the site\'s server'],
+      ['Monitoring', '– I know when the site goes down'],
+      ['Security', ': two-factor login, limited login attempts'],
+      ['Short report', '– on what was done'],
+      ['Plan with hours', ': an extra 1–2 h a month for small content and layout changes'],
     ] as CareLine[],
     rules: [
       { label: 'Basic plan', price: 'care' as const, suffix: '+ VAT / month' },
       { label: 'Plan with hours (2 h of changes)', price: 'careHours' as const, suffix: '+ VAT / month' },
       { label: 'Extra hour', price: 'hour' as const, suffix: '+ VAT' },
-      { label: 'Unused hours', value: 'don\'t move to the next month' },
-      { label: 'Extra work', value: 'hourly rate' },
+      { label: 'Unused hours', value: 'don\'t roll over' },
+      { label: 'Additional work', value: 'hourly rate' },
       { label: 'Response time', value: 'within 72 hours' },
-      { label: 'Minimum period', value: '3 months' },
+      { label: 'Minimum term', value: '3 months' },
     ],
-    note: 'Fixing a site after a hack is not part of the plan – I charge my hourly rate for it. The backups from the plan usually help me bring back a working version quickly.',
+    note: 'Fixing a hacked site isn\'t included in the plan – I bill it at my hourly rate. The plan\'s backups usually let me restore a working version quickly.',
   },
   pl: {
     title: 'WordPress wymaga opieki. Mogę ją przejąć.',
@@ -260,14 +260,14 @@ export const businessCare = {
 // {card}, {company} – miejsca na ceny z app/data/pricing.ts (wstawiane w komponencie, w formacie danego języka)
 export const businessFaq = {
   en: {
-    title: 'Before you write to me',
+    title: 'Before you get in touch',
     items: [
-      { q: 'How much does a website cost?', a: 'A one-page site starts at {card} + VAT. A business website starts at {company} + VAT. The exact price depends on the number of pages and features – after a few messages, you get a specific quote and deadline.' },
-      { q: 'How long does it take?', a: 'The first design takes 3–4 days. We agree on the deadline for the whole site at the start – it depends on the scope and on how fast the content is ready.' },
-      { q: 'Who pays for hosting and the domain?', a: 'You do – you buy them in your own name, so the site always belongs to you. I only need access to launch the site and look after it.' },
-      { q: 'Can I change the content myself?', a: 'Yes. The site uses the WordPress block editor – you change texts, photos and posts without any code.' },
-      { q: 'How does payment work?', a: 'We sign the contract on Useme or Freelancehunt. These platforms handle the contract and the invoice. You get an invoice for the finished work.' },
-      { q: 'I already have a website. Can you improve it?', a: 'Yes – I can take care of your current WordPress site or design a new version of it.' },
+      { q: 'How much does a website cost?', a: 'A one-page site starts at {card} + VAT, a business website at {company} + VAT. The exact price depends on the number of pages and features – after a few messages you get a specific quote and timeline.' },
+      { q: 'How long does it take?', a: 'The first design draft takes 3–4 days. We agree on the full timeline at the start – it depends on the scope and how quickly the content is ready.' },
+      { q: 'Who pays for hosting and the domain?', a: 'You do – you buy them in your own name, so the site always belongs to you. I only need access to launch it and look after it.' },
+      { q: 'Can I edit the content myself?', a: 'Yes. The site runs on the WordPress block editor – you change text, photos and posts without any coding.' },
+      { q: 'How does payment work?', a: 'Through Useme or Freelancehunt – freelance platforms that handle the contract and invoice. We set up the job on the platform, and you get an invoice for the completed work.' },
+      { q: 'I already have a website. Can you improve it?', a: 'Yes – I can take over the care of your existing WordPress site or design a new version of it.' },
     ],
   },
   pl: {
@@ -288,9 +288,9 @@ export const businessFaq = {
 export const businessContact = {
   en: {
     title: 'Tell me what you need.',
-    lead: 'A business website, a landing page, an online store or fixes on your current site – a few sentences are enough. I reply with questions or with a quote right away.',
+    lead: 'A business website, landing page, online store or fixes to your current site – a few sentences are enough. I\'ll reply with questions or straight away with a quote.',
     response: 'I reply within 72 hours',
-    placeholder: 'E.g. a landing page for a new service with a sign-up form – start next month…',
+    placeholder: 'E.g. a landing page for a new service with a sign-up form – launching next month…',
     topics: [
       { value: 'Wizytówka', label: 'One-page site' },
       { value: 'Strona firmowa', label: 'Business website' },

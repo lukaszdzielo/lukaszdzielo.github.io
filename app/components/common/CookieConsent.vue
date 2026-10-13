@@ -56,7 +56,7 @@ const button =
 {
   "en": {
     "title": "Visitor statistics",
-    "text": "I want to know how many people visit the site and which pages they read. For this I use Google Analytics and its cookies. Do you agree? You can change your choice at any time in the footer.",
+    "text": "I'd like to know how many people visit the site and which pages they read – for that I use Google Analytics and its cookies. Do you agree? You can change this anytime in the footer.",
     "privacy": "Privacy policy",
     "now": "Now: {state}",
     "on": "statistics on",

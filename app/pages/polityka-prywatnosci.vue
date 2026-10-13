@@ -119,10 +119,10 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
     },
     "breadcrumb": "Home",
     "title": "Privacy policy",
-    "intro": "This site is my portfolio. It collects only the data it needs to reply to your message. If you agree, it also counts visits. Last updated: {date}.",
+    "intro": "This site is my portfolio. It collects only as much data as it needs to reply to your message and – if you agree – to count visits. Last updated: {date}.",
     "controller": {
       "title": "Who is responsible for your data",
-      "text": "The data controller is Łukasz Dzieło, Katowice, Poland. If you have a question about your personal data, write to me through the {link}.",
+      "text": "The data controller is Łukasz Dzieło, Katowice, Poland. For anything about your personal data, write to me through the {link}.",
       "link": "contact form"
     },
     "form": {
@@ -131,19 +131,19 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
       "why": { "label": "Why:", "text": "to reply to your message and – if you ask about it – to talk about working together." },
       "basis": {
         "label": "Legal basis:",
-        "text": "my legitimate interest, which is replying to your message (Art. 6(1)(f) GDPR). When we talk about a project, also the steps before we sign a contract (Art. 6(1)(b) GDPR)."
+        "text": "my legitimate interest, which is replying to your message (Art. 6(1)(f) GDPR), and, when we talk about a project, steps taken before entering into a contract (Art. 6(1)(b) GDPR)."
       },
       "who": {
         "label": "Who else sees it:",
-        "text": "Web3Forms – a service that sends the message from the form to my email inbox. Your data may be processed outside the European Economic Area."
+        "text": "Web3Forms – a service that forwards the message from the form to my email inbox. Your data may be processed outside the European Economic Area."
       },
-      "howLong": { "label": "How long:", "text": "as long as our conversation lasts. If we start working together – as long as the law requires." },
-      "voluntary": "Giving your data is voluntary. But without an email address I can't reply to you."
+      "howLong": { "label": "How long:", "text": "for as long as our conversation lasts; if we start working together – as long as the law requires." },
+      "voluntary": "Providing your data is voluntary, but without an email address I won't be able to reply."
     },
     "analytics": {
       "title": "Visitor statistics (Google Analytics)",
-      "what": "The site loads Google Analytics only if you agree. It shows me overall statistics: how many people visit the site, which pages they read, what devices they use and which country they come from. Google saves {cookie} cookies in your browser. The provider is Google Ireland Limited. Your data may also go to Google LLC in the USA.",
-      "basis": "The legal basis is your consent (Art. 6(1)(a) GDPR). You can withdraw it at any time. Then the measurement stops and the {cookie} cookies are deleted.",
+      "what": "The site loads Google Analytics only if you agree. It shows me aggregate statistics: how many people visit the site, which pages they read, what devices they use and which country they come from. Google stores {cookie} cookies in your browser. Provider: Google Ireland Limited; data may also be transferred to Google LLC in the USA.",
+      "basis": "The legal basis is your consent (Art. 6(1)(a) GDPR). You can withdraw it at any time – measurement then stops and the {cookie} cookies are deleted.",
       "settings": "Change statistics settings",
       "now": "Now: {state}",
       "on": "statistics on",
@@ -151,22 +151,22 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
     },
     "hosting": {
       "title": "Hosting",
-      "text": "The site runs on GitHub Pages (GitHub, Inc.). Like every server, GitHub saves technical data about visits – for example your IP address and browser type. It does this to keep the site working and safe. I don't have access to this data."
+      "text": "The site runs on GitHub Pages (GitHub, Inc.). Like any server, GitHub records technical data about visits – including your IP address and browser type – to keep the site running and secure. I don't have access to this data."
     },
     "storage": {
       "title": "Browser storage",
-      "text": "The site saves two things in your browser (localStorage): the theme you chose – light or dark – and your decision about statistics. It saves your language – English or Polish – in a small cookie called lang. The site doesn't send this information anywhere. You can delete it when you clear the site's data in your browser. Fonts and icons are on the same server as the site – the site doesn't load them from other companies."
+      "text": "The site saves two things in your browser (localStorage): the theme you chose – light or dark – and your decision about statistics. It also keeps your language choice – English or Polish – in a small cookie called lang. This information isn't sent anywhere; you can delete it by clearing the site's data in your browser. Fonts and icons are hosted on the same server as the site – they aren't loaded from other companies."
     },
     "rights": {
       "title": "Your rights",
       "intro": "You have the right to:",
       "access": "get a copy of your data and find out how I use it,",
       "correct": "correct your data or ask me to delete it,",
-      "restrict": "limit how I use your data or object to this use,",
+      "restrict": "restrict how it's used or object to its use,",
       "portability": "transfer your data to someone else,",
-      "withdraw": "withdraw your consent to statistics – this doesn't change anything that happened before,",
-      "complaint": "submit a complaint to the President of the Personal Data Protection Office in Poland (uodo.gov.pl).",
-      "noProfiling": "I don't use your data for automated decision-making or profiling."
+      "withdraw": "withdraw your consent to statistics – without affecting anything that happened before you withdrew it,",
+      "complaint": "lodge a complaint with the President of the Personal Data Protection Office in Poland (uodo.gov.pl).",
+      "noProfiling": "Your data isn't used for automated decision-making or profiling."
     }
   },
   "pl": {
