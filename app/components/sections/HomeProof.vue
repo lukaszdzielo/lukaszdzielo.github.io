@@ -19,7 +19,7 @@ defineProps<{ items?: { value: string; suffix?: string; text: string }[] }>()
           <b class="text-3xl font-medium tracking-tight text-slate-900 dark:text-brand-50">
             {{ item.value }}<small v-if="item.suffix" class="text-lg text-primary-500 dark:text-primary-400">{{ item.suffix }}</small>
           </b>
-          <span class="text-sm/snug text-slate-600 lg:text-[0.84375rem] dark:text-slate-300">{{ item.text }}</span>
+          <span class="text-sm text-slate-600 lg:text-[0.84375rem] dark:text-slate-300">{{ item.text }}</span>
         </li>
       </ul>
     </div>

@@ -43,7 +43,7 @@ useSeoMeta({
     <section v-if="project && hasOwnPage"
         class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30 flex flex-col gap-10">
         <header class="flex flex-col gap-4">
-            <h1 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-balance">
+            <h1 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold">
                 {{ project.title }}
             </h1>
 
@@ -73,7 +73,7 @@ useSeoMeta({
             </div>
         </header>
 
-        <article v-if="hasBody(project)" class="prose max-w-none text-pretty">
+        <article v-if="hasBody(project)" class="prose max-w-none">
             <ContentRenderer :value="project" />
         </article>
 
@@ -84,8 +84,8 @@ useSeoMeta({
                     <NuxtLink :to="post.path"
                         class="block group border border-slate-200 dark:border-slate-700 rounded-xl p-5 transition-colors hover:border-sky-500">
                         <small>{{ formatDate(post.date) }}</small>
-                        <h3 class="mt-1 font-semibold text-balance group-hover:text-sky-500">{{ post.title }}</h3>
-                        <p class="mt-1 text-sm text-pretty">{{ post.description }}</p>
+                        <h3 class="mt-1 font-semibold group-hover:text-sky-500">{{ post.title }}</h3>
+                        <p class="mt-1 text-sm">{{ post.description }}</p>
                     </NuxtLink>
                 </li>
             </ul>
@@ -98,8 +98,8 @@ useSeoMeta({
                     <NuxtLink :to="post.path"
                         class="block group border border-slate-200 dark:border-slate-700 rounded-xl p-5 transition-colors hover:border-sky-500">
                         <small>{{ formatDate(post.date) }}</small>
-                        <h3 class="mt-1 font-semibold text-balance group-hover:text-sky-500">{{ post.title }}</h3>
-                        <p class="mt-1 text-sm text-pretty">{{ post.description }}</p>
+                        <h3 class="mt-1 font-semibold group-hover:text-sky-500">{{ post.title }}</h3>
+                        <p class="mt-1 text-sm">{{ post.description }}</p>
                     </NuxtLink>
                 </li>
             </ul>

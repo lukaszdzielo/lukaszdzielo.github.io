@@ -26,7 +26,7 @@ defineProps<{
       </figure>
 
       <div v-reveal="80" class="transition-[opacity,translate] duration-700 ease-out lg:col-start-2 lg:row-span-2 lg:row-start-1">
-        <h2 class="mb-5 text-3xl/[1.1] font-medium tracking-tight text-slate-900 lg:text-5xl/[1.1] dark:text-brand-50">
+        <h2 class="mb-5 text-3xl font-medium tracking-tight text-slate-900 lg:text-5xl dark:text-brand-50">
           <slot name="title" mdc-unwrap="p" />
         </h2>
 
@@ -38,7 +38,7 @@ defineProps<{
 
         <blockquote
           v-if="quote"
-          class="my-6.5 border-l-2 border-primary-500 pl-5.5 text-xl/normal tracking-tight text-slate-900 dark:border-primary-400 dark:text-brand-50"
+          class="my-6.5 border-l-2 border-primary-500 pl-5.5 text-xl tracking-tight text-slate-900 dark:border-primary-400 dark:text-brand-50"
         >
           {{ quote }}
         </blockquote>
@@ -54,7 +54,7 @@ defineProps<{
               <p class="font-medium text-slate-900 dark:text-brand-50">
                 {{ item.company }} <span class="font-normal text-slate-500 dark:text-slate-400">· {{ item.role }}</span>
               </p>
-              <p class="mt-1.5 text-sm/normal text-slate-600 dark:text-slate-300">{{ item.text }}</p>
+              <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-300">{{ item.text }}</p>
               <ul v-if="item.projects?.length" class="mt-2.5 flex flex-wrap gap-1.5" :aria-label="`Projekty – ${item.company}`">
                 <li v-for="project in item.projects" :key="project.title">
                   <NuxtLink

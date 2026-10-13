@@ -84,6 +84,19 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+/* Zawijanie tekstu na całej stronie: nagłówki dzielą się na równe linie (balance),
+   akapity i listy nie zostawiają pojedynczego słowa w ostatniej linii (pretty).
+   Same właściwości „-style” – nie ruszają whitespace-nowrap/truncate. W warstwie base,
+   więc klasa przy elemencie (np. text-wrap) zawsze wygrywa. */
+@layer base {
+  h1, h2, h3, h4, h5, h6, blockquote {
+    text-wrap-style: balance;
+  }
+  p, li, dd, dt, figcaption, small {
+    text-wrap-style: pretty;
+  }
+}
+
 @media (width >= 40rem) {
   :root {
     --spacing-pad: clamp(1rem, 7.85vw, 7.0625rem);

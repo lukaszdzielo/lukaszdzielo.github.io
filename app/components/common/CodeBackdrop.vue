@@ -10,7 +10,7 @@ defineProps<{ name: CodeFragment; side?: 'left' | 'right' }>()
 <template>
   <pre
     aria-hidden="true"
-    class="pointer-events-none absolute -z-10 m-0 font-mono text-xs/relaxed font-medium whitespace-pre text-slate-900/5 select-none lg:text-sm/[1.8] lg:text-slate-900/11 dark:text-indigo-100/5 lg:dark:text-indigo-100/12"
+    class="pointer-events-none absolute -z-10 m-0 font-mono text-xs/relaxed font-medium whitespace-pre text-slate-900/5 select-none lg:text-sm/relaxed lg:text-slate-900/11 dark:text-indigo-100/5 lg:dark:text-indigo-100/12"
     :class="
       side === 'right'
         ? 'right-1.5 mask-[linear-gradient(270deg,transparent,#000_14%,#000_72%,transparent)] md:right-3 lg:right-7.5'

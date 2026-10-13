@@ -38,9 +38,9 @@ defineProps<{ services?: Service[] }>()
             {{ service.audience }}
           </span>
 
-          <h3 class="text-2xl/tight font-medium tracking-tight">{{ service.title }}</h3>
+          <h3 class="text-2xl font-medium tracking-tight">{{ service.title }}</h3>
 
-          <ul class="flex flex-col gap-2.5 text-base/normal">
+          <ul class="flex flex-col gap-2.5 text-base">
             <li v-for="item in service.items" :key="item" class="flex gap-3 opacity-85">
               <span class="mt-2 size-1.5 shrink-0 rounded-full bg-primary-500 dark:bg-primary-400" aria-hidden="true" />
               {{ item }}

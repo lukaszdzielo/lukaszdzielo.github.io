@@ -2,7 +2,8 @@
 // Archiwum projektów: filtr rodzaju (zapisywany w adresie jako ?tech=…), wyszukiwarka i lata.
 // Rozwinięte są 3 najnowsze lata, w których są projekty (liczy się lista projektów, nie kalendarz –
 // gdy dojdzie pierwszy projekt z 2027, 2024 sam się zwinie). Każdy rok można rozwinąć i zwinąć.
-// Przy filtrze lub wyszukiwaniu rozwijamy wszystko, żeby nic nie zostało ukryte.
+// Filtr rodzaju działa tak samo (3 najnowsze lata z pasującymi projektami rozwinięte) – długa lista
+// nie rozwija się cała naraz. Przy wyszukiwaniu rozwijamy wszystko, żeby żaden wynik nie był ukryty.
 // Projekty z sekcji „Wyróżnione” mają na miniaturze odznakę.
 import { isProjectKind, projectKind, projectKindLabels, projectKindOrder, type ProjectKind } from '~/utils/projectKind'
 
@@ -46,6 +47,7 @@ onMounted(() => {
 
 function setKind(next: ProjectKind | 'all') {
   kind.value = next
+  toggled.value = new Set() // nowy filtr – lata wracają do stanu domyślnego
   const q = { ...route.query }
   if (next === 'all') delete q.tech
   else q.tech = next
@@ -83,7 +85,7 @@ const years = computed(() => {
     .map(([year, list]) => ({ year, list: list.sort((a, b) => b.date.localeCompare(a.date)) }))
 })
 
-const narrowed = computed(() => kind.value !== 'all' || query.value.trim() !== '')
+const narrowed = computed(() => query.value.trim() !== '')
 const isOpen = (year: string, index: number) => narrowed.value || (index < OPEN_YEARS) !== toggled.value.has(year)
 
 async function toggle(year: string, index: number) {
@@ -248,7 +250,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         @click="toggle(y.year, i)"
       >
         <span class="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3.5">
-          <span class="text-2xl/tight font-medium tracking-tight text-slate-900 sm:hidden dark:text-brand-50">{{ y.year }}</span>
+          <span class="text-2xl font-medium tracking-tight text-slate-900 sm:hidden dark:text-brand-50">{{ y.year }}</span>
           <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">Pokaż {{ y.list.length }} {{ plural(y.list.length) }}</b>
           <em class="truncate text-sm text-slate-500 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ' i inne' : '' }}</em>
         </span>

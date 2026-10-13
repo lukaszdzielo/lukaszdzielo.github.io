@@ -37,6 +37,7 @@ const date = computed(() =>
         :src="post.image"
         :alt="''"
         :sizes="featured ? 'xs:100vw lg:60vw' : 'xs:100vw md:50vw lg:33vw'"
+        loading="lazy"
         class="absolute inset-0 size-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
       />
       <template v-else>
@@ -58,7 +59,7 @@ const date = computed(() =>
       <p class="text-sm text-slate-500 dark:text-slate-400">
         {{ kindLabel }}<template v-if="date"> · {{ date }}</template>
       </p>
-      <h2 class="text-2xl/tight font-semibold tracking-tight text-slate-900 sm:text-3xl/tight dark:text-brand-50">{{ post.title }}</h2>
+      <h2 class="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ post.title }}</h2>
       <p v-if="post.description" class="text-base/relaxed text-slate-600 dark:text-slate-300">{{ post.description }}</p>
       <span class="mt-1 inline-flex items-center gap-2 font-medium text-primary-500 dark:text-primary-400">
         Czytaj wpis
@@ -70,7 +71,7 @@ const date = computed(() =>
       <p class="text-xs text-slate-500 dark:text-slate-400">
         {{ kindLabel }}<template v-if="date"> · {{ date }}</template>
       </p>
-      <p v-if="post.description" class="mt-2 line-clamp-3 text-sm/normal text-slate-600 dark:text-slate-300">
+      <p v-if="post.description" class="mt-2 line-clamp-3 text-sm text-slate-600 dark:text-slate-300">
         {{ post.description }}
       </p>
     </div>
