@@ -41,7 +41,7 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Web app – most of the front-end and components used by the whole team.', pl: 'Aplikacja webowa – większość front-endu i komponenty używane przez cały zespół.' },
     chips: ['Vue 3', 'Inertia.js', 'PrimeVue'],
     url: 'e-cargo',
-    image: '/featured/ecargo.webp',
+    image: '/featured/e-cargo.webp',
   },
   // Nie cały serwis – moja część w Arris Agency: karuzele na Swiperze
   {
