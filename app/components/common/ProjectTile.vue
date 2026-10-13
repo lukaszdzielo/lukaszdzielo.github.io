@@ -15,6 +15,7 @@ const props = defineProps<{
   imageDark?: string // zrzut ciemnej wersji strony – podmieniany w ciemnym motywie
   to?: string // podstrona projektu (gdy powstanie) – wtedy klikalny jest cały kafelek
   href?: string // strona na produkcji – link ma tylko niebieska strzałka (nowa karta)
+  hrefLabel?: string // opis strzałki dla czytników ekranu, gdy link nie prowadzi do strony (np. Behance)
   eager?: boolean // zrzut ładowany od razu (kafelek widoczny w hero); domyślnie leniwie
 }>()
 
@@ -48,7 +49,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
           :href="href"
           target="_blank"
           rel="noopener noreferrer"
-          :aria-label="`${title} – otwórz stronę w nowej karcie`"
+          :aria-label="hrefLabel ?? `${title} – otwórz stronę w nowej karcie`"
           class="relative z-3 grid size-(--ch) shrink-0 place-items-center rounded-full bg-primary-500 text-sm text-white transition-transform duration-300 hover:rotate-45 focus-visible:rotate-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:bg-primary-400 dark:text-brand-950"
         >
           <Icon name="lucide:arrow-up-right" aria-hidden="true" />

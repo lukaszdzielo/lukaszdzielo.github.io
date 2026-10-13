@@ -68,8 +68,8 @@ export const businessWork = {
   title: 'Strony, które zrobiłem',
   lead: 'Część projektów powstała w agencjach, w których pracowałem. Tam, gdzie strona już nie działa, linkuję do projektu na Behance.',
   items: [
-    { path: '/projects/2026/emotion-karting', text: 'Tor kartingowy w Bytomiu – jasny i ciemny motyw, cennik i aktualności.', tags: ['WordPress', 'Gutenberg'] },
-    { path: '/projects/2026/reblyx', text: 'Centrum obróbki stali – nowa strona na pełnym Gutenbergu.', tags: ['WordPress', 'Gutenberg'] },
+    { path: '/projects/2026/emotion-karting', text: 'Tor kartingowy w Bytomiu – jasny i ciemny motyw, cennik i aktualności.', tags: ['WordPress', 'Gutenberg'], image: '/featured/emotion-karting.webp', imageDark: '/featured/emotion-karting-dark.webp' },
+    { path: '/projects/2026/reblyx', text: 'Centrum obróbki stali – nowa strona na pełnym Gutenbergu.', tags: ['WordPress', 'Gutenberg'], image: '/featured/reblyx.webp' },
     { path: '/projects/2021/webster-associates', text: 'Strona firmowa (UK) · w agencji b4b.', tags: ['WordPress'] },
     { path: '/projects/2023/soho', title: 'Wyburzenia Polska', text: 'Firma rozbiórkowa · w agencji eConnect4u.', tags: ['WordPress'] },
     { path: '/projects/2021/health-marketing', title: 'Health Marketing', text: 'Strona agencji marketingowej.', tags: ['WordPress', 'Divi'] },
