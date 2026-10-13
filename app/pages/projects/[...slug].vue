@@ -142,9 +142,10 @@ if (project.value && hasOwnPage.value) {
 
         <section v-if="hasBody(project)" class="pt-20 md:pt-28 lg:pt-32">
             <div class="container">
-                <h2 class="text-3xl font-medium tracking-tight text-slate-900 lg:text-5xl dark:text-brand-50">{{ t('about.title') }}</h2>
-                <!-- Treść z pliku md: akapit w wygodnej szerokości, lista jako kafelki z ✓ (style: .project-body w main.css) -->
-                <article class="project-body prose mt-6 max-w-none lg:mt-8 lg:prose-lg prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
+                <!-- Od lg: nagłówek po lewej, opis po prawej, a podtytuł z pliku md („Co się zmieniło”) i lista
+                     pod spodem na całą szerokość, lista w dwóch kolumnach (style: .project-body w main.css) -->
+                <article class="project-body prose max-w-none lg:prose-lg prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
+                    <h2 class="project-title not-prose text-3xl font-medium tracking-tight text-slate-900 lg:text-5xl dark:text-brand-50">{{ t('about.title') }}</h2>
                     <ContentRenderer :value="project" />
                 </article>
             </div>
