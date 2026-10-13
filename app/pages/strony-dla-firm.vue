@@ -19,7 +19,7 @@ const description = t('meta.description')
 useSiteMeta({
   title: t('meta.title'),
   description,
-  image: '/og/og-firmy.jpg',
+  image: `/og/business-${lang}.jpg`,
   imageAlt: t('meta.title'),
 })
 
