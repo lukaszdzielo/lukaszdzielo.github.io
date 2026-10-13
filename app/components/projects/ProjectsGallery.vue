@@ -6,7 +6,8 @@
 // @nuxt/image tworzy pliki /_ipx tylko dla obrazków obecnych w gotowym HTML – z v-if by ich zabrakło.
 // Duże obrazki mają loading="lazy" i w-full: przeglądarka pobiera je dopiero przy pokazaniu, a bez
 // szerokości (w-auto) niezaładowany obrazek ma 0 × 0 px i Chrome w ogóle by go nie pobrał.
-type Shot = { src: string; alt: string; caption?: string; device?: 'desktop' | 'phone' }
+// full – zrzut całej strony: w kafelku widać górę (16:10) z oznaczeniem „Cała strona”, w podglądzie się przewija
+type Shot = { src: string; alt: string; caption?: string; device?: 'desktop' | 'phone'; full?: boolean }
 
 const props = defineProps<{ items: Shot[]; address?: string }>()
 
@@ -14,16 +15,18 @@ const { t } = useI18n({ useScope: 'local' })
 
 const hasPhone = computed(() => props.items.some(shot => shot.device === 'phone'))
 const firstDesktop = computed(() => props.items.findIndex(shot => shot.device !== 'phone'))
+// Pierwszy zrzut z komputera na całą szerokość – chyba że bez telefonu jest ich parzyście (np. dwa: obok siebie)
+const firstBig = computed(() => hasPhone.value || props.items.length % 2 === 1)
 
 const tileClass = (shot: Shot, index: number) => {
   if (shot.device === 'phone') return 'max-w-60 lg:max-w-none lg:row-span-2'
-  if (index === firstDesktop.value) return hasPhone.value ? 'md:col-span-2 lg:col-span-4' : 'md:col-span-2'
+  if (index === firstDesktop.value && firstBig.value) return hasPhone.value ? 'md:col-span-2 lg:col-span-4' : 'md:col-span-2'
   return hasPhone.value ? 'lg:col-span-2' : ''
 }
 
 const thumbSizes = (shot: Shot, index: number) => {
   if (shot.device === 'phone') return 'xs:240px'
-  return index === firstDesktop.value ? 'xs:100vw lg:1000px' : 'xs:100vw md:50vw lg:500px'
+  return index === firstDesktop.value && firstBig.value ? 'xs:100vw lg:1000px' : 'xs:100vw md:50vw lg:600px'
 }
 
 // Podgląd na cały ekran
@@ -75,7 +78,12 @@ onBeforeUnmount(() => lockScroll(false))
             @click="open(i, $event)"
           >
             <ProjectsPhoneFrame v-if="shot.device === 'phone'" :src="shot.src" :alt="shot.alt" :sizes="thumbSizes(shot, i)" />
-            <ProjectsBrowserFrame v-else :src="shot.src" :alt="shot.alt" :address="address" :sizes="thumbSizes(shot, i)" />
+            <span v-else class="relative block">
+              <ProjectsBrowserFrame :src="shot.src" :alt="shot.alt" :address="address" :sizes="thumbSizes(shot, i)" :crop="shot.full" />
+              <span v-if="shot.full" class="absolute right-3.5 bottom-3.5 rounded-full bg-brand-950/75 px-3 py-1.5 text-xs font-medium text-white">
+                {{ t('full') }} ↕
+              </span>
+            </span>
           </button>
           <figcaption v-if="shot.caption" class="mt-3 text-sm/relaxed text-slate-500 dark:text-slate-400">
             {{ shot.caption }}
@@ -112,15 +120,15 @@ onBeforeUnmount(() => lockScroll(false))
           v-show="i === current"
           :key="shot.src"
           class="absolute inset-4 max-sm:bottom-16 sm:inset-x-20"
-          :class="shot.device === 'phone' ? 'mx-auto max-w-md overflow-y-auto overscroll-contain rounded-2xl' : 'flex items-center justify-center'"
+          :class="shot.device === 'phone' ? 'mx-auto max-w-md overflow-y-auto overscroll-contain rounded-2xl' : shot.full ? 'mx-auto max-w-5xl overflow-y-auto overscroll-contain rounded-lg' : 'flex items-center justify-center'"
           @click.self="close"
         >
-          <!-- Telefon: wysoki zrzut (np. cała strona) przewija się w podglądzie -->
+          <!-- Telefon i cała strona: wysoki zrzut przewija się w podglądzie -->
           <CommonPicture
-            v-if="shot.device === 'phone'"
+            v-if="shot.device === 'phone' || shot.full"
             :src="shot.src"
             :alt="shot.alt"
-            sizes="xs:100vw sm:448px"
+            :sizes="shot.full ? 'xs:100vw lg:1024px' : 'xs:100vw sm:448px'"
             loading="lazy"
             class="block h-auto w-full"
           />
@@ -168,14 +176,16 @@ onBeforeUnmount(() => lockScroll(false))
     "dialog": "Screenshot preview",
     "close": "Close",
     "prev": "Previous screenshot",
-    "next": "Next screenshot"
+    "next": "Next screenshot",
+    "full": "Full page"
   },
   "pl": {
     "open": "Powiększ: {alt}",
     "dialog": "Podgląd zrzutu",
     "close": "Zamknij",
     "prev": "Poprzedni zrzut",
-    "next": "Następny zrzut"
+    "next": "Następny zrzut",
+    "full": "Cała strona"
   }
 }
 </i18n>

@@ -8,6 +8,7 @@ withDefaults(defineProps<{
   sizes?: string
   loading?: 'lazy' | 'eager'
   fetchpriority?: 'high' | 'low' | 'auto'
+  crop?: boolean // wysoki zrzut (cała strona) – w ramce widać tylko górę, proporcje 16:10
 }>(), { sizes: 'xs:100vw lg:50vw', loading: 'lazy', fetchpriority: undefined })
 </script>
 
@@ -19,6 +20,9 @@ withDefaults(defineProps<{
       <i class="size-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
       <span v-if="address" class="ml-2.5 truncate text-xs text-slate-500 dark:text-slate-400">{{ address }}</span>
     </span>
-    <CommonPicture :src="src" :alt="alt" :sizes="sizes" :loading="loading" :fetchpriority="fetchpriority" class="block h-auto w-full" />
+    <span v-if="crop" class="block aspect-16/10 overflow-hidden">
+      <CommonPicture :src="src" :alt="alt" :sizes="sizes" :loading="loading" :fetchpriority="fetchpriority" class="block size-full object-cover object-top" />
+    </span>
+    <CommonPicture v-else :src="src" :alt="alt" :sizes="sizes" :loading="loading" :fetchpriority="fetchpriority" class="block h-auto w-full" />
   </span>
 </template>
