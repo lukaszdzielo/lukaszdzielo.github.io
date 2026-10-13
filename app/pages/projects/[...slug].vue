@@ -25,8 +25,14 @@ const { data: relatedPosts } = await useAsyncData('project-posts-' + path, () =>
         .all()
 );
 
-const caseStudies = computed(() => (relatedPosts.value ?? []).filter(post => post.kind === 'case-study'));
-const relatedArticles = computed(() => (relatedPosts.value ?? []).filter(post => post.kind !== 'case-study'));
+// Case study najpierw (duża karta), potem pozostałe wpisy od najnowszego
+const orderedPosts = computed(() => [
+    ...(relatedPosts.value ?? []).filter(post => post.kind === 'case-study'),
+    ...(relatedPosts.value ?? []).filter(post => post.kind !== 'case-study'),
+]);
+
+// Technologie pod opisem: pole `stack`, a gdy go nie ma – tagi
+const stack = computed(() => project.value?.stack ?? project.value?.tags ?? []);
 
 // A project earns a dedicated page with body content or at least one linked
 // article; otherwise it only appears as a card in the lists and this route
@@ -37,6 +43,16 @@ const externalLinks = computed(() => [
     { label: t('links.live'), href: project.value?.links?.live },
     { label: 'Behance', href: project.value?.links?.behance },
     { label: 'GitHub', href: project.value?.links?.github },
+].filter((link): link is { label: string; href: string } => Boolean(link.href)));
+
+const year = computed(() => project.value?.date?.slice(0, 4));
+// Adres w pasku okna przeglądarki nad zrzutem: strona na żywo bez https:// i końcowego „/”
+const address = computed(() => project.value?.links?.live?.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+
+// Przyciski obok „Zobacz na żywo” (obrysowane): kod na GitHubie, Behance
+const secondaryLinks = computed(() => [
+    { label: t('links.github'), href: project.value?.links?.github },
+    { label: 'Behance', href: project.value?.links?.behance },
 ].filter((link): link is { label: string; href: string } => Boolean(link.href)));
 
 useSiteMeta({
@@ -62,78 +78,96 @@ if (project.value && hasOwnPage.value) {
 </script>
 
 <template>
-    <!-- Full project page: body content and/or linked articles -->
-    <section v-if="project && hasOwnPage"
-        class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30 flex flex-col gap-10">
-        <header class="flex flex-col gap-4">
-            <h1 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold">
-                {{ project.title }}
-            </h1>
+    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), case study i wpisy -->
+    <div v-if="project && hasOwnPage">
+        <header class="relative isolate pt-14 sm:pt-22">
+            <div class="hero-glow pointer-events-none absolute inset-x-0 -top-18.25 -z-10 h-375" aria-hidden="true" />
+            <div class="container">
+                <nav :aria-label="t('breadcrumb.label')" class="text-sm text-slate-500 dark:text-slate-400">
+                    <NuxtLink :to="localLink('/')" class="text-primary-500 hover:underline dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
+                    <span aria-hidden="true"> / </span>
+                    <NuxtLink :to="localLink('/projects')" class="text-primary-500 hover:underline dark:text-primary-400">{{ t('breadcrumb.projects') }}</NuxtLink>
+                    <span aria-hidden="true"> / </span>
+                    <span aria-current="page">{{ project.title }}</span>
+                </nav>
 
-            <div class="flex flex-col gap-3 text-sm">
-                <time v-if="project.date" :datetime="project.date">
-                    {{ formatDate(project.date, locale) }}
-                </time>
-                <p v-if="project.agency" class="text-slate-500 dark:text-slate-400">
-                    {{ t('agency', { agency: project.agency }) }}
-                </p>
-                <ul v-if="project.tags?.length" class="flex flex-wrap gap-2">
-                    <li v-for="tag in project.tags" :key="tag">
-                        <span class="inline-block rounded-full bg-slate-300 dark:bg-slate-600 px-3 py-1">
-                            #{{ tag }}
-                        </span>
-                    </li>
-                </ul>
-                <ul v-if="externalLinks.length" class="flex flex-wrap gap-x-4 gap-y-1">
-                    <li v-for="link in externalLinks" :key="link.label">
-                        <a :href="link.href" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1 font-medium text-sky-600 dark:text-sky-400 hover:underline underline-offset-4">
-                            {{ link.label }}
-                            <Icon name="lucide:arrow-up-right" aria-hidden="true" />
-                        </a>
-                    </li>
-                </ul>
+                <div class="grid items-center gap-10 pt-6 pb-10 sm:pt-9 sm:pb-14 lg:grid-cols-5 lg:gap-14">
+                    <div class="lg:col-span-2">
+                        <p class="text-sm font-semibold tracking-widest text-primary-500 uppercase dark:text-primary-400">
+                            {{ project.category || t('project') }}<template v-if="year"> · {{ year }}</template>
+                        </p>
+                        <h1 class="mt-4 text-5xl leading-none font-semibold tracking-tighter text-slate-900 lg:text-7xl dark:text-brand-50">
+                            {{ project.title }}
+                        </h1>
+                        <p v-if="project.description" class="mt-5.5 max-w-135 text-base/relaxed text-slate-600 sm:text-lg/relaxed dark:text-slate-300">
+                            {{ project.description }}
+                        </p>
+                        <ul v-if="stack.length" class="mt-6 flex flex-wrap gap-2">
+                            <li v-for="item in stack" :key="item"
+                                class="rounded-full border border-slate-900/10 bg-white px-2.75 py-1.5 text-xs text-slate-600 dark:border-white/10 dark:bg-brand-900 dark:text-slate-300">
+                                {{ item }}
+                            </li>
+                        </ul>
+                        <div v-if="project.links?.live || project.links?.github || project.links?.behance" class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                            <a v-if="project.links?.live" :href="project.links.live" target="_blank" rel="noopener noreferrer"
+                                class="group inline-flex h-14 items-center justify-between gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950">
+                                {{ t('links.liveButton') }}
+                                <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
+                                    <Icon name="lucide:arrow-up-right" class="transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+                                </span>
+                            </a>
+                            <a v-for="link in secondaryLinks" :key="link.label" :href="link.href" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400">
+                                {{ link.label }}
+                                <Icon name="lucide:arrow-up-right" aria-hidden="true" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Zrzut w oknie przeglądarki, telefon na pierwszym planie w prawym dolnym rogu -->
+                    <div v-if="project.cover" class="relative lg:col-span-3" :class="project.cover.phone && 'pr-10 pb-9 sm:pr-16 sm:pb-12'">
+                        <ProjectsBrowserFrame :src="project.cover.desktop" :alt="project.cover.alt || project.title" :address="address"
+                            sizes="xs:100vw lg:60vw" loading="eager" fetchpriority="high" />
+                        <ProjectsPhoneFrame v-if="project.cover.phone" :src="project.cover.phone" alt=""
+                            sizes="xs:110px sm:190px" loading="eager"
+                            class="absolute right-0 bottom-0 w-27.5 sm:w-47.5" />
+                    </div>
+                </div>
             </div>
         </header>
 
-        <article v-if="hasBody(project)" class="prose max-w-none">
-            <ContentRenderer :value="project" />
-        </article>
+        <SectionsHomeProof v-if="project.facts?.length" :items="project.facts" />
 
-        <section v-if="caseStudies.length" class="flex flex-col gap-4">
-            <h2 class="text-xl font-bold">{{ t('caseStudy') }}</h2>
-            <ul class="grid gap-4">
-                <li v-for="post in caseStudies" :key="post.path">
-                    <NuxtLink :to="post.path"
-                        class="block group border border-slate-200 dark:border-slate-700 rounded-xl p-5 transition-colors hover:border-sky-500">
-                        <small>{{ formatDate(post.date, locale) }}</small>
-                        <h3 class="mt-1 font-semibold group-hover:text-sky-500">{{ post.title }}</h3>
-                        <p class="mt-1 text-sm">{{ post.description }}</p>
-                    </NuxtLink>
-                </li>
-            </ul>
+        <section v-if="hasBody(project)" class="pt-20 md:pt-28 lg:pt-32">
+            <div class="container grid gap-5 lg:grid-cols-5 lg:gap-14">
+                <div class="lg:col-span-2">
+                    <p class="text-sm font-semibold tracking-widest text-primary-500 uppercase dark:text-primary-400">{{ t('about.kicker') }}</p>
+                    <h2 class="mt-3 text-3xl font-medium tracking-tight text-slate-900 lg:text-5xl dark:text-brand-50">{{ t('about.title') }}</h2>
+                </div>
+                <article class="prose max-w-170 lg:col-span-3 lg:prose-lg prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
+                    <ContentRenderer :value="project" />
+                </article>
+            </div>
         </section>
 
-        <section v-if="relatedArticles.length" class="flex flex-col gap-4">
-            <h2 class="text-xl font-bold">{{ t('relatedPosts') }}</h2>
-            <ul class="grid gap-4">
-                <li v-for="post in relatedArticles" :key="post.path">
-                    <NuxtLink :to="post.path"
-                        class="block group border border-slate-200 dark:border-slate-700 rounded-xl p-5 transition-colors hover:border-sky-500">
-                        <small>{{ formatDate(post.date, locale) }}</small>
-                        <h3 class="mt-1 font-semibold group-hover:text-sky-500">{{ post.title }}</h3>
-                        <p class="mt-1 text-sm">{{ post.description }}</p>
-                    </NuxtLink>
-                </li>
-            </ul>
+        <section v-if="relatedPosts?.length" class="pt-20 md:pt-28 lg:pt-32">
+            <div class="container">
+                <CommonSectionHead :title="t('posts.title')" :lead="t('posts.lead')" />
+                <!-- Case study na całą szerokość (okładka obok tekstu, jak pierwszy wpis na /blog), pozostałe wpisy po trzy w rzędzie -->
+                <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:mt-10 lg:grid-cols-3">
+                    <li v-for="post in orderedPosts" :key="post.path" :class="post.kind === 'case-study' && 'md:col-span-2 lg:col-span-3'">
+                        <CommonPostCard :post="post" :featured="post.kind === 'case-study'" />
+                    </li>
+                </ul>
+            </div>
         </section>
 
-        <p>
-            <NuxtLink :to="localLink('/projects#archive')" class="text-sky-500 underline underline-offset-4">
+        <p class="container pt-14 pb-22 lg:pb-27.5">
+            <NuxtLink :to="localLink('/projects#archive')" class="inline-flex items-center gap-2 font-medium text-primary-500 hover:underline underline-offset-4 dark:text-primary-400">
                 {{ t('allProjects') }}
             </NuxtLink>
         </p>
-    </section>
+    </div>
 
     <!-- Project exists but only has basic info — no dedicated page -->
     <section v-else-if="project" class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30">
@@ -169,19 +203,23 @@ if (project.value && hasOwnPage.value) {
 {
     "en": {
         "meta": { "fallbackTitle": "Project – Łukasz Dzieło" },
-        "links": { "live": "Website" },
+        "links": { "live": "Website", "liveButton": "See it live", "github": "Code on GitHub" },
         "agency": "Agency: {agency}",
-        "caseStudy": "Case study",
-        "relatedPosts": "Posts about this project",
+        "breadcrumb": { "label": "Breadcrumb", "home": "Home", "projects": "Projects" },
+        "project": "Project",
+        "about": { "kicker": "About the project", "title": "What I built" },
+        "posts": { "title": "Case study and posts", "lead": "How it was made, what went wrong and what I learned." },
         "allProjects": "← All projects",
         "noPage": "This project doesn't have its own page – you'll find it in the project archive."
     },
     "pl": {
         "meta": { "fallbackTitle": "Projekt – Łukasz Dzieło" },
-        "links": { "live": "Strona" },
+        "links": { "live": "Strona", "liveButton": "Zobacz na żywo", "github": "Kod na GitHubie" },
         "agency": "Agencja: {agency}",
-        "caseStudy": "Case study",
-        "relatedPosts": "Wpisy o tym projekcie",
+        "breadcrumb": { "label": "Okruszki", "home": "Strona główna", "projects": "Projekty" },
+        "project": "Projekt",
+        "about": { "kicker": "O projekcie", "title": "Co zbudowałem" },
+        "posts": { "title": "Case study i wpisy", "lead": "Jak to powstało, co poszło nie tak i czego się nauczyłem." },
         "allProjects": "← Wszystkie projekty",
         "noPage": "Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów."
     }
