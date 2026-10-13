@@ -22,12 +22,31 @@ const props = withDefaults(
 
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
-const { lang } = useContentLocale()
+const { col, lang, withoutLocale } = useContentLocale()
+
+// Projekty z własną stroną (treść w index.md albo opublikowany wpis o projekcie) – jak w archiwum.
+// Kafelek takiego projektu prowadzi do jego strony (→), pozostałe do wersji na żywo (↗).
+// Rozpoznajemy po tytule, więc gdy projekt dostanie stronę, kafelek przełączy się sam.
+const { data: contentProjects } = await useAsyncData(`featured-pages-${lang.value}`, () =>
+  queryCollection(col('projects')).where('draft', '=', false).all(),
+)
+const { data: linkedProjectPaths } = await useLinkedProjectPaths()
+const pages = computed(() => {
+  const linked = new Set(linkedProjectPaths.value ?? [])
+  const map = new Map<string, string>()
+  for (const p of contentProjects.value ?? []) {
+    if (hasBody(p) || linked.has(withoutLocale(p.path))) map.set(p.title.toLocaleLowerCase(lang.value), p.path)
+  }
+  return map
+})
 
 // date/hidden służą tylko do sortowania i filtrowania – nie przekazujemy ich do kafelka
 // (computed – opisy przełączają się razem z językiem)
 const projects = computed(() =>
-  visibleFeaturedProjects(lang.value).map(({ date: _date, hidden: _hidden, ...tile }) => tile),
+  visibleFeaturedProjects(lang.value).map(({ date: _date, hidden: _hidden, ...tile }) => ({
+    ...tile,
+    to: tile.to ?? pages.value.get(tile.title.toLocaleLowerCase(lang.value)),
+  })),
 )
 const scroller = useTemplateRef<HTMLElement>('scroller')
 
