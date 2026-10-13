@@ -15,6 +15,7 @@ const props = defineProps<{
   imageDark?: string // zrzut ciemnej wersji strony – podmieniany w ciemnym motywie
   to?: string // podstrona projektu (gdy powstanie) – wtedy klikalny jest cały kafelek
   href?: string // strona na produkcji – link ma tylko niebieska strzałka (nowa karta)
+  eager?: boolean // zrzut ładowany od razu (kafelek widoczny w hero); domyślnie leniwie
 }>()
 
 const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
@@ -64,7 +65,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         <NuxtLink v-if="to" :to="to" class="after:absolute after:inset-0 after:z-2 after:content-['']">{{ title }}</NuxtLink>
         <template v-else>{{ title }}</template>
       </h3>
-      <p class="mt-[2.8cqw] max-w-[92%] text-[max(0.875rem,3.7cqw)]/[1.35] text-slate-600 dark:text-slate-300">{{ description }}</p>
+      <p class="mt-[2.8cqw] max-w-[92%] text-[max(0.875rem,3.7cqw)]/snug text-slate-600 dark:text-slate-300">{{ description }}</p>
     </div>
 
     <!-- Okno przeglądarki wychodzące poza kafelek -->
@@ -84,6 +85,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
             sizes="xs:90vw md:45vw lg:30vw"
             width="960"
             height="558"
+            :loading="eager ? 'eager' : 'lazy'"
             class="block size-full object-cover object-top"
             :class="{ 'dark:hidden': imageDark }"
           />
@@ -94,6 +96,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
             sizes="xs:90vw md:45vw lg:30vw"
             width="960"
             height="558"
+            loading="lazy"
             class="hidden size-full object-cover object-top dark:block"
           />
         </template>

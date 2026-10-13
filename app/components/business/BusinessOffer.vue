@@ -28,7 +28,7 @@ const promoBadge = promoOn ? `${promo.label} do ${promoUntilLabel()}` : ''
           <p class="text-xs font-semibold tracking-widest uppercase" :class="plan.highlight ? 'text-primary-400 dark:text-primary-500' : 'text-primary-500 dark:text-primary-400'">
             {{ plan.name }}
           </p>
-          <h3 class="mt-3 text-2xl/tight font-medium tracking-tight">{{ plan.title }}</h3>
+          <h3 class="mt-3 text-2xl font-medium tracking-tight">{{ plan.title }}</h3>
           <p class="mt-3 text-sm/relaxed opacity-75">{{ plan.text }}</p>
           <ul class="mt-6 space-y-3 text-sm/relaxed">
             <li v-for="item in plan.items" :key="item" class="flex gap-2.5">

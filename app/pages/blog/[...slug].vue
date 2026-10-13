@@ -28,7 +28,7 @@ useSeoMeta({
     <section v-if="post && hasBody(post)"
         class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30">
         <header class="flex flex-col gap-4 mb-8 sm:mb-10">
-            <h1 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-balance">
+            <h1 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold">
                 {{ post.title }}
             </h1>
 
@@ -54,7 +54,7 @@ useSeoMeta({
 
         <NuxtLink v-if="relatedProject" :to="relatedProject.path"
             class="group flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-8 sm:mb-10 transition-colors hover:border-sky-500">
-            <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px"
+            <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px" loading="lazy"
                 class="w-24 shrink-0 rounded-md aspect-video object-cover object-top bg-white" />
             <div class="flex flex-col gap-0.5">
                 <small class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
@@ -66,7 +66,7 @@ useSeoMeta({
             </div>
         </NuxtLink>
 
-        <article class="prose max-w-none text-pretty">
+        <article class="prose max-w-none">
             <ContentRenderer :value="post" />
         </article>
     </section>

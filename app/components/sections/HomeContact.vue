@@ -23,7 +23,7 @@ const business = computed(() => props.variant === 'business')
         />
 
         <div class="relative">
-          <h2 class="text-3xl/[1.1] font-medium tracking-tight text-balance lg:text-5xl/[1.1]">
+          <h2 class="text-3xl font-medium tracking-tight lg:text-5xl">
             {{ business ? businessContact.title : 'Masz projekt do zrobienia?' }}
           </h2>
           <p class="mt-3.5 max-w-115 text-base/relaxed opacity-75">

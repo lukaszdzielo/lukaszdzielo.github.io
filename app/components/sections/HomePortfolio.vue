@@ -79,7 +79,8 @@ if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShad
               class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 shadow-[0_30px_60px_-20px_rgb(8_14_40/0.45)]"
               aria-hidden="true"
             />
-            <CommonProjectTile v-bind="project" />
+            <!-- ten kafelek widać od razu w hero, więc jego zrzut ładuje się bez czekania -->
+            <CommonProjectTile v-bind="project" eager />
           </div>
           <CommonProjectTile v-else v-bind="project" />
         </li>

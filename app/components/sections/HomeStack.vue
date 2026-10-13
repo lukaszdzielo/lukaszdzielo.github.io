@@ -69,7 +69,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
               </span>
             </li>
           </ul>
-          <p v-if="learningNote" class="text-sm/normal text-slate-500 dark:text-slate-400">{{ learningNote }}</p>
+          <p v-if="learningNote" class="text-sm text-slate-500 dark:text-slate-400">{{ learningNote }}</p>
         </div>
       </div>
     </div>

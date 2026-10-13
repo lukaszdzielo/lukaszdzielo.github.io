@@ -6,7 +6,7 @@ stack: [Vue 3, Composition API, Inertia.js, Tailwind CSS, PrimeVue]
 ---
 
 #image
-:common-picture{src="/avatar/portrait.avif" sizes="xs:100vw md:70vw lg:55vw" width="1915" height="1915" alt="Ilustracja: Łukasz Dzieło"}
+:common-picture{src="/avatar/portrait.avif" sizes="xs:100vw md:70vw lg:55vw" width="1915" height="1915" alt="Ilustracja: Łukasz Dzieło" fetchpriority="high"}
 
 #description
 Buduję przejrzyste, responsywne interfejsy w Vue 3 – komponenty wielokrotnego użytku, stan i integracje z API. Na co dzień piszę z Composition API, Inertia.js i Tailwindem.
@@ -97,7 +97,7 @@ hobbies: 'na półce fantasy i książki młodzieżowe, wieczorami z żoną plan
 ---
 
 #image
-:common-picture{src="/avatar/workspace-front.avif" sizes="xs:100vw sm:80vw lg:40vw" width="2048" height="2048" alt="Ilustracja: Łukasz przy biurku pracuje na laptopie"}
+:common-picture{src="/avatar/workspace-front.avif" sizes="xs:100vw sm:80vw lg:40vw" width="2048" height="2048" alt="Ilustracja: Łukasz przy biurku pracuje na laptopie" loading="lazy"}
 
 #title
 O mnie

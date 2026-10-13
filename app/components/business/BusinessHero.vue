@@ -15,7 +15,7 @@ const latest = visibleFeaturedProjects()
 
     <div class="container grid items-center gap-12 pt-10 pb-6 lg:min-h-160 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-10 lg:pt-6">
       <div>
-        <h1 class="text-4xl leading-[1.05] font-semibold tracking-tighter text-balance text-slate-900 motion-safe:animate-fade-up sm:text-5xl lg:text-6xl dark:text-brand-50">
+        <h1 class="text-4xl leading-none font-semibold tracking-tighter text-slate-900 motion-safe:animate-fade-up sm:text-5xl lg:text-6xl dark:text-brand-50">
           {{ businessHero.title }} <span class="text-primary-500 dark:text-primary-400">{{ businessHero.accent }}</span>
         </h1>
         <p class="mt-5.5 max-w-135 text-base/relaxed text-slate-600 motion-safe:animate-fade-up motion-safe:[animation-delay:120ms] dark:text-slate-300">
@@ -41,7 +41,7 @@ const latest = visibleFeaturedProjects()
         <dl class="mt-10 grid max-w-135 grid-cols-3 gap-4 border-t border-slate-900/10 pt-6 motion-safe:animate-fade-up motion-safe:[animation-delay:280ms] dark:border-white/10">
           <div v-for="fact in businessHero.facts" :key="fact.value">
             <dt class="text-xl font-medium tracking-tight text-slate-900 sm:text-2xl dark:text-brand-50">{{ fact.value }}</dt>
-            <dd class="mt-1 text-xs/snug text-slate-500 sm:text-sm/snug dark:text-slate-400">{{ fact.text }}</dd>
+            <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">{{ fact.text }}</dd>
           </div>
         </dl>
       </div>
