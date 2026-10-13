@@ -141,12 +141,10 @@ if (project.value && hasOwnPage.value) {
         <SectionsHomeProof v-if="project.facts?.length" :items="project.facts" />
 
         <section v-if="hasBody(project)" class="pt-20 md:pt-28 lg:pt-32">
-            <div class="container grid gap-5 lg:grid-cols-5 lg:gap-14">
-                <div class="lg:col-span-2">
-                    <p class="text-sm font-semibold tracking-widest text-primary-500 uppercase dark:text-primary-400">{{ t('about.kicker') }}</p>
-                    <h2 class="mt-3 text-3xl font-medium tracking-tight text-slate-900 lg:text-5xl dark:text-brand-50">{{ t('about.title') }}</h2>
-                </div>
-                <article class="prose max-w-170 lg:col-span-3 lg:prose-lg prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
+            <div class="container">
+                <h2 class="text-3xl font-medium tracking-tight text-slate-900 lg:text-5xl dark:text-brand-50">{{ t('about.title') }}</h2>
+                <!-- Treść z pliku md: akapit w wygodnej szerokości, lista jako kafelki z ✓ (style: .project-body w main.css) -->
+                <article class="project-body prose mt-6 max-w-none lg:mt-8 lg:prose-lg prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
                     <ContentRenderer :value="project" />
                 </article>
             </div>
@@ -222,7 +220,7 @@ if (project.value && hasOwnPage.value) {
         "links": { "live": "Website", "liveButton": "See it live", "github": "Code on GitHub" },
         "agency": "Agency: {agency}",
         "breadcrumb": { "label": "Breadcrumb", "home": "Home", "projects": "Projects" },
-        "about": { "kicker": "About the project", "title": "What I built" },
+        "about": { "title": "What I built" },
         "gallery": { "title": "How it looks", "lead": "Screenshots of the live project – click one to see it bigger." },
         "compare": { "title": "Before and after", "lead": "Drag the slider – the old site is on the left, the new one on the right." },
         "posts": { "title": "Case study and posts", "lead": "How it was made, what went wrong and what I learned." },
@@ -234,7 +232,7 @@ if (project.value && hasOwnPage.value) {
         "links": { "live": "Strona", "liveButton": "Zobacz na żywo", "github": "Kod na GitHubie" },
         "agency": "Agencja: {agency}",
         "breadcrumb": { "label": "Okruszki", "home": "Strona główna", "projects": "Projekty" },
-        "about": { "kicker": "O projekcie", "title": "Co zbudowałem" },
+        "about": { "title": "Co zbudowałem" },
         "gallery": { "title": "Jak to wygląda", "lead": "Zrzuty z działającego projektu – kliknij zrzut, żeby go powiększyć." },
         "compare": { "title": "Przed i po", "lead": "Przeciągnij suwak – po lewej stara strona, po prawej nowa." },
         "posts": { "title": "Case study i wpisy", "lead": "Jak to powstało, co poszło nie tak i czego się nauczyłem." },

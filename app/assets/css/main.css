@@ -131,3 +131,23 @@ body {
   --glow-2: rgb(76 116 255 / 0.1);
   --glow-3: transparent;
 }
+
+/* Strona projektu – treść z pliku md („Co zbudowałem”): akapit w wygodnej szerokości do czytania,
+   podtytuł mniejszy, a lista jako kafelki z ✓ – 1 kolumna, od sm 2, od lg 3 (bez pustej bocznej kolumny). */
+/* (ContentRenderer owija treść w <div>, więc bez „>”) */
+.project-body p {
+  @apply max-w-3xl;
+}
+.project-body h2 {
+  @apply mt-10 mb-5 text-xl font-semibold tracking-tight lg:text-2xl;
+}
+.project-body ul {
+  @apply my-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3;
+}
+.project-body li {
+  @apply relative m-0 rounded-2xl border border-slate-900/10 bg-white py-4.5 pr-5 pl-13 text-base/relaxed shadow-sm dark:border-white/10 dark:bg-brand-900;
+}
+.project-body li::before {
+  content: '✓';
+  @apply absolute top-4.5 left-4.5 grid size-6 place-items-center rounded-full bg-primary-500/10 text-sm font-bold text-primary-500 dark:bg-primary-400/15 dark:text-primary-400;
+}
