@@ -103,9 +103,11 @@ hobbies: "fantasy and YA books on the shelf, board games with my wife in the eve
 About me
 
 #default
-Right after high school I went straight to work and jumped into code – plain HTML sites with Bootstrap and my first jQuery scripts, which a back-end developer hooked up to his own CMS. Then came WordPress: Enfold, Jupiter, Bridge, Divi, and today plain Gutenberg. I studied graphic design, but even as a UX/UI designer I kept drifting back to programming, until I came back to it for good 🙂
+Right after high school I went straight to work and jumped into code – plain HTML sites with Bootstrap and my first jQuery scripts, which a back-end developer hooked up to his own CMS. WordPress came later, and so did a degree in graphic design – but even as a UX/UI designer I kept drifting back to programming, until I came back to it for good 🙂
 
-**I like analyzing problems and designing new solutions**, hunting for bugs and for parts of the code that don't add up. I'm comfortable starting a project from scratch, and just as comfortable getting into code someone else started.
+**Writing JavaScript is the part I like most.** For the last year I have been doing it commercially in Vue 3: reusable components, application state and API integrations in e-cargo, plus a shared component library for the team. I care about code that is easy to read and to keep alive – without shortcuts that hurt someone else six months later.
+
+I like analyzing problems and designing new solutions, hunting for bugs and for parts of the code that don't add up. I'm comfortable starting a project from scratch, and just as comfortable getting into code someone else started. TypeScript and tests are next on my list – I want to write front-end that is safe to change.
 ::
 
 <!-- Blog
