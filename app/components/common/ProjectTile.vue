@@ -13,7 +13,7 @@ const props = defineProps<{
   mock?: string
   image?: string
   imageDark?: string // zrzut ciemnej wersji strony – podmieniany w ciemnym motywie
-  to?: string // podstrona projektu (gdy powstanie) – wtedy klikalny jest cały kafelek
+  to?: string // strona projektu (gdy jest) – wtedy klikalny jest cały kafelek, strzałka →
   href?: string // strona na produkcji – link ma tylko niebieska strzałka (nowa karta)
   hrefLabel?: string // opis strzałki dla czytników ekranu, gdy link nie prowadzi do strony (np. Behance)
   eager?: boolean // zrzut ładowany od razu (kafelek widoczny w hero); domyślnie leniwie
@@ -24,8 +24,8 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
 </script>
 
 <template>
-  <!-- Kafelek sam w sobie nie jest linkiem. Strona na produkcji – tylko strzałka.
-       Gdy projekt dostanie podstronę (to), link jest na tytule i rozciąga się na cały kafelek. -->
+  <!-- Kafelek sam w sobie nie jest linkiem. Strona na produkcji – tylko strzałka ↗.
+       Gdy projekt ma swoją stronę (to), link jest na tytule i rozciąga się na cały kafelek. -->
   <article
     class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 dark:border-white/10 dark:text-brand-50"
     :class="{ 'hover:shadow-xl hover:shadow-slate-900/10 dark:hover:shadow-black/40': to }"
@@ -45,8 +45,18 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
             {{ chip }}
           </li>
         </ul>
+        <!-- Projekt z własną stroną: strzałka → (zostajemy na stronie, klikalny cały kafelek).
+             Bez strony: ↗ do działającej strony w nowej karcie. Gdy są oba, wygrywa strona projektu –
+             link do wersji na żywo jest na niej (przycisk „Zobacz na żywo”). -->
+        <span
+          v-if="to"
+          class="grid size-(--ch) shrink-0 place-items-center rounded-full bg-primary-500 text-sm text-white dark:bg-primary-400 dark:text-brand-950"
+          aria-hidden="true"
+        >
+          <Icon name="lucide:arrow-right" class="transition-transform duration-300 motion-safe:group-hover:translate-x-0.5" />
+        </span>
         <a
-          v-if="href"
+          v-else-if="href"
           :href="href"
           target="_blank"
           rel="noopener noreferrer"
@@ -55,13 +65,6 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         >
           <Icon name="lucide:arrow-up-right" aria-hidden="true" />
         </a>
-        <span
-          v-else-if="to"
-          class="grid size-(--ch) shrink-0 place-items-center rounded-full bg-primary-500 text-sm text-white transition-transform duration-300 group-hover:rotate-45 dark:bg-primary-400 dark:text-brand-950"
-          aria-hidden="true"
-        >
-          <Icon name="lucide:arrow-up-right" />
-        </span>
       </div>
       <h3 class="mt-[7cqw] text-[10cqw] leading-none font-semibold tracking-tighter">
         <NuxtLink v-if="to" :to="to" class="after:absolute after:inset-0 after:z-2 after:content-['']">{{ title }}</NuxtLink>
