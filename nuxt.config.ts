@@ -76,7 +76,6 @@ export default defineNuxtConfig({
       },
       title: SITE_TITLE,
       link: [
-        { rel: 'canonical', href: SITE_URL },
         { rel: 'icon', type: 'image/png', href: '/favicon/favicon-96x96.png', sizes: '96x96' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon/favicon.svg' },
         { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
@@ -95,7 +94,6 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: SITE_NAME },
         { property: 'og:title', content: SITE_TITLE },
         { property: 'og:description', content: SITE_DESCRIPTION },
-        { property: 'og:url', content: SITE_URL },
         { property: 'og:image', content: OG_IMAGE },
         { property: 'og:image:type', content: 'image/jpeg' },
         { property: 'og:image:width', content: '1200' },
@@ -104,8 +102,6 @@ export default defineNuxtConfig({
         { property: 'og:locale', content: 'pl_PL' },
 
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: SITE_TITLE },
-        { name: 'twitter:description', content: SITE_DESCRIPTION },
         { name: 'twitter:image', content: OG_IMAGE },
         { name: 'twitter:image:alt', content: `Awatar – ${SITE_NAME}, ${SITE_ROLE}` }
       ],
@@ -147,6 +143,25 @@ export default defineNuxtConfig({
       nitro.options.publicAssets = nitro.options.publicAssets.filter(
         (asset) => path.resolve(asset.dir) !== imagesDir
       );
+
+      // sitemap.xml: wszystkie wygenerowane strony HTML poza noindex (projekty bez podstrony, 404)
+      // i przekierowaniami. Adresy z ukośnikiem na końcu – tak jak serwuje je GitHub Pages.
+      const sitemap = new Set<string>();
+      nitro.hooks.hook('prerender:route', (route) => {
+        if (route.error || !route.fileName?.endsWith('.html') || route.route.includes('?')) return;
+        if (['/200.html', '/404.html'].includes(route.fileName)) return;
+        const html = route.contents || '';
+        if (/<meta[^>]+name="robots"[^>]+noindex/.test(html) || /http-equiv="refresh"/i.test(html)) return;
+        sitemap.add(route.route === '/' ? '/' : `${route.route.replace(/\/+$/, '')}/`);
+      });
+      nitro.hooks.hook('prerender:done', () => {
+        const base = SITE_URL.replace(/\/$/, '');
+        const urls = [...sitemap].sort().map((r) => `  <url><loc>${base}${r}</loc></url>`).join('\n');
+        fs.writeFileSync(
+          path.join(nitro.options.output.publicDir, 'sitemap.xml'),
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+        );
+      });
     }
   },
   modules: ['@nuxt/content', '@nuxt/image', '@nuxt/icon'],

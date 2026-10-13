@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site';
+
 const route = useRoute();
 
 const { data: post } = await useAsyncData('blog-' + route.path, () =>
@@ -18,10 +20,22 @@ const { data: relatedProject } = await useAsyncData('blog-project-' + route.path
         .first();
 });
 
-useSeoMeta({
+useSiteMeta({
     title: post.value?.title ? `${post.value.title} – Łukasz Dzieło` : 'Wpis – Łukasz Dzieło',
     description: post.value?.description || undefined,
 });
+
+if (post.value) {
+    useJsonLd('post', {
+        '@type': 'BlogPosting',
+        headline: post.value.title,
+        description: post.value.description || undefined,
+        datePublished: post.value.date || undefined,
+        inLanguage: 'pl-PL',
+        mainEntityOfPage: pageUrl(route.path),
+        author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
+    });
+}
 </script>
 
 <template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PERSON_ID, SITE_NAME, pageUrl } from '~/data/site';
+
 const route = useRoute();
 
 const { data: project } = await useAsyncData('project-' + route.path, () =>
@@ -31,11 +33,26 @@ const externalLinks = computed(() => [
     { label: 'GitHub', href: project.value?.links?.github },
 ].filter((link): link is { label: string; href: string } => Boolean(link.href)));
 
-useSeoMeta({
+useSiteMeta({
     title: project.value?.title ? `${project.value.title} – Łukasz Dzieło` : 'Projekt – Łukasz Dzieło',
     description: project.value?.description || undefined,
     ...(project.value && !hasOwnPage.value ? { robots: 'noindex, follow' } : {}),
 });
+
+// Dane strukturalne – tylko dla projektów z własną podstroną (pozostałe mają noindex)
+if (project.value && hasOwnPage.value) {
+    useJsonLd('project', {
+        '@type': 'CreativeWork',
+        name: project.value.title,
+        description: project.value.description || undefined,
+        dateCreated: project.value.date || undefined,
+        keywords: project.value.tags?.join(', ') || undefined,
+        url: pageUrl(route.path),
+        inLanguage: 'pl-PL',
+        author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME },
+        ...(project.value.links?.live ? { sameAs: project.value.links.live } : {}),
+    });
+}
 </script>
 
 <template>

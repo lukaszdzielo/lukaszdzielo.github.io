@@ -27,7 +27,7 @@ const rest = computed(() => (props.page === 1 ? posts.value?.slice(1) : posts.va
 const from = computed(() => blogSkip(props.page) + 1)
 const to = computed(() => blogSkip(props.page) + (posts.value?.length ?? 0))
 
-useSeoMeta({
+useSiteMeta({
   title: props.page === 1 ? 'Wpisy – Łukasz Dzieło' : `Wpisy – strona ${props.page} z ${pages.value} – Łukasz Dzieło`,
   description: 'Case study i krótsze wpisy – o tym, co zbudowałem, poprawiłem i czego się nauczyłem.',
 })
@@ -82,7 +82,7 @@ useSeoMeta({
           <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
         </span>
         <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">Aktualnie brak wpisów</p>
-        <p class="max-w-md text-[0.9375rem]/relaxed text-slate-500 dark:text-slate-400">
+        <p class="max-w-md text-base/relaxed text-slate-500 dark:text-slate-400">
           Pierwsze case study i wpisy o tym, nad czym pracuję, pojawią się tutaj wkrótce.
         </p>
         <NuxtLink to="/projects" class="mt-2 font-medium text-primary-500 dark:text-primary-400">Zobacz projekty →</NuxtLink>

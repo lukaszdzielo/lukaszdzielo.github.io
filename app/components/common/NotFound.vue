@@ -58,7 +58,7 @@ const { data: latest } = await useAsyncData('not-found-posts', () =>
 )
 const suggestions = computed(() => (variant.value === 'post' ? latest.value ?? [] : []))
 
-useSeoMeta({
+useSiteMeta({
   title: variant.value === 'error' ? 'Błąd – Łukasz Dzieło' : 'Nie znaleziono strony – Łukasz Dzieło',
   robots: 'noindex, follow',
 })

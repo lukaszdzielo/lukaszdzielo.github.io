@@ -137,9 +137,6 @@ You can find an example of querying contents and rendering them in a [catch-all 
 
 Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more. -->
 
-<!-- ::sections-footer-cta
-:: -->
-
 ::sections-home-posts
 ::
 
