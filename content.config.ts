@@ -53,7 +53,9 @@ const projectSchema = z.object({
   agency: z.string().optional(),
   // Pola strony projektu (tylko projekty z własną stroną):
   // stack – technologie pod opisem, facts – pasek z liczbami pod hero,
-  // cover – zrzut w ramce przeglądarki (+ telefon) obok tytułu, gallery – sekcja „Jak to wygląda”
+  // cover – zrzut w ramce przeglądarki (+ telefon) obok tytułu, gallery – sekcja „Jak to wygląda”,
+  // ogImage – obrazek podglądu linku 1200×630 z /public (np. /og/projects/pokedex-pl.jpg);
+  // bez niego strona projektu dostaje obrazek strony głównej
   stack: z.array(z.string()).optional(),
   facts: z.array(z.object({
     value: z.string(),
@@ -65,6 +67,7 @@ const projectSchema = z.object({
     phone: z.string().optional(),
     alt: z.string().optional(),
   }).optional(),
+  ogImage: z.string().optional(),
   gallery: z.array(z.object({
     src: z.string(),
     alt: z.string(),
