@@ -100,10 +100,10 @@ export default defineNuxtConfig({
         { name: 'description', content: SITE_DESCRIPTION },
         { name: 'author', content: SITE_NAME },
         { name: 'robots', content: 'index, follow' },
-        // kolor paska przeglądarki (telefony) – tło strony w jasnym i ciemnym trybie systemu
-        { name: 'theme-color', content: '#edf0f6', media: '(prefers-color-scheme: light)' },
-        { name: 'theme-color', content: '#0a1227', media: '(prefers-color-scheme: dark)' },
-        { name: 'color-scheme', content: 'light dark' },
+        // Strona jest tylko w ciemnym motywie (próba) – kolor paska przeglądarki i pola
+        // formularzy mają być ciemne niezależnie od ustawień systemu.
+        { name: 'theme-color', content: '#0a1227' },
+        { name: 'color-scheme', content: 'dark' },
 
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: SITE_NAME },
@@ -122,8 +122,10 @@ export default defineNuxtConfig({
       script: [
         { innerHTML: LANG_REDIRECT, tagPosition: 'head' },
         {
-          // Przed pierwszym malowaniem: klasa .dark i data-mode (auto/light/dark) – ikona przełącznika motywu nie skacze
-          innerHTML: `(()=>{const r=document.documentElement;try{const t=localStorage.getItem('theme');r.dataset.mode=t==='light'||t==='dark'?t:'auto';const d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)r.classList.add('dark');}catch(e){r.dataset.mode='auto'}})();`,
+          // Ciemny motyw na stałe (próba): klasa .dark jeszcze przed pierwszym malowaniem.
+          // Stare ustawienie z przełącznika (localStorage 'theme') jest kasowane, żeby nikomu
+          // nie został jasny motyw. Powrót do jasnego/ciemnego: cofnąć ten commit.
+          innerHTML: `(()=>{const r=document.documentElement;r.classList.add('dark');r.dataset.mode='dark';try{localStorage.removeItem('theme')}catch(e){}})();`,
           tagPosition: 'head',
         },
         // Google Analytics ładuje się dopiero po zgodzie – app/plugins/analytics.client.ts
