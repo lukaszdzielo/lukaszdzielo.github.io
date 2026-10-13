@@ -114,15 +114,20 @@ body {
   @apply mx-auto w-full max-w-360 px-pad;
 }
 
-/* Poświata za portretem w hero – jak w projekcie (jasna plama za postacią + delikatny niebieski u góry z lewej) */
+/* Poświata za portretem w hero – jak w projekcie (jasna plama za postacią + niebieskie przebicie).
+   W jasnym motywie sama biała plama ginęła na jasnym tle, więc pod nią jest jeszcze delikatny
+   niebieski (--glow-3); w ciemnym nie jest potrzebny, bo tam świeci już --glow-1. */
 .hero-glow {
   --glow-1: rgb(255 255 255 / 0.9);
-  --glow-2: rgb(47 107 255 / 0.07);
+  --glow-2: rgb(47 107 255 / 0.1);
+  --glow-3: rgb(47 107 255 / 0.1);
   background:
     radial-gradient(52% 44% at 72% 22%, var(--glow-1), transparent 72%),
+    radial-gradient(44% 40% at 70% 26%, var(--glow-3), transparent 70%),
     radial-gradient(40% 36% at 12% 8%, var(--glow-2), transparent 70%);
 }
 .dark .hero-glow {
   --glow-1: rgb(76 116 255 / 0.2);
   --glow-2: rgb(76 116 255 / 0.1);
+  --glow-3: transparent;
 }
