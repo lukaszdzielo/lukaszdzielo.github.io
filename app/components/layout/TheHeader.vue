@@ -1,9 +1,10 @@
 <script setup lang="ts">
 // Przyklejona nawigacja. Na samej górze strony jest przezroczysta (poświata hero przechodzi pod nią
 // bez odcięcia), po przewinięciu dostaje półprzezroczyste tło z rozmyciem i dolną linię.
-// Od 900 px: sygnet, menu, przełącznik motywu i „Kontakt”.
+// Od lg (1024 px): sygnet, menu, przełącznik motywu i „Kontakt”.
 // Poniżej: sygnet, przełącznik motywu, „Kontakt” i przycisk menu, które otwiera panel z linkami.
 // Wariant „business” (strona dla firm): menu z sekcjami oferty i przycisk „Wyceń stronę”.
+// Sygnet zawsze prowadzi do portfolio (strona główna), a napis „Strony dla firm” – na górę strony dla firm.
 import { businessMenu } from '~/data/business'
 
 const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
@@ -64,7 +65,7 @@ onMounted(() => {
   onScroll()
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('keydown', onKeydown)
-  desktop = window.matchMedia('(min-width: 900px)')
+  desktop = window.matchMedia('(min-width: 64rem)')
   desktop.addEventListener('change', onDesktop)
 })
 onBeforeUnmount(() => {
@@ -86,23 +87,32 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
     ]"
   >
     <div class="container flex items-center gap-6">
-      <NuxtLink
-        :to="business ? '/strony-dla-firm' : '/'"
-        class="inline-flex h-10 shrink-0 items-center gap-3 text-slate-900 dark:text-brand-50"
-        :aria-label="business ? 'Łukasz Dzieło – strony dla firm' : 'Łukasz Dzieło – strona główna'"
-        @click="close()"
-      >
-        <CommonAppLogo class="size-9 shrink-0" :stroke-width="13" />
-        <span v-if="business" class="hidden border-l border-slate-900/16 pl-3 text-sm text-slate-500 sm:inline dark:border-white/20 dark:text-slate-400">Strony dla firm</span>
-      </NuxtLink>
+      <div class="flex shrink-0 items-center gap-3">
+        <NuxtLink
+          to="/"
+          class="inline-flex h-10 items-center text-slate-900 dark:text-brand-50"
+          aria-label="Łukasz Dzieło – strona główna"
+          @click="close()"
+        >
+          <CommonAppLogo class="size-9 shrink-0" :stroke-width="13" />
+        </NuxtLink>
+        <NuxtLink
+          v-if="business"
+          to="/strony-dla-firm"
+          class="hidden border-l border-slate-900/16 pl-3 text-sm text-slate-500 transition-colors hover:text-slate-900 sm:inline dark:border-white/20 dark:text-slate-400 dark:hover:text-brand-50"
+          @click="close()"
+        >
+          Strony dla firm
+        </NuxtLink>
+      </div>
 
-      <nav class="mx-auto hidden gap-4.5 text-[0.84375rem] whitespace-nowrap text-slate-600 min-[900px]:flex lg:gap-7 lg:text-sm dark:text-slate-300" aria-label="Główna nawigacja">
+      <nav class="mx-auto hidden gap-7 text-sm whitespace-nowrap text-slate-600 lg:flex dark:text-slate-300" aria-label="Główna nawigacja">
         <NuxtLink v-for="item in menu" :key="item.to" :to="item.to" :class="navLink">
           {{ item.label }}
         </NuxtLink>
       </nav>
 
-      <div class="ml-auto flex items-center gap-2 min-[900px]:ml-0">
+      <div class="ml-auto flex items-center gap-2 lg:ml-0">
         <CommonColorModeToggle />
         <NuxtLink
           :to="cta.to"
@@ -119,7 +129,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
         <button
           ref="toggleBtn"
           type="button"
-          class="relative grid size-11 cursor-pointer place-items-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white min-[900px]:hidden dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
+          class="relative grid size-11 cursor-pointer place-items-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white lg:hidden dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
           :aria-expanded="open"
           aria-controls="mobile-menu"
           :aria-label="open ? 'Zamknij menu' : 'Otwórz menu'"
@@ -153,7 +163,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
       <nav
         v-if="open"
         id="mobile-menu"
-        class="absolute inset-x-0 top-full h-[calc(100dvh-100%)] overflow-y-auto overscroll-contain border-t border-slate-900/10 bg-brand-50 min-[900px]:hidden dark:border-white/10 dark:bg-brand-950"
+        class="absolute inset-x-0 top-full h-[calc(100dvh-100%)] overflow-y-auto overscroll-contain border-t border-slate-900/10 bg-brand-50 lg:hidden dark:border-white/10 dark:bg-brand-950"
         aria-label="Menu"
       >
         <ul class="container flex flex-col py-6">
