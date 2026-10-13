@@ -51,6 +51,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['Swiper', 'JavaScript', 'Twig'],
     url: 'superauto.pl',
     image: '/featured/superauto.webp',
+    hidden: true, // na głównej zastąpiony przez Sushi Show (13.10) – zostaje w archiwum projektów
   },
   {
     title: 'Pokedex',
@@ -69,15 +70,15 @@ export const featuredProjects: FeaturedProject[] = [
     url: 'coffee-recipes',
     image: '/featured/coffee-recipes.webp',
   },
-  // Niedokończony – wróci po dokończeniu (usuń `hidden`)
+  // Strona sushi mastera (Marcin Podliński). Zrzut: nowy wygląd strony.
   {
-    title: 'Marcin Podlaski',
-    description: { en: 'Portfolio with a work gallery – my first Nuxt project.', pl: 'Portfolio z galerią prac – mój pierwszy projekt w Nuxt.' },
+    title: 'Sushi Show',
+    date: '2025-04',
+    description: { en: 'Website for a sushi chef – workshops for companies and groups, catering and a list of upcoming dates.', pl: 'Strona sushi mastera – warsztaty dla firm i grup, catering i terminarz najbliższych warsztatów.' },
     chips: ['Vue 3', 'Nuxt', 'Tailwind'],
-    url: 'marcin-podlaski',
+    url: 'sushi-show',
     href: 'https://lukaszdzielo.github.io/marcin-podlinski/',
-    mock: 'podlaski',
-    hidden: true,
+    image: '/featured/sushi-show.webp',
   },
 ]
 
