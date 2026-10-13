@@ -6,6 +6,8 @@
 // Wariant „business” (strona dla firm): menu z sekcjami oferty i przycisk „Wyceń stronę”.
 // Sygnet zawsze prowadzi do portfolio (strona główna), a napis „Strony dla firm” – na górę strony dla firm.
 // Przełącznik języka: od lg obok przełącznika motywu, poniżej – w otwartym menu.
+// Przełącznik motywu: od sm w pasku, poniżej sm (np. 320 px) – w otwartym menu obok języka,
+// bo w pasku brakowało miejsca i przycisk menu dotykał krawędzi ekranu.
 import { businessMenu } from '~/data/business'
 
 const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
@@ -118,7 +120,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
 
       <div class="ml-auto flex items-center gap-2 lg:ml-0">
         <CommonLanguageSwitch class="max-lg:hidden" />
-        <CommonColorModeToggle />
+        <CommonColorModeToggle class="max-sm:hidden" />
         <NuxtLink
           :to="link(cta.to)"
           class="group inline-flex h-11 items-center gap-2.5 rounded-full bg-brand-900 py-1.75 pr-1.75 pl-4.5 text-sm font-medium whitespace-nowrap text-white dark:bg-slate-100 dark:text-brand-950"
@@ -183,8 +185,12 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
             </NuxtLink>
           </li>
         </ul>
-        <div class="container pb-6">
+        <div class="container flex flex-col gap-4 pb-6">
           <CommonLanguageSwitch variant="segmented" @switched="close()" />
+          <div class="flex items-center justify-between gap-4 text-base text-slate-600 sm:hidden dark:text-slate-300">
+            <span>{{ t('theme') }}</span>
+            <CommonColorModeToggle />
+          </div>
         </div>
         <div class="container flex flex-wrap gap-3 pb-8">
           <NuxtLink
@@ -219,7 +225,8 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "menuLabel": "Menu",
-    "portfolio": "Developer portfolio"
+    "portfolio": "Developer portfolio",
+    "theme": "Theme"
   },
   "pl": {
     "menu": { "projects": "Projekty", "services": "Współpraca", "about": "O mnie", "posts": "Wpisy" },
@@ -230,7 +237,8 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
     "openMenu": "Otwórz menu",
     "closeMenu": "Zamknij menu",
     "menuLabel": "Menu",
-    "portfolio": "Portfolio programisty"
+    "portfolio": "Portfolio programisty",
+    "theme": "Motyw"
   }
 }
 </i18n>
