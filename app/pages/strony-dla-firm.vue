@@ -85,11 +85,11 @@ useJsonLd('business', {
   "en": {
     "meta": {
       "title": "WordPress websites for small businesses – Łukasz Dzieło",
-      "description": "One-page sites and business websites on WordPress with the block editor – design, build and care. You change the content yourself."
+      "description": "One-page and business websites on WordPress with the block editor – design, build and care. You edit the content yourself."
     },
     "ld": {
       "name": "WordPress websites for small businesses",
-      "serviceType": "Design, build and care of WordPress websites"
+      "serviceType": "Design, development and care of WordPress websites"
     }
   },
   "pl": {

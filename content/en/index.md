@@ -9,21 +9,21 @@ stack: [Vue 3, Composition API, Inertia.js, Tailwind CSS, PrimeVue]
 :common-picture{src="/avatar/portrait.avif" sizes="xs:100vw md:70vw lg:55vw" width="1915" height="1915" alt="Illustration: Łukasz Dzieło" fetchpriority="high"}
 
 #description
-I build clear, responsive interfaces in Vue 3 – reusable components, state and API integrations. Every day I work with the Composition API, Inertia.js and Tailwind.
+I build clear, responsive interfaces in Vue 3 – reusable components, state management and API integrations. Day to day I work with the Composition API, Inertia.js and Tailwind.
 ::
 
 ::sections-home-proof
 ---
 items:
   - value: since 2013
-    text: in commercial projects – HTML, CSS and JavaScript
+    text: building commercially – HTML, CSS and JavaScript
   - value: '20'
     suffix: '+'
-    text: websites built for companies
+    text: websites delivered for businesses
   - value: Vue 3
     text: in production, every day at Pesi
   - value: React
-    text: learning now – then TypeScript and tests
+    text: learning now – TypeScript and testing next
 ---
 ::
 
@@ -34,21 +34,21 @@ items:
 ---
 services:
   - audience: For product teams
-    title: Front end for web apps
+    title: Front-end for web apps
     items:
       - Vue 3 with the Composition API, Inertia.js, Tailwind and PrimeVue
-      - Component libraries that follow your team's guidelines
-      - I turn Figma designs into responsive, accessible code
-      - I clean up old front-end code and keep the parts that work
+      - Component libraries built to your team's guidelines
+      - Figma designs turned into responsive, accessible code
+      - Cleaning up legacy front-end code without breaking what works
     linkLabel: See my projects
     to: '/#projects'
   - audience: For businesses
-    title: A website that brings you clients
+    title: A website that pays for itself
     items:
-      - WordPress with the block editor – you change the content yourself
-      - I do both the design and the build
+      - WordPress with the block editor – you update the content yourself
+      - Design and development by one person
       - Help with hosting and the domain – the account stays in your name
-      - 20+ websites for companies since 2013
+      - 20+ business websites since 2013
     linkLabel: See the business offer
     to: /strony-dla-firm
 ---
@@ -61,39 +61,39 @@ known: [Blade.php, Twig, WordPress + ACF, Swiper, AOS, Bootstrap, jQuery, Git, F
 learning:
   - name: React
     status: course in progress
-learningNote: 'Next: TypeScript, tests in Vitest, Node.js and React Native. My goal is full stack – from a component, through the API, to a mobile app.'
+learningNote: 'Up next: TypeScript, testing with Vitest, Node.js and React Native. The goal: full stack – from a component, through the API, to a mobile app.'
 ---
 ::
 
 ::sections-home-about
 ---
-quote: '“I work best when I can focus on the code and build good products with a team.”'
+quote: '“I work best where I can focus on the code and build good products together with a team.”'
 timeline:
   - period: Oct 2025 – now
     company: Pesi
     role: Junior Front-End Developer
-    text: I work with Vue 3, Inertia.js, Tailwind and PrimeVue. I build the front end of the e-cargo app and shared component libraries.
+    text: Vue 3, Inertia.js, Tailwind, PrimeVue; the front-end of the e-cargo app and shared component libraries.
     projects:
       - title: e-cargo
         to: /#projects
   - period: Jan 2023 – Jun 2025
     company: Arris Agency
     role: Front-End Developer
-    text: I worked on the front end of superauto.pl. I turned Figma designs into Twig / HTML / CSS / JS, made Swiper animations and refactored code.
+    text: Front-end of superauto.pl; Figma → Twig / HTML / CSS / JS, Swiper animations, refactoring.
     projects:
       - title: superauto.pl
         to: /#projects
   - period: Feb – Sep 2022
     company: ValueAdd
     role: UX/UI Designer & HTML/CSS
-    text: I made prototypes in Figma and then built them in responsive HTML/CSS.
+    text: Prototypes in Figma, then built as responsive HTML/CSS.
   - period: Jul 2013 – Feb 2022
     company: b4b marketing & eConnect4u
     role: UI Developer
-    text: I built websites in HTML, Bootstrap and jQuery. Later I moved to WordPress with ACF and CMS integrations in PHP. I worked with a team from the UK and had meetings with them.
-education: WSB University – Master's degree in Computer Science, computer graphics and multimedia (2019–2021) · WSTI Katowice – Bachelor's degree in graphic design (2014–2018)
-hobbiesLabel: "When I'm not coding:"
-hobbies: 'I read fantasy and young adult books. In the evenings I play board games with my wife, or we play Divinity: Original Sin 2 or Tekken. I also ran Runmageddon, an obstacle race. The veteran trophy and the crown now stand between my books 🏅'
+    text: Websites in HTML, Bootstrap and jQuery, later WordPress with ACF and CMS integrations in PHP; working and meeting with a team in the UK.
+education: WSB University – Master's in Computer Science, computer graphics and multimedia (2019–2021) · WSTI Katowice – Bachelor's in graphic design (2014–2018)
+hobbiesLabel: 'Outside of code:'
+hobbies: "fantasy and YA books on the shelf, board games with my wife in the evenings, Divinity: Original Sin 2 or Tekken. I've also finished Runmageddon, an obstacle race – the veteran trophy and the crown now stand among the books 🏅"
 ---
 
 #image
@@ -103,9 +103,9 @@ hobbies: 'I read fantasy and young adult books. In the evenings I play board gam
 About me
 
 #default
-After high school I started work right away and went straight into code. I built sites in plain HTML with Bootstrap and wrote my first jQuery scripts. A back-end developer connected them to his own CMS. Then I moved to WordPress: Enfold, Jupiter, Bridge, Divi, and today just Gutenberg. I studied graphic design. But even when I worked as a UX/UI designer, I always went back to programming. In the end I came back to it for good 🙂
+Right after high school I went straight to work and jumped into code – plain HTML sites with Bootstrap and my first jQuery scripts, which a back-end developer hooked up to his own CMS. Then came WordPress: Enfold, Jupiter, Bridge, Divi, and today plain Gutenberg. I studied graphic design, but even as a UX/UI designer I kept drifting back to programming, until I came back to it for good 🙂
 
-**I like to analyze problems and design new solutions.** I look for bugs and for parts of the code that don't make sense. I feel good when I start a project from zero. I also feel good when I learn code that someone else started.
+**I like analyzing problems and designing new solutions**, hunting for bugs and for parts of the code that don't add up. I'm comfortable starting a project from scratch, and just as comfortable getting into code someone else started.
 ::
 
 <!-- Blog

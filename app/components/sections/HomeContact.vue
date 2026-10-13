@@ -68,8 +68,8 @@ const biz = useLocalized(businessContact)
 <i18n lang="json">
 {
   "en": {
-    "title": "Do you have a project?",
-    "lead": "Or are you looking for someone for your team? Write a few sentences – I reply within 72 hours.",
+    "title": "Got a project in mind?",
+    "lead": "Or looking for someone to join your team? Write a few sentences – I'll reply within 72 hours.",
     "business": { "topic": "What do you need?", "message": "A few words about your project" }
   },
   "pl": {

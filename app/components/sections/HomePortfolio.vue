@@ -100,7 +100,7 @@ if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShad
 {
   "en": {
     "title": "Things I've built",
-    "lead": "Apps, commercial websites and projects where I learn new things.",
+    "lead": "Apps, commercial websites and projects I learn on.",
     "all": "All projects"
   },
   "pl": {

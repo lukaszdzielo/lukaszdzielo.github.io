@@ -79,7 +79,7 @@ const link = useLocalLink()
 {
   "en": {
     "title": "Two ways I can help",
-    "lead": "One person, two different needs. Choose the one that fits you.",
+    "lead": "One person, two different needs. Pick the one that sounds like yours.",
     "soon": "Coming soon"
   },
   "pl": {

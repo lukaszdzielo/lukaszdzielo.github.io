@@ -85,7 +85,7 @@ const link = useLocalLink()
     "soon": "Coming soon",
     "empty": {
       "title": "No posts yet",
-      "text": "The first case studies and posts about my current work will appear here soon."
+      "text": "The first case studies and posts about what I'm working on will show up here soon."
     }
   },
   "pl": {
