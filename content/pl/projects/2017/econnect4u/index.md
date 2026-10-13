@@ -6,6 +6,4 @@ image: /projects/2017/econnect4u/thumbnail.avif
 tags: [html]
 featured: true
 agency: eConnect4u
-links:
-  live: https://www.econnect4u.pl/
 ---
