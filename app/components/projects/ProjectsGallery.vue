@@ -115,7 +115,7 @@ onBeforeUnmount(() => lockScroll(false))
           :class="shot.device === 'phone' ? 'mx-auto max-w-md overflow-y-auto overscroll-contain rounded-2xl' : 'flex items-center justify-center'"
           @click.self="close"
         >
-          <!-- Telefon: zrzut to cała strona, więc przewija się w podglądzie -->
+          <!-- Telefon: wysoki zrzut (np. cała strona) przewija się w podglądzie -->
           <CommonPicture
             v-if="shot.device === 'phone'"
             :src="shot.src"
