@@ -1,12 +1,24 @@
 // Rodzaj projektu w archiwum (filtr „WordPress / HTML i CSS / JavaScript / Vue”) wyliczany z tagów.
 export type ProjectKind = 'wordpress' | 'html' | 'javascript' | 'vue'
 
-export const projectKindLabels: Record<ProjectKind, string> = {
-  wordpress: 'WordPress',
-  html: 'HTML i CSS',
-  javascript: 'JavaScript',
-  vue: 'Vue',
+// Podpisy filtrów w obu językach – komponent bierze wersję języka strony: projectKindLabel(kind, lang)
+export const projectKindLabels: Record<'en' | 'pl', Record<ProjectKind, string>> = {
+  en: {
+    wordpress: 'WordPress',
+    html: 'HTML and CSS',
+    javascript: 'JavaScript',
+    vue: 'Vue',
+  },
+  pl: {
+    wordpress: 'WordPress',
+    html: 'HTML i CSS',
+    javascript: 'JavaScript',
+    vue: 'Vue',
+  },
 }
+
+export const projectKindLabel = (kind: ProjectKind, lang: string): string =>
+  projectKindLabels[lang === 'pl' ? 'pl' : 'en'][kind]
 
 export const projectKindOrder: ProjectKind[] = ['wordpress', 'html', 'javascript', 'vue']
 

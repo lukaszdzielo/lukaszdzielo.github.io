@@ -4,6 +4,7 @@
 // Na desktopie (lg) paska już nie ma – jest zwykła siatka, więc całość się chowa.
 const props = defineProps<{ target: HTMLElement | null }>()
 
+const { t } = useI18n({ useScope: 'local' })
 const { canPrev, canNext, go } = useScrollEdges(() => props.target)
 
 const button =
@@ -14,15 +15,22 @@ const button =
   <div class="mt-3.5 flex items-center justify-between gap-4 lg:hidden">
     <p class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400" aria-hidden="true">
       <i class="block h-0.5 w-6.5 rounded-full bg-primary-500 dark:bg-primary-400" />
-      Przesuń, żeby zobaczyć więcej
+      {{ t('hint') }}
     </p>
     <div class="hidden gap-2 pointer-fine:flex">
-      <button type="button" :class="button" :disabled="!canPrev" aria-label="Poprzednie" @click="go(-1)">
+      <button type="button" :class="button" :disabled="!canPrev" :aria-label="t('prev')" @click="go(-1)">
         <Icon name="lucide:arrow-left" class="text-lg" aria-hidden="true" />
       </button>
-      <button type="button" :class="button" :disabled="!canNext" aria-label="Następne" @click="go(1)">
+      <button type="button" :class="button" :disabled="!canNext" :aria-label="t('next')" @click="go(1)">
         <Icon name="lucide:arrow-right" class="text-lg" aria-hidden="true" />
       </button>
     </div>
   </div>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "hint": "Swipe to see more", "prev": "Previous", "next": "Next" },
+  "pl": { "hint": "Przesuń, żeby zobaczyć więcej", "prev": "Poprzednie", "next": "Następne" }
+}
+</i18n>

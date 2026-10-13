@@ -19,6 +19,7 @@ const props = defineProps<{
   eager?: boolean // zrzut ładowany od razu (kafelek widoczny w hero); domyślnie leniwie
 }>()
 
+const { t } = useI18n({ useScope: 'local' })
 const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
 </script>
 
@@ -49,7 +50,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
           :href="href"
           target="_blank"
           rel="noopener noreferrer"
-          :aria-label="hrefLabel ?? `${title} – otwórz stronę w nowej karcie`"
+          :aria-label="hrefLabel ?? t('open', { title })"
           class="relative z-3 grid size-(--ch) shrink-0 place-items-center rounded-full bg-primary-500 text-sm text-white transition-transform duration-300 hover:rotate-45 focus-visible:rotate-45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:bg-primary-400 dark:text-brand-950"
         >
           <Icon name="lucide:arrow-up-right" aria-hidden="true" />
@@ -82,7 +83,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         <template v-if="image">
           <CommonPicture
             :src="image"
-            :alt="`Strona ${title}`"
+            :alt="t('alt', { title })"
             sizes="xs:90vw md:45vw lg:30vw"
             width="960"
             height="558"
@@ -93,7 +94,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
           <CommonPicture
             v-if="imageDark"
             :src="imageDark"
-            :alt="`Strona ${title} – ciemny motyw`"
+            :alt="t('altDark', { title })"
             sizes="xs:90vw md:45vw lg:30vw"
             width="960"
             height="558"
@@ -107,3 +108,18 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
     </div>
   </article>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "open": "{title} – open the site in a new tab",
+    "alt": "{title} website",
+    "altDark": "{title} website – dark theme"
+  },
+  "pl": {
+    "open": "{title} – otwórz stronę w nowej karcie",
+    "alt": "Strona {title}",
+    "altDark": "Strona {title} – ciemny motyw"
+  }
+}
+</i18n>

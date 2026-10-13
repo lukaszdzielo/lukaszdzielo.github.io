@@ -6,7 +6,8 @@ import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT, contactTopics } from '~/data/
 type Status = 'idle' | 'sending' | 'success' | 'error'
 type Topic = { value: string; label: string }
 
-// Domyślnie formularz z portfolio; strona dla firm podaje własne tematy, etykiety i źródło w temacie maila
+// Domyślnie formularz z portfolio; strona dla firm podaje własne tematy, etykiety i źródło w temacie maila.
+// Bez podanych etykiet i tematów formularz bierze domyślne w aktualnym języku (blok <i18n> i contactTopics).
 const props = withDefaults(
   defineProps<{
     topics?: readonly Topic[]
@@ -16,35 +17,46 @@ const props = withDefaults(
     source?: string // trafia do tematu maila, np. „Portfolio” albo „Strony dla firm”
   }>(),
   {
-    topics: () => contactTopics,
-    topicLabel: 'W sprawie',
-    messageLabel: 'Wiadomość',
-    messagePlaceholder: 'Kilka zdań o projekcie albo stanowisku…',
     source: 'Portfolio',
   },
 )
 
+const { t, locale } = useI18n({ useScope: 'local' })
+const defaultTopics = useLocalized(contactTopics)
+const topicList = computed<readonly Topic[]>(() => props.topics ?? defaultTopics.value)
+const firstTopic = () => topicList.value[0]?.value ?? ''
+
 const form = reactive({
   name: '',
   email: '',
-  topic: props.topics[0]?.value ?? '',
+  topic: firstTopic(),
   message: '',
   botcheck: false, // pole-pułapka na boty – człowiek go nie widzi
 })
 const status = ref<Status>('idle')
-const errorMessage = ref('')
+// Błąd: komunikat z Web3Forms (gdy jest) albo nasz – zapisany jako klucz, żeby zmieniał się z językiem strony
+const serverError = ref('')
+const errorKey = ref<'send' | 'offline'>('send')
+const errorMessage = computed(() => serverError.value || t(`errors.${errorKey.value}`))
 const formEl = ref<HTMLFormElement | null>(null)
+const link = useLocalLink()
+
+// Po zmianie języka lista tematów może mieć inne wartości – wtedy wracamy do pierwszego tematu
+watch(topicList, (list) => {
+  if (!list.some(topic => topic.value === form.topic)) form.topic = firstTopic()
+})
 
 async function submit() {
   if (status.value === 'sending') return
   if (form.botcheck) return // bot wypełnił ukryte pole – po cichu nic nie wysyłamy
 
   status.value = 'sending'
-  errorMessage.value = ''
+  serverError.value = ''
 
   const payload = {
     access_key: WEB3FORMS_ACCESS_KEY,
-    subject: `${props.source}: ${form.topic} – ${form.name}`,
+    // (EN) – wiadomość z angielskiej wersji strony, czyli odpisać po angielsku
+    subject: `${props.source}${locale.value === 'en' ? ' (EN)' : ''}: ${form.topic} – ${form.name}`,
     from_name: `Formularz – ${props.source}`,
     name: form.name,
     email: form.email,
@@ -63,14 +75,16 @@ async function submit() {
 
     if (res.ok && data.success) {
       status.value = 'success'
-      Object.assign(form, { name: '', email: '', topic: props.topics[0]?.value ?? '', message: '' })
+      Object.assign(form, { name: '', email: '', topic: firstTopic(), message: '' })
     } else {
       status.value = 'error'
-      errorMessage.value = data.message || 'Nie udało się wysłać wiadomości.'
+      serverError.value = data.message || ''
+      errorKey.value = 'send'
     }
   } catch {
     status.value = 'error'
-    errorMessage.value = 'Brak połączenia. Spróbuj ponownie za chwilę.'
+    serverError.value = ''
+    errorKey.value = 'offline'
   }
 }
 
@@ -104,14 +118,14 @@ const field =
         <span class="grid size-12 place-items-center rounded-full bg-emerald-400/15 text-emerald-400 dark:text-emerald-600">
           <Icon name="lucide:check" class="text-2xl" aria-hidden="true" />
         </span>
-        <p class="text-2xl font-semibold tracking-tight">Dzięki, wiadomość wysłana!</p>
-        <p class="opacity-75">Odpiszę na podany adres w ciągu 72 godzin.</p>
+        <p class="text-2xl font-semibold tracking-tight">{{ t('success.title') }}</p>
+        <p class="opacity-75">{{ t('success.lead') }}</p>
         <button
           type="button"
           class="mt-2 cursor-pointer text-sm font-semibold text-primary-400 underline-offset-4 hover:underline dark:text-primary-500"
           @click="reset"
         >
-          Napisz kolejną wiadomość
+          {{ t('success.again') }}
         </button>
       </div>
 
@@ -124,21 +138,21 @@ const field =
         @submit.prevent="submit"
       >
         <label :class="label">
-          Imię
-          <input v-model.trim="form.name" :class="field" type="text" name="name" autocomplete="name" placeholder="Jan" required>
+          {{ t('name') }}
+          <input v-model.trim="form.name" :class="field" type="text" name="name" autocomplete="name" :placeholder="t('namePlaceholder')" required>
         </label>
 
         <label :class="label">
-          E-mail
-          <input v-model.trim="form.email" :class="field" type="email" name="email" autocomplete="email" placeholder="jan@firma.pl" required>
+          {{ t('email') }}
+          <input v-model.trim="form.email" :class="field" type="email" name="email" autocomplete="email" :placeholder="t('emailPlaceholder')" required>
         </label>
 
         <label :class="label" class="sm:col-span-2">
-          {{ topicLabel }}
+          {{ topicLabel ?? t('topic') }}
           <span class="relative">
             <!-- Natywny select: na telefonie otwiera systemowy wybór, działa z klawiaturą i czytnikami ekranu -->
             <select v-model="form.topic" :class="field" class="cursor-pointer appearance-none pr-11" name="topic">
-              <option v-for="topic in topics" :key="topic.value" :value="topic.value" class="bg-white text-slate-900">
+              <option v-for="topic in topicList" :key="topic.value" :value="topic.value" class="bg-white text-slate-900">
                 {{ topic.label }}
               </option>
             </select>
@@ -151,13 +165,13 @@ const field =
         </label>
 
         <label :class="label" class="sm:col-span-2">
-          {{ messageLabel }}
+          {{ messageLabel ?? t('message') }}
           <textarea
             v-model.trim="form.message"
             :class="field"
             class="h-28 resize-y py-3"
             name="message"
-            :placeholder="messagePlaceholder"
+            :placeholder="messagePlaceholder ?? t('messagePlaceholder')"
             required
           />
         </label>
@@ -169,10 +183,11 @@ const field =
           <p class="text-xs opacity-65" aria-live="polite">
             <span v-if="status === 'error'" class="font-semibold text-rose-300 opacity-100 dark:text-rose-600">{{ errorMessage }}</span>
             <!-- Informacja RODO: po co dane i gdzie szczegóły -->
-            <template v-else>
-              Imię, e-mail i treść wiadomości wykorzystam tylko po to, żeby odpowiedzieć.
-              Szczegóły w <NuxtLink to="/polityka-prywatnosci" class="underline underline-offset-2 hover:opacity-100">polityce prywatności</NuxtLink>.
-            </template>
+            <i18n-t v-else keypath="privacy.text" tag="span">
+              <template #link>
+                <NuxtLink :to="link('/polityka-prywatnosci')" class="underline underline-offset-2 hover:opacity-100">{{ t('privacy.link') }}</NuxtLink>
+              </template>
+            </i18n-t>
           </p>
 
           <button
@@ -180,7 +195,7 @@ const field =
             :disabled="status === 'sending'"
             class="group inline-flex h-14 cursor-pointer items-center justify-between gap-3 rounded-full bg-primary-500 pr-2 pl-6 font-medium text-white transition hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900 focus-visible:outline-none disabled:cursor-wait disabled:opacity-80 motion-safe:hover:-translate-y-0.5 dark:focus-visible:ring-offset-slate-100"
           >
-            {{ status === 'sending' ? 'Wysyłam…' : 'Wyślij' }}
+            {{ status === 'sending' ? t('sending') : t('send') }}
             <span class="grid size-10 place-items-center rounded-full bg-white/20">
               <Icon
                 v-if="status === 'sending'"
@@ -201,3 +216,56 @@ const field =
     </Transition>
   </div>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "name": "Name",
+    "namePlaceholder": "Jane",
+    "email": "Email",
+    "emailPlaceholder": "jane{'@'}company.com",
+    "topic": "Regarding",
+    "message": "Message",
+    "messagePlaceholder": "A few sentences about the project or the role…",
+    "send": "Send",
+    "sending": "Sending…",
+    "privacy": {
+      "text": "I'll use your name, email and message only to reply to you. Details in the {link}.",
+      "link": "privacy policy"
+    },
+    "success": {
+      "title": "Thanks, your message is on its way!",
+      "lead": "I'll reply to the address you gave within 72 hours.",
+      "again": "Send another message"
+    },
+    "errors": {
+      "send": "The message couldn't be sent.",
+      "offline": "No connection. Please try again in a moment."
+    }
+  },
+  "pl": {
+    "name": "Imię",
+    "namePlaceholder": "Jan",
+    "email": "E-mail",
+    "emailPlaceholder": "jan{'@'}firma.pl",
+    "topic": "W sprawie",
+    "message": "Wiadomość",
+    "messagePlaceholder": "Kilka zdań o projekcie albo stanowisku…",
+    "send": "Wyślij",
+    "sending": "Wysyłam…",
+    "privacy": {
+      "text": "Imię, e-mail i treść wiadomości wykorzystam tylko po to, żeby odpowiedzieć. Szczegóły w {link}.",
+      "link": "polityce prywatności"
+    },
+    "success": {
+      "title": "Dzięki, wiadomość wysłana!",
+      "lead": "Odpiszę na podany adres w ciągu 72 godzin.",
+      "again": "Napisz kolejną wiadomość"
+    },
+    "errors": {
+      "send": "Nie udało się wysłać wiadomości.",
+      "offline": "Brak połączenia. Spróbuj ponownie za chwilę."
+    }
+  }
+}
+</i18n>

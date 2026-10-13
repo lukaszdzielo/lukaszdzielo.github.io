@@ -4,9 +4,15 @@
 import { businessHero } from '~/data/business'
 import { visibleFeaturedProjects } from '~/data/featuredProjects'
 
-const latest = visibleFeaturedProjects()
-  .filter(p => p.chips?.includes('WordPress') && p.image)
-  .slice(0, 2)
+const { t } = useI18n({ useScope: 'local' })
+const { lang } = useContentLocale()
+const link = useLocalLink()
+const hero = useLocalized(businessHero)
+const latest = computed(() =>
+  visibleFeaturedProjects(lang.value)
+    .filter(p => p.chips?.includes('WordPress') && p.image)
+    .slice(0, 2),
+)
 </script>
 
 <template>
@@ -16,30 +22,30 @@ const latest = visibleFeaturedProjects()
     <div class="container grid items-center gap-12 pt-10 pb-6 lg:min-h-160 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-10 lg:pt-6">
       <div>
         <h1 class="text-4xl leading-none font-semibold tracking-tighter text-slate-900 motion-safe:animate-fade-up sm:text-5xl lg:text-6xl dark:text-brand-50">
-          {{ businessHero.title }} <span class="text-primary-500 dark:text-primary-400">{{ businessHero.accent }}</span>
+          {{ hero.title }} <span class="text-primary-500 dark:text-primary-400">{{ hero.accent }}</span>
         </h1>
         <p class="mt-5.5 max-w-135 text-base/relaxed text-slate-600 motion-safe:animate-fade-up motion-safe:[animation-delay:120ms] dark:text-slate-300">
-          {{ businessHero.lead }}
+          {{ hero.lead }}
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:200ms]">
           <NuxtLink
-            to="/strony-dla-firm#contact"
+            :to="link('/strony-dla-firm#contact')"
             class="group inline-flex h-14 items-center gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950"
           >
-            Opisz swój projekt
+            {{ t('cta') }}
             <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
               <Icon name="lucide:arrow-up-right" class="transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px" aria-hidden="true" />
             </span>
           </NuxtLink>
           <NuxtLink
-            to="/strony-dla-firm#projects"
+            :to="link('/strony-dla-firm#projects')"
             class="inline-flex h-14 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
           >
-            Zobacz realizacje
+            {{ t('work') }}
           </NuxtLink>
         </div>
         <dl class="mt-10 grid max-w-135 grid-cols-3 gap-4 border-t border-slate-900/10 pt-6 motion-safe:animate-fade-up motion-safe:[animation-delay:280ms] dark:border-white/10">
-          <div v-for="fact in businessHero.facts" :key="fact.value">
+          <div v-for="fact in hero.facts" :key="fact.value">
             <dt class="text-xl font-medium tracking-tight text-slate-900 sm:text-2xl dark:text-brand-50">{{ fact.value }}</dt>
             <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">{{ fact.text }}</dd>
           </div>
@@ -71,3 +77,10 @@ const latest = visibleFeaturedProjects()
     </div>
   </header>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "cta": "Describe your project", "work": "See my work" },
+  "pl": { "cta": "Opisz swój projekt", "work": "Zobacz realizacje" }
+}
+</i18n>

@@ -1,20 +1,26 @@
 <script setup lang="ts">
 import { PERSON_ID, SITE_NAME, pageUrl } from '~/data/site';
 
+const { t, locale } = useI18n({ useScope: 'local' });
+// localLink, bo `link` to już zmienna pętli po linkach zewnętrznych w szablonie
+const localLink = useLocalLink();
 const route = useRoute();
+const { col, clean, withoutLocale } = useContentLocale();
+const path = clean(route.path);
 
-const { data: project } = await useAsyncData('project-' + route.path, () =>
-    queryCollection('projects')
+const { data: project } = await useAsyncData('project-' + path, () =>
+    queryCollection(col('projects'))
         .where('draft', '=', false)
-        .path(route.path)
+        .path(path)
         .first()
 );
 
 // Wpisy o tym projekcie (powiązane polem `project:` we wpisie).
-const { data: relatedPosts } = await useAsyncData('project-posts-' + route.path, () =>
-    queryCollection('blog')
+// `project:` we wpisie ma ścieżkę bez języka (/projects/…), więc porównujemy bez przedrostka /pl
+const { data: relatedPosts } = await useAsyncData('project-posts-' + path, () =>
+    queryCollection(col('blog'))
         .where('draft', '=', false)
-        .where('project', '=', route.path)
+        .where('project', '=', withoutLocale(path))
         .order('date', 'DESC')
         .all()
 );
@@ -28,13 +34,13 @@ const relatedArticles = computed(() => (relatedPosts.value ?? []).filter(post =>
 const hasOwnPage = computed(() => hasBody(project.value) || (relatedPosts.value?.length ?? 0) > 0);
 
 const externalLinks = computed(() => [
-    { label: 'Strona', href: project.value?.links?.live },
+    { label: t('links.live'), href: project.value?.links?.live },
     { label: 'Behance', href: project.value?.links?.behance },
     { label: 'GitHub', href: project.value?.links?.github },
 ].filter((link): link is { label: string; href: string } => Boolean(link.href)));
 
 useSiteMeta({
-    title: project.value?.title ? `${project.value.title} – Łukasz Dzieło` : 'Projekt – Łukasz Dzieło',
+    title: project.value?.title ? `${project.value.title} – Łukasz Dzieło` : t('meta.fallbackTitle'),
     description: project.value?.description || undefined,
     ...(project.value && !hasOwnPage.value ? { robots: 'noindex, follow' } : {}),
 });
@@ -48,7 +54,7 @@ if (project.value && hasOwnPage.value) {
         dateCreated: project.value.date || undefined,
         keywords: project.value.tags?.join(', ') || undefined,
         url: pageUrl(route.path),
-        inLanguage: 'pl-PL',
+        inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME },
         ...(project.value.links?.live ? { sameAs: project.value.links.live } : {}),
     });
@@ -66,10 +72,10 @@ if (project.value && hasOwnPage.value) {
 
             <div class="flex flex-col gap-3 text-sm">
                 <time v-if="project.date" :datetime="project.date">
-                    {{ formatDate(project.date) }}
+                    {{ formatDate(project.date, locale) }}
                 </time>
                 <p v-if="project.agency" class="text-slate-500 dark:text-slate-400">
-                    Agencja: {{ project.agency }}
+                    {{ t('agency', { agency: project.agency }) }}
                 </p>
                 <ul v-if="project.tags?.length" class="flex flex-wrap gap-2">
                     <li v-for="tag in project.tags" :key="tag">
@@ -95,12 +101,12 @@ if (project.value && hasOwnPage.value) {
         </article>
 
         <section v-if="caseStudies.length" class="flex flex-col gap-4">
-            <h2 class="text-xl font-bold">Case study</h2>
+            <h2 class="text-xl font-bold">{{ t('caseStudy') }}</h2>
             <ul class="grid gap-4">
                 <li v-for="post in caseStudies" :key="post.path">
                     <NuxtLink :to="post.path"
                         class="block group border border-slate-200 dark:border-slate-700 rounded-xl p-5 transition-colors hover:border-sky-500">
-                        <small>{{ formatDate(post.date) }}</small>
+                        <small>{{ formatDate(post.date, locale) }}</small>
                         <h3 class="mt-1 font-semibold group-hover:text-sky-500">{{ post.title }}</h3>
                         <p class="mt-1 text-sm">{{ post.description }}</p>
                     </NuxtLink>
@@ -109,12 +115,12 @@ if (project.value && hasOwnPage.value) {
         </section>
 
         <section v-if="relatedArticles.length" class="flex flex-col gap-4">
-            <h2 class="text-xl font-bold">Wpisy o tym projekcie</h2>
+            <h2 class="text-xl font-bold">{{ t('relatedPosts') }}</h2>
             <ul class="grid gap-4">
                 <li v-for="post in relatedArticles" :key="post.path">
                     <NuxtLink :to="post.path"
                         class="block group border border-slate-200 dark:border-slate-700 rounded-xl p-5 transition-colors hover:border-sky-500">
-                        <small>{{ formatDate(post.date) }}</small>
+                        <small>{{ formatDate(post.date, locale) }}</small>
                         <h3 class="mt-1 font-semibold group-hover:text-sky-500">{{ post.title }}</h3>
                         <p class="mt-1 text-sm">{{ post.description }}</p>
                     </NuxtLink>
@@ -123,8 +129,8 @@ if (project.value && hasOwnPage.value) {
         </section>
 
         <p>
-            <NuxtLink to="/projects#archive" class="text-sky-500 underline underline-offset-4">
-                ← Wszystkie projekty
+            <NuxtLink :to="localLink('/projects#archive')" class="text-sky-500 underline underline-offset-4">
+                {{ t('allProjects') }}
             </NuxtLink>
         </p>
     </section>
@@ -136,7 +142,7 @@ if (project.value && hasOwnPage.value) {
                 {{ project.title }}
             </h1>
             <p class="text-slate-600 dark:text-slate-400">
-                Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów.
+                {{ t('noPage') }}
             </p>
             <ul v-if="externalLinks.length" class="flex flex-wrap gap-x-4 gap-y-1">
                 <li v-for="link in externalLinks" :key="link.label">
@@ -148,8 +154,8 @@ if (project.value && hasOwnPage.value) {
                 </li>
             </ul>
             <div>
-                <NuxtLink to="/projects#archive" class="text-sky-500 underline underline-offset-4">
-                    ← Wszystkie projekty
+                <NuxtLink :to="localLink('/projects#archive')" class="text-sky-500 underline underline-offset-4">
+                    {{ t('allProjects') }}
                 </NuxtLink>
             </div>
         </div>
@@ -158,3 +164,26 @@ if (project.value && hasOwnPage.value) {
     <!-- Unknown path -->
     <CommonNotFound v-else variant="project" />
 </template>
+
+<i18n lang="json">
+{
+    "en": {
+        "meta": { "fallbackTitle": "Project – Łukasz Dzieło" },
+        "links": { "live": "Website" },
+        "agency": "Agency: {agency}",
+        "caseStudy": "Case study",
+        "relatedPosts": "Posts about this project",
+        "allProjects": "← All projects",
+        "noPage": "This project doesn't have its own page – you'll find it in the project archive."
+    },
+    "pl": {
+        "meta": { "fallbackTitle": "Projekt – Łukasz Dzieło" },
+        "links": { "live": "Strona" },
+        "agency": "Agencja: {agency}",
+        "caseStudy": "Case study",
+        "relatedPosts": "Wpisy o tym projekcie",
+        "allProjects": "← Wszystkie projekty",
+        "noPage": "Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów."
+    }
+}
+</i18n>

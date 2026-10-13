@@ -4,20 +4,24 @@
 // Desktop: 3 kolumny. Tablet i telefon: pasek przewijany w bok.
 import { businessWork } from '~/data/business'
 
-type WorkItem = (typeof businessWork.items)[number] & { title?: string; image?: string; imageDark?: string }
+type WorkItem = (typeof businessWork.pl.items)[number] & { title?: string; image?: string; imageDark?: string }
 
-const paths = businessWork.items.map(i => i.path)
-const { data: projects } = await useAsyncData('business-work', () =>
-  queryCollection('projects').where('path', 'IN', paths).all(),
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
+const work = useLocalized(businessWork)
+const { col, lang, withLocale } = useContentLocale()
+const paths = work.value.items.map(i => withLocale(i.path))
+const { data: projects } = await useAsyncData(`business-work-${lang.value}`, () =>
+  queryCollection(col('projects')).where('path', 'IN', paths).all(),
 )
 
 // Adres w pasku okna: domena strony na produkcji (bez www), a gdy strona już nie działa – nazwa projektu
 const host = (url?: string) => (url ? new URL(url).hostname.replace(/^www\./, '') : '')
 
 const tiles = computed(() =>
-  (businessWork.items as WorkItem[])
+  (work.value.items as WorkItem[])
     .map((item) => {
-      const p = projects.value?.find(x => x.path === item.path)
+      const p = projects.value?.find(x => x.path === withLocale(item.path))
       if (!p) return null
       const title = item.title ?? p.title
       const live = p.links?.live
@@ -31,7 +35,7 @@ const tiles = computed(() =>
         imageDark: item.imageDark,
         // strzałka: strona na produkcji, a gdy jej już nie ma – projekt na Behance
         href: live ?? p.links?.behance,
-        hrefLabel: live ? undefined : `${title} – projekt na Behance (nowa karta)`,
+        hrefLabel: live ? undefined : t('behance', { title }),
       }
     })
     .filter(<T,>(x: T | null): x is T => x !== null),
@@ -43,7 +47,7 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
   <section id="projects" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="bizWork" class="top-6" />
     <div class="container">
-      <CommonSectionHead :title="businessWork.title" :lead="businessWork.lead" />
+      <CommonSectionHead :title="work.title" :lead="work.lead" />
 
       <ul
         ref="scroller"
@@ -58,13 +62,20 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
       <!-- Wszystkie strony WordPress: archiwum projektów z włączonym filtrem -->
       <p class="mt-8 flex justify-center lg:mt-10">
         <NuxtLink
-          :to="businessWork.allTo"
+          :to="link(work.allTo)"
           class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 font-medium whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400"
         >
-          {{ businessWork.allLabel }}
+          {{ work.allLabel }}
           <Icon name="lucide:arrow-right" class="transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
         </NuxtLink>
       </p>
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "behance": "{title} – project on Behance (opens in a new tab)" },
+  "pl": { "behance": "{title} – projekt na Behance (nowa karta)" }
+}
+</i18n>

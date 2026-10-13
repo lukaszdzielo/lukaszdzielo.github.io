@@ -5,8 +5,9 @@ import tailwindcss from "@tailwindcss/vite";
 const SITE_NAME = 'Łukasz Dzieło'
 const SITE_ROLE = 'Front-End Developer'
 const SITE_TITLE = `${SITE_NAME} – ${SITE_ROLE}`
+// Domyślne meta po angielsku – każda podstrona i tak ustawia własne (useSiteMeta) w swoim języku
 const SITE_DESCRIPTION =
-  'Front-End Developer. Buduję responsywne interfejsy w Vue 3 – komponenty wielokrotnego użytku, stan i integracje z API. Robię też strony WordPress dla firm.'
+  'Front-End Developer. I build responsive interfaces in Vue 3 – reusable components, state and API integrations. I also build WordPress websites for businesses.'
 const SITE_URL = 'https://lukaszdzielo.github.io/'
 const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
 const APPLE_TITLE = SITE_NAME
@@ -14,7 +15,6 @@ const APPLE_TITLE = SITE_NAME
 // Prerender every project page (/projects/<year>/<slug>) and the paginated post list
 const getPrerenderRoutes = (): string[] => {
   const routes: string[] = [];
-  const projectDir = path.resolve(process.cwd(), 'content/projects');
 
   const getProjectFiles = (dir: string): string[] => {
     let results: string[] = [];
@@ -32,7 +32,13 @@ const getPrerenderRoutes = (): string[] => {
     return results;
   };
 
-  const files = getProjectFiles(projectDir);
+  // Treści po polsku i po angielsku: content/pl/… → /pl/…, content/en/… → /… (angielski domyślny, bez przedrostka)
+  const files: string[] = [];
+  const prefixes: Record<string, string> = {};
+  for (const [lang, prefix] of [['en', ''], ['pl', '/pl']] as const) {
+    const dir = path.resolve(process.cwd(), `content/${lang}/projects`);
+    for (const f of getProjectFiles(dir)) { files.push(f); prefixes[f] = prefix; }
+  }
 
   files.forEach((file) => {
     try {
@@ -43,8 +49,9 @@ const getPrerenderRoutes = (): string[] => {
         const draft = /draft:\s*true/.test(yaml);
 
         if (!draft) {
-          const relative = path.relative(projectDir, file).split(path.sep).join('/');
-          const routePath = '/projects/' + relative.replace(/\/index\.md$/, '').replace(/\.md$/, '');
+          const lang = prefixes[file] === '/pl' ? 'pl' : 'en';
+          const relative = path.relative(path.resolve(process.cwd(), `content/${lang}/projects`), file).split(path.sep).join('/');
+          const routePath = prefixes[file] + '/projects/' + relative.replace(/\/index\.md$/, '').replace(/\.md$/, '');
           routes.push(routePath);
         }
       }
@@ -54,26 +61,32 @@ const getPrerenderRoutes = (): string[] => {
   });
 
   // Lista wpisów: /blog i /blog/page/2… (13 wpisów na pierwszej stronie, potem po 12 – app/utils/blogPaging.ts)
-  const publishedPosts = getProjectFiles(path.resolve(process.cwd(), 'content/blog')).filter((file) => {
-    const match = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    return !(match && /draft:\s*true/.test(match[1]));
-  }).length;
-  const blogPages = 1 + Math.ceil(Math.max(0, publishedPosts - 13) / 12);
-  routes.push('/blog');
-  for (let page = 2; page <= blogPages; page++) routes.push(`/blog/page/${page}`);
+  for (const [lang, prefix] of [['en', ''], ['pl', '/pl']] as const) {
+    const publishedPosts = getProjectFiles(path.resolve(process.cwd(), `content/${lang}/blog`)).filter((file) => {
+      const match = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      return !(match && /draft:\s*true/.test(match[1]));
+    }).length;
+    const blogPages = 1 + Math.ceil(Math.max(0, publishedPosts - 13) / 12);
+    routes.push(`${prefix}/blog`);
+    for (let page = 2; page <= blogPages; page++) routes.push(`${prefix}/blog/page/${page}`);
+  }
+  routes.push('/pl');
 
   return routes;
 };
 
 const prerenderRoutes = getPrerenderRoutes();
 
+// Pierwsza wizyta z przeglądarką po polsku (pierwszy język na liście) → ta sama strona w wersji /pl.
+// Nie przekierowuje, gdy jest ciasteczko `lang` (wybór z przełącznika języka) ani na stronach /pl.
+// Adresy podstron z inną nazwą w każdym języku – mapa niżej (jak definePageMeta w pages/).
+const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m={'/business-websites':'/strony-dla-firm','/privacy-policy':'/polityka-prywatnosci'};var k=p.replace(/\\/+$/,'');location.replace('/pl'+(m[k]||k)+'/'+location.search+location.hash)}catch(e){}})();`
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'pl'
-      },
+      // lang i hreflang ustawia @nuxtjs/i18n (app.vue → useLocaleHead)
       title: SITE_TITLE,
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon/favicon-96x96.png', sizes: '96x96' },
@@ -100,14 +113,14 @@ export default defineNuxtConfig({
         { property: 'og:image:type', content: 'image/jpeg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: `Awatar – ${SITE_NAME}, ${SITE_ROLE}` },
-        { property: 'og:locale', content: 'pl_PL' },
+        { property: 'og:image:alt', content: `Avatar – ${SITE_NAME}, ${SITE_ROLE}` },
 
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:image', content: OG_IMAGE },
-        { name: 'twitter:image:alt', content: `Awatar – ${SITE_NAME}, ${SITE_ROLE}` }
+        { name: 'twitter:image:alt', content: `Avatar – ${SITE_NAME}, ${SITE_ROLE}` }
       ],
       script: [
+        { innerHTML: LANG_REDIRECT, tagPosition: 'head' },
         {
           // Przed pierwszym malowaniem: klasa .dark i data-mode (auto/light/dark) – ikona przełącznika motywu nie skacze
           innerHTML: `(()=>{const r=document.documentElement;try{const t=localStorage.getItem('theme');r.dataset.mode=t==='light'||t==='dark'?t:'auto';const d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)r.classList.add('dark');}catch(e){r.dataset.mode='auto'}})();`,
@@ -134,6 +147,11 @@ export default defineNuxtConfig({
     prerender: {
       routes: prerenderRoutes
     }
+  },
+  // Stare polskie adresy (sprzed wersji angielskiej) → polska wersja pod /pl/
+  routeRules: {
+    '/strony-dla-firm': { redirect: { to: '/pl/strony-dla-firm/', statusCode: 301 } },
+    '/polityka-prywatnosci': { redirect: { to: '/pl/polityka-prywatnosci/', statusCode: 301 } },
   },
   hooks: {
     // @nuxt/image registers its source dir as a public asset dir, which would copy
@@ -166,7 +184,24 @@ export default defineNuxtConfig({
       });
     }
   },
-  modules: ['@nuxt/content', '@nuxt/image', '@nuxt/icon'],
+  modules: ['@nuxt/content', '@nuxt/image', '@nuxt/icon', '@nuxtjs/i18n'],
+  // Angielski domyślny pod /, polski pod /pl/. Przy pierwszej wizycie przeglądarka po polsku
+  // przenosi na polską wersję; wybór z przełącznika zapisuje się w ciasteczku i ma pierwszeństwo.
+  i18n: {
+    baseUrl: SITE_URL.replace(/\/$/, ''),
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    locales: [
+      { code: 'en', language: 'en-US', name: 'English' },
+      { code: 'pl', language: 'pl-PL', name: 'Polski' },
+    ],
+    // Polskie i angielskie adresy podstron ustawia definePageMeta({ i18n: { paths } })
+    customRoutes: 'meta',
+    // Wykrywanie języka robi skrypt w <head> (LANG_REDIRECT niżej) – przed wyświetleniem strony,
+    // bez mignięcia wersji angielskiej i bez błędów hydracji na stronie statycznej.
+    detectBrowserLanguage: false,
+    vueI18n: './i18n.config.ts', // i18n/i18n.config.ts
+  },
   icon: {
     // Ikony użyte w kodzie trafiają do paczki – bez zapytań do api.iconify.design w przeglądarce.
     clientBundle: { scan: true },

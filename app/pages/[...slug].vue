@@ -2,13 +2,15 @@
 import { PERSON_ID, PROFILES, SITE_NAME, SITE_URL } from '~/data/site'
 
 const route = useRoute()
+const { col, clean, withoutLocale, lang } = useContentLocale()
+const path = clean(route.path)
 
-const { data: page } = await useAsyncData('page-' + route.path, () => {
-	return queryCollection('content').path(route.path).first()
+const { data: page } = await useAsyncData('page-' + path, () => {
+	return queryCollection(col('content')).path(path).first()
 })
 
 // Strona główna: kim jestem (Person) i czym jest strona (WebSite) – dla Google i wyszukiwarek AI
-if (route.path === '/') {
+if (withoutLocale(path) === '/') {
 	useJsonLd('home', {
 		'@graph': [
 			{
@@ -28,7 +30,7 @@ if (route.path === '/') {
 				'@id': `${SITE_URL}/#website`,
 				url: `${SITE_URL}/`,
 				name: `${SITE_NAME} – Front-End Developer`,
-				inLanguage: 'pl-PL',
+				inLanguage: lang.value === 'pl' ? 'pl-PL' : 'en-US',
 				publisher: { '@id': PERSON_ID },
 			},
 		],

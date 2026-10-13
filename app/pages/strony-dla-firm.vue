@@ -1,34 +1,45 @@
 <script setup lang="ts">
+// Adres w każdym języku (link() z useLocalLink zamienia '/strony-dla-firm' na właściwy)
+definePageMeta({ i18n: { paths: { en: '/business-websites', pl: '/strony-dla-firm' } } })
+
 // Strona dla firm: oferta stron na WordPressie. Treści – app/data/business.ts, ceny – app/data/pricing.ts.
 // Nagłówek i stopka przełączają się na wersję „dla firm” w app.vue (po adresie).
 import { businessFaq, businessOffer } from '~/data/business'
 import { prices, promoIsOn, price } from '~/data/pricing'
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site'
 
-const description = 'Strony wizytówki i strony firmowe na WordPressie z edytorem bloków – projekt, wdrożenie i opieka. Treści zmieniasz sam.'
+const { t, locale } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
+// Wartości liczone raz: przy zmianie języka zmienia się adres, więc strona montuje się od nowa
+const lang = locale.value === 'pl' ? 'pl' : 'en'
+const faq = useLocalized(businessFaq)
+const offer = useLocalized(businessOffer)
+
+const description = t('meta.description')
 useSiteMeta({
-  title: 'Strony WordPress dla firm – Łukasz Dzieło',
+  title: t('meta.title'),
   description,
   image: '/og/og-firmy.jpg',
-  imageAlt: 'Strony WordPress dla firm – Łukasz Dzieło',
+  imageAlt: t('meta.title'),
 })
 
-// Dane strukturalne: usługa z cenami „od” (netto, ceny z app/data/pricing.ts) i pytania z FAQ
+// Dane strukturalne: usługa z cenami „od” (netto, ceny z app/data/pricing.ts) i pytania z FAQ – w języku strony
 const promoOn = promoIsOn()
-const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: keyof typeof prices) => price(id, promoOn).now)
-const url = pageUrl('/strony-dla-firm')
+const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: keyof typeof prices) => price(id, lang, promoOn).now)
+// adres strony w bieżącym języku (/business-websites albo /pl/strony-dla-firm)
+const url = pageUrl(link('/strony-dla-firm'))
 useJsonLd('business', {
   '@graph': [
     {
       '@type': 'Service',
       '@id': `${url}#service`,
-      name: 'Strony WordPress dla firm',
-      serviceType: 'Projektowanie, wdrożenie i opieka nad stronami na WordPressie',
+      name: t('ld.name'),
+      serviceType: t('ld.serviceType'),
       description,
       url,
-      inLanguage: 'pl-PL',
+      inLanguage: lang === 'pl' ? 'pl-PL' : 'en-US',
       provider: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
-      offers: businessOffer.plans.map(plan => {
+      offers: offer.value.plans.map(plan => {
         const p = prices[plan.price]
         return {
           '@type': 'Offer',
@@ -45,7 +56,7 @@ useJsonLd('business', {
     },
     {
       '@type': 'FAQPage',
-      mainEntity: businessFaq.items.map(item => ({
+      mainEntity: faq.value.items.map(item => ({
         '@type': 'Question',
         name: item.q,
         acceptedAnswer: { '@type': 'Answer', text: fill(item.a) },
@@ -68,3 +79,28 @@ useJsonLd('business', {
     <SectionsHomeContact variant="business" />
   </div>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "meta": {
+      "title": "WordPress websites for small businesses – Łukasz Dzieło",
+      "description": "One-page and business websites on WordPress with the block editor – design, build and care. You edit the content yourself."
+    },
+    "ld": {
+      "name": "WordPress websites for small businesses",
+      "serviceType": "Design, development and care of WordPress websites"
+    }
+  },
+  "pl": {
+    "meta": {
+      "title": "Strony WordPress dla firm – Łukasz Dzieło",
+      "description": "Strony wizytówki i strony firmowe na WordPressie z edytorem bloków – projekt, wdrożenie i opieka. Treści zmieniasz sam."
+    },
+    "ld": {
+      "name": "Strony WordPress dla firm",
+      "serviceType": "Projektowanie, wdrożenie i opieka nad stronami na WordPressie"
+    }
+  }
+}
+</i18n>
