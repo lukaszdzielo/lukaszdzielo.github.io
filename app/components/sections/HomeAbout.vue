@@ -2,7 +2,8 @@
 // O mnie: ilustracja + tekst. Treść (akapity, oś czasu, cytat) jest w content/index.md.
 // Na desktopie wykształcenie i „Poza kodem” stoją pod ilustracją (lewa kolumna nie zostaje pusta),
 // na telefonie i tablecie – na końcu, pod osią czasu, na całą szerokość. Ilustracja jest tam wyśrodkowana.
-// projects – projekty z danego miejsca pracy (link w górę strony, do kafelków „Rzeczy, które zbudowałem”)
+// projects – projekty z danego miejsca pracy; link prowadzi na stronę projektu w archiwum
+// (a nie do kafelków na górze, bo wyróżnione projekty z czasem się zmieniają)
 type TimelineItem = { period: string; company: string; role: string; text: string; projects?: { title: string; to: string }[] }
 
 defineProps<{
@@ -66,7 +67,7 @@ const link = useLocalLink()
                     class="inline-flex h-7 items-center gap-1 rounded-full bg-primary-500/10 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20"
                   >
                     {{ project.title }}
-                    <Icon name="lucide:arrow-up" class="text-xs" aria-hidden="true" />
+                    <Icon name="lucide:arrow-right" class="text-xs" aria-hidden="true" />
                   </NuxtLink>
                 </li>
               </ul>
