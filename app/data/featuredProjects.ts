@@ -49,7 +49,6 @@ export const featuredProjects: FeaturedProject[] = [
     description: 'Nie cały serwis, tylko moja część: karuzele na Swiperze – m.in. galeria auta – zebrane w jeden spójny komponent.',
     chips: ['Swiper', 'JavaScript', 'Twig'],
     url: 'superauto.pl',
-    href: 'https://www.superauto.pl',
     image: '/featured/superauto.webp',
   },
   {
