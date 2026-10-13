@@ -258,7 +258,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
            przy `nuxt generate` – @nuxt/image tworzy pliki /_ipx tylko dla obrazków, które widzi
            w wygenerowanej stronie. Z v-else miniatury zwiniętych lat nie powstawały (404 po rozwinięciu).
            Ukryte obrazki mają loading="lazy", więc przeglądarka pobiera je dopiero po rozwinięciu. -->
-      <ul v-show="isOpen(y.year, i)" :id="`y${y.year}-list`" class="grid gap-1 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-6 lg:grid-cols-4">
+      <ul v-show="isOpen(y.year, i)" :id="`y${y.year}-list`" class="grid gap-1 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-6 lg:grid-cols-3 xl:grid-cols-4">
         <li v-for="p in y.list" :key="p.path">
           <component
             :is="p.hasPage ? NuxtLink : linkOf(p) ? 'a' : 'div'"
@@ -276,7 +276,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
                 v-if="p.image"
                 :src="p.image"
                 :alt="p.title"
-                sizes="xs:100px sm:45vw lg:280px"
+                sizes="xs:100px sm:45vw lg:300px"
                 width="400"
                 height="329"
                 loading="lazy"
