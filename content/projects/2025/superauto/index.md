@@ -6,6 +6,4 @@ image: /projects/2025/superauto/thumbnail.webp
 tags: [javascript, swiper, twig]
 featured: false
 agency: Arris Agency
-links:
-  live: https://www.superauto.pl
 ---
