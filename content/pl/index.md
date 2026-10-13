@@ -103,9 +103,11 @@ hobbies: 'na półce fantasy i książki młodzieżowe, wieczorami z żoną plan
 O mnie
 
 #default
-Po liceum od razu poszedłem do pracy i wskoczyłem w kod – strony w czystym HTML z Bootstrapem i pierwszymi skryptami w jQuery, które backend developer podpinał pod własny CMS. Potem przyszedł WordPress: Enfold, Jupiter, Bridge, Divi, a dziś czysty Gutenberg. Grafikę studiowałem, ale nawet na etacie UX/UI designera ciągle uciekałem do programowania, aż wróciłem do niego na dobre 🙂
+Po liceum od razu poszedłem do pracy i wskoczyłem w kod – strony w czystym HTML z Bootstrapem i pierwszymi skryptami w jQuery, które backend developer podpinał pod własny CMS. Potem doszedł WordPress, a po drodze studia z grafiki – ale nawet na etacie UX/UI designera ciągle uciekałem do programowania, aż wróciłem do niego na dobre 🙂
 
-**Lubię analizować i projektować nowe rozwiązania**, szukać błędów i nielogicznych miejsc w kodzie. Dobrze czuję się, zaczynając projekt od zera, ale też wdrażając się w kod, który ktoś już rozpoczął.
+**Najbardziej lubię pisać w JavaScripcie.** Od roku robię to komercyjnie w Vue 3: komponenty wielokrotnego użytku, stan aplikacji i integracje z API w e-cargo, a obok tego wspólna biblioteka komponentów dla zespołu. Zależy mi na kodzie, który da się czytać i utrzymać – bez obejść, które za pół roku mszczą się na kimś innym.
+
+Lubię analizować i projektować nowe rozwiązania, szukać błędów i nielogicznych miejsc w kodzie. Dobrze czuję się, zaczynając projekt od zera, ale też wdrażając się w kod, który ktoś już rozpoczął. W planie mam TypeScript i testy – chcę pisać front-end, który jest bezpieczny w zmianach.
 ::
 
 <!-- Blog
