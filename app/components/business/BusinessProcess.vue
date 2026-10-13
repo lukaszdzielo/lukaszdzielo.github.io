@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { businessProcess } from '~/data/business'
+
+const data = useLocalized(businessProcess)
 </script>
 
 <template>
   <section id="process" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="bizProcess" side="right" class="top-6" />
     <div class="container">
-      <CommonSectionHead :title="businessProcess.title" :lead="businessProcess.lead" />
+      <CommonSectionHead :title="data.title" :lead="data.lead" />
       <ol class="mt-8 grid gap-8 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 lg:gap-6">
         <li
-          v-for="(step, i) in businessProcess.steps"
+          v-for="(step, i) in data.steps"
           :key="step.title"
           v-reveal="i * 80"
           class="border-t-2 border-slate-900/10 pt-5 transition-[opacity,translate] duration-700 ease-out dark:border-white/10"

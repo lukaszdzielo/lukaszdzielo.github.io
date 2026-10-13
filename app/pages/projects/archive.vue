@@ -1,6 +1,7 @@
 <script setup lang="ts">
-// Stary adres archiwum – teraz archiwum jest sekcją na /projects.
-await navigateTo('/projects#archive', { redirectCode: 301, replace: true })
+// Stary adres archiwum – teraz archiwum jest sekcją na /projects (w języku strony: /projects albo /pl/projects).
+const link = useLocalLink()
+await navigateTo(link('/projects#archive'), { redirectCode: 301, replace: true })
 </script>
 
 <template>

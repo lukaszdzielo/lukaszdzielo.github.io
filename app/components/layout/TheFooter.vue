@@ -5,13 +5,19 @@ const props = withDefaults(defineProps<{ variant?: FooterVariant }>(), {
   variant: 'portfolio',
 })
 
-const content = computed(() => footerContent[props.variant])
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
+const localized = useLocalized(footerContent)
+const content = computed(() => localized.value[props.variant])
 const { openSettings } = useConsent()
 const year = new Date().getFullYear()
 
-function linkAttrs(link: FooterLink) {
-  return link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+function linkAttrs(item: FooterLink) {
+  return item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 }
+
+// Linki wewnętrzne z danych → adres w aktualnym języku; zewnętrzne (profile) bez zmian
+const href = (item: FooterLink) => (item.external ? item.to : link(item.to))
 
 const route = useRoute()
 const router = useRouter()
@@ -31,7 +37,7 @@ function scrollToTop() {
 // Ikony z @nuxt/icon mają rozmiar 1em, dlatego wielkość ustawiamy przez text-*.
 const reveal = 'transition-[opacity,translate] duration-700 ease-out'
 const heading = 'mb-5 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400'
-const link =
+const linkClass =
   'group inline-flex items-center gap-1 leading-8 text-slate-600 transition-colors hover:text-primary-500 focus-visible:text-primary-500 dark:text-slate-300 dark:hover:text-primary-400 dark:focus-visible:text-primary-400'
 const arrow =
   'text-sm transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5'
@@ -67,7 +73,7 @@ const arrow =
           <h2 :class="heading">{{ column.title }}</h2>
           <ul>
             <li v-for="item in column.links" :key="item.to">
-              <NuxtLink :to="item.to" :external="item.external" v-bind="linkAttrs(item)" :class="link">
+              <NuxtLink :to="href(item)" :external="item.external" v-bind="linkAttrs(item)" :class="linkClass">
                 {{ item.label }}
                 <Icon v-if="item.external" name="lucide:arrow-up-right" :class="arrow" aria-hidden="true" />
               </NuxtLink>
@@ -88,10 +94,10 @@ const arrow =
           <p v-for="line in content.status.lines" :key="line" class="leading-8">{{ line }}</p>
           <NuxtLink
             v-if="content.status.link"
-            :to="content.status.link.to"
+            :to="href(content.status.link)"
             :external="content.status.link.external"
             v-bind="linkAttrs(content.status.link)"
-            :class="link"
+            :class="linkClass"
           >
             {{ content.status.link.label }}
             <Icon name="lucide:arrow-up-right" :class="arrow" aria-hidden="true" />
@@ -104,19 +110,19 @@ const arrow =
       >
         <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
           <p>© {{ year }} Łukasz Dzieło</p>
-          <NuxtLink to="/polityka-prywatnosci" class="transition-colors hover:text-primary-500 dark:hover:text-primary-400">Polityka prywatności</NuxtLink>
+          <NuxtLink :to="link('/polityka-prywatnosci')" class="transition-colors hover:text-primary-500 dark:hover:text-primary-400">{{ t('privacy') }}</NuxtLink>
           <button type="button" class="cursor-pointer transition-colors hover:text-primary-500 dark:hover:text-primary-400" @click="openSettings">
-            Ustawienia cookies
+            {{ t('cookies') }}
           </button>
         </div>
         <!-- Na telefonie sama strzałka w kółku (shrink-0 – kółko nie zwęża się przy długich linkach obok), od sm: napis + strzałka -->
         <button
           type="button"
-          aria-label="Do góry"
+          :aria-label="t('toTop')"
           class="group inline-flex size-10 shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-slate-900/10 transition-colors hover:border-primary-500 hover:text-primary-500 sm:size-auto sm:rounded-none sm:border-0 dark:border-white/10 dark:hover:border-primary-400 dark:hover:text-primary-400"
           @click="scrollToTop"
         >
-          <span class="sr-only sm:not-sr-only">Do góry</span>
+          <span class="sr-only sm:not-sr-only">{{ t('toTop') }}</span>
           <Icon
             name="lucide:arrow-up"
             class="text-base transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 sm:text-sm"
@@ -127,3 +133,10 @@ const arrow =
     </div>
   </footer>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "privacy": "Privacy policy", "cookies": "Cookie settings", "toTop": "Back to top" },
+  "pl": { "privacy": "Polityka prywatności", "cookies": "Ustawienia cookies", "toTop": "Do góry" }
+}
+</i18n>

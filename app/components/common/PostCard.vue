@@ -12,11 +12,18 @@ type Post = {
 // featured – pierwszy wpis na stronie /blog: od lg okładka obok tekstu, większy tytuł
 const props = defineProps<{ post: Post; featured?: boolean }>()
 
-const kindLabel = computed(() => (props.post.kind === 'case-study' ? 'Case study' : 'Wpis'))
+const { t, locale } = useI18n({ useScope: 'local' })
+const kindLabel = computed(() => (props.post.kind === 'case-study' ? t('caseStudy') : t('post')))
 const topic = computed(() => props.post.tags?.[0]?.replace(/-/g, ' '))
+// Data w języku strony. timeZone UTC – „2026-03-05” to północ UTC, a w strefie USA byłby to jeszcze 4 marca
 const date = computed(() =>
   props.post.date
-    ? new Intl.DateTimeFormat('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(props.post.date))
+    ? new Intl.DateTimeFormat(locale.value === 'pl' ? 'pl-PL' : 'en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(new Date(props.post.date))
     : '',
 )
 </script>
@@ -62,7 +69,7 @@ const date = computed(() =>
       <h2 class="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ post.title }}</h2>
       <p v-if="post.description" class="text-base/relaxed text-slate-600 dark:text-slate-300">{{ post.description }}</p>
       <span class="mt-1 inline-flex items-center gap-2 font-medium text-primary-500 dark:text-primary-400">
-        Czytaj wpis
+        {{ t('read') }}
         <Icon name="lucide:arrow-right" class="transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
       </span>
     </div>
@@ -77,3 +84,10 @@ const date = computed(() =>
     </div>
   </NuxtLink>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "post": "Post", "caseStudy": "Case study", "read": "Read post" },
+  "pl": { "post": "Wpis", "caseStudy": "Case study", "read": "Czytaj wpis" }
+}
+</i18n>

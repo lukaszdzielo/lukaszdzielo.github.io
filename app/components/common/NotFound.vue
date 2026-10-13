@@ -5,6 +5,7 @@
 //   reszta      → „Tej strony tu nie ma” + powrót na stronę główną.
 // Na GitHub Pages każdy nieistniejący adres dostaje 404.html, a aplikacja po starcie
 // sama rozpoznaje adres – dlatego odmianę wybieramy po ścieżce, a nie po kodzie z serwera.
+// Ścieżkę porównujemy bez przedrostka /pl (withoutLocale), a linki prowadzą do wersji w aktualnym języku (link()).
 type Variant = 'page' | 'post' | 'project' | 'error'
 
 const props = defineProps<{ variant?: Variant; path?: string }>()
@@ -12,54 +13,59 @@ const props = defineProps<{ variant?: Variant; path?: string }>()
 // Lista wpisów
 const POSTS_LIST = '/blog'
 
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
+const { col, lang, withoutLocale } = useContentLocale()
+
 const route = useRoute()
 const currentPath = computed(() => props.path ?? route.path)
 
 const variant = computed<Variant>(() => {
   if (props.variant) return props.variant
-  if (currentPath.value.startsWith('/blog')) return 'post'
-  if (currentPath.value.startsWith('/projects')) return 'project'
+  const path = withoutLocale(currentPath.value)
+  if (path.startsWith('/blog')) return 'post'
+  if (path.startsWith('/projects')) return 'project'
   return 'page'
 })
 
 const copy = computed(() => ({
   page: {
-    title: 'Tej strony',
-    lead: 'Adres mógł się zmienić albo strona została usunięta. Sprawdź, czy nie ma w nim literówki, albo zacznij od strony głównej.',
-    primary: { to: '/', label: 'Strona główna', icon: 'lucide:arrow-left' },
-    secondary: { to: '/projects', label: 'Zobacz projekty' },
+    title: t('page.title'),
+    lead: t('page.lead'),
+    primary: { to: link('/'), label: t('links.home'), icon: 'lucide:arrow-left' },
+    secondary: { to: link('/projects'), label: t('links.projects') },
   },
   post: {
-    title: 'Tego wpisu',
-    lead: 'Wpis mógł zostać usunięty albo zmienił adres. Pozostałe wpisy znajdziesz na liście.',
-    primary: { to: POSTS_LIST, label: 'Wróć do wpisów', icon: 'lucide:arrow-left' },
-    secondary: { to: '/', label: 'Strona główna' },
+    title: t('post.title'),
+    lead: t('post.lead'),
+    primary: { to: link(POSTS_LIST), label: t('links.posts'), icon: 'lucide:arrow-left' },
+    secondary: { to: link('/'), label: t('links.home') },
   },
   project: {
-    title: 'Tego projektu',
-    lead: 'Projekt mógł zmienić adres. Wszystkie projekty – z filtrem i wyszukiwarką – są w archiwum.',
-    primary: { to: '/projects#archive', label: 'Wszystkie projekty', icon: 'lucide:arrow-left' },
-    secondary: { to: '/', label: 'Strona główna' },
+    title: t('project.title'),
+    lead: t('project.lead'),
+    primary: { to: link('/projects#archive'), label: t('links.archive'), icon: 'lucide:arrow-left' },
+    secondary: { to: link('/'), label: t('links.home') },
   },
   error: {
-    title: 'Coś poszło',
-    lead: 'Strona nie załadowała się poprawnie. Odśwież ją albo wróć na stronę główną.',
-    primary: { to: '/', label: 'Strona główna', icon: 'lucide:arrow-left' },
-    secondary: { to: '/#contact', label: 'Daj mi znać' },
+    title: t('error.title'),
+    lead: t('error.lead'),
+    primary: { to: link('/'), label: t('links.home'), icon: 'lucide:arrow-left' },
+    secondary: { to: link('/#contact'), label: t('links.contact') },
   },
 })[variant.value])
 
-const accent = computed(() => (variant.value === 'error' ? 'nie tak.' : 'tu nie ma.'))
+const accent = computed(() => (variant.value === 'error' ? t('accent.error') : t('accent.missing')))
 const code = computed(() => (variant.value === 'error' ? '500' : '404'))
 
 // Przy wpisie podpowiadamy najnowsze (gdy jakieś są opublikowane)
-const { data: latest } = await useAsyncData('not-found-posts', () =>
-  queryCollection('blog').where('draft', '=', false).order('date', 'DESC').limit(3).all(),
+const { data: latest } = await useAsyncData(`not-found-posts-${lang.value}`, () =>
+  queryCollection(col('blog')).where('draft', '=', false).order('date', 'DESC').limit(3).all(),
 )
 const suggestions = computed(() => (variant.value === 'post' ? latest.value ?? [] : []))
 
 useSiteMeta({
-  title: variant.value === 'error' ? 'Błąd – Łukasz Dzieło' : 'Nie znaleziono strony – Łukasz Dzieło',
+  title: variant.value === 'error' ? t('meta.error') : t('meta.notFound'),
   robots: 'noindex, follow',
 })
 </script>
@@ -96,7 +102,7 @@ useSiteMeta({
 
       <div class="max-w-140 min-w-0">
         <p class="text-sm font-semibold tracking-widest text-primary-500 uppercase dark:text-primary-400">
-          Błąd {{ code }}
+          {{ t('label', { code }) }}
         </p>
         <h1 class="mt-4 text-4xl leading-none font-semibold tracking-tighter text-slate-900 sm:text-5xl lg:text-6xl dark:text-brand-50">
           <span class="block">{{ copy.title }}</span>
@@ -135,7 +141,7 @@ useSiteMeta({
 
     <!-- Wpis: najnowsze wpisy pod spodem -->
     <div v-if="suggestions.length" class="container pb-22 md:pb-28">
-      <h2 class="text-2xl font-medium tracking-tight text-slate-900 dark:text-brand-50">Najnowsze wpisy</h2>
+      <h2 class="text-2xl font-medium tracking-tight text-slate-900 dark:text-brand-50">{{ t('latest') }}</h2>
       <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <li v-for="post in suggestions" :key="post.path">
           <CommonPostCard :post="post" />
@@ -144,3 +150,66 @@ useSiteMeta({
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "label": "Error {code}",
+    "page": {
+      "title": "This page",
+      "lead": "The address may have changed or the page was removed. Check it for typos, or start from the home page."
+    },
+    "post": {
+      "title": "This post",
+      "lead": "The post may have been removed or moved to a new address. You'll find the other posts in the list."
+    },
+    "project": {
+      "title": "This project",
+      "lead": "The project may have moved to a new address. All projects – with a filter and search – are in the archive."
+    },
+    "error": {
+      "title": "Something went",
+      "lead": "The page didn't load correctly. Refresh it or go back to the home page."
+    },
+    "accent": { "missing": "isn't here.", "error": "wrong." },
+    "links": {
+      "home": "Home page",
+      "projects": "See projects",
+      "posts": "Back to posts",
+      "archive": "All projects",
+      "contact": "Let me know"
+    },
+    "latest": "Latest posts",
+    "meta": { "notFound": "Page not found – Łukasz Dzieło", "error": "Error – Łukasz Dzieło" }
+  },
+  "pl": {
+    "label": "Błąd {code}",
+    "page": {
+      "title": "Tej strony",
+      "lead": "Adres mógł się zmienić albo strona została usunięta. Sprawdź, czy nie ma w nim literówki, albo zacznij od strony głównej."
+    },
+    "post": {
+      "title": "Tego wpisu",
+      "lead": "Wpis mógł zostać usunięty albo zmienił adres. Pozostałe wpisy znajdziesz na liście."
+    },
+    "project": {
+      "title": "Tego projektu",
+      "lead": "Projekt mógł zmienić adres. Wszystkie projekty – z filtrem i wyszukiwarką – są w archiwum."
+    },
+    "error": {
+      "title": "Coś poszło",
+      "lead": "Strona nie załadowała się poprawnie. Odśwież ją albo wróć na stronę główną."
+    },
+    "accent": { "missing": "tu nie ma.", "error": "nie tak." },
+    "links": {
+      "home": "Strona główna",
+      "projects": "Zobacz projekty",
+      "posts": "Wróć do wpisów",
+      "archive": "Wszystkie projekty",
+      "contact": "Daj mi znać"
+    },
+    "latest": "Najnowsze wpisy",
+    "meta": { "notFound": "Nie znaleziono strony – Łukasz Dzieło", "error": "Błąd – Łukasz Dzieło" }
+  }
+}
+</i18n>

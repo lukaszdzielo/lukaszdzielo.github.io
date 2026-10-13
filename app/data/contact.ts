@@ -6,12 +6,22 @@ export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 export const WEB3FORMS_ACCESS_KEY = 'dac37178-9e51-46a2-bd27-354d00b005b2'
 
 // Opcje pola „W sprawie”. `value` trafia do maila, `label` widzi użytkownik.
-export const contactTopics = [
-  { value: 'Praca w zespole', label: 'Praca w zespole' },
-  { value: 'Projekt w Vue', label: 'Projekt w Vue' },
-  { value: 'Strona dla firmy', label: 'Strona dla firmy' },
-  { value: 'Inne', label: 'Inne' },
-] as const
+// `value` jest po polsku w obu wersjach – maile mają te same tematy niezależnie od języka strony
+// (język nadawcy widać w temacie maila: „Portfolio (EN): …”).
+export const contactTopics = {
+  en: [
+    { value: 'Praca w zespole', label: 'A role on your team' },
+    { value: 'Projekt w Vue', label: 'A Vue project' },
+    { value: 'Strona dla firmy', label: 'A business website' },
+    { value: 'Inne', label: 'Something else' },
+  ],
+  pl: [
+    { value: 'Praca w zespole', label: 'Praca w zespole' },
+    { value: 'Projekt w Vue', label: 'Projekt w Vue' },
+    { value: 'Strona dla firmy', label: 'Strona dla firmy' },
+    { value: 'Inne', label: 'Inne' },
+  ],
+}
 
 export const contactSocials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lukasz-dzielo-0428b4148/' },

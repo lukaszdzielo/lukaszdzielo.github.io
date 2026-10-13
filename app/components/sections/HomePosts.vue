@@ -1,41 +1,41 @@
 <script setup lang="ts">
 // Najnowsze wpisy na stronie głównej. Gdy nie ma żadnego opublikowanego wpisu
 // (wszystkie mają `draft: true`), sekcja zostaje, a w miejscu kart jest informacja o braku wpisów.
-const { data: posts } = await useAsyncData('home-posts', () =>
-  queryCollection('blog')
+const { col, lang } = useContentLocale()
+const { data: posts } = await useAsyncData(`home-posts-${lang.value}`, () =>
+  queryCollection(col('blog'))
     .where('draft', '=', false)
     .order('date', 'DESC')
     .limit(6)
     .all(),
 )
 const scroller = useTemplateRef<HTMLElement>('scroller')
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
 </script>
 
 <template>
   <section id="posts" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="posts" side="right" class="top-6" />
     <div class="container">
-      <CommonSectionHead
-        title="Wpisy"
-        lead="Case study i krótsze wpisy – o tym, co zbudowałem, poprawiłem i czego się nauczyłem."
-      >
+      <CommonSectionHead :title="t('title')" :lead="t('lead')">
         <template #aside>
           <!-- Link do /blog jest aktywny, gdy jest co najmniej jeden opublikowany wpis -->
           <NuxtLink
             v-if="posts?.length"
-            to="/blog"
+            :to="link('/blog')"
             class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 text-sm whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400"
           >
-            Wszystkie wpisy
+            {{ t('all') }}
             <Icon name="lucide:arrow-right" class="text-sm transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
           </NuxtLink>
           <span
             v-else
             aria-disabled="true"
-            title="Wkrótce"
+            :title="t('soon')"
             class="inline-flex cursor-not-allowed items-center gap-2 border-b border-slate-900/10 pb-1 text-sm whitespace-nowrap text-slate-400 dark:border-white/10 dark:text-slate-500"
           >
-            Wszystkie wpisy
+            {{ t('all') }}
             <Icon name="lucide:arrow-right" class="text-sm" aria-hidden="true" />
           </span>
         </template>
@@ -67,11 +67,36 @@ const scroller = useTemplateRef<HTMLElement>('scroller')
         <span class="grid size-12 place-items-center rounded-full bg-primary-500/10 text-primary-500 dark:bg-primary-400/10 dark:text-primary-400">
           <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
         </span>
-        <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">Aktualnie brak wpisów</p>
+        <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">{{ t('empty.title') }}</p>
         <p class="max-w-md text-base/relaxed text-slate-500 dark:text-slate-400">
-          Pierwsze case study i wpisy o tym, nad czym pracuję, pojawią się tutaj wkrótce.
+          {{ t('empty.text') }}
         </p>
       </div>
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "title": "Posts",
+    "lead": "Case studies and shorter posts – about what I built, what I fixed and what I learned.",
+    "all": "All posts",
+    "soon": "Coming soon",
+    "empty": {
+      "title": "No posts yet",
+      "text": "The first case studies and posts about what I'm working on will show up here soon."
+    }
+  },
+  "pl": {
+    "title": "Wpisy",
+    "lead": "Case study i krótsze wpisy – o tym, co zbudowałem, poprawiłem i czego się nauczyłem.",
+    "all": "Wszystkie wpisy",
+    "soon": "Wkrótce",
+    "empty": {
+      "title": "Aktualnie brak wpisów",
+      "text": "Pierwsze case study i wpisy o tym, nad czym pracuję, pojawią się tutaj wkrótce."
+    }
+  }
+}
+</i18n>

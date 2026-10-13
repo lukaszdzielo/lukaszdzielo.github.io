@@ -6,6 +6,8 @@ import { contactSocials } from '~/data/contact'
 
 const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
 const business = computed(() => props.variant === 'business')
+const { t } = useI18n({ useScope: 'local' })
+const biz = useLocalized(businessContact)
 </script>
 
 <template>
@@ -24,14 +26,14 @@ const business = computed(() => props.variant === 'business')
 
         <div class="relative">
           <h2 class="text-3xl font-medium tracking-tight lg:text-5xl">
-            {{ business ? businessContact.title : 'Masz projekt do zrobienia?' }}
+            {{ business ? biz.title : t('title') }}
           </h2>
           <p class="mt-3.5 max-w-115 text-base/relaxed opacity-75">
-            {{ business ? businessContact.lead : 'Albo szukasz kogoś do zespołu? Napisz kilka zdań – odpowiem w ciągu 72 godzin.' }}
+            {{ business ? biz.lead : t('lead') }}
           </p>
           <p v-if="business" class="mt-8 inline-flex items-center gap-2.5 text-sm">
             <span class="size-2 rounded-full bg-emerald-400" aria-hidden="true" />
-            {{ businessContact.response }}
+            {{ biz.response }}
           </p>
           <ul v-else class="mt-8 flex flex-wrap gap-2.5">
             <li v-for="social in contactSocials" :key="social.href">
@@ -47,13 +49,14 @@ const business = computed(() => props.variant === 'business')
           </ul>
         </div>
 
+        <!-- source trafia tylko do tematu maila, więc zostaje po polsku w obu wersjach -->
         <CommonContactForm
           v-if="business"
           class="relative"
-          :topics="businessContact.topics"
-          topic-label="Czego potrzebujesz?"
-          message-label="Kilka słów o projekcie"
-          :message-placeholder="businessContact.placeholder"
+          :topics="biz.topics"
+          :topic-label="t('business.topic')"
+          :message-label="t('business.message')"
+          :message-placeholder="biz.placeholder"
           source="Strony dla firm"
         />
         <CommonContactForm v-else class="relative" />
@@ -61,3 +64,18 @@ const business = computed(() => props.variant === 'business')
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "title": "Got a project in mind?",
+    "lead": "Or looking for someone to join your team? Write a few sentences – I'll reply within 72 hours.",
+    "business": { "topic": "What do you need?", "message": "A few words about your project" }
+  },
+  "pl": {
+    "title": "Masz projekt do zrobienia?",
+    "lead": "Albo szukasz kogoś do zespołu? Napisz kilka zdań – odpowiem w ciągu 72 godzin.",
+    "business": { "topic": "Czego potrzebujesz?", "message": "Kilka słów o projekcie" }
+  }
+}
+</i18n>

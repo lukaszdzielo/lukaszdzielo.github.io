@@ -4,16 +4,17 @@
 type Service = { audience: string; title: string; items: string[]; linkLabel: string; to?: string }
 
 defineProps<{ services?: Service[] }>()
+
+const { t } = useI18n({ useScope: 'local' })
+// service.to w treści to adres wersji polskiej bez /pl – link() zamienia go na adres w bieżącym języku
+const link = useLocalLink()
 </script>
 
 <template>
   <section id="services" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="services" class="top-6" />
     <div class="container">
-      <CommonSectionHead
-        title="Dwa sposoby, w jakie mogę pomóc"
-        lead="Ta sama osoba, dwie różne potrzeby. Wybierz tę, która brzmi jak Twoja."
-      />
+      <CommonSectionHead :title="t('title')" :lead="t('lead')" />
 
       <div class="mt-7 grid gap-6 lg:mt-10 lg:grid-cols-2">
         <article
@@ -49,7 +50,7 @@ defineProps<{ services?: Service[] }>()
 
           <NuxtLink
             v-if="service.to"
-            :to="service.to"
+            :to="link(service.to)"
             class="group mt-auto inline-flex items-center gap-2.5 self-start pt-1.5 font-medium"
           >
             {{ service.linkLabel }}
@@ -60,7 +61,7 @@ defineProps<{ services?: Service[] }>()
           <span
             v-else
             aria-disabled="true"
-            title="Wkrótce"
+            :title="t('soon')"
             class="mt-auto inline-flex cursor-not-allowed items-center gap-2.5 self-start pt-1.5 font-medium opacity-45"
           >
             {{ service.linkLabel }}
@@ -73,3 +74,18 @@ defineProps<{ services?: Service[] }>()
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "title": "Two ways I can help",
+    "lead": "One person, two different needs. Pick the one that sounds like yours.",
+    "soon": "Coming soon"
+  },
+  "pl": {
+    "title": "Dwa sposoby, w jakie mogę pomóc",
+    "lead": "Ta sama osoba, dwie różne potrzeby. Wybierz tę, która brzmi jak Twoja.",
+    "soon": "Wkrótce"
+  }
+}
+</i18n>

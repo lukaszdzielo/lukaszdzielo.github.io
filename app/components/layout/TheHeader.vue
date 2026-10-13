@@ -5,22 +5,26 @@
 // Poniżej: sygnet, przełącznik motywu, „Kontakt” i przycisk menu, które otwiera panel z linkami.
 // Wariant „business” (strona dla firm): menu z sekcjami oferty i przycisk „Wyceń stronę”.
 // Sygnet zawsze prowadzi do portfolio (strona główna), a napis „Strony dla firm” – na górę strony dla firm.
+// Przełącznik języka: od lg obok przełącznika motywu, poniżej – w otwartym menu.
 import { businessMenu } from '~/data/business'
 
 const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
 
-const portfolioMenu = [
-  { label: 'Projekty', to: '/#projects' },
-  { label: 'Współpraca', to: '/#services' },
-  { label: 'O mnie', to: '/#about-me' },
-  { label: 'Wpisy', to: '/#posts' },
-]
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
+const bizMenu = useLocalized(businessMenu)
+const portfolioMenu = computed(() => [
+  { label: t('menu.projects'), to: '/#projects' },
+  { label: t('menu.services'), to: '/#services' },
+  { label: t('menu.about'), to: '/#about-me' },
+  { label: t('menu.posts'), to: '/#posts' },
+])
 const business = computed(() => props.variant === 'business')
-const menu = computed(() => (business.value ? businessMenu : portfolioMenu))
+const menu = computed(() => (business.value ? bizMenu.value : portfolioMenu.value))
 const cta = computed(() =>
   business.value
-    ? { label: 'Wyceń stronę', to: '/strony-dla-firm#contact', mobile: 'Opisz swój projekt' }
-    : { label: 'Kontakt', to: '/#contact', mobile: 'Napisz do mnie' },
+    ? { label: t('cta.business'), to: '/strony-dla-firm#contact', mobile: t('cta.businessMobile') }
+    : { label: t('cta.contact'), to: '/#contact', mobile: t('cta.contactMobile') },
 )
 
 const stuck = ref(false)
@@ -89,33 +93,34 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
     <div class="container flex items-center gap-6">
       <div class="flex shrink-0 items-center gap-3">
         <NuxtLink
-          to="/"
+          :to="link('/')"
           class="inline-flex h-10 items-center text-slate-900 dark:text-brand-50"
-          aria-label="Łukasz Dzieło – strona główna"
+          :aria-label="t('home')"
           @click="close()"
         >
           <CommonAppLogo class="size-9 shrink-0" :stroke-width="13" />
         </NuxtLink>
         <NuxtLink
           v-if="business"
-          to="/strony-dla-firm"
+          :to="link('/strony-dla-firm')"
           class="hidden border-l border-slate-900/16 pl-3 text-sm text-slate-500 transition-colors hover:text-slate-900 sm:inline dark:border-white/20 dark:text-slate-400 dark:hover:text-brand-50"
           @click="close()"
         >
-          Strony dla firm
+          {{ t('business') }}
         </NuxtLink>
       </div>
 
-      <nav class="mx-auto hidden gap-7 text-sm whitespace-nowrap text-slate-600 lg:flex dark:text-slate-300" aria-label="Główna nawigacja">
-        <NuxtLink v-for="item in menu" :key="item.to" :to="item.to" :class="navLink">
+      <nav class="mx-auto hidden gap-7 text-sm whitespace-nowrap text-slate-600 lg:flex dark:text-slate-300" :aria-label="t('mainNav')">
+        <NuxtLink v-for="item in menu" :key="item.to" :to="link(item.to)" :class="navLink">
           {{ item.label }}
         </NuxtLink>
       </nav>
 
       <div class="ml-auto flex items-center gap-2 lg:ml-0">
+        <CommonLanguageSwitch class="max-lg:hidden" />
         <CommonColorModeToggle />
         <NuxtLink
-          :to="cta.to"
+          :to="link(cta.to)"
           class="group inline-flex h-11 items-center gap-2.5 rounded-full bg-brand-900 py-1.75 pr-1.75 pl-4.5 text-sm font-medium whitespace-nowrap text-white dark:bg-slate-100 dark:text-brand-950"
           @click="close()"
         >
@@ -132,7 +137,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
           class="relative grid size-11 cursor-pointer place-items-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white lg:hidden dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
           :aria-expanded="open"
           aria-controls="mobile-menu"
-          :aria-label="open ? 'Zamknij menu' : 'Otwórz menu'"
+          :aria-label="open ? t('closeMenu') : t('openMenu')"
           @click="open = !open"
         >
           <span class="relative block h-3 w-4.5" aria-hidden="true">
@@ -164,12 +169,12 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
         v-if="open"
         id="mobile-menu"
         class="absolute inset-x-0 top-full h-[calc(100dvh-100%)] overflow-y-auto overscroll-contain border-t border-slate-900/10 bg-brand-50 lg:hidden dark:border-white/10 dark:bg-brand-950"
-        aria-label="Menu"
+        :aria-label="t('menuLabel')"
       >
         <ul class="container flex flex-col py-6">
           <li v-for="item in menu" :key="item.to" class="border-b border-slate-900/10 dark:border-white/10">
             <NuxtLink
-              :to="item.to"
+              :to="link(item.to)"
               class="group flex items-center justify-between py-4 text-3xl font-medium tracking-tight text-slate-900 dark:text-brand-50"
               @click="close()"
             >
@@ -178,9 +183,12 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
             </NuxtLink>
           </li>
         </ul>
+        <div class="container pb-6">
+          <CommonLanguageSwitch variant="segmented" @switched="close()" />
+        </div>
         <div class="container flex flex-wrap gap-3 pb-8">
           <NuxtLink
-            :to="cta.to"
+            :to="link(cta.to)"
             class="inline-flex h-12 items-center rounded-full bg-brand-900 px-6 font-medium text-white dark:bg-slate-100 dark:text-brand-950"
             @click="close()"
           >
@@ -188,14 +196,41 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
           </NuxtLink>
           <NuxtLink
             v-if="business"
-            to="/"
+            :to="link('/')"
             class="inline-flex h-12 items-center rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 dark:border-white/20 dark:text-brand-50"
             @click="close()"
           >
-            Portfolio programisty
+            {{ t('portfolio') }}
           </NuxtLink>
         </div>
       </nav>
     </Transition>
   </header>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "menu": { "projects": "Projects", "services": "Work with me", "about": "About", "posts": "Posts" },
+    "cta": { "business": "Get a quote", "businessMobile": "Describe your project", "contact": "Contact", "contactMobile": "Get in touch" },
+    "home": "Łukasz Dzieło – home page",
+    "business": "Business websites",
+    "mainNav": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuLabel": "Menu",
+    "portfolio": "Developer portfolio"
+  },
+  "pl": {
+    "menu": { "projects": "Projekty", "services": "Współpraca", "about": "O mnie", "posts": "Wpisy" },
+    "cta": { "business": "Wyceń stronę", "businessMobile": "Opisz swój projekt", "contact": "Kontakt", "contactMobile": "Napisz do mnie" },
+    "home": "Łukasz Dzieło – strona główna",
+    "business": "Strony dla firm",
+    "mainNav": "Główna nawigacja",
+    "openMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu",
+    "menuLabel": "Menu",
+    "portfolio": "Portfolio programisty"
+  }
+}
+</i18n>

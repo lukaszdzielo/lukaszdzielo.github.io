@@ -5,7 +5,7 @@
 // Filtr rodzaju działa tak samo (3 najnowsze lata z pasującymi projektami rozwinięte) – długa lista
 // nie rozwija się cała naraz. Przy wyszukiwaniu rozwijamy wszystko, żeby żaden wynik nie był ukryty.
 // Projekty z sekcji „Wyróżnione” mają na miniaturze odznakę.
-import { isProjectKind, projectKind, projectKindLabels, projectKindOrder, type ProjectKind } from '~/utils/projectKind'
+import { isProjectKind, projectKind, projectKindLabel, projectKindOrder, type ProjectKind } from '~/utils/projectKind'
 
 type ArchiveProject = {
   path: string
@@ -22,6 +22,8 @@ type ArchiveProject = {
 const props = defineProps<{ projects: ArchiveProject[] }>()
 
 const OPEN_YEARS = 3
+
+const { t, locale } = useI18n({ useScope: 'local' })
 
 const route = useRoute()
 const router = useRouter()
@@ -70,10 +72,11 @@ const counts = computed(() => {
 const kinds = computed(() => projectKindOrder.filter(k => counts.value[k]))
 
 const filtered = computed(() => {
-  const q = query.value.trim().toLocaleLowerCase('pl')
+  const lc = (text: string) => text.toLocaleLowerCase(locale.value)
+  const q = lc(query.value.trim())
   return items.value.filter(p =>
     (kind.value === 'all' || p.kind === kind.value)
-    && (!q || p.title.toLocaleLowerCase('pl').includes(q) || (p.agency ?? '').toLocaleLowerCase('pl').includes(q)),
+    && (!q || lc(p.title).includes(q) || lc(p.agency ?? '').includes(q)),
   )
 })
 
@@ -105,19 +108,13 @@ function open(year: string, index: number) {
   if (!isOpen(year, index)) toggle(year, index)
 }
 
-function plural(n: number) {
-  if (n === 1) return 'projekt'
-  const d = n % 10, h = n % 100
-  return d >= 2 && d <= 4 && !(h >= 12 && h <= 14) ? 'projekty' : 'projektów'
-}
-
 // Podpis pod tytułem: rodzaj i agencja / pracodawca. Przy włączonym filtrze rodzaj jest już
 // w filtrze, więc go nie powtarzamy. Projekty własne i zlecenia bez agencji – sam rodzaj.
 const metaOf = (p: ArchiveProject & { kind: ProjectKind }) =>
-  [kind.value === 'all' ? projectKindLabels[p.kind] : '', p.agency ?? ''].filter(Boolean).join(' · ')
+  [kind.value === 'all' ? projectKindLabel(p.kind, locale.value) : '', p.agency ?? ''].filter(Boolean).join(' · ')
 
 const linkOf = (p: ArchiveProject) => {
-  if (p.links?.live) return { href: p.links.live, label: 'Strona' }
+  if (p.links?.live) return { href: p.links.live, label: t('link.live') }
   if (p.links?.behance) return { href: p.links.behance, label: 'Behance' }
   if (p.links?.github) return { href: p.links.github, label: 'GitHub' }
   return null
@@ -137,14 +134,14 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         ref="filtersEl"
         class="flex items-center gap-3 overflow-x-auto overflow-y-hidden overscroll-x-contain px-pad pb-1 [scrollbar-width:none] data-more-l:mask-l-from-85% data-more-r:mask-r-from-85% sm:flex-wrap sm:justify-between sm:overflow-visible sm:px-0"
       >
-        <div class="flex gap-2 sm:flex-wrap" role="group" aria-label="Rodzaj projektu">
+        <div class="flex gap-2 sm:flex-wrap" role="group" :aria-label="t('filters.label')">
           <button
             type="button"
             :class="[chip, kind === 'all' ? 'bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950' : 'bg-white text-slate-600 hover:text-slate-900 dark:bg-brand-900 dark:text-slate-300 dark:hover:text-brand-50']"
             :aria-pressed="kind === 'all'"
             @click="setKind('all')"
           >
-            Wszystkie <span class="opacity-60">{{ counts.all }}</span>
+            {{ t('filters.all') }} <span class="opacity-60">{{ counts.all }}</span>
           </button>
           <button
             v-for="k in kinds"
@@ -154,25 +151,25 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             :aria-pressed="kind === k"
             @click="setKind(k)"
           >
-            {{ projectKindLabels[k] }} <span class="opacity-60">{{ counts[k] }}</span>
+            {{ projectKindLabel(k, locale) }} <span class="opacity-60">{{ counts[k] }}</span>
           </button>
         </div>
 
         <label class="relative block shrink-0 sm:w-75">
-          <span class="sr-only">Szukaj projektu</span>
+          <span class="sr-only">{{ t('search.label') }}</span>
           <Icon name="lucide:search" class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-base text-slate-400" aria-hidden="true" />
           <input
             v-model="query"
             type="search"
-            placeholder="Szukaj projektu…"
+            :placeholder="t('search.placeholder')"
             class="h-11 w-44 rounded-full border border-slate-900/16 bg-white pr-4 pl-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30 focus:outline-none sm:w-full dark:border-white/20 dark:bg-brand-900 dark:text-brand-50"
           >
         </label>
       </div>
-      <button v-if="filtersEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2']" aria-label="Przewiń filtry w lewo" @click="filtersEdges.go(-1, stripStep(filtersEl))">
+      <button v-if="filtersEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2']" :aria-label="t('filters.scrollLeft')" @click="filtersEdges.go(-1, stripStep(filtersEl))">
         <Icon name="lucide:chevron-left" class="text-base" aria-hidden="true" />
       </button>
-      <button v-if="filtersEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2']" aria-label="Przewiń filtry w prawo" @click="filtersEdges.go(1, stripStep(filtersEl))">
+      <button v-if="filtersEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2']" :aria-label="t('filters.scrollRight')" @click="filtersEdges.go(1, stripStep(filtersEl))">
         <Icon name="lucide:chevron-right" class="text-base" aria-hidden="true" />
       </button>
     </div>
@@ -180,7 +177,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
     <!-- Skok do roku -->
     <nav
       v-if="years.length > 1"
-      aria-label="Lata"
+      :aria-label="t('years.label')"
       class="relative -mx-pad mt-5 border-y border-slate-900/10 bg-white sm:mx-0 sm:w-max sm:max-w-full sm:rounded-full sm:border dark:border-white/10 dark:bg-brand-900"
     >
       <div
@@ -196,16 +193,16 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           @click="open(y.year, i)"
         >{{ y.year }}</a>
       </div>
-      <button v-if="yearsEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2 sm:left-1.5']" aria-label="Przewiń lata w lewo" @click="yearsEdges.go(-1, stripStep(yearsEl))">
+      <button v-if="yearsEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2 sm:left-1.5']" :aria-label="t('years.scrollLeft')" @click="yearsEdges.go(-1, stripStep(yearsEl))">
         <Icon name="lucide:chevron-left" class="text-base" aria-hidden="true" />
       </button>
-      <button v-if="yearsEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2 sm:right-1.5']" aria-label="Przewiń lata w prawo" @click="yearsEdges.go(1, stripStep(yearsEl))">
+      <button v-if="yearsEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2 sm:right-1.5']" :aria-label="t('years.scrollRight')" @click="yearsEdges.go(1, stripStep(yearsEl))">
         <Icon name="lucide:chevron-right" class="text-base" aria-hidden="true" />
       </button>
     </nav>
 
     <p v-if="!years.length" class="mt-10 rounded-2xl border border-dashed border-slate-900/15 px-6 py-10 text-center text-slate-500 dark:border-white/15 dark:text-slate-400">
-      Brak projektów dla tego wyszukiwania.
+      {{ t('noResults') }}
     </p>
 
     <!-- Lata -->
@@ -225,7 +222,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           {{ y.year }}
         </h3>
         <div class="flex items-baseline gap-4 sm:mt-2 sm:flex-col sm:gap-3">
-          <small class="text-sm text-slate-500 dark:text-slate-400">{{ y.list.length }} {{ plural(y.list.length) }}</small>
+          <small class="text-sm text-slate-500 dark:text-slate-400">{{ t('count', y.list.length) }}</small>
           <button
             v-if="!narrowed && isOpen(y.year, i)"
             type="button"
@@ -234,7 +231,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             :aria-controls="`y${y.year}-list`"
             @click="toggle(y.year, i)"
           >
-            Zwiń <span class="sr-only">rok {{ y.year }}</span>
+            {{ t('collapse') }} <span class="sr-only">{{ t('yearSr', { year: y.year }) }}</span>
             <Icon name="lucide:chevron-up" class="text-base" aria-hidden="true" />
           </button>
         </div>
@@ -251,8 +248,8 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
       >
         <span class="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3.5">
           <span class="text-2xl font-medium tracking-tight text-slate-900 sm:hidden dark:text-brand-50">{{ y.year }}</span>
-          <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">Pokaż {{ y.list.length }} {{ plural(y.list.length) }}</b>
-          <em class="truncate text-sm text-slate-500 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ' i inne' : '' }}</em>
+          <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">{{ t('expand', y.list.length) }}</b>
+          <em class="truncate text-sm text-slate-500 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ` ${t('andMore')}` : '' }}</em>
         </span>
         <Icon name="lucide:chevron-down" class="shrink-0 text-lg text-primary-500 dark:text-primary-400" aria-hidden="true" />
       </button>
@@ -288,13 +285,13 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
                 class="absolute top-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-primary-500 p-1 text-xs font-medium text-white shadow-sm sm:top-2.5 sm:left-2.5 sm:px-2.5 sm:py-1 dark:bg-primary-400 dark:text-brand-950"
               >
                 <Icon name="lucide:star" class="text-xs" aria-hidden="true" />
-                <span class="max-sm:sr-only">Wyróżniony</span>
+                <span class="max-sm:sr-only">{{ t('featured') }}</span>
               </span>
             </div>
             <div class="min-w-0">
               <div class="flex items-baseline justify-between gap-2 sm:mt-3">
                 <b class="truncate text-base font-medium text-slate-900 dark:text-brand-50">{{ p.title }}</b>
-                <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">Więcej →</span>
+                <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ t('more') }}</span>
                 <span v-else-if="linkOf(p)" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
               </div>
               <p v-if="metaOf(p)" class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">{{ metaOf(p) }}</p>
@@ -305,3 +302,60 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
     </div>
   </div>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "filters": {
+      "label": "Project type",
+      "all": "All",
+      "scrollLeft": "Scroll filters left",
+      "scrollRight": "Scroll filters right"
+    },
+    "search": {
+      "label": "Search projects",
+      "placeholder": "Search projects…"
+    },
+    "years": {
+      "label": "Years",
+      "scrollLeft": "Scroll years left",
+      "scrollRight": "Scroll years right"
+    },
+    "noResults": "No projects match your search.",
+    "count": "{n} project | {n} projects",
+    "collapse": "Collapse",
+    "yearSr": "year {year}",
+    "expand": "Show {n} project | Show {n} projects",
+    "andMore": "and more",
+    "featured": "Featured",
+    "more": "More →",
+    "link": { "live": "Website" }
+  },
+  "pl": {
+    "filters": {
+      "label": "Rodzaj projektu",
+      "all": "Wszystkie",
+      "scrollLeft": "Przewiń filtry w lewo",
+      "scrollRight": "Przewiń filtry w prawo"
+    },
+    "search": {
+      "label": "Szukaj projektu",
+      "placeholder": "Szukaj projektu…"
+    },
+    "years": {
+      "label": "Lata",
+      "scrollLeft": "Przewiń lata w lewo",
+      "scrollRight": "Przewiń lata w prawo"
+    },
+    "noResults": "Brak projektów dla tego wyszukiwania.",
+    "count": "{n} projekt | {n} projekty | {n} projektów",
+    "collapse": "Zwiń",
+    "yearSr": "rok {year}",
+    "expand": "Pokaż {n} projekt | Pokaż {n} projekty | Pokaż {n} projektów",
+    "andMore": "i inne",
+    "featured": "Wyróżniony",
+    "more": "Więcej →",
+    "link": { "live": "Strona" }
+  }
+}
+</i18n>

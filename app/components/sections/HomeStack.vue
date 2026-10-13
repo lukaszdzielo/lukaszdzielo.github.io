@@ -7,6 +7,8 @@ defineProps<{
   learningNote?: string
 }>()
 
+const { t } = useI18n({ useScope: 'local' })
+
 const card =
   'flex flex-col gap-4 rounded-3xl border border-slate-900/10 bg-white p-7 shadow-sm transition-[opacity,translate] duration-700 ease-out dark:border-white/10 dark:bg-brand-900'
 const cardTitle = 'text-sm font-semibold text-slate-500 dark:text-slate-400'
@@ -17,11 +19,11 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
   <section id="stack" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="stack" side="right" class="top-6" />
     <div class="container">
-      <CommonSectionHead title="Z czym pracuję" />
+      <CommonSectionHead :title="t('title')" />
 
       <div class="mt-7 grid gap-6 md:grid-cols-2 lg:mt-10 lg:grid-cols-[1.25fr_1fr_0.9fr]">
         <div v-reveal :class="card">
-          <h3 :class="cardTitle">Na co dzień, na produkcji</h3>
+          <h3 :class="cardTitle">{{ t('daily') }}</h3>
           <ul class="flex flex-wrap gap-2">
             <li
               v-for="item in daily"
@@ -35,7 +37,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
         </div>
 
         <div v-reveal="80" :class="card">
-          <h3 :class="cardTitle">Znam i używam</h3>
+          <h3 :class="cardTitle">{{ t('known') }}</h3>
           <ul class="flex flex-wrap gap-2">
             <li
               v-for="item in known"
@@ -53,7 +55,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
           :class="card"
           class="border-dashed border-slate-900/16 bg-linear-[165deg] from-white to-slate-50 md:col-span-2 lg:col-span-1 dark:border-white/20 dark:from-brand-900 dark:to-[#15213f]"
         >
-          <h3 :class="cardTitle">Uczę się teraz</h3>
+          <h3 :class="cardTitle">{{ t('learning') }}</h3>
           <ul class="flex flex-col gap-3">
             <li
               v-for="(item, i) in learning"
@@ -75,3 +77,20 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "title": "What I work with",
+    "daily": "Every day, in production",
+    "known": "I know and use",
+    "learning": "Learning now"
+  },
+  "pl": {
+    "title": "Z czym pracuję",
+    "daily": "Na co dzień, na produkcji",
+    "known": "Znam i używam",
+    "learning": "Uczę się teraz"
+  }
+}
+</i18n>

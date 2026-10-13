@@ -2,6 +2,7 @@
 // Wyróżnione projekty – kafelki w stylu posta z Instagrama.
 // Używane na stronie głównej (z linkiem „Wszystkie projekty”) i na /projects (bez linku).
 // Lista projektów: app/data/featuredProjects.ts.
+// title i lead bez wartości domyślnych – gdy nie podano propsów, biorą tekst z bloku <i18n>.
 import { visibleFeaturedProjects } from '~/data/featuredProjects'
 
 const props = withDefaults(
@@ -14,15 +15,20 @@ const props = withDefaults(
   }>(),
   {
     id: 'projects',
-    title: 'Rzeczy, które zbudowałem',
-    lead: 'Aplikacje, strony komercyjne i projekty, na których się uczę.',
     allLink: true,
     backdrop: true,
   },
 )
 
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
+const { lang } = useContentLocale()
+
 // date/hidden służą tylko do sortowania i filtrowania – nie przekazujemy ich do kafelka
-const projects = visibleFeaturedProjects().map(({ date: _date, hidden: _hidden, ...tile }) => tile)
+// (computed – opisy przełączają się razem z językiem)
+const projects = computed(() =>
+  visibleFeaturedProjects(lang.value).map(({ date: _date, hidden: _hidden, ...tile }) => tile),
+)
 const scroller = useTemplateRef<HTMLElement>('scroller')
 
 // Pierwszy kafelek „przylatuje” z hero – tylko na stronie głównej (z tłem kodu), nie na /projects
@@ -40,13 +46,13 @@ if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShad
   <section :id="props.id" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop v-if="backdrop" name="projects" side="right" class="top-6" />
     <div class="container">
-      <CommonSectionHead :title="title" :lead="lead">
+      <CommonSectionHead :title="title ?? t('title')" :lead="lead ?? t('lead')">
         <template v-if="allLink" #aside>
           <NuxtLink
-            to="/projects"
+            :to="link('/projects')"
             class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 text-sm whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400"
           >
-            Wszystkie projekty
+            {{ t('all') }}
             <Icon name="lucide:arrow-right" class="text-sm transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
           </NuxtLink>
         </template>
@@ -89,3 +95,18 @@ if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShad
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "title": "Things I've built",
+    "lead": "Apps, commercial websites and projects I learn on.",
+    "all": "All projects"
+  },
+  "pl": {
+    "title": "Rzeczy, które zbudowałem",
+    "lead": "Aplikacje, strony komercyjne i projekty, na których się uczę.",
+    "all": "Wszystkie projekty"
+  }
+}
+</i18n>

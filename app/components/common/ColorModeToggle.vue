@@ -11,18 +11,15 @@ onMounted(() => {
 
 const display = computed(() => (mounted.value ? mode.value : "auto"));
 
-const labels = {
-  auto: "Motyw: automatyczny (systemowy) – kliknij, aby włączyć jasny",
-  light: "Motyw: jasny – kliknij, aby włączyć ciemny",
-  dark: "Motyw: ciemny – kliknij, aby włączyć automatyczny",
-} as const;
+const { t } = useI18n({ useScope: "local" });
+const label = computed(() => t(display.value));
 </script>
 
 <template>
   <button
     type="button"
-    :aria-label="labels[display]"
-    :title="labels[display]"
+    :aria-label="label"
+    :title="label"
     class="inline-flex size-11 cursor-pointer items-center justify-center rounded-xl border border-slate-900/16 text-slate-900 transition-colors hover:bg-white dark:border-white/20 dark:text-brand-50 dark:hover:bg-brand-900"
     @click="cycle"
   >
@@ -85,3 +82,18 @@ const labels = {
     </svg>
   </button>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "auto": "Theme: automatic (system) – click to switch to light",
+    "light": "Theme: light – click to switch to dark",
+    "dark": "Theme: dark – click to switch to automatic"
+  },
+  "pl": {
+    "auto": "Motyw: automatyczny (systemowy) – kliknij, aby włączyć jasny",
+    "light": "Motyw: jasny – kliknij, aby włączyć ciemny",
+    "dark": "Motyw: ciemny – kliknij, aby włączyć automatyczny"
+  }
+}
+</i18n>

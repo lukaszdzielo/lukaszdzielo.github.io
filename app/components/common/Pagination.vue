@@ -2,6 +2,7 @@
 // Paginacja z linkami (każda strona ma własny adres, więc działa bez JS i w wyszukiwarkach).
 // Desktop: „Poprzednia”, numery z „…”, „Następna”. Telefon: strzałki i „Strona X z Y”.
 const props = defineProps<{ page: number; pages: number; pathFor: (page: number) => string }>()
+const { t } = useI18n({ useScope: 'local' })
 
 // 1 … 4 5 6 … 12 – zawsze pierwsza, ostatnia i sąsiedzi bieżącej
 const items = computed<(number | '…')[]>(() => {
@@ -24,7 +25,7 @@ const NuxtLink = resolveComponent('NuxtLink')
 </script>
 
 <template>
-  <nav aria-label="Strony" class="flex items-center justify-between gap-3">
+  <nav :aria-label="t('label')" class="flex items-center justify-between gap-3">
     <!-- Na pierwszej / ostatniej stronie strzałka jest wyszarzonym <span>, nie linkiem -->
     <component
       :is="page > 1 ? NuxtLink : 'span'"
@@ -33,12 +34,13 @@ const NuxtLink = resolveComponent('NuxtLink')
       :aria-disabled="page <= 1 || undefined"
     >
       <Icon name="lucide:arrow-left" aria-hidden="true" />
-      <span class="max-sm:sr-only">Poprzednia</span>
+      <span class="max-sm:sr-only">{{ t('prev') }}</span>
     </component>
 
-    <p class="text-sm text-slate-600 sm:hidden dark:text-slate-300">
-      Strona <b class="font-semibold text-slate-900 dark:text-brand-50">{{ page }}</b> z {{ pages }}
-    </p>
+    <i18n-t keypath="pageOf" tag="p" class="text-sm text-slate-600 sm:hidden dark:text-slate-300">
+      <template #page><b class="font-semibold text-slate-900 dark:text-brand-50">{{ page }}</b></template>
+      <template #pages>{{ pages }}</template>
+    </i18n-t>
 
     <ol class="hidden items-center gap-1 sm:flex">
       <li v-for="(item, i) in items" :key="`${item}-${i}`">
@@ -61,8 +63,15 @@ const NuxtLink = resolveComponent('NuxtLink')
       :class="[arrow, page < pages ? '' : off]"
       :aria-disabled="page >= pages || undefined"
     >
-      <span class="max-sm:sr-only">Następna</span>
+      <span class="max-sm:sr-only">{{ t('next') }}</span>
       <Icon name="lucide:arrow-right" aria-hidden="true" />
     </component>
   </nav>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "label": "Pages", "prev": "Previous", "next": "Next", "pageOf": "Page {page} of {pages}" },
+  "pl": { "label": "Strony", "prev": "Poprzednia", "next": "Następna", "pageOf": "Strona {page} z {pages}" }
+}
+</i18n>

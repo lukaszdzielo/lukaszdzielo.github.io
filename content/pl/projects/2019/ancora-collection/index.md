@@ -1,0 +1,11 @@
+---
+date: 2019-09-02
+title: Ancora Collection
+description:
+image: /projects/2019/ancora-collection/thumbnail.avif
+tags: [wordpress]
+featured: false
+agency: eConnect4u
+links:
+  behance: https://www.behance.net/gallery/87309981/Ancora-website
+---

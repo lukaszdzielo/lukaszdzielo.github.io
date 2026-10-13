@@ -6,6 +6,9 @@ defineProps<{
   titleAccent?: string
   stack?: string[]
 }>()
+
+const { t } = useI18n({ useScope: 'local' })
+const link = useLocalLink()
 </script>
 
 <template>
@@ -32,10 +35,10 @@ defineProps<{
 
         <div class="mt-8 flex flex-wrap items-center gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:240ms]">
           <NuxtLink
-            to="/#projects"
+            :to="link('/#projects')"
             class="group inline-flex h-14 items-center gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950"
           >
-            Zobacz projekty
+            {{ t('cta') }}
             <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
               <Icon name="lucide:arrow-down" class="transition-transform motion-safe:group-hover:translate-y-0.5" aria-hidden="true" />
             </span>
@@ -77,3 +80,10 @@ defineProps<{
     </div>
   </header>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "cta": "See projects" },
+  "pl": { "cta": "Zobacz projekty" }
+}
+</i18n>

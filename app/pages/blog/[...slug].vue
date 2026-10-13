@@ -1,27 +1,30 @@
 <script setup lang="ts">
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site';
 
+const { t, locale } = useI18n({ useScope: 'local' });
 const route = useRoute();
+const { col, clean, withLocale } = useContentLocale();
+const path = clean(route.path);
 
-const { data: post } = await useAsyncData('blog-' + route.path, () =>
-    queryCollection('blog')
+const { data: post } = await useAsyncData('blog-' + path, () =>
+    queryCollection(col('blog'))
         .where('draft', '=', false)
-        .path(route.path)
+        .path(path)
         .first()
 );
 
 // Project this article was written about (via `project:` in frontmatter).
-const { data: relatedProject } = await useAsyncData('blog-project-' + route.path, () => {
-    const projectPath = post.value?.project;
+const { data: relatedProject } = await useAsyncData('blog-project-' + path, () => {
+    const projectPath = post.value?.project ? withLocale(post.value.project) : undefined;
     if (!projectPath) return Promise.resolve(null);
-    return queryCollection('projects')
+    return queryCollection(col('projects'))
         .where('draft', '=', false)
         .path(projectPath)
         .first();
 });
 
 useSiteMeta({
-    title: post.value?.title ? `${post.value.title} – Łukasz Dzieło` : 'Wpis – Łukasz Dzieło',
+    title: post.value?.title ? `${post.value.title} – Łukasz Dzieło` : t('meta.fallbackTitle'),
     description: post.value?.description || undefined,
 });
 
@@ -31,7 +34,7 @@ if (post.value) {
         headline: post.value.title,
         description: post.value.description || undefined,
         datePublished: post.value.date || undefined,
-        inLanguage: 'pl-PL',
+        inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
         mainEntityOfPage: pageUrl(route.path),
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
     });
@@ -49,11 +52,11 @@ if (post.value) {
             <div class="flex flex-col gap-3 text-sm">
                 <div class="flex flex-wrap items-center gap-3">
                     <time v-if="post.date" :datetime="post.date">
-                        {{ formatDate(post.date) }}
+                        {{ formatDate(post.date, locale) }}
                     </time>
                     <span v-if="post.kind === 'case-study'"
                         class="rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 px-2.5 py-0.5 text-xs font-medium">
-                        Case study
+                        {{ t('caseStudy') }}
                     </span>
                 </div>
                 <ul v-if="post.tags?.length" class="flex flex-wrap gap-2">
@@ -72,7 +75,7 @@ if (post.value) {
                 class="w-24 shrink-0 rounded-md aspect-video object-cover object-top bg-white" />
             <div class="flex flex-col gap-0.5">
                 <small class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                    O projekcie
+                    {{ t('aboutProject') }}
                 </small>
                 <span class="font-semibold group-hover:text-sky-500 transition-colors">
                     {{ relatedProject.title }}
@@ -88,3 +91,18 @@ if (post.value) {
     <!-- Nie ma takiego wpisu (albo to szkic) -->
     <CommonNotFound v-else variant="post" />
 </template>
+
+<i18n lang="json">
+{
+    "en": {
+        "meta": { "fallbackTitle": "Post – Łukasz Dzieło" },
+        "caseStudy": "Case study",
+        "aboutProject": "About the project"
+    },
+    "pl": {
+        "meta": { "fallbackTitle": "Wpis – Łukasz Dzieło" },
+        "caseStudy": "Case study",
+        "aboutProject": "O projekcie"
+    }
+}
+</i18n>

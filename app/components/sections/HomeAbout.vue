@@ -12,6 +12,10 @@ defineProps<{
   hobbiesLabel?: string
   hobbies?: string
 }>()
+
+const { t } = useI18n({ useScope: 'local' })
+// project.to w treści to adres wersji polskiej bez /pl ('/#projects') – link() daje adres w bieżącym języku
+const link = useLocalLink()
 </script>
 
 <template>
@@ -55,10 +59,10 @@ defineProps<{
                 {{ item.company }} <span class="font-normal text-slate-500 dark:text-slate-400">· {{ item.role }}</span>
               </p>
               <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-300">{{ item.text }}</p>
-              <ul v-if="item.projects?.length" class="mt-2.5 flex flex-wrap gap-1.5" :aria-label="`Projekty – ${item.company}`">
+              <ul v-if="item.projects?.length" class="mt-2.5 flex flex-wrap gap-1.5" :aria-label="t('projectsAt', { company: item.company })">
                 <li v-for="project in item.projects" :key="project.title">
                   <NuxtLink
-                    :to="project.to"
+                    :to="link(project.to)"
                     class="inline-flex h-7 items-center gap-1 rounded-full bg-primary-500/10 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20"
                   >
                     {{ project.title }}
@@ -79,7 +83,7 @@ defineProps<{
         class="-mt-4 space-y-4 transition-[opacity,translate] duration-700 ease-out lg:col-start-1 lg:row-start-2 lg:mt-0"
       >
         <div v-if="education" class="rounded-2xl border border-slate-900/10 bg-white px-5 py-4 dark:border-white/10 dark:bg-brand-900">
-          <p class="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">Wykształcenie</p>
+          <p class="text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-slate-400">{{ t('education') }}</p>
           <!-- W treści szkoły są rozdzielone „ · ” – każda w osobnej linii -->
           <ul class="mt-2 space-y-1 text-sm/relaxed text-slate-600 dark:text-slate-300">
             <li v-for="school in education.split(' · ')" :key="school">{{ school }}</li>
@@ -95,3 +99,10 @@ defineProps<{
     </div>
   </section>
 </template>
+
+<i18n lang="json">
+{
+  "en": { "education": "Education", "projectsAt": "Projects – {company}" },
+  "pl": { "education": "Wykształcenie", "projectsAt": "Projekty – {company}" }
+}
+</i18n>
