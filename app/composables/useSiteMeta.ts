@@ -5,7 +5,7 @@ import { SITE_URL } from '~/data/site'
 type SiteMeta = {
   title: string
   description?: string
-  image?: string // ścieżka z /public, np. /og/og-firmy.jpg
+  image?: string // ścieżka z /public, np. /og/business-pl.jpg
   imageAlt?: string
   robots?: string
 }

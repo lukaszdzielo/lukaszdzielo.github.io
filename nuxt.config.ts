@@ -9,7 +9,8 @@ const SITE_TITLE = `${SITE_NAME} – ${SITE_ROLE}`
 const SITE_DESCRIPTION =
   'Front-End Developer. I build responsive interfaces in Vue 3 – reusable components, state and API integrations. I also build WordPress websites for businesses.'
 const SITE_URL = 'https://lukaszdzielo.github.io/'
-const OG_IMAGE = `${SITE_URL}og/og-cover.jpg`
+// domyślny obrazek podglądu – wersja angielska; podstrony ustawiają swój w useSiteMeta
+const OG_IMAGE = `${SITE_URL}og/home-en.jpg`
 const APPLE_TITLE = SITE_NAME
 
 // Prerender every project page (/projects/<year>/<slug>) and the paginated post list
