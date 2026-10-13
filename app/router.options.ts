@@ -35,7 +35,8 @@ export default <RouterConfig>{
       if (to.hash && to.hash !== from.hash) {
         return { el: to.hash, top: marginTop(to.hash), behavior: reduceMotion() ? 'instant' : 'smooth' }
       }
-      if (from.hash && !to.hash) return savedPosition ?? { left: 0, top: 0 }
+      // Zdjęcie kotwicy (np. „Do góry” w stopce): płynnie na górę; przy „wstecz” – zapamiętane miejsce
+      if (from.hash && !to.hash) return savedPosition ?? { left: 0, top: 0, behavior: reduceMotion() ? 'instant' : 'smooth' }
       return false
     }
 
