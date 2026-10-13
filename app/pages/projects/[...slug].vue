@@ -81,7 +81,7 @@ if (project.value && hasOwnPage.value) {
 </script>
 
 <template>
-    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), galeria, case study i wpisy -->
+    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), „Przed i po”, galeria, case study i wpisy -->
     <div v-if="project && hasOwnPage">
         <header class="relative isolate pt-14 sm:pt-22">
             <div class="hero-glow pointer-events-none absolute inset-x-0 -top-18.25 -z-10 h-375" aria-hidden="true" />
@@ -152,6 +152,13 @@ if (project.value && hasOwnPage.value) {
             </div>
         </section>
 
+        <section v-if="project.compare" class="pt-20 md:pt-28 lg:pt-32">
+            <div class="container">
+                <CommonSectionHead :title="t('compare.title')" :lead="t('compare.lead')" />
+                <ProjectsCompare v-bind="project.compare" :address="address" class="mt-8 lg:mt-10" />
+            </div>
+        </section>
+
         <section v-if="project.gallery?.length" class="pt-20 md:pt-28 lg:pt-32">
             <div class="container">
                 <CommonSectionHead :title="t('gallery.title')" :lead="t('gallery.lead')" />
@@ -217,6 +224,7 @@ if (project.value && hasOwnPage.value) {
         "breadcrumb": { "label": "Breadcrumb", "home": "Home", "projects": "Projects" },
         "about": { "kicker": "About the project", "title": "What I built" },
         "gallery": { "title": "How it looks", "lead": "Screenshots of the live project – click one to see it bigger." },
+        "compare": { "title": "Before and after", "lead": "Drag the slider – the old site is on the left, the new one on the right." },
         "posts": { "title": "Case study and posts", "lead": "How it was made, what went wrong and what I learned." },
         "allProjects": "← All projects",
         "noPage": "This project doesn't have its own page – you'll find it in the project archive."
@@ -228,6 +236,7 @@ if (project.value && hasOwnPage.value) {
         "breadcrumb": { "label": "Okruszki", "home": "Strona główna", "projects": "Projekty" },
         "about": { "kicker": "O projekcie", "title": "Co zbudowałem" },
         "gallery": { "title": "Jak to wygląda", "lead": "Zrzuty z działającego projektu – kliknij zrzut, żeby go powiększyć." },
+        "compare": { "title": "Przed i po", "lead": "Przeciągnij suwak – po lewej stara strona, po prawej nowa." },
         "posts": { "title": "Case study i wpisy", "lead": "Jak to powstało, co poszło nie tak i czego się nauczyłem." },
         "allProjects": "← Wszystkie projekty",
         "noPage": "Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów."

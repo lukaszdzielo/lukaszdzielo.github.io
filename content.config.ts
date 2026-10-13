@@ -73,7 +73,15 @@ const projectSchema = z.object({
     alt: z.string(),
     caption: z.string().optional(),
     device: z.enum(['desktop', 'phone']).default('desktop'),
+    full: z.boolean().optional(), // zrzut całej strony – w kafelku tylko góra, w podglądzie przewijany
   })).optional(),
+  // „Przed i po”: pierwsze ekrany starej i nowej wersji (suwak) + tabela pomiarów
+  compare: z.object({
+    before: z.object({ src: z.string(), label: z.string(), alt: z.string() }),
+    after: z.object({ src: z.string(), label: z.string(), alt: z.string() }),
+    rows: z.array(z.object({ label: z.string(), before: z.string(), after: z.string() })).optional(),
+    note: z.string().optional(),
+  }).optional(),
   links: z.object({
     behance: z.string().optional(),
     github: z.string().optional(),
