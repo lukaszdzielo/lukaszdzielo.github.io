@@ -118,7 +118,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
 
       <div class="ml-auto flex items-center gap-2 lg:ml-0">
         <CommonLanguageSwitch class="max-lg:hidden" />
-        <CommonColorModeToggle />
+        <!-- Przełącznik motywu wyłączony – strona jest tylko w ciemnym motywie (próba) -->
         <NuxtLink
           :to="link(cta.to)"
           class="group inline-flex h-11 items-center gap-2.5 rounded-full bg-brand-900 py-1.75 pr-1.75 pl-4.5 text-sm font-medium whitespace-nowrap text-white dark:bg-slate-100 dark:text-brand-950"
