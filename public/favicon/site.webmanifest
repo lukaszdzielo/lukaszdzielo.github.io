@@ -1,6 +1,6 @@
 {
-  "name": "lukasz.dev",
-  "short_name": "lukasz.dev",
+  "name": "Łukasz Dzieło – Front-end developer",
+  "short_name": "Łukasz Dzieło",
   "icons": [
     {
       "src": "/favicon/web-app-manifest-192x192.png",
@@ -15,7 +15,8 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "theme_color": "#edf0f6",
+  "background_color": "#edf0f6",
+  "display": "standalone",
+  "start_url": "/"
 }

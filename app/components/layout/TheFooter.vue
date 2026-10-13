@@ -109,11 +109,11 @@ const arrow =
             Ustawienia cookies
           </button>
         </div>
-        <!-- Na telefonie sama strzałka w kółku, od sm: napis + strzałka -->
+        <!-- Na telefonie sama strzałka w kółku (shrink-0 – kółko nie zwęża się przy długich linkach obok), od sm: napis + strzałka -->
         <button
           type="button"
           aria-label="Do góry"
-          class="group inline-flex size-10 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-slate-900/10 transition-colors hover:border-primary-500 hover:text-primary-500 sm:size-auto sm:rounded-none sm:border-0 dark:border-white/10 dark:hover:border-primary-400 dark:hover:text-primary-400"
+          class="group inline-flex size-10 shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-slate-900/10 transition-colors hover:border-primary-500 hover:text-primary-500 sm:size-auto sm:rounded-none sm:border-0 dark:border-white/10 dark:hover:border-primary-400 dark:hover:text-primary-400"
           @click="scrollToTop"
         >
           <span class="sr-only sm:not-sr-only">Do góry</span>
