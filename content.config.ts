@@ -51,6 +51,21 @@ const projectSchema = z.object({
   draft: z.boolean().default(false),
   featured: z.boolean().default(false),
   agency: z.string().optional(),
+  // Pola strony projektu (tylko projekty z własną stroną):
+  // category – podpis nad tytułem („Projekt własny”), stack – technologie pod opisem,
+  // facts – pasek z liczbami pod hero, cover – zrzut w ramce przeglądarki (+ telefon) obok tytułu
+  category: z.string().optional(),
+  stack: z.array(z.string()).optional(),
+  facts: z.array(z.object({
+    value: z.string(),
+    suffix: z.string().optional(),
+    text: z.string(),
+  })).optional(),
+  cover: z.object({
+    desktop: z.string(),
+    phone: z.string().optional(),
+    alt: z.string().optional(),
+  }).optional(),
   links: z.object({
     behance: z.string().optional(),
     github: z.string().optional(),
