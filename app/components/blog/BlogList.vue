@@ -107,16 +107,16 @@ useSiteMeta({
     "meta": {
       "title": "Posts – Łukasz Dzieło",
       "titlePaged": "Posts – page {page} of {pages} – Łukasz Dzieło",
-      "description": "Case studies and shorter posts – about what I've built, improved and learned."
+      "description": "Case studies and shorter posts – about what I built, what I improved and what I learned."
     },
     "breadcrumb": { "home": "Home", "page": "Page {page}" },
     "title": "Posts",
     "pageOf": "page {page} of {pages}",
-    "lead": "Case studies from my projects and shorter posts about what I've built, improved and learned along the way.",
+    "lead": "Case studies from my projects and shorter posts. I write about what I built, what I improved and what I learned while working.",
     "range": "Posts {range} of {total}",
     "empty": {
       "title": "No posts yet",
-      "text": "The first case studies and posts about what I'm working on will show up here soon.",
+      "text": "Soon you will find here the first case studies and posts about my current work.",
       "cta": "See projects →"
     }
   },
