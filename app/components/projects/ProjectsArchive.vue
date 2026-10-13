@@ -254,8 +254,11 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         <Icon name="lucide:chevron-down" class="shrink-0 text-lg text-primary-500 dark:text-primary-400" aria-hidden="true" />
       </button>
 
-      <!-- Projekty danego roku -->
-      <ul v-else :id="`y${y.year}-list`" class="grid gap-1 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-6 lg:grid-cols-4">
+      <!-- Projekty danego roku. v-show, a nie v-else: lista zwiniętego roku też musi być w HTML-u
+           przy `nuxt generate` – @nuxt/image tworzy pliki /_ipx tylko dla obrazków, które widzi
+           w wygenerowanej stronie. Z v-else miniatury zwiniętych lat nie powstawały (404 po rozwinięciu).
+           Ukryte obrazki mają loading="lazy", więc przeglądarka pobiera je dopiero po rozwinięciu. -->
+      <ul v-show="isOpen(y.year, i)" :id="`y${y.year}-list`" class="grid gap-1 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-6 lg:grid-cols-4">
         <li v-for="p in y.list" :key="p.path">
           <component
             :is="p.hasPage ? NuxtLink : linkOf(p) ? 'a' : 'div'"
