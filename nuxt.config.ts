@@ -87,7 +87,9 @@ export default defineNuxtConfig({
         { name: 'description', content: SITE_DESCRIPTION },
         { name: 'author', content: SITE_NAME },
         { name: 'robots', content: 'index, follow' },
-        { name: 'theme-color', content: '#2b7fff' },
+        // kolor paska przeglądarki (telefony) – tło strony w jasnym i ciemnym trybie systemu
+        { name: 'theme-color', content: '#edf0f6', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#0a1227', media: '(prefers-color-scheme: dark)' },
         { name: 'color-scheme', content: 'light dark' },
 
         { property: 'og:type', content: 'website' },
