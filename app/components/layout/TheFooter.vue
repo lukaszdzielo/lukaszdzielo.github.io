@@ -13,7 +13,16 @@ function linkAttrs(link: FooterLink) {
   return link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 }
 
+const route = useRoute()
+const router = useRouter()
+
+// „Do góry” zdejmuje też #kotwicę z adresu (np. #contact po „Opisz swój projekt”) –
+// inaczej po odświeżeniu strona wracałaby na dół. Przewija wtedy router (app/router.options.ts).
 function scrollToTop() {
+  if (route.hash) {
+    router.replace({ query: route.query, hash: '' })
+    return
+  }
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
 }
