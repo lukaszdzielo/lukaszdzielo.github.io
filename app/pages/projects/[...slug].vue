@@ -45,7 +45,6 @@ const externalLinks = computed(() => [
     { label: 'GitHub', href: project.value?.links?.github },
 ].filter((link): link is { label: string; href: string } => Boolean(link.href)));
 
-const year = computed(() => project.value?.date?.slice(0, 4));
 // Adres w pasku okna przeglądarki nad zrzutem: strona na żywo bez https:// i końcowego „/”
 const address = computed(() => project.value?.links?.live?.replace(/^https?:\/\//, '').replace(/\/$/, ''));
 
@@ -78,7 +77,7 @@ if (project.value && hasOwnPage.value) {
 </script>
 
 <template>
-    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), case study i wpisy -->
+    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), galeria, case study i wpisy -->
     <div v-if="project && hasOwnPage">
         <header class="relative isolate pt-14 sm:pt-22">
             <div class="hero-glow pointer-events-none absolute inset-x-0 -top-18.25 -z-10 h-375" aria-hidden="true" />
@@ -93,10 +92,7 @@ if (project.value && hasOwnPage.value) {
 
                 <div class="grid items-center gap-10 pt-6 pb-10 sm:pt-9 sm:pb-14 lg:grid-cols-5 lg:gap-14">
                     <div class="lg:col-span-2">
-                        <p class="text-sm font-semibold tracking-widest text-primary-500 uppercase dark:text-primary-400">
-                            {{ project.category || t('project') }}<template v-if="year"> · {{ year }}</template>
-                        </p>
-                        <h1 class="mt-4 text-5xl leading-none font-semibold tracking-tighter text-slate-900 lg:text-7xl dark:text-brand-50">
+                        <h1 class="text-5xl leading-none font-semibold tracking-tighter text-slate-900 lg:text-7xl dark:text-brand-50">
                             {{ project.title }}
                         </h1>
                         <p v-if="project.description" class="mt-5.5 max-w-135 text-base/relaxed text-slate-600 sm:text-lg/relaxed dark:text-slate-300">
@@ -124,13 +120,15 @@ if (project.value && hasOwnPage.value) {
                         </div>
                     </div>
 
-                    <!-- Zrzut w oknie przeglądarki, telefon na pierwszym planie w prawym dolnym rogu -->
+                    <!-- Zrzut w oknie przeglądarki, telefon na pierwszym planie w prawym dolnym rogu.
+                         Telefon ma 1/4 szerokości tego pola (maks. 190 px) – przy stałej szerokości był wyższy
+                         niż okno przeglądarki i na węższych ekranach (np. 650 px) wchodził na przyciski. -->
                     <div v-if="project.cover" class="relative lg:col-span-3" :class="project.cover.phone && 'pr-10 pb-9 sm:pr-16 sm:pb-12'">
                         <ProjectsBrowserFrame :src="project.cover.desktop" :alt="project.cover.alt || project.title" :address="address"
                             sizes="xs:100vw lg:60vw" loading="eager" fetchpriority="high" />
                         <ProjectsPhoneFrame v-if="project.cover.phone" :src="project.cover.phone" alt=""
                             sizes="xs:110px sm:190px" loading="eager"
-                            class="absolute right-0 bottom-0 w-27.5 sm:w-47.5" />
+                            class="absolute right-0 bottom-0 w-1/4 max-w-47.5" />
                     </div>
                 </div>
             </div>
@@ -147,6 +145,13 @@ if (project.value && hasOwnPage.value) {
                 <article class="prose max-w-170 lg:col-span-3 lg:prose-lg prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
                     <ContentRenderer :value="project" />
                 </article>
+            </div>
+        </section>
+
+        <section v-if="project.gallery?.length" class="pt-20 md:pt-28 lg:pt-32">
+            <div class="container">
+                <CommonSectionHead :title="t('gallery.title')" :lead="t('gallery.lead')" />
+                <ProjectsGallery :items="project.gallery" :address="address" class="mt-8 lg:mt-10" />
             </div>
         </section>
 
@@ -206,8 +211,8 @@ if (project.value && hasOwnPage.value) {
         "links": { "live": "Website", "liveButton": "See it live", "github": "Code on GitHub" },
         "agency": "Agency: {agency}",
         "breadcrumb": { "label": "Breadcrumb", "home": "Home", "projects": "Projects" },
-        "project": "Project",
         "about": { "kicker": "About the project", "title": "What I built" },
+        "gallery": { "title": "How it looks", "lead": "Screenshots of the live project – click one to see it bigger." },
         "posts": { "title": "Case study and posts", "lead": "How it was made, what went wrong and what I learned." },
         "allProjects": "← All projects",
         "noPage": "This project doesn't have its own page – you'll find it in the project archive."
@@ -217,8 +222,8 @@ if (project.value && hasOwnPage.value) {
         "links": { "live": "Strona", "liveButton": "Zobacz na żywo", "github": "Kod na GitHubie" },
         "agency": "Agencja: {agency}",
         "breadcrumb": { "label": "Okruszki", "home": "Strona główna", "projects": "Projekty" },
-        "project": "Projekt",
         "about": { "kicker": "O projekcie", "title": "Co zbudowałem" },
+        "gallery": { "title": "Jak to wygląda", "lead": "Zrzuty z działającego projektu – kliknij zrzut, żeby go powiększyć." },
         "posts": { "title": "Case study i wpisy", "lead": "Jak to powstało, co poszło nie tak i czego się nauczyłem." },
         "allProjects": "← Wszystkie projekty",
         "noPage": "Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów."

@@ -9,7 +9,6 @@ draft: false
 links:
   live: https://lukaszdzielo.github.io/pokedex/
   github: https://github.com/lukaszdzielo/pokedex
-category: Personal project
 stack: [JavaScript (ES6+), OOP, PokéAPI, LocalStorage, no frameworks]
 facts:
   - value: '2024'
@@ -19,12 +18,26 @@ facts:
   - value: '1000'
     suffix: '+'
     text: Pokémon from PokéAPI, about 60–70 requests instead of more than 1,000
-  - value: '0'
-    text: frameworks – plain JavaScript and classes
+  - value: Vanilla JS
+    text: no Vue, React or other frameworks – my own classes in plain JavaScript
 cover:
   desktop: /projects/2024/pokedex/list.webp
   phone: /projects/2024/pokedex/phone.webp
   alt: Pokedex – the Pokémon list with pagination
+gallery:
+  - src: /projects/2024/pokedex/list.webp
+    alt: The Pokémon list with pagination
+    caption: The list – more than 1,000 Pokémon, with the page number saved in the URL (?p=)
+  - src: /projects/2024/pokedex/phone.webp
+    device: phone
+    alt: Pokedex on a phone – the whole page
+    caption: Phone – the list in two columns, with a page picker at the bottom
+  - src: /projects/2024/pokedex/pokemon-card.webp
+    alt: The Pokémon details window
+    caption: Pokémon card – name, types and generation come straight from memory, stats are loaded from the API
+  - src: /projects/2024/pokedex/settings.webp
+    alt: App settings
+    caption: Settings – theme, import and export of caught Pokémon, clearing the data
 ---
 
 An interactive Pokémon encyclopedia covering more than 1,000 creatures – written in vanilla JavaScript (ES6+, OOP patterns), with no frameworks, using the public PokéAPI.
