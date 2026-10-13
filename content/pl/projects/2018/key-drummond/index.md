@@ -6,6 +6,4 @@ image: /projects/2018/key-drummond/thumbnail.avif
 tags: [html]
 featured: true
 agency: b4b
-links:
-  live: https://www.keydrummond.com/
 ---
