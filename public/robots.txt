@@ -1,0 +1,5 @@
+# Wszystkie roboty – także wyszukiwarek AI (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) – mogą czytać całą stronę.
+User-agent: *
+Allow: /
+
+Sitemap: https://lukaszdzielo.github.io/sitemap.xml

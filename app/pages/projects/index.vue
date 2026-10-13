@@ -35,7 +35,7 @@ const total = computed(() => archive.value.length)
 const wordpress = computed(() => archive.value.filter(p => projectKind(p.tags) === 'wordpress').length)
 const since = computed(() => archive.value.reduce((min, p) => (p.date < min ? p.date : min), '9999').slice(0, 4))
 
-useSeoMeta({
+useSiteMeta({
   title: 'Projekty – Łukasz Dzieło',
   description: 'Aplikacje, nad którymi pracuję w zespołach, projekty, na których się uczę, i strony dla firm, które robiłem od 2016 roku.',
 })

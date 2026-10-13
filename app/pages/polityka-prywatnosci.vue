@@ -5,7 +5,7 @@ const UPDATED = '2026-10-12'
 const { consent, openSettings } = useConsent()
 const updatedLabel = new Intl.DateTimeFormat('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(UPDATED))
 
-useSeoMeta({
+useSiteMeta({
   title: 'Polityka prywatności – Łukasz Dzieło',
   description: 'Jakie dane zbiera strona lukaszdzielo.github.io, po co i jakie masz prawa.',
 })

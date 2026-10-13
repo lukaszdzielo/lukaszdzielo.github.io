@@ -293,7 +293,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             </div>
             <div class="min-w-0">
               <div class="flex items-baseline justify-between gap-2 sm:mt-3">
-                <b class="truncate text-[0.9375rem] font-medium text-slate-900 dark:text-brand-50">{{ p.title }}</b>
+                <b class="truncate text-base font-medium text-slate-900 dark:text-brand-50">{{ p.title }}</b>
                 <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">Więcej →</span>
                 <span v-else-if="linkOf(p)" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
               </div>

@@ -7,9 +7,11 @@ export type FooterLink = { label: string; to: string; external?: boolean }
 export type FooterColumn = { title: string; links: FooterLink[] }
 export type FooterVariant = 'portfolio' | 'business'
 
-const LINKEDIN = 'https://www.linkedin.com/in/lukasz-dzielo-0428b4148/'
-const GITHUB = 'https://github.com/lukaszdzielo'
-const INSTAGRAM = 'https://www.instagram.com/lukasz.dev'
+import { PROFILES } from '~/data/site'
+
+const LINKEDIN = PROFILES.linkedin
+const GITHUB = PROFILES.github
+const INSTAGRAM = PROFILES.instagram
 
 type FooterContent = {
   bio: string
