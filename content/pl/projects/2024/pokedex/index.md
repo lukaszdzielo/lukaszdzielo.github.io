@@ -31,8 +31,8 @@ gallery:
     caption: Lista – ponad 1000 pokemonów, numer strony zapisany w adresie (?p=)
   - src: /projects/2024/pokedex/phone.webp
     device: phone
-    alt: Pokedex na telefonie – cała strona
-    caption: Telefon – lista w dwóch kolumnach, na dole wybór strony z listy
+    alt: Pokedex na telefonie – karta pokemona
+    caption: Telefon – karta pokemona otwarta nad listą w dwóch kolumnach
   - src: /projects/2024/pokedex/pokemon-card.webp
     alt: Okno szczegółów pokemona
     caption: Karta pokemona – nazwa, typy i generacja od razu z pamięci, statystyki dociągane z API

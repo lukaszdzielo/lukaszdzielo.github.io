@@ -31,8 +31,8 @@ gallery:
     caption: The list – more than 1,000 Pokémon, with the page number saved in the URL (?p=)
   - src: /projects/2024/pokedex/phone.webp
     device: phone
-    alt: Pokedex on a phone – the whole page
-    caption: Phone – the list in two columns, with a page picker at the bottom
+    alt: Pokedex on a phone – a Pokémon card
+    caption: Phone – a Pokémon card open over the two-column list
   - src: /projects/2024/pokedex/pokemon-card.webp
     alt: The Pokémon details window
     caption: Pokémon card – name, types and generation come straight from memory, stats are loaded from the API
