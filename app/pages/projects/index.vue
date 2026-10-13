@@ -42,6 +42,8 @@ const since = computed(() => archive.value.reduce((min, p) => (p.date < min ? p.
 useSiteMeta({
   title: t('meta.title'),
   description: t('meta.description'),
+  image: `/og/projects-${lang.value}.jpg`,
+  imageAlt: t('meta.title'),
 })
 </script>
 

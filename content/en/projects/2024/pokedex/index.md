@@ -24,6 +24,7 @@ cover:
   desktop: /projects/2024/pokedex/list.webp
   phone: /projects/2024/pokedex/phone.webp
   alt: Pokedex – the Pokémon list with pagination
+ogImage: /og/projects/pokedex-en.jpg
 gallery:
   - src: /projects/2024/pokedex/list.webp
     alt: The Pokémon list with pagination

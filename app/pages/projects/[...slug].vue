@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PERSON_ID, SITE_NAME, pageUrl } from '~/data/site';
+import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site';
 
 const { t, locale } = useI18n({ useScope: 'local' });
 // localLink, bo `link` to już zmienna pętli po linkach zewnętrznych w szablonie
@@ -57,6 +57,9 @@ const secondaryLinks = computed(() => [
 useSiteMeta({
     title: project.value?.title ? `${project.value.title} – Łukasz Dzieło` : t('meta.fallbackTitle'),
     description: project.value?.description || undefined,
+    // własny obrazek podglądu (pole ogImage), inaczej obrazek strony głównej w języku strony
+    image: project.value?.ogImage || undefined,
+    imageAlt: project.value?.ogImage ? project.value.title : undefined,
     ...(project.value && !hasOwnPage.value ? { robots: 'noindex, follow' } : {}),
 });
 
@@ -72,6 +75,7 @@ if (project.value && hasOwnPage.value) {
         inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME },
         ...(project.value.links?.live ? { sameAs: project.value.links.live } : {}),
+        ...(project.value.ogImage ? { image: SITE_URL + project.value.ogImage } : {}),
     });
 }
 </script>
