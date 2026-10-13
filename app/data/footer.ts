@@ -23,7 +23,7 @@ type FooterContent = {
 export const footerContent: { en: Record<FooterVariant, FooterContent>; pl: Record<FooterVariant, FooterContent> } = {
   en: {
     portfolio: {
-      bio: 'Front-end developer – Vue 3 every day. Learning React and moving toward full-stack.',
+      bio: 'Front-end developer – I work with Vue 3 every day. I am learning React and moving toward full-stack.',
       columns: [
         {
           title: 'Site',
@@ -66,7 +66,7 @@ export const footerContent: { en: Record<FooterVariant, FooterContent>; pl: Reco
         {
           title: 'Contact',
           links: [
-            { label: 'Inquiry form', to: '/strony-dla-firm#contact' },
+            { label: 'Contact form', to: '/strony-dla-firm#contact' },
             { label: 'LinkedIn', to: LINKEDIN, external: true },
           ],
         },
@@ -74,7 +74,7 @@ export const footerContent: { en: Record<FooterVariant, FooterContent>; pl: Reco
       status: {
         title: 'Good to know',
         now: 'I reply within 72 h',
-        lines: ['Katowice, Poland · I work remotely', 'Billing via Useme or Freelancehunt'],
+        lines: ['Katowice, Poland · I work remotely', 'Payment through Useme or Freelancehunt'],
         link: { label: 'Developer portfolio', to: '/' },
       },
     },

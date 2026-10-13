@@ -174,7 +174,7 @@ if (project.value && hasOwnPage.value) {
         "caseStudy": "Case study",
         "relatedPosts": "Posts about this project",
         "allProjects": "← All projects",
-        "noPage": "This project doesn't have its own page – you'll find it in the project archive."
+        "noPage": "This project has no separate page – you can find it in the project archive."
     },
     "pl": {
         "meta": { "fallbackTitle": "Projekt – Łukasz Dzieło" },

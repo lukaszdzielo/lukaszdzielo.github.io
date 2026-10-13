@@ -110,11 +110,11 @@ useSiteMeta({
   "en": {
     "meta": {
       "title": "Projects – Łukasz Dzieło",
-      "description": "Apps I work on in teams, projects I learn from, and business websites I've built since 2016."
+      "description": "Apps I build in teams, projects that help me learn, and websites for companies that I have made since 2016."
     },
     "breadcrumb": { "label": "Breadcrumb", "home": "Home" },
     "title": "Projects",
-    "lead": "Apps I work on in teams, projects I learn from, and business websites I've built since {year}.",
+    "lead": "Apps I build in teams, projects that help me learn, and websites for companies that I have made since {year}.",
     "stats": {
       "projectsTerm": "Projects",
       "projects": "project | projects",
@@ -129,7 +129,7 @@ useSiteMeta({
     },
     "archive": {
       "title": "Archive",
-      "lead": "Websites and apps from 2016–2026 – at agencies, in teams and as my own freelance work."
+      "lead": "Websites and apps from 2016–2026 – made at agencies, in teams and as my own freelance projects."
     }
   },
   "pl": {
