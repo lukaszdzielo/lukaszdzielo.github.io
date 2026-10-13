@@ -75,14 +75,14 @@ timeline:
     text: Vue 3, Inertia.js, Tailwind, PrimeVue; front-end aplikacji e-cargo i wspólne biblioteki komponentów.
     projects:
       - title: e-cargo
-        to: /#projects
+        to: /projects/2026/e-cargo
   - period: sty 2023 – cze 2025
     company: Arris Agency
     role: Front-End Developer
     text: Front-end superauto.pl; Figma → Twig / HTML / CSS / JS, animacje Swiper, refaktoryzacja.
     projects:
       - title: superauto.pl
-        to: /#projects
+        to: /projects/2025/superauto
   - period: lut – wrz 2022
     company: ValueAdd
     role: UX/UI Designer & HTML/CSS
