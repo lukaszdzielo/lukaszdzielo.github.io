@@ -55,8 +55,9 @@ const date = computed(() =>
           class="pointer-events-none absolute -top-[30%] -right-[12%] aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65% transition-transform duration-700 motion-safe:group-hover:scale-110"
           aria-hidden="true"
         />
-        <!-- Rysunek wpisu (SVG z /public/art/blog) wchodzi z prawego górnego rogu, obrócony i przycięty krawędzią
-             karty – ten sam rysunek co w banerze wpisu i obrazku OG -->
+        <!-- Rysunek wpisu (SVG z /public/art/blog) – ten sam co w banerze wpisu i obrazku OG.
+             Zwykła karta: wchodzi z prawego górnego rogu, przycięty krawędzią (pod nim jest jeszcze tytuł).
+             Wyróżniona karta: tytuł jest obok okładki, więc rysunek stoi cały, na środku. -->
         <img
           v-if="post.art"
           :src="post.art"
@@ -64,7 +65,8 @@ const date = computed(() =>
           width="480"
           height="300"
           loading="lazy"
-          class="absolute -top-10 -right-5 w-3/5 rotate-12 opacity-70 transition-transform duration-500 motion-safe:group-hover:rotate-6"
+          class="absolute transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
+          :class="featured ? 'inset-x-0 top-[8%] mx-auto w-1/2 @2xl:w-3/5' : '-top-10 -right-5 w-3/5 opacity-70'"
         />
         <div class="absolute inset-0 flex flex-col justify-end gap-1.5 p-5 @sm:gap-2 @sm:p-6 @2xl:p-10">
           <span class="text-xs tracking-widest text-[#a9c0ff] uppercase @2xl:text-sm">
