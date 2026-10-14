@@ -71,10 +71,10 @@ const showToc = computed(() => tocLinks.value.length >= 5);
                 <div class="relative isolate mt-6 overflow-hidden rounded-3xl bg-linear-[150deg] from-brand-700 to-brand-950 px-6 py-8 text-white sm:px-10 sm:py-10 lg:px-14 lg:py-14 dark:ring-1 dark:ring-white/10">
                     <div class="pointer-events-none absolute -top-1/3 -right-1/12 aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65%" aria-hidden="true" />
                     <div class="relative grid items-center gap-2 lg:grid-cols-12 lg:gap-10">
-                        <!-- Rysunek: do lg nad tekstem – wchodzi z prawego górnego rogu, obrócony i przycięty krawędzią banera
-                             (jak na kartach wpisów); od lg w prawej kolumnie, prosto i w pełnej widoczności -->
+                        <!-- Rysunek: do lg nad tekstem – wchodzi z prawego górnego rogu, przycięty krawędzią banera (jak na kartach wpisów).
+                             Od lg w prawej kolumnie, ok. 440 px szerokości – na węższych ekranach wychodzi poza kolumnę w stronę krawędzi banera -->
                         <img v-if="post.art" :src="post.art" alt="" width="480" height="300"
-                            class="pointer-events-none -mt-20 -mr-12 w-64 justify-self-end rotate-12 opacity-60 sm:-mt-24 sm:-mr-16 sm:w-80 lg:order-last lg:col-span-5 lg:m-0 lg:w-full lg:max-w-120 lg:rotate-0 lg:opacity-100" />
+                            class="pointer-events-none -mt-15 -mr-9 -mb-5 w-64 max-w-none justify-self-end opacity-60 sm:-mt-24 sm:-mr-16 sm:w-80 lg:order-last lg:col-span-5 lg:my-0 lg:-mr-14 lg:w-110 lg:opacity-100 xl:mr-0" />
                         <div :class="post.art ? 'lg:col-span-7' : 'lg:col-span-10'">
                             <p v-if="kicker" class="text-xs font-semibold tracking-widest text-[#a9c0ff] uppercase">{{ kicker }}</p>
                             <h1 class="mt-4 text-3xl leading-tight font-semibold tracking-tight sm:text-4xl lg:text-5xl">{{ post.title }}</h1>
