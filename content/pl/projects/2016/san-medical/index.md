@@ -2,7 +2,7 @@
 date: 2016-10-01
 title: San-Medical
 description:
-image: /projects/2016/san-medical/thumbnail.avif
+image: /projects/2016/san-medical/thumbnail.webp
 tags: [WordPress]
 featured: true
 agency: eConnect4u

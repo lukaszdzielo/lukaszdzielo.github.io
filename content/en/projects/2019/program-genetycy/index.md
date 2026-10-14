@@ -2,7 +2,7 @@
 date: 2019-08-02
 title: Program Genetycy
 description:
-image: /projects/2019/program-genetycy/page.jpg
+image: /projects/2019/program-genetycy/page.webp
 tags: [wordpress]
 featured: true
 links:

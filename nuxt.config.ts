@@ -178,7 +178,8 @@ export default defineNuxtConfig({
     // Source images live outside /public so the originals are never deployed;
     // only the optimised variants generated into /_ipx end up in the build.
     dir: 'assets/images',
-    format: ['avif', 'webp'],
+    // Tylko WebP (14.10): AVIF kodował się ok. 9 min przy każdym buildzie – pomiar w archiwum decyzje/obrazki-avif-webp.md
+    format: ['webp'],
     // Not in the defaults; lets `sizes` use `xs:` for the mobile rule
     // (an unprefixed value would produce useless 1w/2w candidates).
     screens: { xs: 320 },

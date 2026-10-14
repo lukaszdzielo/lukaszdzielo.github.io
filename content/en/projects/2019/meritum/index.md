@@ -2,7 +2,7 @@
 date: 2019-09-03
 title: Meritum
 description:
-image: /projects/2019/meritum/thumbnail.avif
+image: /projects/2019/meritum/thumbnail.webp
 tags: [wordpress]
 featured: false
 links:

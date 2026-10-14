@@ -2,7 +2,7 @@
 date: 2019-10-03
 title: Endorfina 2.0
 description:
-image: /projects/2019/endorfina-2-0/thumbnail.avif
+image: /projects/2019/endorfina-2-0/thumbnail.webp
 tags: [wordpress]
 featured: false
 links:

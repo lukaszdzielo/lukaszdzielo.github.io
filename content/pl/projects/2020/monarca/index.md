@@ -2,7 +2,7 @@
 date: 2020-08-01
 title: Monarca
 description:
-image: /projects/2020/monarca/thumbnail.avif
+image: /projects/2020/monarca/thumbnail.webp
 tags: [wordpress]
 featured: true
 links:

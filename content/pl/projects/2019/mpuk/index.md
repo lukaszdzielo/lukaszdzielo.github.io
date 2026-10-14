@@ -2,7 +2,7 @@
 date: 2019-05-04
 title: MPUK
 description:
-image: /projects/2019/mpuk/thumbnail.avif
+image: /projects/2019/mpuk/thumbnail.webp
 tags: [html]
 featured: false
 agency: eConnect4u
