@@ -6,18 +6,18 @@ image: /projects/2026/e-cargo/thumbnail.webp
 tags: [vue]
 featured: false
 agency: Pesi
-stack: [Vue 3, Inertia, Tailwind CSS, Laravel, Pest]
+stack: [Vue 3, Inertia, Tailwind CSS]
 note: Aplikacja firmowa (Pesi) bez publicznego dostępu – na zrzutach zmyślone dane.
 facts:
-  - value: '10'
+  - value: '8'
     suffix: ' mies.'
-    text: w projekcie – od grudnia 2025, nadal w zespole
+    text: główna część projektu – od grudnia 2025 do wydania w lipcu 2026
   - value: '32'
     text: komponenty UI, z których korzysta cały zespół – pola, okna, tabele, podpowiedzi
   - value: '171'
     text: ikon jako komponenty Vue – jeden zestaw w całej aplikacji
-  - value: '19'
-    text: plików testów przeglądarkowych (Pest), które założyłem
+  - value: '4'
+    text: role użytkowników – administrator, ośrodek, instruktor i kursant – w każdym panelu moje widoki
 cover:
   desktop: /projects/2026/e-cargo/schedule.webp
   width: 1440
@@ -62,7 +62,7 @@ highlights:
     text: Podpowiedzi, menu i listy wyboru same wybierają stronę, po której się otworzą, i trzymają odstęp od krawędzi – także przy przewijaniu strony.
 ---
 
-e-cargo to platforma dla ośrodków szkolenia kierowców zawodowych: kursy online dla kursantów, harmonogram zajęć z instruktorami, pojazdami i salami oraz dokumenty. Pracuję nad nią w zespole Pesi od grudnia 2025 – w Vue 3 i Inertia zbudowałem dużą część widoków i komponenty, z których korzysta cały zespół.
+e-cargo to platforma dla ośrodków szkolenia kierowców zawodowych: kursy online dla kursantów, harmonogram zajęć z instruktorami, pojazdami i salami oraz dokumenty. Pracowałem nad nią w zespole Pesi – główna część, do wydania na produkcję, trwała od grudnia 2025 do lipca 2026. W Vue 3 i Inertia zbudowałem dużą część widoków i komponenty, z których korzysta cały zespół.
 
 ## Najważniejsze cechy
 
