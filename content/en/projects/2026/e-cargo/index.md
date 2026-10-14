@@ -2,7 +2,7 @@
 date: 2026-08-01
 title: e-cargo
 description: 'A training platform for driver training centres. I built a large part of the front-end: the schedule, the instructor panel, the course builder and UI components.'
-image: /projects/2026/e-cargo/thumbnail.webp
+image: /projects/2026/e-cargo/dashboard.webp
 tags: [vue]
 featured: false
 agency: Pesi

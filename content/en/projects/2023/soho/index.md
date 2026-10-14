@@ -2,7 +2,7 @@
 date: 2023-09-01
 title: SOHO
 description:
-image: /projects/2023/soho/thumbnail.avif
+image: /projects/2023/soho/web.avif
 tags: [wordpress]
 featured: false
 agency: eConnect4u

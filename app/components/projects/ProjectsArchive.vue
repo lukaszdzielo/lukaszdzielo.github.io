@@ -279,6 +279,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
                 sizes="xs:100px sm:45vw lg:300px"
                 width="400"
                 height="329"
+                :modifiers="{ position: 'top' }"
                 loading="lazy"
                 class="size-full object-cover object-top"
               />
