@@ -72,7 +72,7 @@ const link = useLocalLink()
                zawsze z odstępem od tekstu i poniżej brody, żeby nie zasłaniać twarzy (przy 1024 px stoi na portrecie). -->
           <div
             id="hero-tile-anchor"
-            class="pointer-events-none invisible absolute top-[36%] left-0 aspect-[4/5] w-[52%] xl:-left-[25%] xl:w-[66%] min-[90rem]:-left-[54%] 2xl:top-[34%] 2xl:-left-[54%] 2xl:w-[72%]"
+            class="pointer-events-none invisible absolute top-1/3 left-0 aspect-[4/5] w-1/2 xl:-left-1/4 xl:w-2/3 min-[90rem]:-left-1/2 2xl:top-1/3 2xl:-left-1/2 2xl:w-3/4"
             aria-hidden="true"
           />
         </div>

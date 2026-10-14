@@ -20,7 +20,7 @@ const biz = useLocalized(businessContact)
       >
         <!-- Poświata w rogu karty -->
         <div
-          class="pointer-events-none absolute -top-2/5 -right-1/10 aspect-square w-[55%] rounded-full bg-radial from-primary-400/40 to-transparent to-65% dark:from-primary-500/18"
+          class="pointer-events-none absolute -top-2/5 -right-1/10 aspect-square w-3/5 rounded-full bg-radial from-primary-400/40 to-transparent to-65% dark:from-primary-500/18"
           aria-hidden="true"
         />
 

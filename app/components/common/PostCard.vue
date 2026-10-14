@@ -52,7 +52,7 @@ const date = computed(() =>
       />
       <template v-else>
         <div
-          class="pointer-events-none absolute -top-[30%] -right-[12%] aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65% transition-transform duration-700 motion-safe:group-hover:scale-110"
+          class="pointer-events-none absolute -top-1/3 -right-1/8 aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65% transition-transform duration-700 motion-safe:group-hover:scale-110"
           aria-hidden="true"
         />
         <!-- Rysunek wpisu (SVG z /public/art/blog) – ten sam co w banerze wpisu i obrazku OG.
@@ -66,7 +66,7 @@ const date = computed(() =>
           height="300"
           loading="lazy"
           class="absolute transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
-          :class="featured ? 'inset-x-0 top-[8%] mx-auto w-1/2 @2xl:w-3/5' : '-top-10 -right-5 w-3/5 opacity-70'"
+          :class="featured ? 'inset-x-0 top-1/12 mx-auto w-1/2 @2xl:w-3/5' : '-top-10 -right-5 w-3/5 opacity-70'"
         />
         <div class="absolute inset-0 flex flex-col justify-end gap-1.5 p-5 @sm:gap-2 @sm:p-6 @2xl:p-10">
           <span class="text-xs tracking-widest text-[#a9c0ff] uppercase @2xl:text-sm">
