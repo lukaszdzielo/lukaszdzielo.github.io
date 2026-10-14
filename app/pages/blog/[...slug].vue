@@ -2,6 +2,7 @@
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site';
 
 const { t, locale } = useI18n({ useScope: 'local' });
+const localLink = useLocalLink();
 const route = useRoute();
 const { col, clean, withLocale } = useContentLocale();
 const path = clean(route.path);
@@ -41,54 +42,82 @@ if (post.value) {
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
     });
 }
+
+// Temat wpisu do nadtytułu w banerze (pierwszy tag), przy case study z dopiskiem „Case study”
+const kicker = computed(() =>
+    [post.value?.kind === 'case-study' ? t('caseStudy') : '', post.value?.tags?.[0]?.replace(/-/g, ' ')]
+        .filter(Boolean)
+        .join(' · ')
+);
+
+// Spis treści tylko w dłuższych wpisach – od 5 śródtytułów (h2); krótszy wpis czyta się bez niego
+const tocLinks = computed(() => (post.value?.body?.toc?.links ?? []).filter((link: { depth: number }) => link.depth === 2));
+const showToc = computed(() => tocLinks.value.length >= 5);
 </script>
 
 <template>
-    <section v-if="post && hasBody(post)"
-        class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30">
-        <header class="flex flex-col gap-4 mb-8 sm:mb-10">
-            <h1 class="text-2xl lg:text-3xl xl:text-4xl font-extrabold">
-                {{ post.title }}
-            </h1>
+    <!-- Wpis: granatowy baner z tytułem i rysunkiem (zasady: archiwum zasady/wpisy-banery.md), pod nim treść,
+         a w dłuższych wpisach spis treści po prawej -->
+    <div v-if="post && hasBody(post)">
+        <header class="relative isolate pt-14 sm:pt-22">
+            <div class="hero-glow pointer-events-none absolute inset-x-0 -top-18.25 -z-10 h-375" aria-hidden="true" />
+            <div class="container">
+                <nav :aria-label="t('breadcrumb.label')" class="text-sm text-slate-600 dark:text-slate-400">
+                    <NuxtLink :to="localLink('/')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
+                    <span aria-hidden="true"> / </span>
+                    <NuxtLink :to="localLink('/blog')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.blog') }}</NuxtLink>
+                </nav>
 
-            <div class="flex flex-col gap-3 text-sm">
-                <div class="flex flex-wrap items-center gap-3">
-                    <time v-if="post.date" :datetime="post.date">
-                        {{ formatDate(post.date, locale) }}
-                    </time>
-                    <span v-if="post.kind === 'case-study'"
-                        class="rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 px-2.5 py-0.5 text-xs font-medium">
-                        {{ t('caseStudy') }}
-                    </span>
+                <div class="relative mt-6 overflow-hidden rounded-3xl bg-linear-[150deg] from-brand-700 to-brand-950 px-6 py-10 text-white sm:px-10 sm:py-12 lg:px-14 lg:py-14 dark:ring-1 dark:ring-white/10">
+                    <div class="pointer-events-none absolute -top-1/3 -right-1/12 aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65%" aria-hidden="true" />
+                    <div class="relative grid items-center gap-10 lg:grid-cols-12">
+                        <div :class="post.art ? 'lg:col-span-7' : 'lg:col-span-10'">
+                            <p v-if="kicker" class="text-xs font-semibold tracking-widest text-[#a9c0ff] uppercase">{{ kicker }}</p>
+                            <h1 class="mt-4 text-3xl leading-tight font-semibold tracking-tight sm:text-4xl lg:text-5xl">{{ post.title }}</h1>
+                            <p v-if="post.description" class="mt-5 max-w-160 text-base/relaxed text-slate-300 sm:text-lg/relaxed">{{ post.description }}</p>
+                            <div class="mt-6 flex flex-wrap items-center gap-2 text-sm text-slate-300">
+                                <time v-if="post.date" :datetime="post.date" class="mr-2">{{ formatDate(post.date, locale) }}</time>
+                                <span v-for="tag in post.tags" :key="tag" class="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200">#{{ tag }}</span>
+                            </div>
+                        </div>
+                        <img v-if="post.art" :src="post.art" alt="" width="480" height="300" class="hidden w-full max-w-120 justify-self-end sm:block lg:col-span-5" />
+                    </div>
                 </div>
-                <ul v-if="post.tags?.length" class="flex flex-wrap gap-2">
-                    <li v-for="tag in post.tags" :key="tag">
-                        <span class="inline-block rounded-full bg-slate-300 dark:bg-slate-600 px-3 py-1">
-                            #{{ tag }}
-                        </span>
-                    </li>
-                </ul>
             </div>
         </header>
 
-        <NuxtLink v-if="relatedProject" :to="relatedProject.path"
-            class="group flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-8 sm:mb-10 transition-colors hover:border-sky-500">
-            <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px" width="192" height="108" :modifiers="{ position: 'top' }" loading="lazy"
-                class="w-24 shrink-0 rounded-md aspect-video object-cover object-top bg-white" />
-            <div class="flex flex-col gap-0.5">
-                <small class="text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">
-                    {{ t('aboutProject') }}
-                </small>
-                <span class="font-semibold group-hover:text-sky-500 transition-colors">
-                    {{ relatedProject.title }}
-                </span>
-            </div>
-        </NuxtLink>
+        <div class="container py-12 sm:py-16 lg:py-20">
+            <div class="grid gap-12" :class="showToc && 'lg:grid-cols-[minmax(0,48rem)_18rem] lg:justify-between'">
+                <div class="min-w-0 max-w-3xl">
+                    <NuxtLink v-if="relatedProject" :to="relatedProject.path"
+                        class="group mb-10 flex items-center gap-4 rounded-2xl border border-slate-900/10 bg-white p-4 shadow-sm transition-colors hover:border-primary-500 dark:border-white/10 dark:bg-brand-900 dark:hover:border-primary-400">
+                        <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px" width="192" height="108" :modifiers="{ position: 'top' }" loading="lazy"
+                            class="aspect-video w-24 shrink-0 rounded-md bg-white object-cover object-top" />
+                        <div class="flex flex-col gap-0.5">
+                            <small class="text-xs tracking-wide text-slate-600 uppercase dark:text-slate-400">{{ t('aboutProject') }}</small>
+                            <span class="font-semibold text-slate-900 transition-colors group-hover:text-primary-500 dark:text-brand-50 dark:group-hover:text-primary-400">{{ relatedProject.title }}</span>
+                        </div>
+                    </NuxtLink>
 
-        <article class="prose max-w-none prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
-            <ContentRenderer :value="post" />
-        </article>
-    </section>
+                    <article class="prose max-w-none sm:prose-lg prose-headings:scroll-mt-24 prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
+                        <ContentRenderer :value="post" />
+                    </article>
+                </div>
+
+                <aside v-if="showToc" class="hidden lg:block">
+                    <nav :aria-label="t('toc')" class="sticky top-24 rounded-2xl border border-slate-900/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-brand-900">
+                        <h2 class="text-xs font-semibold tracking-widest text-slate-600 uppercase dark:text-slate-400">{{ t('toc') }}</h2>
+                        <ol class="mt-4 grid gap-2.5 text-sm text-slate-600 dark:text-slate-300">
+                            <li v-for="(link, i) in tocLinks" :key="link.id" class="flex gap-2.5">
+                                <span class="text-xs font-semibold text-primary-500 tabular-nums dark:text-primary-400">{{ String(i + 1).padStart(2, '0') }}</span>
+                                <a :href="`#${link.id}`" class="hover:text-primary-500 dark:hover:text-primary-400">{{ link.text }}</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </aside>
+            </div>
+        </div>
+    </div>
 
     <!-- Nie ma takiego wpisu (albo to szkic) -->
     <CommonNotFound v-else variant="post" />
@@ -98,13 +127,17 @@ if (post.value) {
 {
     "en": {
         "meta": { "fallbackTitle": "Post – Łukasz Dzieło" },
+        "breadcrumb": { "label": "Breadcrumb", "home": "Home", "blog": "Posts" },
         "caseStudy": "Case study",
-        "aboutProject": "About the project"
+        "aboutProject": "Project",
+        "toc": "In this post"
     },
     "pl": {
         "meta": { "fallbackTitle": "Wpis – Łukasz Dzieło" },
+        "breadcrumb": { "label": "Okruszki", "home": "Strona główna", "blog": "Wpisy" },
         "caseStudy": "Case study",
-        "aboutProject": "O projekcie"
+        "aboutProject": "Projekt",
+        "toc": "W tym wpisie"
     }
 }
 </i18n>

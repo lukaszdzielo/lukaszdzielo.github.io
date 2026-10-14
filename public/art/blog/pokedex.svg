@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+<rect x="10" y="118" width="110" height="64" rx="12"/>
+<rect x="178" y="84" width="128" height="52" rx="12"/>
+<rect x="178" y="164" width="128" height="52" rx="12"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff" text-anchor="middle">
+<text x="65" y="155">PokéAPI</text>
+<text x="242" y="115">localStorage</text>
+<text x="242" y="195">sessionStorage</text>
+</g>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2">
+<path d="M126 150h44"/><path d="m162 143 8 7-8 7"/>
+<path d="M312 150h40"/><path d="m344 143 8 7-8 7"/>
+</g>
+<g fill="rgba(255,255,255,.12)" stroke="rgba(200,215,255,.45)" stroke-width="1.2">
+<rect x="362" y="40" width="48" height="60" rx="8"/><rect x="420" y="40" width="48" height="60" rx="8"/>
+<rect x="362" y="120" width="48" height="60" rx="8" fill="rgba(111,156,255,.28)"/><rect x="420" y="120" width="48" height="60" rx="8"/>
+<rect x="362" y="200" width="48" height="60" rx="8"/><rect x="420" y="200" width="48" height="60" rx="8"/>
+</g>
+</svg>

@@ -8,6 +8,7 @@ tags:
 - projekt
 kind: post
 project: /projects/2024/coffee-recipes
+art: /art/blog/coffee-recipes.svg
 ogImage: /og/blog/coffee-recipes-pl.jpg
 draft: false
 ---
