@@ -7,17 +7,16 @@ tags:
 - wordpress
 featured: false
 stack:
-- HTML
-- CSS
-- JavaScript
-note: A visual design, not live yet – the code is private.
+- WordPress
+- Gutenberg
+note: For now the design is HTML, CSS and JS – it will move to WordPress when the track agrees to change the website. The code is private.
 facts:
 - value: '2'
   text: themes – dark and light, like in my portfolio
 - value: '4'
   text: views – home page, news, a single post and a version with animations
-- value: '7'
-  text: animations – from the start lights in the hero to karts driving in
+- value: '6'
+  text: animations I would keep – tyre marks, a stats counter, karts driving in and more
 - value: '3'
   text: typefaces served from the site – Barlow, Barlow Condensed and JetBrains Mono, no Google Fonts
 cover:
@@ -67,6 +66,6 @@ I like go-karting, and I have been to the Emotion Karting track in Bytom many ti
 - A sporty feel – strong typography, orange accents and tyre marks in the background
 - Two themes – dark and light, like in my portfolio, so everyone can choose what suits them
 - Price list, karting school and news – with separate views for the post list and a single post
-- A version with animations: start lights in the hero, tyre marks that draw themselves, a stats counter and karts driving in
+- A version with animations: tyre marks that draw themselves, a stats counter, karts driving in and sections that slide in – only the start lights in the hero I would not keep
 - Animations turn off when someone has reduced motion on in their system (prefers-reduced-motion)
 - Fonts served from the site, no Google Fonts

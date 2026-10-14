@@ -7,17 +7,16 @@ tags:
 - wordpress
 featured: false
 stack:
-- HTML
-- CSS
-- JavaScript
-note: Projekt wizualny, jeszcze nie wdrożony – kod jest prywatny.
+- WordPress
+- Gutenberg
+note: Na dziś projekt w HTML, CSS i JS – na WordPressie stanie, gdy tor zgodzi się na zmianę strony. Kod jest prywatny.
 facts:
 - value: '2'
   text: motywy – ciemny i jasny, jak w moim portfolio
 - value: '4'
   text: widoki – strona główna, aktualności, wpis i wersja z animacjami
-- value: '7'
-  text: animacji – od świateł startowych w hero po wjazd gokartów
+- value: '6'
+  text: animacji, które bym zostawił – ślady opon, licznik statystyk, wjazd gokartów i inne
 - value: '3'
   text: kroje pisma z serwera strony – Barlow, Barlow Condensed i JetBrains Mono, bez Google Fonts
 cover:
@@ -67,6 +66,6 @@ Lubię jeździć gokartami, a na torze Emotion Karting w Bytomiu byłem już wie
 - Sportowy charakter – mocna typografia, pomarańczowe akcenty i ślady opon w tle
 - Dwa motywy – ciemny i jasny, jak w moim portfolio, żeby każdy mógł dopasować stronę do siebie
 - Cennik, szkółka i aktualności – z osobnym widokiem listy wpisów i pojedynczego wpisu
-- Wersja z animacjami: światła startowe w hero, rysujące się ślady opon, licznik statystyk i wjazd gokartów
+- Wersja z animacjami: rysujące się ślady opon, licznik statystyk, wjazd gokartów i odsłanianie sekcji – tylko świateł startowych w hero bym nie zostawił
 - Animacje wyłączają się, gdy ktoś ma w systemie włączone ograniczenie ruchu (prefers-reduced-motion)
 - Czcionki dołączone lokalnie, bez Google Fonts

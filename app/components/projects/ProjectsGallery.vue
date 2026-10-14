@@ -124,6 +124,11 @@ onBeforeUnmount(() => lockScroll(false))
           :class="shot.device === 'phone' ? 'mx-auto max-w-md overflow-y-auto overscroll-contain rounded-2xl' : shot.full ? 'mx-auto max-w-5xl overflow-y-auto overscroll-contain rounded-lg' : 'flex items-center justify-center'"
           @click.self="close"
         >
+          <!-- Wskaźnik ładowania pod zdjęciem: widać go, dopóki duży zrzut się nie wczyta – potem zasłania go samo zdjęcie -->
+          <span class="pointer-events-none absolute inset-x-0 top-0 flex flex-col items-center gap-3 pt-24 text-sm text-slate-300" :class="!(shot.device === 'phone' || shot.full) && 'inset-y-0 justify-center pt-0'" aria-hidden="true">
+            <span class="size-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
+            {{ t('loading') }}
+          </span>
           <!-- Telefon i cała strona: wysoki zrzut przewija się w podglądzie -->
           <CommonPicture
             v-if="shot.device === 'phone' || shot.full"
@@ -131,7 +136,7 @@ onBeforeUnmount(() => lockScroll(false))
             :alt="shot.alt"
             :sizes="shot.full ? 'xs:100vw lg:1024px' : 'xs:100vw sm:448px'"
             loading="lazy"
-            class="block h-auto w-full"
+            class="relative block h-auto w-full"
           />
           <CommonPicture
             v-else
@@ -139,7 +144,7 @@ onBeforeUnmount(() => lockScroll(false))
             :alt="shot.alt"
             sizes="xs:100vw xl:1440px"
             loading="lazy"
-            class="block h-auto max-h-full w-full object-contain"
+            class="relative block h-auto max-h-full w-full object-contain"
           />
         </div>
 
@@ -178,7 +183,8 @@ onBeforeUnmount(() => lockScroll(false))
     "close": "Close",
     "prev": "Previous screenshot",
     "next": "Next screenshot",
-    "full": "Full page"
+    "full": "Full page",
+    "loading": "Loading the image…"
   },
   "pl": {
     "openHint": "Powiększ:",
@@ -186,7 +192,8 @@ onBeforeUnmount(() => lockScroll(false))
     "close": "Zamknij",
     "prev": "Poprzedni zrzut",
     "next": "Następny zrzut",
-    "full": "Cała strona"
+    "full": "Cała strona",
+    "loading": "Wczytuję zdjęcie…"
   }
 }
 </i18n>

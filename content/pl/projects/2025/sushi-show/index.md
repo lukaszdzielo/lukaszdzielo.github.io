@@ -15,7 +15,7 @@ stack:
 - Vue 3
 - Tailwind CSS 4
 - '@nuxt/image'
-note: Strona wzór – bez prawdziwych danych; na razie nie jest widoczna w Google.
+note: Strona wzór – kontakt i ceny są przykładowe; na razie nie jest widoczna w Google.
 facts:
 - value: '95'
   suffix: /100
@@ -48,7 +48,7 @@ gallery:
   caption: Ta sama strona na telefonie
 ---
 
-Marcina poznałem w jednej z restauracji sushi. Podziwiałem, z jakim sercem przykłada się do swoich potraw, i powiedziałem mu kiedyś, że jeśli zechce się reklamować i rozwijać, chętnie pomogę. Tak powstał ten projekt – na razie jako wzór, bo Marcin nie zdecydował jeszcze, czy otworzy firmę. Pierwszą wersję zrobiłem w Nuxt, kiedy uczyłem się Vue, więc to dla mnie projekt z sentymentem. Ostatnio go odświeżyłem i przyspieszyłem.
+Marcina poznałem w jednej z restauracji sushi. Podziwiałem, z jakim sercem przykłada się do swoich potraw, i powiedziałem mu kiedyś, że jeśli zechce się reklamować i rozwijać, chętnie pomogę. Tak powstał ten projekt – gotowa strona, którą Marcin może wykorzystać, kiedy zechce pokazać swoje warsztaty szerzej. Pierwszą wersję zrobiłem w Nuxt, kiedy uczyłem się Vue, więc to dla mnie projekt z sentymentem. Ostatnio go odświeżyłem i przyspieszyłem.
 
 ## Najważniejsze cechy
 

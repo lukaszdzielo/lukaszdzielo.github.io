@@ -13,6 +13,7 @@ stack:
 - JavaScript
 - Swiper
 - Twig
+- SCSS
 note: Projekt w Arris Agency – pokazuję tylko swoją część serwisu.
 facts:
 - value: '1'

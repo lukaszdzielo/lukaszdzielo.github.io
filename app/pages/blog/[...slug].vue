@@ -26,6 +26,7 @@ const { data: relatedProject } = await useAsyncData('blog-project-' + path, () =
 useSiteMeta({
     title: post.value?.title ? `${post.value.title} – Łukasz Dzieło` : t('meta.fallbackTitle'),
     description: post.value?.description || undefined,
+    image: post.value?.ogImage,
 });
 
 if (post.value) {
@@ -36,6 +37,7 @@ if (post.value) {
         datePublished: post.value.date || undefined,
         inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
         mainEntityOfPage: pageUrl(route.path),
+        image: post.value.ogImage ? `${SITE_URL}${post.value.ogImage}` : undefined,
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
     });
 }

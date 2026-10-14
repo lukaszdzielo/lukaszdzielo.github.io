@@ -299,11 +299,10 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             <div class="min-w-0">
               <!-- Tytuł na całą szerokość (maks. 2 linie), link w wierszu pod nim – długie nazwy nie są ucinane -->
               <b class="line-clamp-2 text-base font-medium text-slate-900 sm:mt-3 dark:text-brand-50">{{ p.title }}</b>
-              <p v-if="metaOf(p) || p.hasPage || linkOf(p)" class="mt-0.5 flex flex-wrap items-baseline justify-between gap-x-3 text-sm">
-                <span v-if="metaOf(p)" class="text-slate-600 dark:text-slate-400">{{ metaOf(p) }}</span>
-                <span v-if="p.hasPage" class="shrink-0 text-primary-500 dark:text-primary-400">{{ t('more') }}</span>
-                <span v-else-if="linkOf(p)" class="shrink-0 text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
-              </p>
+              <p v-if="metaOf(p)" class="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{{ metaOf(p) }}</p>
+              <!-- Link zawsze w osobnym, ostatnim wierszu – w każdej karcie w tym samym miejscu -->
+              <span v-if="p.hasPage" class="mt-1 block text-sm font-medium text-primary-500 dark:text-primary-400">{{ t('more') }}</span>
+              <span v-else-if="linkOf(p)" class="mt-1 block text-sm font-medium text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
             </div>
           </component>
         </li>

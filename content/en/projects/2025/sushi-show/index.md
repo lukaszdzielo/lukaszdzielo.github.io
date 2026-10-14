@@ -15,7 +15,7 @@ stack:
 - Vue 3
 - Tailwind CSS 4
 - '@nuxt/image'
-note: A sample website – no real data; not visible in Google for now.
+note: A sample website – contact details and prices are examples; not visible in Google for now.
 facts:
 - value: '95'
   suffix: /100
@@ -48,7 +48,7 @@ gallery:
   caption: The same page on mobile
 ---
 
-I met Marcin in one of the sushi restaurants. I admired how much heart he puts into his food, and I once told him that if he ever wants to advertise and grow, I will gladly help. That is how this project started – for now as a sample, because Marcin has not decided yet if he will open a company. I made the first version in Nuxt when I was learning Vue, so this project means a lot to me. Recently I refreshed it and made it faster.
+I met Marcin in one of the sushi restaurants. I admired how much heart he puts into his food, and I once told him that if he ever wants to advertise and grow, I will gladly help. That is how this project started – a ready website Marcin can use when he wants to show his workshops to more people. I made the first version in Nuxt when I was learning Vue, so this project means a lot to me. Recently I refreshed it and made it faster.
 
 ## Main features
 
