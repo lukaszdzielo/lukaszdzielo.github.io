@@ -2,7 +2,7 @@
 date: 2019-10-02
 title: NatFit.pl
 description:
-image: /projects/2019/natfit/thumbnail.avif
+image: /projects/2019/natfit/thumbnail.webp
 tags: [wordpress]
 featured: false
 links:

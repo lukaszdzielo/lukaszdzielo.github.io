@@ -2,7 +2,7 @@
 date: 2021-11-01
 title: Rund
 description:
-image: /projects/2021/rund/page.jpg
+image: /projects/2021/rund/page.webp
 tags: [html]
 featured: true
 agency: b4b

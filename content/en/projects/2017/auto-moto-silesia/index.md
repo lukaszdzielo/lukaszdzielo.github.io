@@ -2,7 +2,7 @@
 date: 2017-07-02
 title: Auto Moto Silesia
 description:
-image: /projects/2017/auto-moto-silesia/thumbnail.avif
+image: /projects/2017/auto-moto-silesia/thumbnail.webp
 tags: [wordpress]
 featured: true
 links:

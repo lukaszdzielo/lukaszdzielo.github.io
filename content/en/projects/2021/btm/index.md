@@ -2,7 +2,7 @@
 date: 2021-06-03
 title: BTM
 description:
-image: /projects/2021/btm/thumbnail.avif
+image: /projects/2021/btm/thumbnail.webp
 tags: [html]
 featured: true
 links:

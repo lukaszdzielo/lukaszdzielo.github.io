@@ -2,7 +2,7 @@
 date: 2019-10-01
 title: 4xtrahands
 description:
-image: /projects/2019/4xtrahands/thumbnail.avif
+image: /projects/2019/4xtrahands/thumbnail.webp
 tags: [html]
 featured: false
 agency: b4b

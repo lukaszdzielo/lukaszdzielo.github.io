@@ -2,7 +2,7 @@
 date: 2019-11-04
 title: Mad Mick
 description:
-image: /projects/2019/mad-mick/thumbnail.avif
+image: /projects/2019/mad-mick/thumbnail.webp
 tags: [wordpress]
 featured: false
 links:

@@ -36,7 +36,8 @@ const date = computed(() =>
     class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-900/10 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 dark:border-white/10 dark:bg-brand-900 dark:hover:shadow-black/40"
     :class="featured && 'lg:flex-row'"
   >
-    <!-- Okładka w proporcji obrazka OG (1200 × 630). Rozmiary w środku: clamp(min, cqw, max) – rosną z szerokością karty, ale nie wychodzą poza granice -->
+    <!-- Okładka w proporcji obrazka OG (1200 × 630). Rozmiary tekstu i odstępów z domyślnej skali Tailwinda,
+         przełączane progami szerokości karty (@xs, @sm, @2xl – container queries), bez płynnych jednostek -->
     <div
       class="@container relative aspect-[1200/630] shrink-0 overflow-hidden bg-linear-[140deg] from-brand-900 to-brand-700 text-white"
       :class="featured && 'lg:w-3/5'"
@@ -54,7 +55,8 @@ const date = computed(() =>
           class="pointer-events-none absolute -top-[30%] -right-[12%] aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65% transition-transform duration-700 motion-safe:group-hover:scale-110"
           aria-hidden="true"
         />
-        <!-- Rysunek wpisu (SVG z /public/art/blog) w prawym górnym rogu – ten sam co w banerze wpisu i obrazku OG -->
+        <!-- Rysunek wpisu (SVG z /public/art/blog) wchodzi z prawego górnego rogu, obrócony i przycięty krawędzią
+             karty – ten sam rysunek co w banerze wpisu i obrazku OG -->
         <img
           v-if="post.art"
           :src="post.art"
@@ -62,15 +64,14 @@ const date = computed(() =>
           width="480"
           height="300"
           loading="lazy"
-          class="absolute object-contain"
-          :class="featured ? 'top-[10%] right-[8%] h-[62%] w-[70%]' : 'top-[clamp(0.75rem,5cqw,1.5rem)] right-[clamp(0.75rem,5cqw,1.5rem)] h-[48%] w-[40%]'"
+          class="absolute -top-10 -right-5 w-3/5 rotate-12 opacity-70 transition-transform duration-500 motion-safe:group-hover:rotate-6"
         />
-        <div class="absolute inset-0 flex flex-col justify-end gap-[clamp(0.375rem,2cqw,0.75rem)] p-[clamp(1rem,6cqw,2.75rem)]">
-          <span class="text-[clamp(0.6875rem,2.8cqw,1.125rem)] tracking-widest text-[#a9c0ff] uppercase">
+        <div class="absolute inset-0 flex flex-col justify-end gap-1.5 p-5 @sm:gap-2 @sm:p-6 @2xl:p-10">
+          <span class="text-xs tracking-widest text-[#a9c0ff] uppercase @2xl:text-sm">
             {{ [kindLabel, topic].filter(Boolean).join(' · ') }}
           </span>
           <!-- W wyróżnionej karcie z rysunkiem tytuł jest obok okładki – na okładce go nie powtarzamy -->
-          <span v-if="!(featured && post.art)" class="leading-tight font-semibold tracking-tight" :class="post.art ? 'max-w-[56%] text-[clamp(1.125rem,5.4cqw,1.75rem)]' : 'max-w-[86%] text-[clamp(1.125rem,5.8cqw,2.625rem)]'">{{ post.title }}</span>
+          <span v-if="!(featured && post.art)" class="max-w-3/4 text-lg leading-tight font-semibold tracking-tight @xs:text-xl @2xl:text-3xl">{{ post.title }}</span>
         </div>
       </template>
     </div>

@@ -57,7 +57,7 @@ const link = useLocalLink()
       </div>
 
       <!-- Ilustracja: na desktopie przy prawej krawędzi, niżej nad tekstem i na środku.
-           Kwadratowy portret.avif przycięty (object-cover) do wąskiego kadru postaci.
+           Kwadratowy portret.webp przycięty (object-cover) do wąskiego kadru postaci.
            Od lg wysokość jest ograniczona szerokością kolumny (160.6cqw = szerokość ÷ proporcja 820/1317),
            więc na węższych ekranach postać się zmniejsza zamiast wchodzić na tekst.
            Odstęp od góry (mt-4 / mt-6) – włosy nie dotykają przyklejonego menu.
