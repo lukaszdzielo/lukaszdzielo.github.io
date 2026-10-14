@@ -12,7 +12,6 @@
   --mk-ink: #eef2fb; --mk-ink2: #aab4cf; --mk-ink3: #7883a3;
   --mk-hair: rgba(160, 185, 255, .11); --mk-line2: rgba(160, 185, 255, .20);
 }
-.p-scr.mkw,.p-scr.img{padding:0;display:block;height:calc(100% - 5.4cqw);overflow:hidden}
 .p-phone .s.mkw{padding:0;display:block;overflow:hidden}
 
 .mk .bg{fill:var(--mk-bg)}.mk .k{fill:var(--mk-block)}.mk .l{fill:var(--mk-line)}
