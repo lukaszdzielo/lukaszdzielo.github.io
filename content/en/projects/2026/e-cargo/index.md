@@ -6,18 +6,18 @@ image: /projects/2026/e-cargo/thumbnail.webp
 tags: [vue]
 featured: false
 agency: Pesi
-stack: [Vue 3, Inertia, Tailwind CSS, Laravel, Pest]
+stack: [Vue 3, Inertia, Tailwind CSS]
 note: A company app (Pesi) with no public access – the data on the screenshots is made up.
 facts:
-  - value: '10'
+  - value: '8'
     suffix: ' months'
-    text: on the project – since December 2025, still in the team
+    text: the main part of the project – from December 2025 to the release in July 2026
   - value: '32'
     text: UI components used by the whole team – fields, dialogs, tables, tooltips
   - value: '171'
     text: icons as Vue components – one set for the whole app
-  - value: '19'
-    text: browser test files (Pest) that I created
+  - value: '4'
+    text: user roles – admin, training centre, instructor and student – with my views in each panel
 cover:
   desktop: /projects/2026/e-cargo/schedule.webp
   width: 1440
@@ -62,7 +62,7 @@ highlights:
     text: Tooltips, menus and select lists choose the side they open on and keep a gap from the edge of the screen – also when you scroll the page.
 ---
 
-e-cargo is a platform for professional driver training centres: online courses for students, a class schedule with instructors, vehicles and rooms, and documents. I have worked on it in the Pesi team since December 2025 – in Vue 3 and Inertia I built a large part of the views and the components used by the whole team.
+e-cargo is a platform for professional driver training centres: online courses for students, a class schedule with instructors, vehicles and rooms, and documents. I worked on it in the Pesi team – the main part, up to the production release, took from December 2025 to July 2026. In Vue 3 and Inertia I built a large part of the views and the components used by the whole team.
 
 ## Main features
 
