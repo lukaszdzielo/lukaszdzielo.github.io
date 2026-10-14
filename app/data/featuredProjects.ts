@@ -38,8 +38,8 @@ export const featuredProjects: FeaturedProject[] = [
   {
     title: 'e-cargo',
     date: '2026-08',
-    description: { en: 'Web app – most of the front-end and components used by the whole team.', pl: 'Aplikacja webowa – większość front-endu i komponenty używane przez cały zespół.' },
-    chips: ['Vue 3', 'Inertia.js', 'PrimeVue'],
+    description: { en: 'Training platform for driver training centres – a large part of the front-end and components for the whole team.', pl: 'Platforma szkoleń dla ośrodków szkolenia kierowców – duża część front-endu i komponenty dla całego zespołu.' },
+    chips: ['Vue 3', 'Inertia.js', 'Tailwind CSS'],
     url: 'e-cargo',
     image: '/projects/2026/e-cargo/featured.webp',
   },
