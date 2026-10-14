@@ -125,7 +125,7 @@ onBeforeUnmount(() => lockScroll(false))
           @click.self="close"
         >
           <!-- Wskaźnik ładowania pod zdjęciem: widać go, dopóki duży zrzut się nie wczyta – potem zasłania go samo zdjęcie -->
-          <span class="pointer-events-none absolute inset-x-0 top-0 flex flex-col items-center gap-3 pt-24 text-sm text-slate-300" :class="!(shot.device === 'phone' || shot.full) && 'inset-y-0 justify-center pt-0'" aria-hidden="true">
+          <span class="pointer-events-none fixed inset-0 flex flex-col items-center justify-center gap-3 text-sm text-slate-300" aria-hidden="true">
             <span class="size-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
             {{ t('loading') }}
           </span>

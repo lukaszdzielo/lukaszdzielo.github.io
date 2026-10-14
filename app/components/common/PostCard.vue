@@ -13,7 +13,8 @@ type Post = {
 const props = defineProps<{ post: Post; featured?: boolean }>()
 
 const { t, locale } = useI18n({ useScope: 'local' })
-const kindLabel = computed(() => (props.post.kind === 'case-study' ? t('caseStudy') : t('post')))
+// Etykietę pokazujemy tylko przy case study – zwykły wpis to domyślny rodzaj, nie trzeba go nazywać
+const kindLabel = computed(() => (props.post.kind === 'case-study' ? t('caseStudy') : ''))
 const topic = computed(() => props.post.tags?.[0]?.replace(/-/g, ' '))
 // Data w języku strony. timeZone UTC – „2026-03-05” to północ UTC, a w strefie USA byłby to jeszcze 4 marca
 const date = computed(() =>
@@ -54,7 +55,7 @@ const date = computed(() =>
         />
         <div class="absolute inset-0 flex flex-col justify-end gap-[2cqw] p-[6cqw]">
           <span class="text-[2.8cqw] tracking-widest text-[#a9c0ff] uppercase">
-            {{ kindLabel }}<template v-if="topic"> · {{ topic }}</template>
+            {{ [kindLabel, topic].filter(Boolean).join(' · ') }}
           </span>
           <span class="max-w-[86%] text-[5.8cqw] leading-tight font-semibold tracking-tight">{{ post.title }}</span>
         </div>
@@ -64,7 +65,7 @@ const date = computed(() =>
     <!-- Wyróżniony wpis: duży tytuł, opis i „Czytaj wpis” obok okładki -->
     <div v-if="featured" class="flex flex-1 flex-col justify-center gap-3 p-5 sm:p-8 lg:p-10">
       <p class="text-sm text-slate-600 dark:text-slate-400">
-        {{ kindLabel }}<template v-if="date"> · {{ date }}</template>
+        <time v-if="date" :datetime="post.date">{{ date }}</time>
       </p>
       <h2 class="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ post.title }}</h2>
       <p v-if="post.description" class="text-base/relaxed text-slate-600 dark:text-slate-300">{{ post.description }}</p>
@@ -76,7 +77,7 @@ const date = computed(() =>
 
     <div v-else class="flex flex-1 flex-col px-4.5 pt-4 pb-4.5">
       <p class="text-xs text-slate-600 dark:text-slate-400">
-        {{ kindLabel }}<template v-if="date"> · {{ date }}</template>
+        <time v-if="date" :datetime="post.date">{{ date }}</time>
       </p>
       <p v-if="post.description" class="mt-2 line-clamp-3 text-sm text-slate-600 dark:text-slate-300">
         {{ post.description }}
@@ -87,7 +88,7 @@ const date = computed(() =>
 
 <i18n lang="json">
 {
-  "en": { "post": "Post", "caseStudy": "Case study", "read": "Read post" },
-  "pl": { "post": "Wpis", "caseStudy": "Case study", "read": "Czytaj wpis" }
+  "en": { "caseStudy": "Case study", "read": "Read post" },
+  "pl": { "caseStudy": "Case study", "read": "Czytaj wpis" }
 }
 </i18n>

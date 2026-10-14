@@ -1,5 +1,5 @@
 ---
-date: 2026-10-14
+date: 2024-02-12
 title: Three recipe ebooks and one bookmark in the browser
 description: How I turned several coffee recipe ebooks into one page with search by ingredients – and what it taught me about Vue 3 and TypeScript.
 tags:
