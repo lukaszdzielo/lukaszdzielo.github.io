@@ -7,6 +7,7 @@ type Post = {
   tags?: string[]
   kind?: 'post' | 'case-study'
   image?: string
+  art?: string
 }
 
 // featured – pierwszy wpis na stronie /blog: od lg okładka obok tekstu, większy tytuł
@@ -53,11 +54,23 @@ const date = computed(() =>
           class="pointer-events-none absolute -top-[30%] -right-[12%] aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65% transition-transform duration-700 motion-safe:group-hover:scale-110"
           aria-hidden="true"
         />
+        <!-- Rysunek wpisu (SVG z /public/art/blog) w prawym górnym rogu – ten sam co w banerze wpisu i obrazku OG -->
+        <img
+          v-if="post.art"
+          :src="post.art"
+          alt=""
+          width="480"
+          height="300"
+          loading="lazy"
+          class="absolute object-contain"
+          :class="featured ? 'top-[10%] right-[8%] h-[62%] w-[70%]' : 'top-[5cqw] right-[5cqw] h-[48%] w-[40%]'"
+        />
         <div class="absolute inset-0 flex flex-col justify-end gap-[2cqw] p-[6cqw]">
           <span class="text-[2.8cqw] tracking-widest text-[#a9c0ff] uppercase">
             {{ [kindLabel, topic].filter(Boolean).join(' · ') }}
           </span>
-          <span class="max-w-[86%] text-[5.8cqw] leading-tight font-semibold tracking-tight">{{ post.title }}</span>
+          <!-- W wyróżnionej karcie z rysunkiem tytuł jest obok okładki – na okładce go nie powtarzamy -->
+          <span v-if="!(featured && post.art)" class="leading-tight font-semibold tracking-tight" :class="post.art ? 'max-w-[56%] text-[5.4cqw]' : 'max-w-[86%] text-[5.8cqw]'">{{ post.title }}</span>
         </div>
       </template>
     </div>

@@ -8,6 +8,7 @@ tags:
 - projekt
 kind: post
 project: /projects/2024/pokedex
+art: /art/blog/pokedex.svg
 ogImage: /og/blog/pokedex-pl.jpg
 draft: false
 ---
@@ -36,6 +37,17 @@ Przy kolejnej wizycie strona pyta API tylko o to, ile jest teraz gatunków. Jeś
 
 Wzrost, waga i statystyki pobieram dopiero wtedy, gdy ktoś otworzy kartę pokemona. Trafiają do `sessionStorage`, więc drugie otwarcie tej samej karty nie wysyła już zapytania.
 
+## Co chwilę nowy pomysł
+
+Sama lista szybko mi nie wystarczyła. W trakcie pisania co chwilę chciałem coś dodać:
+
+- zaznaczanie złapanych pokemonów – lista zapisuje się w przeglądarce,
+- import i eksport tej listy, żeby przenieść ją na inne urządzenie albo do innej przeglądarki,
+- jasny i ciemny motyw,
+- paginację z numerem strony w adresie, żeby link prowadził od razu w to samo miejsce.
+
+Pomysłów było więcej niż czasu. Często zaczynałem kolejną rzecz, zanim poprzednia działała do końca tak, jak powinna – i potem wracałem do kilku miejsc naraz.
+
 ## Błędy, które uczyły najwięcej
 
 Na początku kilka razy wpadłem w pętlę, która przeciążała komputer. Potem przyszła asynchroniczność – musiałem sprawdzać, gdzie wysyłam zapytanie, co dostaję i czy te dane w ogóle są mi potrzebne. Najtrudniejsze okazało się zgranie tego z DOM-em: dane już są, a widok jeszcze nie, albo odwrotnie.
@@ -44,7 +56,7 @@ Moim głównym narzędziem był `console.log` i `console.trace`. Dziś częście
 
 ## Co zrobiłbym dziś inaczej
 
-- Zacząłbym od małych etapów. Na początku chciałem dodać wszystko naraz – do pracy krok po kroku doszedłem dopiero po jakimś czasie.
+- Kończyłbym jedną funkcję, zanim zacznę następną. Do pracy małymi krokami doszedłem dopiero po jakimś czasie.
 - Najpierw przeanalizowałbym, jak API podaje dane i czego naprawdę potrzebuję, a dopiero potem pisał kod.
 - Może najpierw zrobiłbym wygląd, a potem funkcje – wygląd zmieniałem wiele razy w trakcie.
 - Nie wszystko musi być klasą. Niektóre części dziś napisałbym jako zwykłe funkcje.

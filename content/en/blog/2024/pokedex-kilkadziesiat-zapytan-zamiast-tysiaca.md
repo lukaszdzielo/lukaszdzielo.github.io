@@ -8,6 +8,7 @@ tags:
 - projekt
 kind: post
 project: /projects/2024/pokedex
+art: /art/blog/pokedex.svg
 ogImage: /og/blog/pokedex-en.jpg
 draft: false
 ---
@@ -36,6 +37,17 @@ On the next visit, the page only asks the API how many species there are now. If
 
 Height, weight and stats are loaded only when someone opens a Pokémon card. They go to `sessionStorage`, so opening the same card again doesn't send another request.
 
+## Always one more idea
+
+A simple list wasn't enough for long. While I was writing the code, I kept wanting to add something new:
+
+- marking caught Pokémon – the list is saved in the browser,
+- import and export of that list, so you can move it to another device or browser,
+- a light and a dark theme,
+- pagination with the page number in the address, so a link opens the same page.
+
+I had more ideas than time. I often started the next feature before the previous one worked the way it should – and then I had to go back to several places at once.
+
 ## The mistakes that taught me the most
 
 At the beginning I got stuck in a loop that overloaded my computer more than once. Then came async code – I had to check where I was sending a request, what I got back and whether I needed that data at all. The hardest part was keeping it in sync with the DOM: the data is ready but the view isn't, or the other way round.
@@ -44,7 +56,7 @@ My main tools were `console.log` and `console.trace`. Today I would more often p
 
 ## What I would do differently today
 
-- Start with small steps. At first I wanted to add everything at once – I learned to work step by step only after some time.
+- Finish one feature before starting the next. I learned to work in small steps only after some time.
 - First look at how the API returns data and what I really need, and only then write code.
 - Maybe build the look first and the features later – I changed the design many times along the way.
 - Not everything has to be a class. Today I would write some parts as plain functions.

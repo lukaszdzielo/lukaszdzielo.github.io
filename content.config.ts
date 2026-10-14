@@ -34,6 +34,7 @@ const blogSchema = z.object({
   description: z.string(),
   tags: z.array(z.string()),
   image: z.string().optional(),
+  art: z.string().optional(), // rysunek SVG z /public/art/blog – baner wpisu, karta i obrazek OG (zasady: archiwum zasady/wpisy-banery.md)
   ogImage: z.string().optional(), // obrazek podglądu linku 1200×630 z /public (np. /og/blog/<slug>-pl.jpg)
   draft: z.boolean().default(false),
   kind: z.enum(['post', 'case-study']).default('post'),

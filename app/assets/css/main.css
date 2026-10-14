@@ -120,10 +120,12 @@ body {
 .hero-glow {
   --glow-1: rgb(255 255 255 / 0.9);
   --glow-2: rgb(47 107 255 / 0.1);
-  --glow-3: rgb(47 107 255 / 0.1);
+  --glow-3: rgb(40 96 234 / 0.16);
+  /* Niebieska poświata za portretem leży NAD białą – wcześniej biała ją przykrywała i w jasnym motywie
+     było widać tylko błękit po lewej (14.10) */
   background:
+    radial-gradient(34% 30% at 74% 24%, var(--glow-3), transparent 70%),
     radial-gradient(52% 44% at 72% 22%, var(--glow-1), transparent 72%),
-    radial-gradient(44% 40% at 70% 26%, var(--glow-3), transparent 70%),
     radial-gradient(40% 36% at 12% 8%, var(--glow-2), transparent 70%);
 }
 .dark .hero-glow {
