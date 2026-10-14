@@ -23,8 +23,8 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Website for a karting track in Bytom – light and dark theme, price list and news.', pl: 'Strona toru kartingowego w Bytomiu – jasny i ciemny motyw, cennik i aktualności.' },
     chips: ['WordPress', 'Gutenberg'],
     url: 'emotion-karting',
-    image: '/featured/emotion-karting.webp',
-    imageDark: '/featured/emotion-karting-dark.webp',
+    image: '/projects/2026/emotion-karting/featured.webp',
+    imageDark: '/projects/2026/emotion-karting/featured-dark.webp',
   },
   {
     title: 'ReblyX',
@@ -33,7 +33,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['WordPress', 'Gutenberg'],
     url: 'reblyx.com',
     href: 'https://reblyx.com',
-    image: '/featured/reblyx.webp',
+    image: '/projects/2026/reblyx/featured.webp',
   },
   {
     title: 'e-cargo',
@@ -41,7 +41,7 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Web app – most of the front-end and components used by the whole team.', pl: 'Aplikacja webowa – większość front-endu i komponenty używane przez cały zespół.' },
     chips: ['Vue 3', 'Inertia.js', 'PrimeVue'],
     url: 'e-cargo',
-    image: '/featured/e-cargo.webp',
+    image: '/projects/2026/e-cargo/featured.webp',
   },
   // Nie cały serwis – moja część w Arris Agency: karuzele na Swiperze
   {
@@ -50,7 +50,7 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Not the whole site, just my part: Swiper carousels – including the car gallery – merged into one consistent component.', pl: 'Nie cały serwis, tylko moja część: karuzele na Swiperze – m.in. galeria auta – zebrane w jeden spójny komponent.' },
     chips: ['Swiper', 'JavaScript', 'Twig'],
     url: 'superauto.pl',
-    image: '/featured/superauto.webp',
+    image: '/projects/2025/superauto/featured.webp',
     hidden: true, // na głównej zastąpiony przez Sushi Show (13.10) – zostaje w archiwum projektów
   },
   {
@@ -60,7 +60,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['JavaScript', 'OOP', 'PokéAPI'],
     url: 'pokedex',
     href: 'https://lukaszdzielo.github.io/pokedex/',
-    image: '/featured/pokedex.webp',
+    image: '/projects/2024/pokedex/featured.webp',
   },
   {
     title: 'Coffee Recipes',
@@ -68,7 +68,7 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Coffee recipes – filtering by ingredients, app state and a local API.', pl: 'Przepisy na kawę – filtrowanie po składnikach, stan aplikacji i lokalne API.' },
     chips: ['Vue', 'CSS', 'API'],
     url: 'coffee-recipes',
-    image: '/featured/coffee-recipes.webp',
+    image: '/projects/2024/coffee-recipes/featured.webp',
   },
   // Strona sushi mastera (Marcin Podliński). Zrzut: nowy wygląd strony.
   {
@@ -78,7 +78,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['Vue 3', 'Nuxt', 'Tailwind'],
     url: 'sushi-show',
     href: 'https://lukaszdzielo.github.io/marcin-podlinski/',
-    image: '/featured/sushi-show.webp',
+    image: '/projects/2025/sushi-show/featured.webp',
   },
 ]
 
