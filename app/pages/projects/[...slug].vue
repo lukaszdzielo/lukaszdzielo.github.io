@@ -193,11 +193,14 @@ if (project.value && hasOwnPage.value) {
             </div>
         </section>
 
-        <p class="container pt-14 pb-22 lg:pb-27.5">
+        <p class="container pt-14">
             <NuxtLink :to="localLink('/projects#archive')" class="inline-flex items-center gap-2 font-medium text-primary-500 hover:underline underline-offset-4 dark:text-primary-400">
                 {{ t('allProjects') }}
             </NuxtLink>
         </p>
+
+        <!-- Formularz na końcu strony projektu – kto chce podobną stronę, pisze od razu, bez przechodzenia na główną -->
+        <SectionsHomeContact />
     </div>
 
     <!-- Project exists but only has basic info — no dedicated page -->

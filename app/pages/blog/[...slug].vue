@@ -50,9 +50,11 @@ const kicker = computed(() =>
         .join(' · ')
 );
 
-// Spis treści tylko w dłuższych wpisach – od 5 śródtytułów (h2); krótszy wpis czyta się bez niego
+// Spis treści od 3 śródtytułów (h2) – przy 1–2 nie ma czego spisywać
 const tocLinks = computed(() => (post.value?.body?.toc?.links ?? []).filter((link: { depth: number }) => link.depth === 2));
-const showToc = computed(() => tocLinks.value.length >= 5);
+const showToc = computed(() => tocLinks.value.length >= 3);
+// Pełny adres wpisu do udostępniania
+const shareUrl = computed(() => pageUrl(route.path));
 </script>
 
 <template>
@@ -91,7 +93,7 @@ const showToc = computed(() => tocLinks.value.length >= 5);
         </header>
 
         <div class="container py-12 sm:py-16 lg:py-20">
-            <div class="grid gap-12" :class="showToc && 'lg:grid-cols-[minmax(0,48rem)_18rem] lg:justify-between'">
+            <div class="grid gap-12 lg:grid-cols-[minmax(0,48rem)_18rem] lg:justify-between">
                 <div class="min-w-0 max-w-3xl">
                     <NuxtLink v-if="relatedProject" :to="relatedProject.path"
                         class="group mb-10 flex items-center gap-4 rounded-2xl border border-slate-900/10 bg-white p-4 shadow-sm transition-colors hover:border-primary-500 dark:border-white/10 dark:bg-brand-900 dark:hover:border-primary-400">
@@ -106,10 +108,15 @@ const showToc = computed(() => tocLinks.value.length >= 5);
                     <article class="prose max-w-none sm:prose-lg prose-headings:scroll-mt-24 prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
                         <ContentRenderer :value="post" />
                     </article>
+
+                    <!-- Udostępnianie pod treścią – na telefonie i tablecie (od lg jest w kolumnie obok) -->
+                    <BlogShare :url="shareUrl" :title="post.title" class="mt-12 border-t border-slate-900/10 pt-8 lg:hidden dark:border-white/10" />
                 </div>
 
-                <aside v-if="showToc" class="hidden lg:block">
-                    <nav :aria-label="t('toc')" class="sticky top-24 rounded-2xl border border-slate-900/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-brand-900">
+                <!-- Kolumna obok treści (od lg): spis treści i udostępnianie, przyklejone przy przewijaniu -->
+                <aside class="hidden lg:block">
+                  <div class="sticky top-24 grid gap-4">
+                    <nav v-if="showToc" :aria-label="t('toc')" class="rounded-2xl border border-slate-900/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-brand-900">
                         <h2 class="text-xs font-semibold tracking-widest text-slate-600 uppercase dark:text-slate-400">{{ t('toc') }}</h2>
                         <ol class="mt-4 grid gap-2.5 text-sm text-slate-600 dark:text-slate-300">
                             <li v-for="(link, i) in tocLinks" :key="link.id" class="flex gap-2.5">
@@ -118,9 +125,14 @@ const showToc = computed(() => tocLinks.value.length >= 5);
                             </li>
                         </ol>
                     </nav>
+                    <BlogShare :url="shareUrl" :title="post.title" class="rounded-2xl border border-slate-900/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-brand-900" />
+                  </div>
                 </aside>
             </div>
         </div>
+
+        <!-- Formularz na końcu wpisu – bez przechodzenia na stronę główną -->
+        <SectionsHomeContact />
     </div>
 
     <!-- Nie ma takiego wpisu (albo to szkic) -->

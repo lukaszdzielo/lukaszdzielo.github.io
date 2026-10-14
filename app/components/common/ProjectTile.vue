@@ -27,11 +27,13 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
   <!-- Link jest na tytule i rozciąga się na cały kafelek (duży cel do kliknięcia):
        strona projektu (to) albo działająca strona w nowej karcie (href). Bez linku kafelek tylko pokazuje projekt. -->
   <article
-    class="ig-tile group @container relative block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 dark:border-white/10 dark:text-brand-50"
+    class="ig-tile group @container relative isolate block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 dark:border-white/10 dark:text-brand-50"
     :class="{ 'hover:shadow-xl hover:shadow-slate-900/10 dark:hover:shadow-black/40': to || href }"
   >
-    <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić -->
-    <div class="relative z-1 min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
+    <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić.
+         Blok tekstu celowo nie ma `relative` – wtedy ::after linku z tytułu rozciąga się na cały kafelek (article),
+         także na okno ze zrzutem (wcześniej kończył się na tekście i klik w zrzut nic nie robił). -->
+    <div class="min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
       <!-- --ch: wysokość etykiety (rośnie z kafelkiem). Kółko ze strzałką ma stałe 36 px – wygodny cel dotyku. -->
       <div class="flex items-start justify-between gap-[3cqw] [--ch:--spacing(7)] @lg:[--ch:--spacing(8)] @xl:[--ch:--spacing(10)]">
         <ul class="flex flex-wrap gap-[1.4cqw]">
@@ -76,9 +78,9 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
       <p class="mt-[2.8cqw] max-w-[92%] text-sm/snug @lg:text-lg/snug @xl:text-xl/snug text-slate-600 dark:text-slate-300">{{ description }}</p>
     </div>
 
-    <!-- Okno przeglądarki wychodzące poza kafelek -->
+    <!-- Okno przeglądarki wychodzące poza kafelek – pod tekstem (-z-1 w obrębie kafelka, który ma isolate) -->
     <div
-      class="relative ml-[6.7cqw] w-[100cqw] origin-top-left -rotate-2 overflow-hidden rounded-[2.4cqw] border border-slate-900/16 bg-white shadow-[0_5cqw_10cqw_-4cqw_rgba(8,14,40,.45)] transition-transform duration-500 ease-out dark:border-white/20 dark:bg-[#1c2a52]"
+      class="relative -z-1 ml-[6.7cqw] w-[100cqw] origin-top-left -rotate-2 overflow-hidden rounded-[2.4cqw] border border-slate-900/16 bg-white shadow-[0_5cqw_10cqw_-4cqw_rgba(8,14,40,.45)] transition-transform duration-500 ease-out dark:border-white/20 dark:bg-[#1c2a52]"
       :class="{ 'motion-safe:group-hover:-translate-y-[1.2cqw] motion-safe:group-hover:-rotate-1': to || href }"
     >
       <div class="flex h-[5.4cqw] items-center gap-[1.1cqw] bg-[#eef1f7] px-[2.4cqw] dark:bg-[#223260]">
