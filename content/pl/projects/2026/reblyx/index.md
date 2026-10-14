@@ -63,3 +63,4 @@ ReblyX to centrum obróbki stali – projektowanie 3D, cięcie laserowe, gięcie
 - Fonty z serwera strony zamiast Google Fonts
 - Nowe sekcje: sześć procesów, cztery powody, sześć kroków od zapytania do gotowego elementu, wskazówki przed zamówieniem i formularz zapytania
 - Opis strony dla Google, etykiety pól formularza, lepszy kontrast i powiększanie na telefonie – w Lighthouse dostępność i SEO po 100
+- Formularz zapytania chroniony przez reCAPTCHA

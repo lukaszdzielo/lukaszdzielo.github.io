@@ -50,3 +50,4 @@ Interaktywna encyklopedia pokemonów obsługująca ponad 1000 stworzeń – napi
 - Modułowa architektura klas (`DataManager`, `DataBuilder`, `StorageManager`, `PokemonDialog`) przygotowana pod migrację do Vue 3
 - Responsywna, dwukierunkowo synchronizowana paginacja z odwzorowaniem stanu w URL
 - Jasny i ciemny motyw (też automatyczny, według ustawień systemu)
+- Złapane pokemony – zaznaczanie w karcie pokemona, import i eksport listy w ustawieniach
