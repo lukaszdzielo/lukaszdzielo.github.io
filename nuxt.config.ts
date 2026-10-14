@@ -121,6 +121,37 @@ const buildLlmsTxt = (): string => {
   ].filter(Boolean).join('\n');
 };
 
+// Critical CSS (14.10): style potrzebne do pierwszego ekranu trafiają do <style> w HTML, a cały plik CSS
+// ładuje się bez blokowania wyświetlenia (media="print" → "all" po wczytaniu). Na telefonie strona pokazuje się
+// szybciej (Lighthouse: „Render-blocking requests”). Działa na gotowych plikach HTML po prerenderze.
+async function inlineCriticalCss(publicDir: string, clientDir: string) {
+  const { default: Beasties } = await import('beasties');
+  const beasties = new Beasties({
+    // pliki CSS z /_nuxt/ czytamy z wyniku budowania klienta – do public trafiają dopiero po prerenderze
+    path: clientDir,
+    publicPath: '/',
+    preload: 'media',
+    pruneSource: false,
+    reduceInlineStyles: false,
+    inlineFonts: false,
+    // Ciemny motyw włącza skrypt w <head> (klasa .dark na <html>) – w HTML z buildu jej nie ma, więc reguły
+    // ciemnego motywu zostawiamy zawsze, inaczej przy ciemnym motywie strona mignęłaby na jasno
+    allowRules: [/\.dark/, /data-mode/],
+    logLevel: 'warn',
+  });
+  const walk = (dir: string): string[] =>
+    fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) return e.name === '_ipx' || e.name === '_nuxt' ? [] : walk(p);
+      return e.name.endsWith('.html') ? [p] : [];
+    });
+  for (const file of walk(publicDir)) {
+    const html = fs.readFileSync(file, 'utf8');
+    if (!html.includes('rel="stylesheet"')) continue;
+    fs.writeFileSync(file, await beasties.process(html));
+  }
+}
+
 // Pierwsza wizyta z przeglądarką po polsku (pierwszy język na liście) → ta sama strona w wersji /pl.
 // Nie przekierowuje, gdy jest ciasteczko `lang` (wybór z przełącznika języka) ani na stronach /pl.
 // Adresy podstron z inną nazwą w każdym języku – mapa niżej (jak definePageMeta w pages/).
@@ -219,7 +250,7 @@ export default defineNuxtConfig({
         if (/<meta[^>]+name="robots"[^>]+noindex/.test(html) || /http-equiv="refresh"/i.test(html)) return;
         sitemap.add(route.route === '/' ? '/' : `${route.route.replace(/\/+$/, '')}/`);
       });
-      nitro.hooks.hook('prerender:done', () => {
+      nitro.hooks.hook('prerender:done', async () => {
         const base = SITE_URL.replace(/\/$/, '');
         const urls = [...sitemap].sort().map((r) => `  <url><loc>${base}${r}</loc></url>`).join('\n');
         fs.writeFileSync(
@@ -227,6 +258,7 @@ export default defineNuxtConfig({
           `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
         );
         fs.writeFileSync(path.join(nitro.options.output.publicDir, 'llms.txt'), buildLlmsTxt());
+        await inlineCriticalCss(nitro.options.output.publicDir, path.join(nitro.options.buildDir, 'dist/client'));
       });
     }
   },
