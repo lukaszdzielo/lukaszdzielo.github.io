@@ -23,8 +23,7 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Website for a karting track in Bytom – light and dark theme, price list and news.', pl: 'Strona toru kartingowego w Bytomiu – jasny i ciemny motyw, cennik i aktualności.' },
     chips: ['WordPress', 'Gutenberg'],
     url: 'emotion-karting',
-    image: '/projects/2026/emotion-karting/page-light.webp',
-    imageDark: '/projects/2026/emotion-karting/page-dark.webp',
+    image: '/projects/2026/emotion-karting/page-dark.webp',
   },
   {
     title: 'ReblyX',
