@@ -2,7 +2,7 @@
 // Kafelek projektu w układzie posta z Instagrama (4:5): technologie, tytuł, opis
 // i przechylone okno przeglądarki z makietą (SVG) albo zrzutem ekranu.
 // Wymiary w cqw – kafelek skaluje się jak grafika, niezależnie od szerokości kolumny.
-// Tekst ma dolną granicę (max(…, cqw)), żeby na telefonie nie robił się nieczytelnie mały.
+// Tekst ma granice clamp(min, cqw, max): na telefonie nie robi się nieczytelnie mały, a w dużym kafelku (hero) nie rośnie bez końca.
 import { mockups } from '~/data/mockups'
 
 const props = defineProps<{
@@ -33,12 +33,12 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
     <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić -->
     <div class="relative z-1 min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
       <!-- --ch: wysokość etykiety (rośnie z kafelkiem). Kółko ze strzałką ma stałe 36 px – wygodny cel dotyku. -->
-      <div class="flex items-start justify-between gap-[3cqw] [--ch:max(1.625rem,7cqw)]">
+      <div class="flex items-start justify-between gap-[3cqw] [--ch:clamp(1.625rem,7cqw,2.625rem)]">
         <ul class="flex flex-wrap gap-[1.4cqw]">
           <li
             v-for="(chip, i) in chips"
             :key="chip"
-            class="flex h-(--ch) items-center rounded-full border px-[max(0.5rem,2.4cqw)] text-[max(0.75rem,2.9cqw)]"
+            class="flex h-(--ch) items-center rounded-full border px-[clamp(0.5rem,2.4cqw,0.875rem)] text-[clamp(0.75rem,2.9cqw,1.0625rem)]"
             :class="i === 0 ? 'border-transparent bg-brand-900 text-white dark:bg-slate-100 dark:text-brand-950' : 'border-slate-900/16 text-slate-600 dark:border-white/20 dark:text-slate-300'"
           >
             {{ chip }}
@@ -61,7 +61,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
           />
         </span>
       </div>
-      <h3 class="mt-[7cqw] text-[10cqw] leading-none font-semibold tracking-tighter">
+      <h3 class="mt-[7cqw] text-[clamp(1.5rem,10cqw,3.75rem)] leading-none font-semibold tracking-tighter">
         <NuxtLink v-if="to" :to="to" class="after:absolute after:inset-0 after:z-2 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:outline-2 focus-visible:after:outline-primary-500">{{ title }}</NuxtLink>
         <a
           v-else-if="href"
@@ -73,7 +73,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         >{{ title }}</a>
         <template v-else>{{ title }}</template>
       </h3>
-      <p class="mt-[2.8cqw] max-w-[92%] text-[max(0.875rem,3.7cqw)]/snug text-slate-600 dark:text-slate-300">{{ description }}</p>
+      <p class="mt-[2.8cqw] max-w-[92%] text-[clamp(0.875rem,3.7cqw,1.375rem)]/snug text-slate-600 dark:text-slate-300">{{ description }}</p>
     </div>
 
     <!-- Okno przeglądarki wychodzące poza kafelek -->
@@ -83,7 +83,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
     >
       <div class="flex h-[5.4cqw] items-center gap-[1.1cqw] bg-[#eef1f7] px-[2.4cqw] dark:bg-[#223260]">
         <i v-for="n in 3" :key="n" class="size-[1.5cqw] rounded-full bg-slate-900/16 dark:bg-white/20" />
-        <span class="ml-[1.6cqw] text-[2.2cqw] text-slate-600 dark:text-slate-400">{{ url }}</span>
+        <span class="ml-[1.6cqw] text-[clamp(0.5rem,2.2cqw,0.8125rem)] text-slate-600 dark:text-slate-400">{{ url }}</span>
       </div>
       <div class="aspect-[320/186] overflow-hidden [&_svg]:block [&_svg]:size-full">
         <template v-if="image">
