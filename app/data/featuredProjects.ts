@@ -20,7 +20,7 @@ export const featuredProjects: FeaturedProject[] = [
   {
     title: 'Emotion Karting',
     date: '2026-10',
-    description: { en: 'Website for a karting track in Bytom – light and dark theme, price list and news.', pl: 'Strona toru kartingowego w Bytomiu – jasny i ciemny motyw, cennik i aktualności.' },
+    description: { en: 'Website design for a go-kart track in Bytom – dark and light theme, price list and news.', pl: 'Projekt strony toru kartingowego w Bytomiu – ciemny i jasny motyw, cennik i aktualności.' },
     chips: ['WordPress', 'Gutenberg'],
     url: 'emotion-karting',
     image: '/projects/2026/emotion-karting/page-dark.webp',
@@ -46,7 +46,7 @@ export const featuredProjects: FeaturedProject[] = [
   {
     title: 'superauto.pl',
     date: '2025-03',
-    description: { en: 'Not the whole site, just my part: Swiper carousels – including the car gallery – merged into one consistent component.', pl: 'Nie cały serwis, tylko moja część: karuzele na Swiperze – m.in. galeria auta – zebrane w jeden spójny komponent.' },
+    description: { en: 'My part of the site – three different carousels replaced with one Swiper component, including the car gallery.', pl: 'Moja część serwisu – trzy różne karuzele zastąpione jednym komponentem na Swiperze, m.in. galeria auta.' },
     chips: ['Swiper', 'JavaScript', 'Twig'],
     url: 'superauto.pl',
     image: '/projects/2025/superauto/featured.webp',

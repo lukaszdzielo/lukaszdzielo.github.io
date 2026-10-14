@@ -78,6 +78,49 @@ const getPrerenderRoutes = (): string[] => {
 
 const prerenderRoutes = getPrerenderRoutes();
 
+// llms.txt – krótki spis strony dla modeli językowych i wyszukiwarek AI (format llmstxt.org):
+// kim jestem, projekty z własną podstroną i opublikowane wpisy – po angielsku i po polsku.
+const buildLlmsTxt = (): string => {
+  const base = SITE_URL.replace(/\/$/, '');
+  const field = (yaml: string, key: string) => {
+    const m = yaml.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+    return m ? m[1].trim().replace(/^'(.*)'$/, '$1').replace(/''/g, "'").replace(/^"(.*)"$/, '$1') : '';
+  };
+  const walk = (dir: string): string[] => !fs.existsSync(dir) ? [] : fs.readdirSync(dir).flatMap((f) => {
+    const full = path.join(dir, f);
+    return fs.statSync(full).isDirectory() ? walk(full) : f.endsWith('.md') ? [full] : [];
+  });
+  const list = (lang: 'en' | 'pl', kind: 'projects' | 'blog') => {
+    const dir = path.resolve(process.cwd(), `content/${lang}/${kind}`);
+    return walk(dir).map((file) => {
+      const raw = fs.readFileSync(file, 'utf-8').replace(/\r\n/g, '\n');
+      const m = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+      if (!m || /draft:\s*true/.test(m[1])) return null;
+      // projekt trafia do spisu tylko z własną podstroną (treść pod frontmatterem)
+      if (kind === 'projects' && !m[2].trim()) return null;
+      const rel = path.relative(dir, file).split(path.sep).join('/').replace(/\/index\.md$/, '').replace(/\.md$/, '');
+      const url = `${base}${lang === 'pl' ? '/pl' : ''}/${kind}/${rel}/`;
+      return { date: field(m[1], 'date'), line: `- [${field(m[1], 'title')}](${url}): ${field(m[1], 'description')}` };
+    }).filter((x): x is { date: string; line: string } => !!x).sort((a, b) => b.date.localeCompare(a.date)).map((x) => x.line);
+  };
+  const section = (title: string, lines: string[]) => lines.length ? `## ${title}\n\n${lines.join('\n')}\n` : '';
+  return [
+    `# ${SITE_TITLE}\n`,
+    `> ${SITE_DESCRIPTION}\n`,
+    `Portfolio and blog of Łukasz Dzieło, a front-end developer from Katowice, Poland (Vue 3, JavaScript, WordPress). English version at ${base}/, Polish version at ${base}/pl/.\n`,
+    section('Pages', [
+      `- [Home](${base}/): about me, featured projects, skills and contact`,
+      `- [Projects](${base}/projects/): featured projects and the full archive since 2016`,
+      `- [Websites for businesses](${base}/business-websites/): WordPress websites built with Gutenberg blocks, prices and process`,
+      `- [Blog](${base}/blog/): posts and case studies`,
+    ]),
+    section('Projects', list('en', 'projects')),
+    section('Blog posts', list('en', 'blog')),
+    section('Projekty (PL)', list('pl', 'projects')),
+    section('Wpisy (PL)', list('pl', 'blog')),
+  ].filter(Boolean).join('\n');
+};
+
 // Pierwsza wizyta z przeglądarką po polsku (pierwszy język na liście) → ta sama strona w wersji /pl.
 // Nie przekierowuje, gdy jest ciasteczko `lang` (wybór z przełącznika języka) ani na stronach /pl.
 // Adresy podstron z inną nazwą w każdym języku – mapa niżej (jak definePageMeta w pages/).
@@ -182,6 +225,7 @@ export default defineNuxtConfig({
           path.join(nitro.options.output.publicDir, 'sitemap.xml'),
           `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
         );
+        fs.writeFileSync(path.join(nitro.options.output.publicDir, 'llms.txt'), buildLlmsTxt());
       });
     }
   },

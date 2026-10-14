@@ -135,7 +135,7 @@ export const businessWork = {
     title: 'Websites I\'ve built',
     lead: 'Some of these projects were made at agencies I worked for. Where a site is no longer live, I link to the project on Behance.',
     items: [
-      { path: '/projects/2026/emotion-karting', text: 'Go-kart track in Bytom – light and dark theme, price list and news.', tags: ['WordPress', 'Gutenberg'], image: '/projects/2026/emotion-karting/page-dark.webp' },
+      { path: '/projects/2026/emotion-karting', text: 'Website design for a go-kart track in Bytom – dark and light theme, price list and news.', tags: ['WordPress', 'Gutenberg'], image: '/projects/2026/emotion-karting/page-dark.webp' },
       { path: '/projects/2026/reblyx', text: 'Steel machining center – a new site built entirely in Gutenberg.', tags: ['WordPress', 'Gutenberg'], image: '/projects/2026/reblyx/first-screen.webp' },
       { path: '/projects/2021/webster-associates', text: 'Business website (UK) · at the b4b agency.', tags: ['WordPress'] },
       { path: '/projects/2023/soho', title: 'Wyburzenia Polska', text: 'Demolition company · at the eConnect4u agency.', tags: ['WordPress'] },
@@ -149,7 +149,7 @@ export const businessWork = {
     title: 'Strony, które zrobiłem',
     lead: 'Część projektów powstała w agencjach, w których pracowałem. Tam, gdzie strona już nie działa, linkuję do projektu na Behance.',
     items: [
-      { path: '/projects/2026/emotion-karting', text: 'Tor kartingowy w Bytomiu – jasny i ciemny motyw, cennik i aktualności.', tags: ['WordPress', 'Gutenberg'], image: '/projects/2026/emotion-karting/page-dark.webp' },
+      { path: '/projects/2026/emotion-karting', text: 'Projekt strony toru kartingowego w Bytomiu – ciemny i jasny motyw, cennik i aktualności.', tags: ['WordPress', 'Gutenberg'], image: '/projects/2026/emotion-karting/page-dark.webp' },
       { path: '/projects/2026/reblyx', text: 'Centrum obróbki stali – nowa strona na pełnym Gutenbergu.', tags: ['WordPress', 'Gutenberg'], image: '/projects/2026/reblyx/first-screen.webp' },
       { path: '/projects/2021/webster-associates', text: 'Strona firmowa (UK) · w agencji b4b.', tags: ['WordPress'] },
       { path: '/projects/2023/soho', title: 'Wyburzenia Polska', text: 'Firma rozbiórkowa · w agencji eConnect4u.', tags: ['WordPress'] },
