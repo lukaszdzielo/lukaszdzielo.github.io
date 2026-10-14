@@ -103,6 +103,14 @@ body {
   }
 }
 
+/* Tailwind 4 nie ustawia już kursora rączki na przyciskach (w v3 był) – przywracamy dla wszystkich klikalnych przycisków */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 #__nuxt {
   /* Tło na całą szerokość ekranu (bez max-width – 14.10). Dekoracje trzymają się środkowego pasa 1920 px:
      poświata (.hero-glow) i kod w tle (CommonCodeBackdrop) – żeby na szerokich ekranach nie uciekały do krawędzi.
