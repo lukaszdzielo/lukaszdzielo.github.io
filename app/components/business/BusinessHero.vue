@@ -70,6 +70,7 @@ const latest = computed(() =>
             sizes="xs:80vw lg:40vw"
             width="960"
             height="558"
+            :modifiers="{ position: 'top' }"
             class="block aspect-[960/558] w-full object-cover object-top"
           />
         </div>

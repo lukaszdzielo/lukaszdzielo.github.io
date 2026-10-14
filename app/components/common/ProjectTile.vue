@@ -93,6 +93,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
             sizes="xs:90vw md:45vw lg:30vw"
             width="960"
             height="558"
+            :modifiers="{ position: 'top' }"
             :loading="eager ? 'eager' : 'lazy'"
             class="block size-full object-cover object-top"
             :class="{ 'dark:hidden': imageDark }"
@@ -104,6 +105,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
             sizes="xs:90vw md:45vw lg:30vw"
             width="960"
             height="558"
+            :modifiers="{ position: 'top' }"
             loading="lazy"
             class="hidden size-full object-cover object-top dark:block"
           />

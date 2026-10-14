@@ -2,7 +2,7 @@
 date: 2021-09-01
 title: Health marketing
 description:
-image: /projects/2021/health-marketing/thumbnail.avif
+image: /projects/2021/health-marketing/page.jpg
 tags: [wordpress]
 featured: true
 links:

@@ -71,7 +71,7 @@ if (post.value) {
 
         <NuxtLink v-if="relatedProject" :to="relatedProject.path"
             class="group flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-700 p-4 mb-8 sm:mb-10 transition-colors hover:border-sky-500">
-            <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px" loading="lazy"
+            <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px" width="192" height="108" :modifiers="{ position: 'top' }" loading="lazy"
                 class="w-24 shrink-0 rounded-md aspect-video object-cover object-top bg-white" />
             <div class="flex flex-col gap-0.5">
                 <small class="text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">

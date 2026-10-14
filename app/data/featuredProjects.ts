@@ -23,8 +23,8 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Website for a karting track in Bytom – light and dark theme, price list and news.', pl: 'Strona toru kartingowego w Bytomiu – jasny i ciemny motyw, cennik i aktualności.' },
     chips: ['WordPress', 'Gutenberg'],
     url: 'emotion-karting',
-    image: '/projects/2026/emotion-karting/featured.webp',
-    imageDark: '/projects/2026/emotion-karting/featured-dark.webp',
+    image: '/projects/2026/emotion-karting/page-light.webp',
+    imageDark: '/projects/2026/emotion-karting/page-dark.webp',
   },
   {
     title: 'ReblyX',
@@ -33,7 +33,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['WordPress', 'Gutenberg'],
     url: 'reblyx.com',
     href: 'https://reblyx.com',
-    image: '/projects/2026/reblyx/featured.webp',
+    image: '/projects/2026/reblyx/first-screen.webp',
   },
   {
     title: 'e-cargo',
@@ -41,7 +41,7 @@ export const featuredProjects: FeaturedProject[] = [
     description: { en: 'Training platform for driver training centres – a large part of the front-end and components for the whole team.', pl: 'Platforma szkoleń dla ośrodków szkolenia kierowców – duża część front-endu i komponenty dla całego zespołu.' },
     chips: ['Vue 3', 'Inertia.js', 'Tailwind CSS'],
     url: 'e-cargo',
-    image: '/projects/2026/e-cargo/featured.webp',
+    image: '/projects/2026/e-cargo/dashboard.webp',
   },
   // Nie cały serwis – moja część w Arris Agency: karuzele na Swiperze
   {

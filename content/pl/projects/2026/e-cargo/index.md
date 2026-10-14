@@ -2,7 +2,7 @@
 date: 2026-08-01
 title: e-cargo
 description: 'Platforma szkoleń dla ośrodków szkolenia kierowców – zbudowałem dużą część front-endu: harmonogram, panel instruktora, kreator kursów i komponenty UI.'
-image: /projects/2026/e-cargo/thumbnail.webp
+image: /projects/2026/e-cargo/dashboard.webp
 tags: [vue]
 featured: false
 agency: Pesi
