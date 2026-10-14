@@ -50,3 +50,4 @@ An interactive Pokémon encyclopedia covering more than 1,000 creatures – writ
 - A modular class architecture (`DataManager`, `DataBuilder`, `StorageManager`, `PokemonDialog`) ready for a migration to Vue 3
 - Responsive pagination synced in both directions, with its state reflected in the URL
 - Light and dark theme (also automatic, following the system setting)
+- Caught Pokémon – you can mark them in the Pokémon card, and import or export the list in the settings

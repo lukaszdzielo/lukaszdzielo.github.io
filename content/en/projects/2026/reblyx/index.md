@@ -63,3 +63,4 @@ ReblyX is a steel processing center – 3D design, laser cutting, bending, weldi
 - Fonts served from the website's own server instead of Google Fonts
 - New sections: six processes, four reasons, six steps from a request to a finished part, tips before ordering and a quote form
 - A page description for Google, labels for form fields, better contrast and zoom on phones – accessibility and SEO are both 100 in Lighthouse
+- A quote form protected by reCAPTCHA

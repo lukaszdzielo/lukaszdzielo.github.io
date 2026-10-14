@@ -134,7 +134,7 @@ body {
 
 /* Strona projektu – „Co zbudowałem” z treścią z pliku md. Od lg siatka 5 kolumn: nagłówek po lewej (2),
    opis po prawej (3), a podtytuł z md („Co się zmieniło”) i lista pod spodem na całą szerokość;
-   lista od sm w dwóch kolumnach. ContentRenderer owija treść w <div> – display: contents wyciąga
+   lista od sm w dwóch kolumnach (CSS columns). ContentRenderer owija treść w <div> – display: contents wyciąga
    akapity, podtytuł i listę do tej samej siatki. Na telefonie wszystko jedno pod drugim. */
 .project-body {
   @apply grid lg:grid-cols-5 lg:gap-x-14;
@@ -155,8 +155,10 @@ body {
   @apply mt-12 mb-2 text-xl font-semibold tracking-tight lg:col-span-5 lg:mt-14 lg:text-2xl;
 }
 .project-body ul {
-  @apply mt-4 mb-0 gap-x-14 sm:grid sm:grid-cols-2 lg:col-span-5;
+  @apply mt-4 mb-0 gap-x-14 sm:columns-2 lg:col-span-5;
 }
+/* Kolumny jak w gazecie: punkty spływają z góry na dół i przechodzą do drugiej kolumny,
+   bez wyrównywania w wierszach; punkt nie rozpada się między kolumny */
 .project-body li {
-  @apply my-1.5;
+  @apply mt-0 mb-3 break-inside-avoid;
 }
