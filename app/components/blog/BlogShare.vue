@@ -18,15 +18,37 @@ const links = computed(() => [
 ])
 
 let timer: ReturnType<typeof setTimeout> | undefined
+// Clipboard API działa tylko na https i localhost – pod adresem z sieci lokalnej (http://192.168…) go nie ma,
+// więc wtedy kopiujemy starszym sposobem: ukryte pole tekstowe + execCommand('copy')
+function copyFallback(text: string) {
+  const area = document.createElement('textarea')
+  area.value = text
+  area.setAttribute('readonly', '')
+  area.style.position = 'fixed'
+  area.style.opacity = '0'
+  document.body.append(area)
+  area.select()
+  const ok = document.execCommand('copy')
+  area.remove()
+  return ok
+}
+
 async function copy() {
+  let ok = false
   try {
-    await navigator.clipboard.writeText(props.url)
-    copied.value = true
-    clearTimeout(timer)
-    timer = setTimeout(() => (copied.value = false), 2000)
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(props.url)
+      ok = true
+    } else {
+      ok = copyFallback(props.url)
+    }
   } catch {
-    // brak dostępu do schowka – nic nie robimy, link jest w pasku adresu
+    ok = copyFallback(props.url)
   }
+  if (!ok) return
+  copied.value = true
+  clearTimeout(timer)
+  timer = setTimeout(() => (copied.value = false), 2000)
 }
 
 async function share() {

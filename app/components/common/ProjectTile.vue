@@ -21,18 +21,28 @@ const props = defineProps<{
 
 const { t } = useI18n({ useScope: 'local' })
 const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
+
+// Cały kafelek jest jednym linkiem (jak karta wpisu): strona projektu (to) albo działająca strona w nowej karcie (href).
+// Bez linku zostaje <article>. aria-label – krótka nazwa linku zamiast całej treści kafelka.
+const NuxtLink = resolveComponent('NuxtLink')
+const linkAttrs = computed(() => {
+  if (props.to) return { is: NuxtLink, to: props.to, 'aria-label': props.title }
+  if (props.href)
+    return { is: 'a', href: props.href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': props.hrefLabel ?? t('open', { title: props.title }) }
+  return { is: 'article' }
+})
 </script>
 
 <template>
-  <!-- Link jest na tytule i rozciąga się na cały kafelek (duży cel do kliknięcia):
-       strona projektu (to) albo działająca strona w nowej karcie (href). Bez linku kafelek tylko pokazuje projekt. -->
-  <article
-    class="ig-tile group @container relative isolate block aspect-[4/5] overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 dark:border-white/10 dark:text-brand-50"
+  <!-- Cały kafelek to link (component :is): strona projektu albo działająca strona; bez linku – <article> -->
+  <component
+    :is="linkAttrs.is"
+    v-bind="{ ...linkAttrs, is: undefined }"
+    class="ig-tile group @container relative isolate block aspect-[4/5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 overflow-hidden rounded-2xl border border-slate-900/10 text-slate-900 shadow-sm transition-shadow duration-300 dark:border-white/10 dark:text-brand-50"
     :class="{ 'hover:shadow-xl hover:shadow-slate-900/10 dark:hover:shadow-black/40': to || href }"
   >
     <!-- Tekst ma min. wysokość 57cqw; gdy opis jest dłuższy (mały kafelek na telefonie), okno zjeżdża niżej zamiast na niego wchodzić.
-         Blok tekstu celowo nie ma `relative` – wtedy ::after linku z tytułu rozciąga się na cały kafelek (article),
-         także na okno ze zrzutem (wcześniej kończył się na tekście i klik w zrzut nic nie robił). -->
+         Okno ze zrzutem leży pod tekstem (-z-1 w obrębie kafelka z isolate). -->
     <div class="min-h-[57cqw] px-[6.7cqw] pt-[6.7cqw] pb-[3cqw]">
       <!-- --ch: wysokość etykiety (rośnie z kafelkiem). Kółko ze strzałką ma stałe 36 px – wygodny cel dotyku. -->
       <div class="flex items-start justify-between gap-[3cqw] [--ch:--spacing(7)] @lg:[--ch:--spacing(8)] @xl:[--ch:--spacing(10)]">
@@ -49,7 +59,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         <!-- Projekt z własną stroną: strzałka → (zostajemy na stronie, klikalny cały kafelek).
              Bez strony: ↗ do działającej strony w nowej karcie. Gdy są oba, wygrywa strona projektu –
              link do wersji na żywo jest na niej (przycisk „Zobacz na żywo”). -->
-        <!-- Kółko 36 px (jak w „Dwóch sposobach”) – tylko znak, link jest na tytule i obejmuje cały kafelek.
+        <!-- Kółko 36 px (jak w „Dwóch sposobach”) – tylko znak, linkiem jest cały kafelek.
              → strona projektu (ta sama karta), ↗ działająca strona albo Behance (nowa karta). -->
         <span
           v-if="to || href"
@@ -64,16 +74,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         </span>
       </div>
       <h3 class="mt-[7cqw] text-2xl leading-none @xs:text-3xl @sm:text-4xl @lg:text-5xl @xl:text-6xl font-semibold tracking-tighter">
-        <NuxtLink v-if="to" :to="to" class="after:absolute after:inset-0 after:z-2 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:outline-2 focus-visible:after:outline-primary-500">{{ title }}</NuxtLink>
-        <a
-          v-else-if="href"
-          :href="href"
-          target="_blank"
-          rel="noopener noreferrer"
-          :aria-label="hrefLabel ?? t('open', { title })"
-          class="after:absolute after:inset-0 after:z-2 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-2xl focus-visible:after:outline-2 focus-visible:after:outline-primary-500"
-        >{{ title }}</a>
-        <template v-else>{{ title }}</template>
+        {{ title }}
       </h3>
       <p class="mt-[2.8cqw] max-w-[92%] text-sm/snug @lg:text-lg/snug @xl:text-xl/snug text-slate-600 dark:text-slate-300">{{ description }}</p>
     </div>
@@ -116,7 +117,7 @@ const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
         <div v-else-if="svg" class="size-full" v-html="svg" />
       </div>
     </div>
-  </article>
+  </component>
 </template>
 
 <i18n lang="json">
