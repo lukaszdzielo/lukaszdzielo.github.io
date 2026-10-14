@@ -17,7 +17,7 @@ facts:
     text: projekt własny – od pomysłu po wdrożenie
   - value: '1000'
     suffix: '+'
-    text: pokemonów z PokéAPI, ok. 60–70 zapytań zamiast ponad 1000
+    text: pokemonów z PokéAPI – kilkadziesiąt zapytań zamiast ponad 1000
   - value: Vanilla JS
     text: bez Vue, Reacta i innych frameworków – własne klasy w czystym JavaScript
 cover:

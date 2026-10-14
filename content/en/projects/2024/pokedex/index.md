@@ -17,7 +17,7 @@ facts:
     text: a personal project – from the idea to the release
   - value: '1000'
     suffix: '+'
-    text: Pokémon from PokéAPI, about 60–70 requests instead of more than 1,000
+    text: Pokémon from PokéAPI – a few dozen requests instead of more than 1,000
   - value: Vanilla JS
     text: no Vue, React or other frameworks – my own classes in plain JavaScript
 cover:

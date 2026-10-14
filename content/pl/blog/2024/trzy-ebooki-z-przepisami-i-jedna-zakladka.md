@@ -1,5 +1,5 @@
 ---
-date: 2026-10-14
+date: 2024-02-12
 title: Trzy ebooki z przepisami i jedna zakładka w przeglądarce
 description: Jak kilka ebooków z przepisami na kawę zamieniłem w jedną stronę z wyszukiwaniem po składnikach – i czego nauczyłem się przy tym o Vue 3 i TypeScripcie.
 tags:

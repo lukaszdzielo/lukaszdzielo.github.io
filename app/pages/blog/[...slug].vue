@@ -85,7 +85,7 @@ if (post.value) {
             </div>
         </NuxtLink>
 
-        <article class="prose max-w-none">
+        <article class="prose max-w-none prose-code:rounded-md prose-code:bg-primary-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-primary-400/15">
             <ContentRenderer :value="post" />
         </article>
     </section>
