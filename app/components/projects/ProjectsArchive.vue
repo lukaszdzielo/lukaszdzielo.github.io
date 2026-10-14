@@ -269,8 +269,12 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             class="group grid grid-cols-[6rem_minmax(0,1fr)] items-center gap-3.5 py-2 sm:block sm:py-0"
           >
             <div
-              class="relative aspect-[400/329] overflow-hidden rounded-xl border bg-white transition duration-300 sm:rounded-2xl sm:shadow-sm motion-safe:group-hover:-translate-y-0.5 sm:group-hover:shadow-lg dark:bg-brand-900"
-              :class="p.featured ? 'border-primary-500/50 dark:border-primary-400/50' : 'border-slate-900/10 dark:border-white/10'"
+              class="relative aspect-[400/329] overflow-hidden rounded-xl border bg-white transition duration-300 sm:rounded-2xl sm:shadow-sm dark:bg-brand-900"
+              :class="[
+                p.featured ? 'border-primary-500/50 dark:border-primary-400/50' : 'border-slate-900/10 dark:border-white/10',
+                // ruch i cień po najechaniu tylko wtedy, gdy kartę da się kliknąć
+                (p.hasPage || linkOf(p)) && 'motion-safe:group-hover:-translate-y-0.5 sm:group-hover:shadow-lg',
+              ]"
             >
               <CommonPicture
                 v-if="p.image"
@@ -293,12 +297,13 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
               </span>
             </div>
             <div class="min-w-0">
-              <div class="flex items-baseline justify-between gap-2 sm:mt-3">
-                <b class="truncate text-base font-medium text-slate-900 dark:text-brand-50">{{ p.title }}</b>
-                <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ t('more') }}</span>
-                <span v-else-if="linkOf(p)" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
-              </div>
-              <p v-if="metaOf(p)" class="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{{ metaOf(p) }}</p>
+              <!-- Tytuł na całą szerokość (maks. 2 linie), link w wierszu pod nim – długie nazwy nie są ucinane -->
+              <b class="line-clamp-2 text-base font-medium text-slate-900 sm:mt-3 dark:text-brand-50">{{ p.title }}</b>
+              <p v-if="metaOf(p) || p.hasPage || linkOf(p)" class="mt-0.5 flex flex-wrap items-baseline justify-between gap-x-3 text-sm">
+                <span v-if="metaOf(p)" class="text-slate-600 dark:text-slate-400">{{ metaOf(p) }}</span>
+                <span v-if="p.hasPage" class="shrink-0 text-primary-500 dark:text-primary-400">{{ t('more') }}</span>
+                <span v-else-if="linkOf(p)" class="shrink-0 text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
+              </p>
             </div>
           </component>
         </li>
