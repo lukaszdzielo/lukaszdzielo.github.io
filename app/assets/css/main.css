@@ -10,7 +10,7 @@
 /* Kolory projektu – jedyne własne wartości, reszta to domyślne skale Tailwinda (slate, emerald…). */
 @theme {
   --color-primary-400: #6f9cff; /* akcent w ciemnym motywie */
-  --color-primary-500: #2f6bff; /* akcent w jasnym motywie */
+  --color-primary-500: #2860ea; /* akcent w jasnym motywie (14.10: z #2f6bff – kontrast 4,7:1 na tle strony, WCAG AA) */
   --color-primary-600: #2457d6; /* hover / aktywny */
   --color-brand-50: #edf0f6;    /* tło strony – jasny motyw; nagłówki w ciemnym (zamiast czystej bieli) */
   --color-brand-700: #1d3170;   /* gradient okładek wpisów */

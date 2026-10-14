@@ -141,7 +141,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             :aria-pressed="kind === 'all'"
             @click="setKind('all')"
           >
-            {{ t('filters.all') }} <span class="opacity-60">{{ counts.all }}</span>
+            {{ t('filters.all') }} <span class="font-normal">{{ counts.all }}</span>
           </button>
           <button
             v-for="k in kinds"
@@ -151,7 +151,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             :aria-pressed="kind === k"
             @click="setKind(k)"
           >
-            {{ projectKindLabel(k, locale) }} <span class="opacity-60">{{ counts[k] }}</span>
+            {{ projectKindLabel(k, locale) }} <span class="font-normal">{{ counts[k] }}</span>
           </button>
         </div>
 
@@ -201,7 +201,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
       </button>
     </nav>
 
-    <p v-if="!years.length" class="mt-10 rounded-2xl border border-dashed border-slate-900/15 px-6 py-10 text-center text-slate-500 dark:border-white/15 dark:text-slate-400">
+    <p v-if="!years.length" class="mt-10 rounded-2xl border border-dashed border-slate-900/15 px-6 py-10 text-center text-slate-600 dark:border-white/15 dark:text-slate-400">
       {{ t('noResults') }}
     </p>
 
@@ -218,11 +218,11 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         class="flex items-baseline justify-between border-b border-slate-900/10 py-2.5 sm:sticky sm:top-24 sm:block sm:self-start sm:border-0 sm:py-0 dark:border-white/10"
         :class="{ 'max-sm:hidden': !isOpen(y.year, i) }"
       >
-        <h3 class="text-3xl leading-none font-medium tracking-tight sm:text-5xl" :class="isOpen(y.year, i) ? 'text-slate-900 dark:text-brand-50' : 'text-slate-500 sm:text-3xl dark:text-slate-400'">
+        <h3 class="text-3xl leading-none font-medium tracking-tight sm:text-5xl" :class="isOpen(y.year, i) ? 'text-slate-900 dark:text-brand-50' : 'text-slate-600 sm:text-3xl dark:text-slate-400'">
           {{ y.year }}
         </h3>
         <div class="flex items-baseline gap-4 sm:mt-2 sm:flex-col sm:gap-3">
-          <small class="text-sm text-slate-500 dark:text-slate-400">{{ t('count', y.list.length) }}</small>
+          <small class="text-sm text-slate-600 dark:text-slate-400">{{ t('count', y.list.length) }}</small>
           <button
             v-if="!narrowed && isOpen(y.year, i)"
             type="button"
@@ -249,7 +249,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         <span class="flex min-w-0 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3.5">
           <span class="text-2xl font-medium tracking-tight text-slate-900 sm:hidden dark:text-brand-50">{{ y.year }}</span>
           <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">{{ t('expand', y.list.length) }}</b>
-          <em class="truncate text-sm text-slate-500 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ` ${t('andMore')}` : '' }}</em>
+          <em class="truncate text-sm text-slate-600 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ` ${t('andMore')}` : '' }}</em>
         </span>
         <Icon name="lucide:chevron-down" class="shrink-0 text-lg text-primary-500 dark:text-primary-400" aria-hidden="true" />
       </button>
@@ -297,7 +297,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
                 <span v-if="p.hasPage" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ t('more') }}</span>
                 <span v-else-if="linkOf(p)" class="shrink-0 text-sm text-primary-500 dark:text-primary-400">{{ linkOf(p)!.label }} ↗</span>
               </div>
-              <p v-if="metaOf(p)" class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">{{ metaOf(p) }}</p>
+              <p v-if="metaOf(p)" class="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{{ metaOf(p) }}</p>
             </div>
           </component>
         </li>

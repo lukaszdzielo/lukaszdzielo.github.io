@@ -46,7 +46,7 @@ useSiteMeta({
       <CommonCodeBackdrop name="posts" side="right" class="top-6 max-lg:hidden" />
 
       <div class="container pt-12 sm:pt-16">
-        <p class="text-sm text-slate-500 dark:text-slate-400">
+        <p class="text-sm text-slate-600 dark:text-slate-400">
           <NuxtLink :to="link('/')" class="text-primary-500 dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
           <template v-if="page === 1"> / {{ t('title') }}</template>
           <template v-else> / <NuxtLink :to="link('/blog')" class="text-primary-500 dark:text-primary-400">{{ t('title') }}</NuxtLink> / {{ t('breadcrumb.page', { page }) }}</template>
@@ -72,7 +72,7 @@ useSiteMeta({
         </ul>
 
         <div v-if="pages > 1" class="mt-10 flex flex-col gap-4 border-t border-slate-900/10 pt-6 sm:flex-row sm:items-center sm:justify-between dark:border-white/10">
-          <i18n-t keypath="range" tag="p" class="text-sm text-slate-500 max-sm:hidden dark:text-slate-400">
+          <i18n-t keypath="range" tag="p" class="text-sm text-slate-600 max-sm:hidden dark:text-slate-400">
             <template #range><b class="font-medium text-slate-900 dark:text-brand-50">{{ from }}–{{ to }}</b></template>
             <template #total>{{ total }}</template>
           </i18n-t>
@@ -89,7 +89,7 @@ useSiteMeta({
           <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
         </span>
         <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">{{ t('empty.title') }}</p>
-        <p class="max-w-md text-base/relaxed text-slate-500 dark:text-slate-400">
+        <p class="max-w-md text-base/relaxed text-slate-600 dark:text-slate-400">
           {{ t('empty.text') }}
         </p>
         <NuxtLink :to="link('/projects')" class="mt-2 font-medium text-primary-500 dark:text-primary-400">{{ t('empty.cta') }}</NuxtLink>

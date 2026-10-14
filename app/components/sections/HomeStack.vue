@@ -11,7 +11,7 @@ const { t } = useI18n({ useScope: 'local' })
 
 const card =
   'flex flex-col gap-4 rounded-3xl border border-slate-900/10 bg-white p-7 shadow-sm transition-[opacity,translate] duration-700 ease-out dark:border-white/10 dark:bg-brand-900'
-const cardTitle = 'text-sm font-semibold text-slate-500 dark:text-slate-400'
+const cardTitle = 'text-sm font-semibold text-slate-600 dark:text-slate-400'
 const chip = 'rounded-lg border px-3 py-2 text-sm'
 </script>
 
@@ -71,7 +71,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
               </span>
             </li>
           </ul>
-          <p v-if="learningNote" class="text-sm text-slate-500 dark:text-slate-400">{{ learningNote }}</p>
+          <p v-if="learningNote" class="text-sm text-slate-600 dark:text-slate-400">{{ learningNote }}</p>
         </div>
       </div>
     </div>

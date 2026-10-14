@@ -86,10 +86,10 @@ if (project.value && hasOwnPage.value) {
         <header class="relative isolate pt-14 sm:pt-22">
             <div class="hero-glow pointer-events-none absolute inset-x-0 -top-18.25 -z-10 h-375" aria-hidden="true" />
             <div class="container">
-                <nav :aria-label="t('breadcrumb.label')" class="text-sm text-slate-500 dark:text-slate-400">
-                    <NuxtLink :to="localLink('/')" class="text-primary-500 hover:underline dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
+                <nav :aria-label="t('breadcrumb.label')" class="text-sm text-slate-600 dark:text-slate-400">
+                    <NuxtLink :to="localLink('/')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
                     <span aria-hidden="true"> / </span>
-                    <NuxtLink :to="localLink('/projects')" class="text-primary-500 hover:underline dark:text-primary-400">{{ t('breadcrumb.projects') }}</NuxtLink>
+                    <NuxtLink :to="localLink('/projects')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.projects') }}</NuxtLink>
                     <span aria-hidden="true"> / </span>
                     <span aria-current="page">{{ project.title }}</span>
                 </nav>
@@ -129,6 +129,7 @@ if (project.value && hasOwnPage.value) {
                          niż okno przeglądarki i na węższych ekranach (np. 650 px) wchodził na przyciski. -->
                     <div v-if="project.cover" class="relative lg:col-span-3" :class="project.cover.phone && 'pr-10 pb-9 sm:pr-16 sm:pb-12'">
                         <ProjectsBrowserFrame :src="project.cover.desktop" :alt="project.cover.alt || project.title" :address="address"
+                            :width="project.cover.width" :height="project.cover.height"
                             sizes="xs:100vw lg:60vw" loading="eager" fetchpriority="high" />
                         <ProjectsPhoneFrame v-if="project.cover.phone" :src="project.cover.phone" alt=""
                             sizes="xs:110px sm:190px" loading="eager"

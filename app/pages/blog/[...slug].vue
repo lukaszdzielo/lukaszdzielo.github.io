@@ -74,7 +74,7 @@ if (post.value) {
             <CommonPicture v-if="relatedProject.image" :src="relatedProject.image" :alt="relatedProject.title" sizes="96px" loading="lazy"
                 class="w-24 shrink-0 rounded-md aspect-video object-cover object-top bg-white" />
             <div class="flex flex-col gap-0.5">
-                <small class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <small class="text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">
                     {{ t('aboutProject') }}
                 </small>
                 <span class="font-semibold group-hover:text-sky-500 transition-colors">

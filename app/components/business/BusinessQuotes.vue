@@ -25,7 +25,7 @@ const quotes = computed(() => data.value.items.filter(q => q.approved))
             <span class="grid size-9 place-items-center rounded-full bg-primary-500/10 text-sm font-semibold text-primary-500 dark:bg-primary-400/14 dark:text-primary-400" aria-hidden="true">{{ quote.name[0] }}</span>
             <span class="text-sm">
               <b class="block font-medium text-slate-900 dark:text-brand-50">{{ quote.name }}</b>
-              <span class="text-slate-500 dark:text-slate-400">{{ quote.company }}</span>
+              <span class="text-slate-600 dark:text-slate-400">{{ quote.company }}</span>
             </span>
           </p>
         </li>

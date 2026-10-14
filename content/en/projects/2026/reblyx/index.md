@@ -23,15 +23,21 @@ facts:
     text: mobile LCP – it was 5.0 s
 cover:
   desktop: /projects/2026/reblyx/first-screen.webp
+  width: 1440
+  height: 900
   alt: ReblyX – the first screen of the new website
 ogImage: /og/projects/reblyx-en.jpg
 compare:
   before:
     src: /projects/2026/reblyx/old-first-screen.webp
+    width: 1440
+    height: 900
     label: Before · Divi
     alt: The old ReblyX website on Divi – first screen
   after:
     src: /projects/2026/reblyx/first-screen.webp
+    width: 1440
+    height: 900
     label: After · Gutenberg
     alt: The new ReblyX website on Gutenberg – first screen
   rows:

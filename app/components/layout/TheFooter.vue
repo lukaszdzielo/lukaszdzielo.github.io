@@ -36,7 +36,7 @@ function scrollToTop() {
 // Wspólne klasy – Tailwind widzi je w całości, bo są pełnymi nazwami w kodzie.
 // Ikony z @nuxt/icon mają rozmiar 1em, dlatego wielkość ustawiamy przez text-*.
 const reveal = 'transition-[opacity,translate] duration-700 ease-out'
-const heading = 'mb-5 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400'
+const heading = 'mb-5 text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400'
 const linkClass =
   'group inline-flex items-center gap-1 leading-8 text-slate-600 transition-colors hover:text-primary-500 focus-visible:text-primary-500 dark:text-slate-300 dark:hover:text-primary-400 dark:focus-visible:text-primary-400'
 const arrow =
@@ -57,7 +57,7 @@ const arrow =
             <CommonAppLogo class="size-10" />
             <span>Łukasz Dzieło</span>
           </p>
-          <p class="mt-5 max-w-[32ch] text-base/relaxed text-slate-500 dark:text-slate-400">
+          <p class="mt-5 max-w-[32ch] text-base/relaxed text-slate-600 dark:text-slate-400">
             {{ content.bio }}
           </p>
         </div>
@@ -106,7 +106,7 @@ const arrow =
       </div>
 
       <div
-        class="mt-10 flex items-center justify-between gap-4 border-t border-slate-900/10 pt-6 text-sm text-slate-500 lg:mt-16 dark:border-white/10 dark:text-slate-400"
+        class="mt-10 flex items-center justify-between gap-4 border-t border-slate-900/10 pt-6 text-sm text-slate-600 lg:mt-16 dark:border-white/10 dark:text-slate-400"
       >
         <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
           <p>© {{ year }} Łukasz Dzieło</p>
