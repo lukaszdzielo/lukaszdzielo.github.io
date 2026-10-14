@@ -79,7 +79,7 @@ const shareUrl = computed(() => pageUrl(route.path));
                         <img v-if="post.art" :src="post.art" alt="" width="480" height="300"
                             class="pointer-events-none -mt-15 -mr-9 -mb-5 w-64 max-w-none justify-self-end opacity-60 sm:-mt-24 sm:-mr-16 sm:w-80 lg:order-last lg:col-span-5 lg:m-0 lg:w-full lg:min-w-110 lg:justify-self-start lg:opacity-100" />
                         <div :class="post.art ? 'lg:col-span-7' : 'lg:col-span-10'">
-                            <p v-if="kicker" class="text-xs font-semibold tracking-widest text-[#a9c0ff] uppercase">{{ kicker }}</p>
+                            <p v-if="kicker" class="text-xs font-semibold tracking-widest text-primary-300 uppercase">{{ kicker }}</p>
                             <h1 class="mt-4 text-3xl leading-tight font-semibold tracking-tight sm:text-4xl lg:text-5xl">{{ post.title }}</h1>
                             <p v-if="post.description" class="mt-5 max-w-160 text-base/relaxed text-slate-300 sm:text-lg/relaxed">{{ post.description }}</p>
                             <div class="mt-6 flex flex-wrap items-center gap-2 text-sm text-slate-300">

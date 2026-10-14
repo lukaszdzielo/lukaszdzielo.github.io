@@ -1,14 +1,14 @@
 /* Kolory makiet w kafelkach projektów (SVG z app/data/mockups.ts) */
 .mk {
   --mk-bg: #fff; --mk-block: #eef1f6; --mk-line: #e1e5ee;
-  --mk-accent: #2f6bff; --mk-accent-soft: rgba(47, 107, 255, .10);
+  --mk-accent: var(--color-primary-500); --mk-accent-soft: rgba(40, 96, 234, .10);
   --mk-ink: #18203a; --mk-ink2: #4f5870; --mk-ink3: #7a8299;
   --mk-hair: rgba(24, 32, 58, .09); --mk-line2: rgba(24, 32, 58, .16);
   font-family: inherit;
 }
 .dark .mk {
-  --mk-bg: #1c2a52; --mk-block: rgba(255, 255, 255, .06); --mk-line: rgba(255, 255, 255, .10);
-  --mk-accent: #6f9cff; --mk-accent-soft: rgba(111, 156, 255, .14);
+  --mk-bg: var(--color-brand-800); --mk-block: rgba(255, 255, 255, .06); --mk-line: rgba(255, 255, 255, .10);
+  --mk-accent: var(--color-primary-400); --mk-accent-soft: rgba(111, 156, 255, .14);
   --mk-ink: #eef2fb; --mk-ink2: #aab4cf; --mk-ink3: #7883a3;
   --mk-hair: rgba(160, 185, 255, .11); --mk-line2: rgba(160, 185, 255, .20);
 }

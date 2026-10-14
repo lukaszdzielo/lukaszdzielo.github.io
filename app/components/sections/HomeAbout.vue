@@ -25,7 +25,7 @@ const link = useLocalLink()
     <div class="container grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8">
       <figure
         v-reveal
-        class="m-0 aspect-[4/5] overflow-hidden lg:col-start-1 lg:row-start-1 rounded-3xl border border-slate-900/10 bg-linear-[165deg] from-white to-slate-50 transition-[opacity,translate] duration-700 ease-out max-lg:mx-auto max-lg:w-full max-lg:max-w-xl dark:border-white/10 dark:from-brand-900 dark:to-[#15213f] [&_img]:size-full [&_img]:object-cover [&_img]:object-bottom"
+        class="m-0 aspect-[4/5] overflow-hidden lg:col-start-1 lg:row-start-1 rounded-3xl border border-slate-900/10 bg-linear-[165deg] from-white to-slate-50 transition-[opacity,translate] duration-700 ease-out max-lg:mx-auto max-lg:w-full max-lg:max-w-xl dark:border-white/10 dark:from-brand-900 dark:to-brand-900 [&_img]:size-full [&_img]:object-cover [&_img]:object-bottom"
       >
         <slot name="image" />
       </figure>

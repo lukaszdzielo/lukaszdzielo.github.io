@@ -81,10 +81,10 @@ const linkAttrs = computed(() => {
 
     <!-- Okno przeglądarki wychodzące poza kafelek – pod tekstem (-z-1 w obrębie kafelka, który ma isolate) -->
     <div
-      class="relative -z-1 ml-4.5 w-full origin-top-left -rotate-2 overflow-hidden rounded-md border border-slate-900/16 bg-white shadow-2xl shadow-brand-950/40 @xs:ml-5 @sm:ml-6.5 @sm:rounded-lg @lg:ml-8 @xl:ml-10 @xl:rounded-xl transition-transform duration-500 ease-out dark:border-white/20 dark:bg-[#1c2a52]"
+      class="relative -z-1 ml-4.5 w-full origin-top-left -rotate-2 overflow-hidden rounded-md border border-slate-900/16 bg-white shadow-2xl shadow-brand-950/40 @xs:ml-5 @sm:ml-6.5 @sm:rounded-lg @lg:ml-8 @xl:ml-10 @xl:rounded-xl transition-transform duration-500 ease-out dark:border-white/20 dark:bg-brand-800"
       :class="{ 'motion-safe:group-hover:-translate-y-1.5 motion-safe:group-hover:-rotate-1': to || href }"
     >
-      <div class="flex h-3.5 items-center gap-1 bg-[#eef1f7] px-2 @xs:h-4 @sm:h-5 @sm:gap-1.5 @sm:px-2.5 @lg:h-6 @xl:h-8 @xl:gap-2 @xl:px-3.5 dark:bg-[#223260]">
+      <div class="flex h-3.5 items-center gap-1 bg-brand-50 px-2 @xs:h-4 @sm:h-5 @sm:gap-1.5 @sm:px-2.5 @lg:h-6 @xl:h-8 @xl:gap-2 @xl:px-3.5 dark:bg-brand-800">
         <i v-for="n in 3" :key="n" class="size-1 rounded-full @sm:size-1.5 @xl:size-2 bg-slate-900/16 dark:bg-white/20" />
         <span class="ml-1 hidden text-xs @sm:ml-1.5 @xl:ml-2 @sm:inline @xl:text-sm text-slate-600 dark:text-slate-400">{{ url }}</span>
       </div>

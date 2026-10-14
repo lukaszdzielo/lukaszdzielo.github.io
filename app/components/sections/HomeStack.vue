@@ -43,7 +43,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
               v-for="item in known"
               :key="item"
               :class="chip"
-              class="border-slate-900/10 bg-slate-50 text-slate-900 dark:border-white/10 dark:bg-[#15213f] dark:text-brand-50"
+              class="border-slate-900/10 bg-slate-50 text-slate-900 dark:border-white/10 dark:bg-brand-900 dark:text-brand-50"
             >
               {{ item }}
             </li>
@@ -53,7 +53,7 @@ const chip = 'rounded-lg border px-3 py-2 text-sm'
         <div
           v-reveal="160"
           :class="card"
-          class="border-dashed border-slate-900/16 bg-linear-[165deg] from-white to-slate-50 md:col-span-2 lg:col-span-1 dark:border-white/20 dark:from-brand-900 dark:to-[#15213f]"
+          class="border-dashed border-slate-900/16 bg-linear-[165deg] from-white to-slate-50 md:col-span-2 lg:col-span-1 dark:border-white/20 dark:from-brand-900 dark:to-brand-900"
         >
           <h3 :class="cardTitle">{{ t('learning') }}</h3>
           <ul class="flex flex-col gap-3">
