@@ -69,7 +69,7 @@ const date = computed(() =>
           :class="featured ? 'inset-x-0 top-1/12 mx-auto w-1/2 @2xl:w-3/5' : '-top-10 -right-5 w-3/5 opacity-70'"
         />
         <div class="absolute inset-0 flex flex-col justify-end gap-1.5 p-5 @sm:gap-2 @sm:p-6 @2xl:p-10">
-          <span class="text-xs tracking-widest text-[#a9c0ff] uppercase @2xl:text-sm">
+          <span class="text-xs tracking-widest text-primary-300 uppercase @2xl:text-sm">
             {{ [kindLabel, topic].filter(Boolean).join(' · ') }}
           </span>
           <!-- W wyróżnionej karcie z rysunkiem tytuł jest obok okładki – na okładce go nie powtarzamy -->

@@ -9,11 +9,13 @@
 
 /* Kolory projektu – jedyne własne wartości, reszta to domyślne skale Tailwinda (slate, emerald…). */
 @theme {
+  --color-primary-300: #a9c0ff; /* nadtytuły na granatowych okładkach i banerach (14.10) */
   --color-primary-400: #6f9cff; /* akcent w ciemnym motywie */
   --color-primary-500: #2860ea; /* akcent w jasnym motywie (14.10: z #2f6bff – kontrast 4,7:1 na tle strony, WCAG AA) */
   --color-primary-600: #2457d6; /* hover / aktywny */
   --color-brand-50: #edf0f6;    /* tło strony – jasny motyw; nagłówki w ciemnym (zamiast czystej bieli) */
   --color-brand-700: #1d3170;   /* gradient okładek wpisów */
+  --color-brand-800: #1c2a52;   /* pasek i tło okna przeglądarki w kafelkach – ciemny motyw (14.10, zamiast #1c2a52/#223260 w []) */
   --color-brand-900: #111b36;   /* karty – ciemny motyw */
   --color-brand-950: #0a1227;   /* tło strony – ciemny motyw */
 

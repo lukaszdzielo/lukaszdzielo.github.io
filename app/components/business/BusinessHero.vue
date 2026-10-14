@@ -57,10 +57,10 @@ const latest = computed(() =>
         <div
           v-for="(project, i) in latest"
           :key="project.title"
-          class="absolute w-3/4 overflow-hidden rounded-xl border border-slate-900/16 bg-white shadow-[0_24px_60px_-24px_rgb(8_14_40/0.45)] sm:rounded-2xl dark:border-white/20 dark:bg-[#1c2a52]"
+          class="absolute w-3/4 overflow-hidden rounded-xl border border-slate-900/16 bg-white shadow-2xl shadow-brand-950/45 sm:rounded-2xl dark:border-white/20 dark:bg-brand-800"
           :class="i === 0 ? 'top-0 left-0 -rotate-3' : 'right-0 bottom-0 rotate-2'"
         >
-          <div class="flex h-6 items-center gap-1.5 bg-[#eef1f7] px-3 sm:h-7 dark:bg-[#223260]">
+          <div class="flex h-6 items-center gap-1.5 bg-brand-50 px-3 sm:h-7 dark:bg-brand-800">
             <i v-for="n in 3" :key="n" class="size-1.5 rounded-full bg-slate-900/16 sm:size-2 dark:bg-white/20" />
             <span class="ml-2 truncate text-xs text-slate-600 dark:text-slate-400">{{ project.url }}</span>
           </div>

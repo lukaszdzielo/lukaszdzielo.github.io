@@ -101,7 +101,7 @@ if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShad
             <!-- Duży cień w locie: osobna warstwa, której zmieniamy tylko opacity (płynniej niż animowany box-shadow) -->
             <div
               :ref="setFlyShadow"
-              class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 shadow-[0_30px_60px_-20px_rgb(8_14_40/0.45)]"
+              class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 shadow-2xl shadow-brand-950/45"
               aria-hidden="true"
             />
             <!-- ten kafelek widać od razu w hero, więc jego zrzut ładuje się bez czekania -->

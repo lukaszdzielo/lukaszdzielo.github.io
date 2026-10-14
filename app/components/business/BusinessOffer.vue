@@ -45,7 +45,7 @@ const promoBadge = computed(() =>
               <span>{{ item }}</span>
             </li>
           </ul>
-          <p class="mt-auto flex flex-wrap items-baseline gap-x-2.5 border-t pt-5 [border-color:color-mix(in_srgb,currentColor_14%,transparent)] max-lg:mt-8 lg:mt-10">
+          <p class="mt-auto flex flex-wrap items-baseline gap-x-2.5 border-t pt-5 border-current/14 max-lg:mt-8 lg:mt-10">
             <s v-if="price(plan.price).before" class="text-base opacity-55">{{ price(plan.price).before }}</s>
             <b class="text-2xl font-semibold tracking-tight">{{ t('from', { price: price(plan.price).now }) }}</b>
             <span class="text-sm opacity-70">{{ plan.suffix }}</span>
