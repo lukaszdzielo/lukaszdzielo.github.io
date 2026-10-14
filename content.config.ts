@@ -86,6 +86,11 @@ const projectSchema = z.object({
     rows: z.array(z.object({ label: z.string(), before: z.string(), after: z.string() })).optional(),
     note: z.string().optional(),
   }).optional(),
+  // note – krótki dopisek pod technologiami (np. aplikacja bez publicznego dostępu),
+  // galleryLead – własny opis nad galerią, highlights – sekcja „Rozwiązania w szczegółach” (karty)
+  note: z.string().optional(),
+  galleryLead: z.string().optional(),
+  highlights: z.array(z.object({ title: z.string(), text: z.string() })).optional(),
   links: z.object({
     behance: z.string().optional(),
     github: z.string().optional(),

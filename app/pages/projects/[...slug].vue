@@ -108,6 +108,7 @@ if (project.value && hasOwnPage.value) {
                                 {{ item }}
                             </li>
                         </ul>
+                        <p v-if="project.note" class="mt-5 text-sm/relaxed text-slate-600 dark:text-slate-400">{{ project.note }}</p>
                         <div v-if="project.links?.live || project.links?.github || project.links?.behance" class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                             <a v-if="project.links?.live" :href="project.links.live" target="_blank" rel="noopener noreferrer"
                                 class="group inline-flex h-14 items-center justify-between gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950">
@@ -161,8 +162,22 @@ if (project.value && hasOwnPage.value) {
 
         <section v-if="project.gallery?.length" class="pt-20 md:pt-28 lg:pt-32">
             <div class="container">
-                <CommonSectionHead :title="t('gallery.title')" :lead="t('gallery.lead')" />
+                <CommonSectionHead :title="t('gallery.title')" :lead="project.galleryLead || t('gallery.lead')" />
                 <ProjectsGallery :items="project.gallery" :address="address" class="mt-8 lg:mt-10" />
+            </div>
+        </section>
+
+        <!-- Rozwiązania w szczegółach: karty z polem highlights (tytuł + krótki opis) -->
+        <section v-if="project.highlights?.length" class="pt-20 md:pt-28 lg:pt-32">
+            <div class="container">
+                <CommonSectionHead :title="t('highlights.title')" :lead="t('highlights.lead')" />
+                <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10">
+                    <li v-for="item in project.highlights" :key="item.title"
+                        class="rounded-3xl border border-slate-900/10 bg-white p-6 shadow-sm sm:p-8 dark:border-white/10 dark:bg-brand-900">
+                        <h3 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-brand-50">{{ item.title }}</h3>
+                        <p class="mt-2.5 text-base/relaxed text-slate-600 dark:text-slate-300">{{ item.text }}</p>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -225,6 +240,7 @@ if (project.value && hasOwnPage.value) {
         "about": { "title": "What I built" },
         "gallery": { "title": "How it looks", "lead": "Screenshots of the live project – click one to see it bigger." },
         "compare": { "title": "Before and after", "lead": "Drag the slider – the old site is on the left, the new one on the right." },
+        "highlights": { "title": "Solutions in detail", "lead": "Things from the code that show best how I work." },
         "posts": { "title": "Case study and posts", "lead": "How it was made, what went wrong and what I learned." },
         "allProjects": "← All projects",
         "noPage": "This project doesn't have its own page – you'll find it in the project archive."
@@ -237,6 +253,7 @@ if (project.value && hasOwnPage.value) {
         "about": { "title": "Co zbudowałem" },
         "gallery": { "title": "Jak to wygląda", "lead": "Zrzuty z działającego projektu – kliknij zrzut, żeby go powiększyć." },
         "compare": { "title": "Przed i po", "lead": "Przeciągnij suwak – po lewej stara strona, po prawej nowa." },
+        "highlights": { "title": "Rozwiązania w szczegółach", "lead": "Rzeczy z kodu, które najlepiej pokazują, jak pracuję." },
         "posts": { "title": "Case study i wpisy", "lead": "Jak to powstało, co poszło nie tak i czego się nauczyłem." },
         "allProjects": "← Wszystkie projekty",
         "noPage": "Ten projekt nie ma osobnej strony – znajdziesz go w archiwum projektów."
