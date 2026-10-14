@@ -52,7 +52,7 @@ function remember(code: string) {
 
 <i18n lang="json">
 {
-  "en": { "switchTo": "Wersja polska", "language": "Language" },
-  "pl": { "switchTo": "English version", "language": "Język" }
+  "en": { "switchTo": "PL – wersja polska", "language": "Language" },
+  "pl": { "switchTo": "EN – English version", "language": "Język" }
 }
 </i18n>

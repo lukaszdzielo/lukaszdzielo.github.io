@@ -63,7 +63,7 @@ const date = computed(() =>
 
     <!-- Wyróżniony wpis: duży tytuł, opis i „Czytaj wpis” obok okładki -->
     <div v-if="featured" class="flex flex-1 flex-col justify-center gap-3 p-5 sm:p-8 lg:p-10">
-      <p class="text-sm text-slate-500 dark:text-slate-400">
+      <p class="text-sm text-slate-600 dark:text-slate-400">
         {{ kindLabel }}<template v-if="date"> · {{ date }}</template>
       </p>
       <h2 class="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ post.title }}</h2>
@@ -75,7 +75,7 @@ const date = computed(() =>
     </div>
 
     <div v-else class="flex flex-1 flex-col px-4.5 pt-4 pb-4.5">
-      <p class="text-xs text-slate-500 dark:text-slate-400">
+      <p class="text-xs text-slate-600 dark:text-slate-400">
         {{ kindLabel }}<template v-if="date"> · {{ date }}</template>
       </p>
       <p v-if="post.description" class="mt-2 line-clamp-3 text-sm text-slate-600 dark:text-slate-300">

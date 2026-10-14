@@ -105,7 +105,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
         <NuxtLink
           v-if="business"
           :to="link('/strony-dla-firm')"
-          class="hidden border-l border-slate-900/16 pl-3 text-sm text-slate-500 transition-colors hover:text-slate-900 sm:inline dark:border-white/20 dark:text-slate-400 dark:hover:text-brand-50"
+          class="hidden border-l border-slate-900/16 pl-3 text-sm text-slate-600 transition-colors hover:text-slate-900 sm:inline dark:border-white/20 dark:text-slate-400 dark:hover:text-brand-50"
           @click="close()"
         >
           {{ t('business') }}

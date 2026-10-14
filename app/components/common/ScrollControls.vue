@@ -13,7 +13,7 @@ const button =
 
 <template>
   <div class="mt-3.5 flex items-center justify-between gap-4 lg:hidden">
-    <p class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400" aria-hidden="true">
+    <p class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400" aria-hidden="true">
       <i class="block h-0.5 w-6.5 rounded-full bg-primary-500 dark:bg-primary-400" />
       {{ t('hint') }}
     </p>

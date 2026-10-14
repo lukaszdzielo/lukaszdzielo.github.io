@@ -28,7 +28,7 @@ const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', 
           <h3 class="text-xl font-medium tracking-tight text-slate-900 dark:text-brand-50">{{ t('rules') }}</h3>
           <dl class="mt-3 text-sm">
             <div v-for="rule in care.rules" :key="rule.label" class="flex items-baseline justify-between gap-4 border-b border-slate-900/8 py-3 last:border-0 dark:border-white/8">
-              <dt class="text-slate-500 dark:text-slate-400">{{ rule.label }}</dt>
+              <dt class="text-slate-600 dark:text-slate-400">{{ rule.label }}</dt>
               <dd class="text-right font-medium text-slate-900 dark:text-brand-50">
                 <template v-if="'price' in rule && rule.price">
                   <s v-if="price(rule.price).before" class="mr-1.5 font-normal opacity-55">{{ price(rule.price).before }}</s>
@@ -38,7 +38,7 @@ const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', 
               </dd>
             </div>
           </dl>
-          <p class="mt-4 text-xs/relaxed text-slate-500 dark:text-slate-400">{{ care.note }}</p>
+          <p class="mt-4 text-xs/relaxed text-slate-600 dark:text-slate-400">{{ care.note }}</p>
         </div>
       </div>
     </div>

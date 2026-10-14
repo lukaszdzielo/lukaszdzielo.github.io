@@ -47,7 +47,7 @@ const latest = computed(() =>
         <dl class="mt-10 grid max-w-135 grid-cols-3 gap-4 border-t border-slate-900/10 pt-6 motion-safe:animate-fade-up motion-safe:[animation-delay:280ms] dark:border-white/10">
           <div v-for="fact in hero.facts" :key="fact.value">
             <dt class="text-xl font-medium tracking-tight text-slate-900 sm:text-2xl dark:text-brand-50">{{ fact.value }}</dt>
-            <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">{{ fact.text }}</dd>
+            <dd class="mt-1 text-xs text-slate-600 sm:text-sm dark:text-slate-400">{{ fact.text }}</dd>
           </div>
         </dl>
       </div>
@@ -62,7 +62,7 @@ const latest = computed(() =>
         >
           <div class="flex h-6 items-center gap-1.5 bg-[#eef1f7] px-3 sm:h-7 dark:bg-[#223260]">
             <i v-for="n in 3" :key="n" class="size-1.5 rounded-full bg-slate-900/16 sm:size-2 dark:bg-white/20" />
-            <span class="ml-2 truncate text-xs text-slate-500 dark:text-slate-400">{{ project.url }}</span>
+            <span class="ml-2 truncate text-xs text-slate-600 dark:text-slate-400">{{ project.url }}</span>
           </div>
           <CommonPicture
             :src="project.image!"

@@ -66,6 +66,8 @@ const projectSchema = z.object({
     desktop: z.string(),
     phone: z.string().optional(),
     alt: z.string().optional(),
+    width: z.number().optional(), // wymiary zrzutu desktop – rezerwują miejsce (bez skakania strony)
+    height: z.number().optional(),
   }).optional(),
   ogImage: z.string().optional(),
   gallery: z.array(z.object({
@@ -74,11 +76,13 @@ const projectSchema = z.object({
     caption: z.string().optional(),
     device: z.enum(['desktop', 'phone']).default('desktop'),
     full: z.boolean().optional(), // zrzut całej strony – w kafelku tylko góra, w podglądzie przewijany
+    width: z.number().optional(), // wymiary zrzutu (bez full i telefonu) – rezerwują miejsce
+    height: z.number().optional(),
   })).optional(),
   // „Przed i po”: pierwsze ekrany starej i nowej wersji (suwak) + tabela pomiarów
   compare: z.object({
-    before: z.object({ src: z.string(), label: z.string(), alt: z.string() }),
-    after: z.object({ src: z.string(), label: z.string(), alt: z.string() }),
+    before: z.object({ src: z.string(), label: z.string(), alt: z.string(), width: z.number().optional(), height: z.number().optional() }),
+    after: z.object({ src: z.string(), label: z.string(), alt: z.string(), width: z.number().optional(), height: z.number().optional() }),
     rows: z.array(z.object({ label: z.string(), before: z.string(), after: z.string() })).optional(),
     note: z.string().optional(),
   }).optional(),

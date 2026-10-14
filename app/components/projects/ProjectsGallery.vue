@@ -7,7 +7,7 @@
 // Duże obrazki mają loading="lazy" i w-full: przeglądarka pobiera je dopiero przy pokazaniu, a bez
 // szerokości (w-auto) niezaładowany obrazek ma 0 × 0 px i Chrome w ogóle by go nie pobrał.
 // full – zrzut całej strony: w kafelku widać górę (16:10) z oznaczeniem „Cała strona”, w podglądzie się przewija
-type Shot = { src: string; alt: string; caption?: string; device?: 'desktop' | 'phone'; full?: boolean }
+type Shot = { src: string; alt: string; caption?: string; device?: 'desktop' | 'phone'; full?: boolean; width?: number; height?: number }
 
 const props = defineProps<{ items: Shot[]; address?: string }>()
 
@@ -74,18 +74,19 @@ onBeforeUnmount(() => lockScroll(false))
           <button
             type="button"
             class="block w-full cursor-zoom-in rounded-2xl text-left transition-transform duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500 motion-safe:hover:-translate-y-0.5"
-            :aria-label="t('open', { alt: shot.alt })"
             @click="open(i, $event)"
           >
+            <!-- Nazwa przycisku = alt zrzutu + „powiększ” (bez aria-label, żeby nazwa zgadzała się z treścią – WCAG 2.5.3) -->
+            <span class="sr-only">{{ t('openHint') }}</span>
             <ProjectsPhoneFrame v-if="shot.device === 'phone'" :src="shot.src" :alt="shot.alt" :sizes="thumbSizes(shot, i)" />
             <span v-else class="relative block">
-              <ProjectsBrowserFrame :src="shot.src" :alt="shot.alt" :address="address" :sizes="thumbSizes(shot, i)" :crop="shot.full" />
-              <span v-if="shot.full" class="absolute right-3.5 bottom-3.5 rounded-full bg-brand-950/75 px-3 py-1.5 text-xs font-medium text-white">
+              <ProjectsBrowserFrame :src="shot.src" :alt="shot.alt" :address="address" :sizes="thumbSizes(shot, i)" :crop="shot.full" :width="shot.width" :height="shot.height" />
+              <span v-if="shot.full" aria-hidden="true" class="absolute right-3.5 bottom-3.5 rounded-full bg-brand-950/75 px-3 py-1.5 text-xs font-medium text-white">
                 {{ t('full') }} ↕
               </span>
             </span>
           </button>
-          <figcaption v-if="shot.caption" class="mt-3 text-sm/relaxed text-slate-500 dark:text-slate-400">
+          <figcaption v-if="shot.caption" class="mt-3 text-sm/relaxed text-slate-600 dark:text-slate-400">
             {{ shot.caption }}
           </figcaption>
         </figure>
@@ -172,7 +173,7 @@ onBeforeUnmount(() => lockScroll(false))
 <i18n lang="json">
 {
   "en": {
-    "open": "Enlarge: {alt}",
+    "openHint": "Enlarge:",
     "dialog": "Screenshot preview",
     "close": "Close",
     "prev": "Previous screenshot",
@@ -180,7 +181,7 @@ onBeforeUnmount(() => lockScroll(false))
     "full": "Full page"
   },
   "pl": {
-    "open": "Powiększ: {alt}",
+    "openHint": "Powiększ:",
     "dialog": "Podgląd zrzutu",
     "close": "Zamknij",
     "prev": "Poprzedni zrzut",

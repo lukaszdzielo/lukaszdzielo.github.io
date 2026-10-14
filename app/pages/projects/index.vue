@@ -52,8 +52,8 @@ useSiteMeta({
     <header class="relative isolate pt-14 sm:pt-22">
       <CommonCodeBackdrop name="hero" class="top-5 max-lg:hidden" />
       <div class="container">
-        <nav :aria-label="t('breadcrumb.label')" class="text-sm text-slate-500 dark:text-slate-400">
-          <NuxtLink :to="link('/')" class="text-primary-500 hover:underline dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
+        <nav :aria-label="t('breadcrumb.label')" class="text-sm text-slate-600 dark:text-slate-400">
+          <NuxtLink :to="link('/')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
           <span aria-hidden="true"> / </span>
           <span aria-current="page">{{ t('title') }}</span>
         </nav>
@@ -68,17 +68,17 @@ useSiteMeta({
           <div>
             <dt class="sr-only">{{ t('stats.projectsTerm') }}</dt>
             <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ total }}</dd>
-            <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">{{ t('stats.projects', total) }}</dd>
+            <dd class="mt-1 text-xs text-slate-600 sm:text-sm dark:text-slate-400">{{ t('stats.projects', total) }}</dd>
           </div>
           <div>
             <dt class="sr-only">WordPress</dt>
             <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ wordpress }}</dd>
-            <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">{{ t('stats.wordpress', wordpress) }}</dd>
+            <dd class="mt-1 text-xs text-slate-600 sm:text-sm dark:text-slate-400">{{ t('stats.wordpress', wordpress) }}</dd>
           </div>
           <div>
             <dt class="sr-only">{{ t('stats.sinceTerm') }}</dt>
             <dd class="text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ t('stats.since', { year: since }) }}</dd>
-            <dd class="mt-1 text-xs text-slate-500 sm:text-sm dark:text-slate-400">{{ t('stats.inArchive') }}</dd>
+            <dd class="mt-1 text-xs text-slate-600 sm:text-sm dark:text-slate-400">{{ t('stats.inArchive') }}</dd>
           </div>
         </dl>
       </div>

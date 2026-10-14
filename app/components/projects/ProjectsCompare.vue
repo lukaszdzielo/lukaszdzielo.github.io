@@ -2,7 +2,7 @@
 // „Przed i po”: suwak po pierwszym ekranie starej i nowej wersji strony + tabela pomiarów.
 // Suwak to zwykły <input type="range"> na całym obrazku (niewidoczny) – działa myszą, palcem
 // i klawiaturą (strzałki). Stara wersja leży na wierzchu i jest przycinana clip-path do pozycji suwaka.
-type Side = { src: string; label: string; alt: string }
+type Side = { src: string; label: string; alt: string; width?: number; height?: number }
 type Row = { label: string; before: string; after: string }
 
 defineProps<{
@@ -25,12 +25,12 @@ const pos = ref(50)
           <i class="size-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
           <i class="size-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
           <i class="size-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
-          <span v-if="address" class="ml-2.5 truncate text-xs text-slate-500 dark:text-slate-400">{{ address }}</span>
+          <span v-if="address" class="ml-2.5 truncate text-xs text-slate-600 dark:text-slate-400">{{ address }}</span>
         </div>
         <div class="relative select-none">
-          <CommonPicture :src="after.src" :alt="after.alt" sizes="xs:100vw lg:860px" loading="lazy" class="block h-auto w-full" />
+          <CommonPicture :src="after.src" :alt="after.alt" :width="after.width" :height="after.height" sizes="xs:100vw lg:860px" loading="lazy" class="block h-auto w-full" />
           <div class="absolute inset-0" :style="{ clipPath: `inset(0 ${100 - pos}% 0 0)` }">
-            <CommonPicture :src="before.src" :alt="before.alt" sizes="xs:100vw lg:860px" loading="lazy" class="block h-auto w-full" />
+            <CommonPicture :src="before.src" :alt="before.alt" :width="before.width" :height="before.height" sizes="xs:100vw lg:860px" loading="lazy" class="block h-auto w-full" />
           </div>
           <!-- linia i uchwyt suwaka -->
           <div class="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-white shadow-sm" :style="{ left: `${pos}%` }" aria-hidden="true">
@@ -57,8 +57,8 @@ const pos = ref(50)
         <thead>
           <tr class="border-b border-slate-900/10 dark:border-white/10">
             <th class="py-3 text-left font-normal"><span class="sr-only">{{ t('metric') }}</span></th>
-            <th class="w-18 py-3 text-right text-xs font-normal tracking-widest text-slate-500 uppercase dark:text-slate-400">{{ t('before') }}</th>
-            <th class="w-18 py-3 text-right text-xs font-normal tracking-widest text-slate-500 uppercase dark:text-slate-400">{{ t('after') }}</th>
+            <th class="w-18 py-3 text-right text-xs font-normal tracking-widest text-slate-600 uppercase dark:text-slate-400">{{ t('before') }}</th>
+            <th class="w-18 py-3 text-right text-xs font-normal tracking-widest text-slate-600 uppercase dark:text-slate-400">{{ t('after') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +69,7 @@ const pos = ref(50)
           </tr>
         </tbody>
       </table>
-      <p v-if="note" class="mt-3.5 text-xs/relaxed text-slate-500 sm:text-sm/relaxed dark:text-slate-400">{{ note }}</p>
+      <p v-if="note" class="mt-3.5 text-xs/relaxed text-slate-600 sm:text-sm/relaxed dark:text-slate-400">{{ note }}</p>
     </div>
   </div>
 </template>

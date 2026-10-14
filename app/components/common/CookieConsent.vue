@@ -27,7 +27,7 @@ const button =
         {{ t('text') }}
         <NuxtLink :to="link('/polityka-prywatnosci')" class="text-primary-500 underline underline-offset-2 dark:text-primary-400">{{ t('privacy') }}</NuxtLink>
       </p>
-      <p v-if="consent" class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+      <p v-if="consent" class="mt-2 text-xs text-slate-600 dark:text-slate-400">
         {{ t('now', { state: consent === 'granted' ? t('on') : t('off') }) }}.
       </p>
       <div class="mt-4 flex gap-2">

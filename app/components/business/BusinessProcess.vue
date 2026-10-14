@@ -20,7 +20,7 @@ const data = useLocalized(businessProcess)
           <p class="mt-5 text-sm font-semibold text-primary-500 tabular-nums dark:text-primary-400">0{{ i + 1 }}</p>
           <h3 class="mt-2 text-xl font-medium tracking-tight text-slate-900 dark:text-brand-50">{{ step.title }}</h3>
           <p class="mt-2.5 text-sm/relaxed text-slate-600 dark:text-slate-300">{{ step.text }}</p>
-          <span class="mt-4 inline-block rounded-full border border-slate-900/16 px-2.5 py-1 text-xs text-slate-500 dark:border-white/20 dark:text-slate-400">{{ step.time }}</span>
+          <span class="mt-4 inline-block rounded-full border border-slate-900/16 px-2.5 py-1 text-xs text-slate-600 dark:border-white/20 dark:text-slate-400">{{ step.time }}</span>
         </li>
       </ol>
     </div>

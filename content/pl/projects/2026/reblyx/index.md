@@ -23,15 +23,21 @@ facts:
     text: LCP na telefonie – było 5,0 s
 cover:
   desktop: /projects/2026/reblyx/first-screen.webp
+  width: 1440
+  height: 900
   alt: ReblyX – pierwszy ekran nowej strony
 ogImage: /og/projects/reblyx-pl.jpg
 compare:
   before:
     src: /projects/2026/reblyx/old-first-screen.webp
+    width: 1440
+    height: 900
     label: Przed · Divi
     alt: Stara strona ReblyX na Divi – pierwszy ekran
   after:
     src: /projects/2026/reblyx/first-screen.webp
+    width: 1440
+    height: 900
     label: Po · Gutenberg
     alt: Nowa strona ReblyX na Gutenbergu – pierwszy ekran
   rows:

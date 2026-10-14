@@ -23,10 +23,14 @@ facts:
 cover:
   desktop: /projects/2024/pokedex/list.webp
   phone: /projects/2024/pokedex/phone.webp
+  width: 1920
+  height: 1105
   alt: Pokedex – the Pokémon list with pagination
 ogImage: /og/projects/pokedex-en.jpg
 gallery:
   - src: /projects/2024/pokedex/list.webp
+    width: 1920
+    height: 1105
     alt: The Pokémon list with pagination
     caption: The list – more than 1,000 Pokémon, with the page number saved in the URL (?p=)
   - src: /projects/2024/pokedex/phone.webp
@@ -34,9 +38,13 @@ gallery:
     alt: Pokedex on a phone – a Pokémon card
     caption: Phone – a Pokémon card open over the two-column list
   - src: /projects/2024/pokedex/pokemon-card.webp
+    width: 1920
+    height: 1105
     alt: The Pokémon details window
     caption: Pokémon card – name, types and generation come straight from memory, stats are loaded from the API
   - src: /projects/2024/pokedex/settings.webp
+    width: 1920
+    height: 1105
     alt: App settings
     caption: Settings – theme, import and export of caught Pokémon, clearing the data
 ---

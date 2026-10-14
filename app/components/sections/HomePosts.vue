@@ -68,7 +68,7 @@ const link = useLocalLink()
           <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
         </span>
         <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">{{ t('empty.title') }}</p>
-        <p class="max-w-md text-base/relaxed text-slate-500 dark:text-slate-400">
+        <p class="max-w-md text-base/relaxed text-slate-600 dark:text-slate-400">
           {{ t('empty.text') }}
         </p>
       </div>
