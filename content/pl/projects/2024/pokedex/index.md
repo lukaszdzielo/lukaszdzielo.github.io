@@ -9,7 +9,7 @@ draft: false
 links:
   live: https://lukaszdzielo.github.io/pokedex/
   github: https://github.com/lukaszdzielo/pokedex
-stack: [JavaScript (ES6+), OOP, PokéAPI, LocalStorage, bez frameworków]
+stack: [JavaScript (ES6+), OOP, PokéAPI, LocalStorage, SCSS, bez frameworków]
 facts:
   - value: '2024'
     text: rok realizacji
