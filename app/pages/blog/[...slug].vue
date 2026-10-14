@@ -68,7 +68,7 @@ const showToc = computed(() => tocLinks.value.length >= 5);
                     <NuxtLink :to="localLink('/blog')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.blog') }}</NuxtLink>
                 </nav>
 
-                <div class="relative mt-6 overflow-hidden rounded-3xl bg-linear-[150deg] from-brand-700 to-brand-950 px-6 py-10 text-white sm:px-10 sm:py-12 lg:px-14 lg:py-14 dark:ring-1 dark:ring-white/10">
+                <div class="relative isolate mt-6 overflow-hidden rounded-3xl bg-linear-[150deg] from-brand-700 to-brand-950 px-6 py-8 text-white sm:px-10 sm:py-10 lg:px-14 lg:py-14 dark:ring-1 dark:ring-white/10">
                     <div class="pointer-events-none absolute -top-1/3 -right-1/12 aspect-square w-3/5 rounded-full bg-radial from-primary-400/45 to-transparent to-65%" aria-hidden="true" />
                     <div class="relative grid items-center gap-10 lg:grid-cols-12">
                         <div :class="post.art ? 'lg:col-span-7' : 'lg:col-span-10'">
@@ -80,7 +80,9 @@ const showToc = computed(() => tocLinks.value.length >= 5);
                                 <span v-for="tag in post.tags" :key="tag" class="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200">#{{ tag }}</span>
                             </div>
                         </div>
-                        <img v-if="post.art" :src="post.art" alt="" width="480" height="300" class="hidden w-full max-w-120 justify-self-end sm:block lg:col-span-5" />
+                        <!-- Rysunek: do lg przygaszony w tle pod tekstem (baner nie rośnie), od lg w prawej kolumnie -->
+                        <img v-if="post.art" :src="post.art" alt="" width="480" height="300"
+                            class="pointer-events-none absolute -right-6 -bottom-4 -z-10 w-72 opacity-10 sm:-right-4 sm:w-96 lg:static lg:z-auto lg:col-span-5 lg:w-full lg:max-w-120 lg:justify-self-end lg:opacity-100" />
                     </div>
                 </div>
             </div>

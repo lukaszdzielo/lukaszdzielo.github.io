@@ -36,7 +36,7 @@ const date = computed(() =>
     class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-900/10 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 dark:border-white/10 dark:bg-brand-900 dark:hover:shadow-black/40"
     :class="featured && 'lg:flex-row'"
   >
-    <!-- Okładka w proporcji obrazka OG (1200 × 630) -->
+    <!-- Okładka w proporcji obrazka OG (1200 × 630). Rozmiary w środku: clamp(min, cqw, max) – rosną z szerokością karty, ale nie wychodzą poza granice -->
     <div
       class="@container relative aspect-[1200/630] shrink-0 overflow-hidden bg-linear-[140deg] from-brand-900 to-brand-700 text-white"
       :class="featured && 'lg:w-3/5'"
@@ -63,14 +63,14 @@ const date = computed(() =>
           height="300"
           loading="lazy"
           class="absolute object-contain"
-          :class="featured ? 'top-[10%] right-[8%] h-[62%] w-[70%]' : 'top-[5cqw] right-[5cqw] h-[48%] w-[40%]'"
+          :class="featured ? 'top-[10%] right-[8%] h-[62%] w-[70%]' : 'top-[clamp(0.75rem,5cqw,1.5rem)] right-[clamp(0.75rem,5cqw,1.5rem)] h-[48%] w-[40%]'"
         />
-        <div class="absolute inset-0 flex flex-col justify-end gap-[2cqw] p-[6cqw]">
-          <span class="text-[2.8cqw] tracking-widest text-[#a9c0ff] uppercase">
+        <div class="absolute inset-0 flex flex-col justify-end gap-[clamp(0.375rem,2cqw,0.75rem)] p-[clamp(1rem,6cqw,2.75rem)]">
+          <span class="text-[clamp(0.6875rem,2.8cqw,1.125rem)] tracking-widest text-[#a9c0ff] uppercase">
             {{ [kindLabel, topic].filter(Boolean).join(' · ') }}
           </span>
           <!-- W wyróżnionej karcie z rysunkiem tytuł jest obok okładki – na okładce go nie powtarzamy -->
-          <span v-if="!(featured && post.art)" class="leading-tight font-semibold tracking-tight" :class="post.art ? 'max-w-[56%] text-[5.4cqw]' : 'max-w-[86%] text-[5.8cqw]'">{{ post.title }}</span>
+          <span v-if="!(featured && post.art)" class="leading-tight font-semibold tracking-tight" :class="post.art ? 'max-w-[56%] text-[clamp(1.125rem,5.4cqw,1.75rem)]' : 'max-w-[86%] text-[clamp(1.125rem,5.8cqw,2.625rem)]'">{{ post.title }}</span>
         </div>
       </template>
     </div>

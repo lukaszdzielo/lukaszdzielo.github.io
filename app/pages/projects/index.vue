@@ -3,6 +3,7 @@
 // Link z filtrem: /projects?tech=wordpress#archive (np. z oferty dla firm).
 import { projectKind } from '~/utils/projectKind'
 import { visibleFeaturedProjects } from '~/data/featuredProjects'
+import { PERSON_ID, pageUrl } from '~/data/site'
 
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
@@ -44,6 +45,23 @@ useSiteMeta({
   description: t('meta.description'),
   image: `/og/projects-${lang.value}.jpg`,
   imageAlt: t('meta.title'),
+})
+
+// Dane strukturalne: lista projektów, które mają własną stronę (dla Google i wyszukiwarek AI)
+const route = useRoute()
+useJsonLd('projects', {
+  '@type': 'CollectionPage',
+  name: t('meta.title'),
+  description: t('meta.description'),
+  url: pageUrl(route.path),
+  inLanguage: lang.value === 'pl' ? 'pl-PL' : 'en-US',
+  author: { '@id': PERSON_ID },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: archive.value
+      .filter(p => p.hasPage)
+      .map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.title, url: pageUrl(p.path) })),
+  },
 })
 </script>
 

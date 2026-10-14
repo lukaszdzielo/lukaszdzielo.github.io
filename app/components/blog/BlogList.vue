@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PERSON_ID, pageUrl } from '~/data/site'
 // Lista wpisów (/blog i /blog/page/N). Strona 1: wyróżniony wpis na całą szerokość + 4 rzędy po 3,
 // kolejne strony: po 12 (app/utils/blogPaging.ts). Strona spoza zakresu → 404.
 const props = defineProps<{ page: number }>()
@@ -36,6 +37,26 @@ const to = computed(() => blogSkip(props.page) + (posts.value?.length ?? 0))
 useSiteMeta({
   title: props.page === 1 ? t('meta.title') : t('meta.titlePaged', { page: props.page, pages: pages.value }),
   description: t('meta.description'),
+})
+
+// Dane strukturalne: wpisy z tej strony listy (dla Google i wyszukiwarek AI)
+const route = useRoute()
+useJsonLd('blog', {
+  '@type': 'CollectionPage',
+  name: t('meta.title'),
+  description: t('meta.description'),
+  url: pageUrl(route.path),
+  inLanguage: lang.value === 'pl' ? 'pl-PL' : 'en-US',
+  author: { '@id': PERSON_ID },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: (posts.value ?? []).map((post, i) => ({
+      '@type': 'ListItem',
+      position: blogSkip(props.page) + i + 1,
+      name: post.title,
+      url: pageUrl(post.path),
+    })),
+  },
 })
 </script>
 
