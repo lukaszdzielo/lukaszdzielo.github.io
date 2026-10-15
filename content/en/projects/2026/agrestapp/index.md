@@ -52,6 +52,8 @@ gallery:
     caption: The industry page for confectioneries
 ogImage: /og/projects/agrestapp-en.jpg
 highlights:
+  - title: A panel header without hard-coded numbers
+    text: 'I rebuilt the panel header. The "Log in as" bar is now part of it, and the header measures its own height and saves it in a CSS variable. The sidebar and the sticky page bars use this variable instead of 75 and 125 px written in several files. You can use the account menu with the keyboard and close it with Esc.'
   - title: One date range in three places
     text: In analytics, the slider, the date fields and the page address show the same range. A change in one place updates the others right away, and the data reloads only a moment after the last change. The calendar won't let you set the start after the end, and the default range starts on the day the company registered.
   - title: A price table like a spreadsheet
@@ -66,6 +68,7 @@ AgrestApp is a purchasing system for food businesses: orders and tenders for raw
 
 ## What I did
 
+- **Panel header** – a new header with the "Log in as" bar, an account menu and a shared dropdown component
 - **UI component set** – buttons, an accordion, tooltips, number fields and 69 icons as Vue components; moving the app's buttons to one component and a shared theme toggle
 - **Company website** – the "About the system" page, a set of sections used to build the pages for bakeries, confectioneries, ice cream shops and HoReCa, price tiles and a pricing page with a payment toggle
 - **Analytics** – the main chart, the date range picker with a compare mode, top suppliers, the savings summary and product profitability
