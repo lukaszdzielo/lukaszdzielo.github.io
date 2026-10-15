@@ -25,6 +25,16 @@ export const featuredProjects: FeaturedProject[] = [
     url: 'emotion-karting',
     image: '/projects/2026/emotion-karting/page-dark.webp',
   },
+  // Projekt Pesi – tylko moja część front-endu (komponenty UI, strona firmowa, analityka)
+  {
+    title: 'AgrestApp',
+    date: '2026-10',
+    description: { en: 'Purchasing system for food businesses – UI components, the company website and analytics in Vue 3.', pl: 'System zakupów dla firm spożywczych – komponenty UI, strona firmowa i analityka w Vue 3.' },
+    chips: ['Vue 3', 'Inertia.js', 'Tailwind CSS'],
+    url: 'agrestapp.pl',
+    href: 'https://agrestapp.pl',
+    image: '/projects/2026/agrestapp/home-top.webp',
+  },
   {
     title: 'ReblyX',
     date: '2026-09',
@@ -68,6 +78,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['Vue', 'CSS', 'API'],
     url: 'coffee-recipes',
     image: '/projects/2024/coffee-recipes/featured.webp',
+    hidden: true, // na głównej zastąpiony przez AgrestApp (15.10) – zostaje w archiwum projektów
   },
   // Strona sushi mastera (Marcin Podliński). Zrzut: nowy wygląd strony.
   {
