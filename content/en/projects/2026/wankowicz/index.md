@@ -8,14 +8,14 @@ featured: false
 draft: false
 agency: Pesi
 stack: [Laravel Blade, Alpine.js, Vue 3, Tailwind CSS v4]
-note: Work in progress – the new version isn't published yet. I do the refactor on a separate branch, in parallel with ongoing changes to the current website.
+note: 'Work in progress – the new version isn''t published yet. I compare it with the code I took over: the state from 14 Oct 2025, the last one before my changes.'
 facts:
-  - value: '73 → 35'
+  - value: '65 → 35'
     text: page views – English copies replaced with one view for both languages
-  - value: '85 → 0'
+  - value: '23 → 0'
     text: hard-coded colours in templates – all of them now through tokens
-  - value: '692 → 53'
-    text: pixel sizes in classes – the rest in rem, so text scales with the settings
+  - value: '353 → 53'
+    text: sizes hard-coded in pixels, e.g. text-[15px] – the rest in rem, so they grow with enlarged text
   - value: '88%'
     text: of the current front-end of the new version is my code
 cover:
@@ -29,8 +29,8 @@ compare:
     src: /projects/2026/wankowicz/old-home-top.webp
     width: 1440
     height: 900
-    label: Before · current version
-    alt: The current school website – the first screen
+    label: Before · before I joined (Oct 2025)
+    alt: The school website in October 2025 – the first screen
   after:
     src: /projects/2026/wankowicz/home-top.webp
     width: 1440
@@ -38,40 +38,44 @@ compare:
     label: After · new version
     alt: The new version of the school website – the first screen
   rows:
-    - { label: Page view files, before: '73', after: '35' }
-    - { label: View copies for the EN version, before: '34', after: '0' }
-    - { label: Hard-coded colours, before: '85', after: '0' }
-    - { label: Pixel sizes in classes, before: '692', after: '53' }
-  note: Numbers from the code of both versions (Blade views). The new version is on a separate branch; screenshots from the local version.
+    - { label: Page view files, before: '65', after: '35' }
+    - { label: View copies for the EN version, before: '31', after: '0' }
+    - { label: Hard-coded colours, before: '23', after: '0' }
+    - { label: 'Sizes hard-coded in px (e.g. text-[15px])', before: '353', after: '53' }
+  note: 'Numbers from the Blade views. Before – the code from 14 Oct 2025, the last state before my changes; after – the new version on a separate branch. Screenshots from local versions; news in the old version comes from today''s database.'
 ogImage: /og/projects/wankowicz-en.jpg
-galleryLead: Screenshots from the local version before publishing. Click a screenshot to enlarge it.
+galleryLead: Screenshots from local versions – the new version and the code from October 2025. Click a screenshot to enlarge it.
 gallery:
-  - src: /projects/2026/wankowicz/home-high-contrast-top.webp
+  - src: /projects/2026/wankowicz/content-page-full.webp
+    full: true
+    alt: The About us page
+    caption: A content page – About us
+  - src: /projects/2026/wankowicz/home-text-200-top.webp
     width: 1440
     height: 900
-    alt: High contrast mode
-    caption: High contrast mode – black background, white and yellow text, the background photo hidden
-  - src: /projects/2026/wankowicz/home-en-top.webp
+    alt: Text at 200% in the new version
+    caption: New version – text at 200%, the heading and buttons grow with the content
+  - src: /projects/2026/wankowicz/old-home-text-200-top.webp
     width: 1440
     height: 900
-    alt: The English home page
-    caption: English version – the same view, texts from language files
+    alt: Text at 200% in the October 2025 version
+    caption: October 2025 version – text at 200% for comparison
   - src: /projects/2026/wankowicz/recruitment-full.webp
     full: true
     alt: The admission form in the new version
     caption: Admission form, step 1 – new version
   - src: /projects/2026/wankowicz/old-recruitment-full.webp
     full: true
-    alt: The admission form in the current version
-    caption: Admission form, step 1 – current version
+    alt: The admission form in the October 2025 version
+    caption: Admission form – October 2025 version
   - src: /projects/2026/wankowicz/home-full.webp
     full: true
     alt: The home page of the new version
     caption: Home page – the whole page
-  - src: /projects/2026/wankowicz/content-page-full.webp
+  - src: /projects/2026/wankowicz/old-home-full.webp
     full: true
-    alt: The About us page
-    caption: A content page – About us
+    alt: The home page in the October 2025 version
+    caption: Home page – October 2025 version, the whole page
 highlights:
   - title: One view for two languages
     text: The old website had a separate copy of the view for the English version. Now every page has one view, and the texts are in language files. A section can be hidden in only one language, and a missing translation shows the Polish text.
@@ -83,7 +87,7 @@ highlights:
     text: I wrote the refactor conventions in one file in the repository – sizes, colours, translations, icons and a WCAG checklist for every new page.
 ---
 
-The website of the Melchior Wańkowicz High School has a Polish and an English version and an accessibility panel: bigger text, high contrast and more readable fonts. I work on the current version in the Pesi team, and since July 2026 I've been preparing its new version. I do the refactor on a separate branch and compare the pages side by side, because the school keeps sending changes for the current version.
+The website of the Melchior Wańkowicz High School has a Polish and an English version and an accessibility panel: bigger text, high contrast and more readable fonts. I've worked on this website in the Pesi team since October 2025, and since July 2026 I've been rewriting its front-end. I do the refactor on a separate branch, because the school keeps sending changes for the current version. The comparisons below show the code and design I took over – the state from 14 Oct 2025.
 
 ## What I'm changing
 

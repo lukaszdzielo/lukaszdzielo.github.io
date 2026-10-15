@@ -34,11 +34,6 @@ gallery:
     height: 900
     alt: Analytics in compare mode
     caption: Analytics – a date range with a slider and fields, two periods compared, savings and a chart (made-up data)
-  - src: /projects/2026/agrestapp/pricing-toggle-top.webp
-    width: 1440
-    height: 900
-    alt: Pricing with a payment toggle
-    caption: Pricing – a toggle between a standard payment and a card subscription
   - src: /projects/2026/agrestapp/home-full.webp
     full: true
     alt: AgrestApp home page
