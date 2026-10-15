@@ -8,14 +8,14 @@ featured: false
 draft: false
 agency: Pesi
 stack: [Laravel Blade, Alpine.js, Vue 3, Tailwind CSS v4]
-note: Projekt w toku – nowa wersja nie jest jeszcze opublikowana. Refaktor robię na osobnej gałęzi, równolegle z bieżącymi zmianami na obecnej stronie.
+note: 'Projekt w toku – nowa wersja nie jest jeszcze opublikowana. Porównuję ją z kodem, który zastałem: stan z 14.10.2025, ostatni przed moimi zmianami.'
 facts:
-  - value: '73 → 35'
+  - value: '65 → 35'
     text: widoków stron – angielskie kopie zastąpione jednym widokiem na oba języki
-  - value: '85 → 0'
+  - value: '23 → 0'
     text: kolorów wpisanych na sztywno w szablonach – wszystkie przez tokeny
-  - value: '692 → 53'
-    text: rozmiarów w pikselach w klasach – reszta w rem, żeby tekst skalował się razem z ustawieniami
+  - value: '353 → 53'
+    text: rozmiarów wpisanych w pikselach, np. text-[15px] – reszta w rem, więc rośnie razem z powiększonym tekstem
   - value: '88%'
     text: obecnego front-endu nowej wersji to mój kod
 cover:
@@ -29,8 +29,8 @@ compare:
     src: /projects/2026/wankowicz/old-home-top.webp
     width: 1440
     height: 900
-    label: Przed · obecna wersja
-    alt: Obecna strona liceum – pierwszy ekran
+    label: Przed · zanim dołączyłem (paź 2025)
+    alt: Strona liceum w październiku 2025 – pierwszy ekran
   after:
     src: /projects/2026/wankowicz/home-top.webp
     width: 1440
@@ -38,40 +38,44 @@ compare:
     label: Po · nowa wersja
     alt: Nowa wersja strony liceum – pierwszy ekran
   rows:
-    - { label: Pliki widoków stron, before: '73', after: '35' }
-    - { label: Kopie widoków dla wersji EN, before: '34', after: '0' }
-    - { label: Kolory wpisane na sztywno, before: '85', after: '0' }
-    - { label: Rozmiary w pikselach w klasach, before: '692', after: '53' }
-  note: Liczby z kodu obu wersji (widoki Blade). Nowa wersja na osobnej gałęzi, zrzuty z wersji lokalnej.
+    - { label: Pliki widoków stron, before: '65', after: '35' }
+    - { label: Kopie widoków dla wersji EN, before: '31', after: '0' }
+    - { label: Kolory wpisane na sztywno, before: '23', after: '0' }
+    - { label: 'Rozmiary wpisane w px (np. text-[15px])', before: '353', after: '53' }
+  note: 'Liczby z widoków Blade. Przed – kod z 14.10.2025, ostatni stan przed moimi zmianami; po – nowa wersja na osobnej gałęzi. Zrzuty z wersji lokalnych, aktualności w starej wersji pochodzą z dzisiejszej bazy.'
 ogImage: /og/projects/wankowicz-pl.jpg
-galleryLead: Zrzuty z wersji lokalnej przed publikacją. Kliknij zrzut, żeby go powiększyć.
+galleryLead: Zrzuty z wersji lokalnych – nowa wersja i kod z października 2025. Kliknij zrzut, żeby go powiększyć.
 gallery:
-  - src: /projects/2026/wankowicz/home-high-contrast-top.webp
+  - src: /projects/2026/wankowicz/content-page-full.webp
+    full: true
+    alt: Podstrona O nas
+    caption: Podstrona z treścią – O nas
+  - src: /projects/2026/wankowicz/home-text-200-top.webp
     width: 1440
     height: 900
-    alt: Tryb wysokiego kontrastu
-    caption: Tryb wysokiego kontrastu – czarne tło, białe i żółte teksty, zdjęcie w tle ukryte
-  - src: /projects/2026/wankowicz/home-en-top.webp
+    alt: Tekst powiększony do 200% w nowej wersji
+    caption: Nowa wersja – tekst 200%, nagłówek i przyciski rosną razem z treścią
+  - src: /projects/2026/wankowicz/old-home-text-200-top.webp
     width: 1440
     height: 900
-    alt: Angielska wersja strony głównej
-    caption: Wersja angielska – ten sam widok, teksty z plików językowych
+    alt: Tekst powiększony do 200% w wersji z października 2025
+    caption: Wersja z października 2025 – tekst 200% dla porównania
   - src: /projects/2026/wankowicz/recruitment-full.webp
     full: true
     alt: Formularz rekrutacyjny w nowej wersji
     caption: Formularz rekrutacyjny, krok 1 – nowa wersja
   - src: /projects/2026/wankowicz/old-recruitment-full.webp
     full: true
-    alt: Formularz rekrutacyjny w obecnej wersji
-    caption: Formularz rekrutacyjny, krok 1 – obecna wersja
+    alt: Formularz rekrutacyjny w wersji z października 2025
+    caption: Formularz rekrutacyjny – wersja z października 2025
   - src: /projects/2026/wankowicz/home-full.webp
     full: true
     alt: Strona główna nowej wersji
     caption: Strona główna – cała
-  - src: /projects/2026/wankowicz/content-page-full.webp
+  - src: /projects/2026/wankowicz/old-home-full.webp
     full: true
-    alt: Podstrona O nas
-    caption: Podstrona z treścią – O nas
+    alt: Strona główna w wersji z października 2025
+    caption: Strona główna – wersja z października 2025, cała
 highlights:
   - title: Jeden widok na dwa języki
     text: Stara strona miała osobną kopię widoku dla wersji angielskiej. Teraz każda strona ma jeden widok, a teksty są w plikach językowych. Sekcję można ukryć tylko w jednym języku, a brakujące tłumaczenie pokazuje tekst polski.
@@ -83,7 +87,7 @@ highlights:
     text: Konwencje refaktoru spisałem w jednym pliku w repozytorium – rozmiary, kolory, tłumaczenia, ikony i lista kontrolna WCAG dla każdej nowej strony.
 ---
 
-Strona liceum im. Melchiora Wańkowicza ma wersję polską i angielską oraz panel z ustawieniami dostępności: większy tekst, wysoki kontrast i czytelniejsze fonty. Przy obecnej wersji pracuję w zespole Pesi, a od lipca 2026 przygotowuję jej nową wersję. Refaktor robię na osobnej gałęzi, a strony porównuję obok siebie, bo szkoła cały czas dosyła zmiany do obecnej wersji.
+Strona liceum im. Melchiora Wańkowicza ma wersję polską i angielską oraz panel z ustawieniami dostępności: większy tekst, wysoki kontrast i czytelniejsze fonty. Przy tej stronie pracuję w zespole Pesi od października 2025, a od lipca 2026 piszę jej front-end od nowa. Refaktor robię na osobnej gałęzi, bo szkoła cały czas dosyła zmiany do obecnej wersji. Porównania poniżej pokazują kod i wygląd, które zastałem – stan z 14.10.2025.
 
 ## Co zmieniam
 

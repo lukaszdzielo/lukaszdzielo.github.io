@@ -34,11 +34,6 @@ gallery:
     height: 900
     alt: Analityka w trybie porównania
     caption: Analityka – zakres dat z suwakiem i polami, porównanie dwóch okresów, oszczędności i wykres (zmyślone dane)
-  - src: /projects/2026/agrestapp/pricing-toggle-top.webp
-    width: 1440
-    height: 900
-    alt: Cennik z przełącznikiem płatności
-    caption: Cennik – przełącznik płatności standardowej i subskrypcji z kartą
   - src: /projects/2026/agrestapp/home-full.webp
     full: true
     alt: Strona główna AgrestApp
