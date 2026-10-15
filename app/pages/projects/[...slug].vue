@@ -215,14 +215,14 @@ if (project.value && hasOwnPage.value) {
             <ul v-if="externalLinks.length" class="flex flex-wrap gap-x-4 gap-y-1">
                 <li v-for="link in externalLinks" :key="link.label">
                     <a :href="link.href" target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1 font-medium text-sky-600 dark:text-sky-400 hover:underline underline-offset-4">
+                        class="inline-flex items-center gap-1 font-medium text-primary-600 dark:text-primary-400 hover:underline underline-offset-4">
                         {{ link.label }}
                         <Icon name="lucide:arrow-up-right" aria-hidden="true" />
                     </a>
                 </li>
             </ul>
             <div>
-                <NuxtLink :to="localLink('/projects#archive')" class="text-sky-500 underline underline-offset-4">
+                <NuxtLink :to="localLink('/projects#archive')" class="text-primary-500 underline underline-offset-4">
                     {{ t('allProjects') }}
                 </NuxtLink>
             </div>
