@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<g fill="rgba(255,255,255,.08)" stroke="rgba(200,215,255,.45)" stroke-width="1.2">
+<rect x="14" y="40" width="44" height="34" rx="8"/><rect x="66" y="40" width="44" height="34" rx="8"/>
+<rect x="14" y="82" width="44" height="34" rx="8"/><rect x="66" y="82" width="44" height="34" rx="8"/>
+<rect x="14" y="124" width="44" height="34" rx="8"/><rect x="66" y="124" width="44" height="34" rx="8"/>
+<rect x="14" y="166" width="44" height="34" rx="8"/><rect x="66" y="166" width="44" height="34" rx="8"/>
+<rect x="14" y="208" width="44" height="34" rx="8"/><rect x="66" y="208" width="44" height="34" rx="8"/>
+</g>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round">
+<path d="M24 52h24M24 62h16"/><path d="M76 52h24M76 62h16"/>
+<path d="M24 94h24M24 104h16"/><path d="M76 94h24M76 104h16"/>
+<path d="M24 136h24M24 146h16"/><path d="M76 136h24M76 146h16"/>
+<path d="M24 178h24M24 188h16"/><path d="M76 178h24M76 188h16"/>
+<path d="M24 220h24M24 230h16"/><path d="M76 220h24M76 230h16"/>
+</g>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2">
+<path d="M120 141h40"/><path d="m152 134 8 7-8 7"/>
+</g>
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+<rect x="170" y="112" width="120" height="58" rx="12" fill="rgba(111,156,255,.3)"/>
+<rect x="356" y="56" width="110" height="38" rx="19"/>
+<rect x="356" y="122" width="110" height="38" rx="19"/>
+<rect x="356" y="188" width="110" height="38" rx="19"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff" text-anchor="middle">
+<text x="230" y="146">provide</text>
+<text x="411" y="80">inject</text>
+<text x="411" y="146">inject</text>
+<text x="411" y="212">inject</text>
+</g>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" fill="none">
+<path d="M296 141c26 0 30-66 54-66"/><path d="m342 69 8 6-8 7"/>
+<path d="M296 141h52"/><path d="m340 134 8 7-8 7"/>
+<path d="M296 141c26 0 30 66 54 66"/><path d="m342 200 8 7-8 6"/>
+</g>
+<rect x="206" y="186" width="48" height="14" rx="7" fill="#2860ea"/>
+</svg>

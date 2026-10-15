@@ -38,23 +38,24 @@
   }
 }
 
-/* Markdown content (ContentRenderer) — map `prose` to the site's slate/sky palette.
+/* Markdown content (ContentRenderer) — map `prose` to the site's slate/primary palette.
    Defined unlayered so it overrides the typography plugin's defaults; the `.dark .prose`
    block has higher specificity, so it wins in dark mode. */
 .prose {
   --tw-prose-body: var(--color-slate-700);
   --tw-prose-headings: var(--color-slate-800);
   --tw-prose-lead: var(--color-slate-600);
-  --tw-prose-links: var(--color-sky-600);
+  --tw-prose-links: var(--color-primary-600);
   --tw-prose-bold: var(--color-slate-900);
   --tw-prose-counters: var(--color-slate-500);
-  --tw-prose-bullets: var(--color-sky-500);
+  --tw-prose-bullets: var(--color-primary-500);
   --tw-prose-hr: var(--color-slate-300);
   --tw-prose-quotes: var(--color-slate-700);
-  --tw-prose-quote-borders: var(--color-sky-500);
+  --tw-prose-quote-borders: var(--color-primary-500);
   --tw-prose-code: var(--color-slate-800);
-  --tw-prose-pre-code: var(--color-slate-200);
-  --tw-prose-pre-bg: var(--color-slate-800);
+  /* jasne tło bloków kodu – Shiki koloruje kod motywem github-light (w ciemnym trybie github-dark) */
+  --tw-prose-pre-code: var(--color-slate-800);
+  --tw-prose-pre-bg: var(--color-white);
   --tw-prose-th-borders: var(--color-slate-300);
   --tw-prose-td-borders: var(--color-slate-200);
 }
@@ -63,18 +64,31 @@
   --tw-prose-body: var(--color-slate-300);
   --tw-prose-headings: var(--color-slate-200);
   --tw-prose-lead: var(--color-slate-300);
-  --tw-prose-links: var(--color-sky-400);
+  --tw-prose-links: var(--color-primary-400);
   --tw-prose-bold: var(--color-slate-200);
   --tw-prose-counters: var(--color-slate-400);
-  --tw-prose-bullets: var(--color-sky-400);
+  --tw-prose-bullets: var(--color-primary-400);
   --tw-prose-hr: var(--color-slate-600);
   --tw-prose-quotes: var(--color-slate-100);
-  --tw-prose-quote-borders: var(--color-sky-400);
+  --tw-prose-quote-borders: var(--color-primary-400);
   --tw-prose-code: var(--color-slate-200);
   --tw-prose-pre-code: var(--color-slate-200);
   --tw-prose-pre-bg: var(--color-slate-900);
   --tw-prose-th-borders: var(--color-slate-600);
   --tw-prose-td-borders: var(--color-slate-700);
+}
+
+/* Kod w blokach (```): tło i odstępy daje <pre>. Klasy prose-code:… na stronie wpisu są dla kodu w tekście –
+   tu je zerujemy, inaczej przy pierwszej i ostatniej linii bloku widać puste „pigułki”. */
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-weight: inherit;
+}
+
+.prose pre {
+  @apply ring-1 ring-slate-200 dark:ring-white/10;
 }
 
 /* Bez `scroll-behavior: smooth` – płynność tylko przy kliknięciu kotwicy na tej samej stronie
