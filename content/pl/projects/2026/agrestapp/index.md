@@ -52,6 +52,8 @@ gallery:
     caption: Strona branżowa dla cukierni
 ogImage: /og/projects/agrestapp-pl.jpg
 highlights:
+  - title: Nagłówek panelu bez liczb na sztywno
+    text: 'Przebudowałem nagłówek panelu. Pasek „Zaloguj jako” jest teraz jego częścią, a nagłówek sam mierzy swoją wysokość i zapisuje ją w zmiennej CSS. Menu boczne i przyklejone paski stron korzystają z tej zmiennej zamiast liczb 75 i 125 px wpisanych w kilku plikach. Menu konta obsłużysz z klawiatury i zamkniesz klawiszem Esc.'
   - title: Zakres dat w trzech miejscach naraz
     text: W analityce suwak, pola dat i adres strony pokazują ten sam zakres. Zmiana w jednym miejscu od razu zmienia pozostałe, a dane odświeżają się dopiero chwilę po ostatniej zmianie. Kalendarz nie pozwala ustawić początku po końcu, a domyślny zakres zaczyna się w dniu rejestracji firmy.
   - title: Tabela cen jak arkusz
@@ -66,6 +68,7 @@ AgrestApp to system zakupów dla firm z branży spożywczej: zamówienia i przet
 
 ## Co zrobiłem
 
+- **Nagłówek panelu** – nowy nagłówek z paskiem „Zaloguj jako”, menu konta i wspólnym komponentem rozwijanej listy
 - **Zestaw komponentów UI** – przyciski, akordeon, podpowiedzi, pola liczbowe i 69 ikon jako komponenty Vue; przeniesienie przycisków aplikacji na jeden komponent i wspólny przełącznik motywu
 - **Strona firmowa** – strona „O systemie”, zestaw sekcji, z których powstały strony dla piekarni, cukierni, lodziarni i HoReCa, kafelki cenowe i cennik z przełącznikiem płatności
 - **Analityka** – główny wykres, wybór zakresu dat z trybem porównania, najlepsi dostawcy, podsumowanie oszczędności i rentowność produktów

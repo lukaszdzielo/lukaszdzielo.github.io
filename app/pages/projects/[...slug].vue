@@ -167,13 +167,13 @@ if (project.value && hasOwnPage.value) {
             </div>
         </section>
 
-        <!-- Rozwiązania w szczegółach: karty z polem highlights (tytuł + krótki opis) -->
+        <!-- Rozwiązania w szczegółach: karty z polem highlights (tytuł + krótki opis); przy nieparzystej liczbie ostatnia karta na całą szerokość -->
         <section v-if="project.highlights?.length" class="pt-20 md:pt-28 lg:pt-32">
             <div class="container">
                 <CommonSectionHead :title="t('highlights.title')" :lead="t('highlights.lead')" />
                 <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10">
                     <li v-for="item in project.highlights" :key="item.title"
-                        class="rounded-3xl border border-slate-900/10 bg-white p-6 shadow-sm sm:p-8 dark:border-white/10 dark:bg-brand-900">
+                        class="sm:odd:last:col-span-2 rounded-3xl border border-slate-900/10 bg-white p-6 shadow-sm sm:p-8 dark:border-white/10 dark:bg-brand-900">
                         <h3 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-brand-50">{{ item.title }}</h3>
                         <p class="mt-2.5 text-base/relaxed text-slate-600 dark:text-slate-300">{{ item.text }}</p>
                     </li>
