@@ -119,7 +119,7 @@ const shareUrl = computed(() => pageUrl(route.path));
                     <nav v-if="showToc" :aria-label="t('toc')" class="rounded-2xl border border-slate-900/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-brand-900">
                         <h2 class="text-xs font-semibold tracking-widest text-slate-600 uppercase dark:text-slate-400">{{ t('toc') }}</h2>
                         <ol class="mt-4 grid gap-2.5 text-sm text-slate-600 dark:text-slate-300">
-                            <li v-for="(link, i) in tocLinks" :key="link.id" class="flex gap-2.5">
+                            <li v-for="(link, i) in tocLinks" :key="link.id" class="flex items-baseline gap-2.5">
                                 <span class="text-xs font-semibold text-primary-500 tabular-nums dark:text-primary-400">{{ String(i + 1).padStart(2, '0') }}</span>
                                 <a :href="`#${link.id}`" class="hover:text-primary-500 dark:hover:text-primary-400">{{ link.text }}</a>
                             </li>
