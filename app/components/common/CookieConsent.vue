@@ -1,13 +1,14 @@
 <script setup lang="ts">
 // Baner zgody na statystyki. Pokazuje się, dopóki ktoś nie zdecyduje, i po kliknięciu
 // „Ustawienia cookies” w stopce. Oba przyciski są równorzędne – odmowa jest tak samo łatwa jak zgoda.
+// Na telefonie mniejszy (mniejsze odstępy, tekst i przyciski), żeby zakrywał mniej pierwszego ekranu.
 const { consent, panelOpen, loaded, decide } = useConsent()
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
 const visible = computed(() => loaded.value && (consent.value === null || panelOpen.value))
 
 const button =
-  'inline-flex h-11 flex-1 cursor-pointer items-center justify-center rounded-full px-5 text-sm font-medium transition-colors sm:flex-none'
+  'inline-flex h-10 flex-1 cursor-pointer items-center justify-center rounded-full px-5 text-sm font-medium transition-colors sm:h-11 sm:flex-none'
 </script>
 
 <template>
@@ -20,17 +21,17 @@ const button =
     <section
       v-if="visible"
       aria-labelledby="consent-title"
-      class="fixed inset-x-4 bottom-4 z-60 rounded-2xl border border-slate-900/10 bg-white p-5 text-slate-600 shadow-2xl shadow-slate-900/15 sm:right-auto sm:max-w-md dark:border-white/10 dark:bg-brand-900 dark:text-slate-300 dark:shadow-black/40"
+      class="fixed inset-x-2 bottom-2 z-60 rounded-2xl border border-slate-900/10 bg-white p-4 text-slate-600 shadow-2xl shadow-slate-900/15 sm:inset-x-4 sm:right-auto sm:bottom-4 sm:max-w-md sm:p-5 dark:border-white/10 dark:bg-brand-900 dark:text-slate-300 dark:shadow-black/40"
     >
-      <h2 id="consent-title" class="font-medium text-slate-900 dark:text-brand-50">{{ t('title') }}</h2>
-      <p class="mt-2 text-sm/relaxed">
+      <h2 id="consent-title" class="text-sm font-medium text-slate-900 sm:text-base dark:text-brand-50">{{ t('title') }}</h2>
+      <p class="mt-1 text-xs/relaxed sm:mt-2 sm:text-sm/relaxed">
         {{ t('text') }}
         <NuxtLink :to="link('/polityka-prywatnosci')" class="text-primary-500 underline underline-offset-2 dark:text-primary-400">{{ t('privacy') }}</NuxtLink>
       </p>
       <p v-if="consent" class="mt-2 text-xs text-slate-600 dark:text-slate-400">
         {{ t('now', { state: consent === 'granted' ? t('on') : t('off') }) }}.
       </p>
-      <div class="mt-4 flex gap-2">
+      <div class="mt-3 flex gap-2 sm:mt-4">
         <button
           type="button"
           :class="button"
