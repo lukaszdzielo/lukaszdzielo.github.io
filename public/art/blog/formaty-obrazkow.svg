@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<!-- ten sam obrazek 800 px w czterech formatach: wysokość słupka ~ rozmiar pliku (PNG ucięty) -->
+<rect x="20" y="24" width="440" height="150" rx="12" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+<g fill="rgba(255,255,255,.1)" stroke="rgba(200,215,255,.45)" stroke-width="1.2">
+<rect x="52" y="44" width="56" height="100" rx="8"/>
+<rect x="152" y="117" width="56" height="27" rx="8"/>
+<rect x="252" y="117" width="56" height="27" rx="8"/>
+</g>
+<rect x="352" y="132" width="56" height="12" rx="6" fill="#2860ea"/>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-dasharray="4 5">
+<path d="M52 58h56"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff" text-anchor="middle">
+<text x="80" y="164">.png</text>
+<text x="180" y="164">.jpg</text>
+<text x="280" y="164">.webp</text>
+<text x="380" y="164">.avif</text>
+</g>
+<!-- <picture> wybiera pierwszy obsługiwany format -->
+<rect x="20" y="206" width="132" height="38" rx="19" fill="rgba(111,156,255,.3)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+<text x="86" y="230" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff" text-anchor="middle">&lt;picture&gt;</text>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" fill="none">
+<path d="M152 225h36"/><path d="m180 218 8 7-8 7"/>
+</g>
+<g fill="rgba(255,255,255,.08)" stroke="rgba(200,215,255,.45)" stroke-width="1.2">
+<rect x="196" y="208" width="80" height="34" rx="8"/>
+<rect x="288" y="208" width="80" height="34" rx="8"/>
+<rect x="380" y="208" width="80" height="34" rx="8"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff" text-anchor="middle">
+<text x="236" y="230">avif</text>
+<text x="328" y="230">webp</text>
+<text x="420" y="230">jpg</text>
+<text x="328" y="276">srcset · sizes</text>
+</g>
+</svg>
