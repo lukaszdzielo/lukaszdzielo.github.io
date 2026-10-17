@@ -77,6 +77,15 @@ if (project.value && hasOwnPage.value) {
         ...(project.value.links?.live ? { sameAs: project.value.links.live } : {}),
         ...(project.value.ogImage ? { image: SITE_URL + project.value.ogImage } : {}),
     });
+    // Okruszki jak w widocznej nawigacji: Strona główna → Projekty → tytuł (ostatni element bez adresu)
+    useJsonLd('breadcrumb', {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: t('breadcrumb.home'), item: pageUrl(localLink('/')) },
+            { '@type': 'ListItem', position: 2, name: t('breadcrumb.projects'), item: pageUrl(localLink('/projects')) },
+            { '@type': 'ListItem', position: 3, name: project.value.title },
+        ],
+    });
 }
 </script>
 

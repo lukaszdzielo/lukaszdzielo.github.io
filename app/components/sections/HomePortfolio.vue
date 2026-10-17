@@ -27,15 +27,19 @@ const { col, lang, withoutLocale } = useContentLocale()
 // Projekty z własną stroną (treść w index.md albo opublikowany wpis o projekcie) – jak w archiwum.
 // Kafelek takiego projektu prowadzi do jego strony (→), pozostałe do wersji na żywo (↗).
 // Rozpoznajemy po tytule, więc gdy projekt dostanie stronę, kafelek przełączy się sam.
+// transform: do payloadu strony trafia tylko tytuł, ścieżka i czy projekt ma treść – nie pełne treści projektów
 const { data: contentProjects } = await useAsyncData(`featured-pages-${lang.value}`, () =>
   queryCollection(col('projects')).where('draft', '=', false).all(),
+  {
+    transform: (projects) => projects.map(p => ({ path: p.path, title: p.title, hasBody: hasBody(p) })),
+  },
 )
 const { data: linkedProjectPaths } = await useLinkedProjectPaths()
 const pages = computed(() => {
   const linked = new Set(linkedProjectPaths.value ?? [])
   const map = new Map<string, string>()
   for (const p of contentProjects.value ?? []) {
-    if (hasBody(p) || linked.has(withoutLocale(p.path))) map.set(p.title.toLocaleLowerCase(lang.value), p.path)
+    if (p.hasBody || linked.has(withoutLocale(p.path))) map.set(p.title.toLocaleLowerCase(lang.value), p.path)
   }
   return map
 })

@@ -3,17 +3,30 @@
 // Link z filtrem: /projects?tech=wordpress#archive (np. z oferty dla firm).
 import { projectKind } from '~/utils/projectKind'
 import { visibleFeaturedProjects } from '~/data/featuredProjects'
-import { PERSON_ID, pageUrl } from '~/data/site'
+import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site'
 
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
 
 const { col, lang, withoutLocale } = useContentLocale()
+// transform: do payloadu strony trafiają tylko pola używane niżej, nie pełne treści projektów
 const { data: projects } = await useAsyncData(`projects-archive-all-${lang.value}`, () =>
   queryCollection(col('projects'))
     .where('draft', '=', false)
     .order('date', 'DESC')
     .all(),
+  {
+    transform: (projects) => projects.map(p => ({
+      path: p.path,
+      title: p.title,
+      date: p.date,
+      tags: p.tags,
+      agency: p.agency,
+      image: p.image,
+      links: p.links,
+      hasBody: hasBody(p),
+    })),
+  },
 )
 
 const { data: linkedProjectPaths } = await useLinkedProjectPaths()
@@ -23,15 +36,9 @@ const linkedPaths = computed(() => new Set(linkedProjectPaths.value ?? []))
 const featuredTitles = new Set(visibleFeaturedProjects(lang.value).map(p => p.title.toLocaleLowerCase(lang.value)))
 
 const archive = computed(() =>
-  (projects.value ?? []).map(p => ({
-    path: p.path,
-    title: p.title,
-    date: p.date,
-    tags: p.tags,
-    agency: p.agency,
-    image: p.image,
-    links: p.links,
-    hasPage: hasBody(p) || linkedPaths.value.has(withoutLocale(p.path)),
+  (projects.value ?? []).map(({ hasBody: hasOwnBody, ...p }) => ({
+    ...p,
+    hasPage: hasOwnBody || linkedPaths.value.has(withoutLocale(p.path)),
     featured: featuredTitles.has(p.title.toLocaleLowerCase(lang.value)),
   })),
 )
@@ -47,7 +54,8 @@ useSiteMeta({
   imageAlt: t('meta.title'),
 })
 
-// Dane strukturalne: lista projektów, które mają własną stronę (dla Google i wyszukiwarek AI)
+// Dane strukturalne: lista projektów, które mają własną stronę (dla Google i wyszukiwarek AI).
+// Autor z name i url, nie samo @id – Google czyta JSON-LD osobno na każdej stronie
 const route = useRoute()
 useJsonLd('projects', {
   '@type': 'CollectionPage',
@@ -55,13 +63,22 @@ useJsonLd('projects', {
   description: t('meta.description'),
   url: pageUrl(route.path),
   inLanguage: lang.value === 'pl' ? 'pl-PL' : 'en-US',
-  author: { '@id': PERSON_ID },
+  author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: archive.value
       .filter(p => p.hasPage)
       .map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.title, url: pageUrl(p.path) })),
   },
+})
+
+// Okruszki jak w widocznej nawigacji: Strona główna → Projekty (ostatni element bez adresu)
+useJsonLd('breadcrumb', {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('breadcrumb.home'), item: pageUrl(link('/')) },
+    { '@type': 'ListItem', position: 2, name: t('title') },
+  ],
 })
 </script>
 

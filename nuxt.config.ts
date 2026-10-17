@@ -121,6 +121,34 @@ const buildLlmsTxt = (): string => {
   ].filter(Boolean).join('\n');
 };
 
+// <lastmod> do sitemap.xml: dla wpisów i projektów data z frontmattera (updated, a bez niego date),
+// klucz to adres strony z ukośnikiem na końcu. Pozostałe strony nie mają daty w treści – idą bez lastmod.
+const getContentLastmod = (): Map<string, string> => {
+  const dates = new Map<string, string>();
+  const field = (yaml: string, key: string) => {
+    const m = yaml.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+    return m ? m[1].trim().replace(/^'(.*)'$/, '$1').replace(/^"(.*)"$/, '$1') : '';
+  };
+  const walk = (dir: string): string[] => !fs.existsSync(dir) ? [] : fs.readdirSync(dir).flatMap((f) => {
+    const full = path.join(dir, f);
+    return fs.statSync(full).isDirectory() ? walk(full) : f.endsWith('.md') ? [full] : [];
+  });
+  for (const [lang, prefix] of [['en', ''], ['pl', '/pl']] as const) {
+    for (const kind of ['blog', 'projects'] as const) {
+      const dir = path.resolve(process.cwd(), `content/${lang}/${kind}`);
+      for (const file of walk(dir)) {
+        const match = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (!match) continue;
+        const date = field(match[1], 'updated') || field(match[1], 'date');
+        if (!date) continue;
+        const rel = path.relative(dir, file).split(path.sep).join('/').replace(/\/index\.md$/, '').replace(/\.md$/, '');
+        dates.set(`${prefix}/${kind}/${rel}/`, date);
+      }
+    }
+  }
+  return dates;
+};
+
 // Critical CSS (14.10): style potrzebne do pierwszego ekranu trafiają do <style> w HTML, a cały plik CSS
 // ładuje się bez blokowania wyświetlenia (media="print" → "all" po wczytaniu). Na telefonie strona pokazuje się
 // szybciej (Lighthouse: „Render-blocking requests”). Działa na gotowych plikach HTML po prerenderze.
@@ -252,7 +280,11 @@ export default defineNuxtConfig({
       });
       nitro.hooks.hook('prerender:done', async () => {
         const base = SITE_URL.replace(/\/$/, '');
-        const urls = [...sitemap].sort().map((r) => `  <url><loc>${base}${r}</loc></url>`).join('\n');
+        const lastmod = getContentLastmod();
+        const urls = [...sitemap].sort().map((r) => {
+          const mod = lastmod.get(r);
+          return `  <url><loc>${base}${r}</loc>${mod ? `<lastmod>${mod}</lastmod>` : ''}</url>`;
+        }).join('\n');
         fs.writeFileSync(
           path.join(nitro.options.output.publicDir, 'sitemap.xml'),
           `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
