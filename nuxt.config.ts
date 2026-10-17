@@ -255,6 +255,13 @@ export default defineNuxtConfig({
     // (an unprefixed value would produce useless 1w/2w candidates).
     screens: { xs: 320 },
   },
+  experimental: {
+    // NuxtLink pobiera dane podstrony dopiero po najechaniu albo fokusie, a nie dla każdego linku widocznego na ekranie –
+    // strona główna przy wczytaniu nie pobiera danych kilkunastu podstron
+    defaults: {
+      nuxtLink: { prefetchOn: { visibility: false, interaction: true } },
+    },
+  },
   sourcemap: {
     server: false,
     client: false,
