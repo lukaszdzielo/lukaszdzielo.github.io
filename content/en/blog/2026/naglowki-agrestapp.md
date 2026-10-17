@@ -13,7 +13,7 @@ ogImage: /og/blog/naglowki-agrestapp-en.jpg
 draft: false
 ---
 
-AgrestApp has two headers: one on the company website and one in the panel after logging in. Both worked, but each was built in a different way, and the sizes came from random pixels. On 15 October I rewrote both. It took 8 commits and 40 changed files, and the old panel header (643 lines in one file) was replaced by three smaller components. The screenshots below are from a local version with made-up data.
+AgrestApp has two headers: one on the company website and one in the panel after logging in. Both worked, but each was built in a different way, and the sizes came from random pixels. On 15 October I rewrote both. It took 8 commits, 40 changed files and +1424 / −923 lines, and the old panel header (643 lines in one file) was replaced by three smaller components. In the next two days I also fixed the icon colours. The screenshots below are from a local version with made-up data.
 
 ## The menu on the company website
 
@@ -74,13 +74,32 @@ I didn't use breakpoints for this, but the `pointer-coarse:` variant from Tailwi
 
 The same rule works in the account menu, in the website menu and in the search field (`h-9 pointer-coarse:h-11`). The menu button on the phone is always 44 × 44 px, so switching ☰ to × doesn't move the bar.
 
-![The account menu – before the change on the left, after on the right](/blog/2026/naglowki-agrestapp/panel-account-menu.webp){width="1016" height="460"}
+## Icons in one colour
+
+After the first version I saw that the icons in the header and in the account menu had different colours. Some took the text colour, and some took a grey from another place. So I set one rule:
+
+- At rest, every icon button in the bar and every icon in the account menu has the same secondary colour: `fill-slate-500`, and `fill-slate-400` in dark mode.
+- When you hover an item in the account menu, the icon takes the text colour (`group-hover:fill-current`), so the text and the icon change together.
+- The button of the active page gets the solid version of the icon instead of only a background, for example the life ring on the help page.
+- The bell with a notification is a separate icon, not a red dot added with `absolute`.
+
+A small function chooses the icon variant. The same logic will work for the cart and other icons with a counter:
+
+```js
+// One of four names: normal, solid, with a notification, with a notification and solid
+function notificationIcon(icon, notification, hasNotification, active) {
+  const name = hasNotification ? notification : icon
+  return active ? `${name}-solid` : name
+}
+```
+
+![The account menu – before the change on the left, after on the right: icons in one colour](/blog/2026/naglowki-agrestapp/panel-account-menu.webp){width="1016" height="460"}
 
 ## The header height in one variable
 
 A small change brought the most order. The sidebar and the sticky page bars in the panel sit under the header, so they need to know its height. Before, it was hard-coded: `top-[75px]`, and when an administrator was logged in as another company and the "Log in as" bar appeared above the header, `!top-[125px]`. The same condition was repeated in several files. One bar still hid 11 px under the header.
 
-Now the "Log in as" bar is part of the header, and the header measures its own height and saves it in a CSS variable:
+Now the "Log in as" bar is part of the header, and the header measures its own height and saves it in a CSS variable on the `<html>` element:
 
 ```vue
 <script setup>
@@ -91,12 +110,12 @@ const { height } = useElementSize(header, undefined, { box: 'border-box' })
 
 // Header height for the elements that sit under it
 watch(height, (value) => {
-  document.documentElement.style.setProperty('--header-height', `${value || 72}px`)
+  document.documentElement.style.setProperty('--panel-header-height', `${value || 72}px`)
 }, { immediate: true })
 </script>
 ```
 
-Every element under the header now has the same class, `top-(--header-height)`. It doesn't need to know if the "Log in as" bar is visible or how tall the header is on a given screen.
+Every element under the header now has the same class, `top-(--panel-header-height)`. It doesn't need to know if the "Log in as" bar is visible or how tall the header is on a given screen.
 
 ![The panel header – before the change on top (75 px), after at the bottom (72 px)](/blog/2026/naglowki-agrestapp/panel-header.webp){width="1440" height="122"}
 
@@ -119,6 +138,7 @@ In the website bar one gap needed a fluid value. Between the logo, the menu and 
 
 - One menu list for desktop and phone.
 - One size rule (36 / 44 px) instead of several random ones.
+- One icon colour at rest and a solid icon for the active page.
 - One variable with the header height instead of the numbers 75 and 125 in several files.
 - A menu that works with a mouse, touch and the keyboard.
 
