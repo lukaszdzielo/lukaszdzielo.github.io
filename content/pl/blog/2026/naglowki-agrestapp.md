@@ -13,7 +13,7 @@ ogImage: /og/blog/naglowki-agrestapp-pl.jpg
 draft: false
 ---
 
-AgrestApp ma dwa nagłówki: na stronie firmowej i w panelu po zalogowaniu. Oba działały, ale każdy był zbudowany inaczej, a rozmiary brały się z przypadkowych pikseli. 15 października przepisałem oba. Wyszło 8 commitów i 40 zmienionych plików, a stary nagłówek panelu (643 linie w jednym pliku) zastąpiły trzy mniejsze komponenty. Zrzuty poniżej są z lokalnej wersji na zmyślonych danych.
+AgrestApp ma dwa nagłówki: na stronie firmowej i w panelu po zalogowaniu. Oba działały, ale każdy był zbudowany inaczej, a rozmiary brały się z przypadkowych pikseli. 15 października przepisałem oba. Wyszło 8 commitów, 40 zmienionych plików i +1424 / −923 linii, a stary nagłówek panelu (643 linie w jednym pliku) zastąpiły trzy mniejsze komponenty. W kolejnych dwóch dniach poprawiłem jeszcze kolory ikon. Zrzuty poniżej są z lokalnej wersji na zmyślonych danych.
 
 ## Menu na stronie firmowej
 
@@ -74,13 +74,32 @@ Nie użyłem do tego breakpointów, tylko wariantu `pointer-coarse:` z Tailwinda
 
 Ta sama zasada działa w menu konta, w menu strony i w polu wyszukiwania (`h-9 pointer-coarse:h-11`). Przycisk menu na telefonie ma stałe 44 × 44 px, więc zamiana ☰ na × nie przesuwa paska.
 
-![Menu konta – po lewej przed zmianą, po prawej po](/blog/2026/naglowki-agrestapp/panel-account-menu.webp){width="1016" height="460"}
+## Ikony w jednym kolorze
+
+Po pierwszej wersji zobaczyłem, że ikony w nagłówku i w menu konta mają różne kolory. Część brała kolor tekstu, a część szarość z innego miejsca. Ustawiłem więc jedną zasadę:
+
+- W spoczynku każda ikona-przycisk w pasku i każda ikona w menu konta ma ten sam drugorzędny kolor: `fill-slate-500`, a w trybie ciemnym `fill-slate-400`.
+- Po najechaniu na pozycję w menu konta ikona bierze kolor tekstu (`group-hover:fill-current`), więc tekst i ikona zmieniają się razem.
+- Przycisk aktywnej strony dostaje pełną wersję ikony zamiast samego tła, np. koło ratunkowe na stronie pomocy.
+- Dzwonek z powiadomieniem to osobna ikona, a nie czerwona kropka doklejona przez `absolute`.
+
+Wariant ikony wybiera mała funkcja. Ta sama logika obsłuży koszyk i inne ikony z licznikiem:
+
+```js
+// Jedna z czterech nazw: zwykła, pełna, z powiadomieniem, z powiadomieniem pełna
+function notificationIcon(icon, notification, hasNotification, active) {
+  const name = hasNotification ? notification : icon
+  return active ? `${name}-solid` : name
+}
+```
+
+![Menu konta – po lewej przed zmianą, po prawej po: ikony w jednym kolorze](/blog/2026/naglowki-agrestapp/panel-account-menu.webp){width="1016" height="460"}
 
 ## Wysokość nagłówka w jednej zmiennej
 
 Najwięcej porządku dała mała zmiana. Boczne menu i przyklejone paski stron w panelu leżą pod nagłówkiem, więc muszą znać jego wysokość. Wcześniej była wpisana na sztywno: `top-[75px]`, a gdy administrator był zalogowany jako inna firma i nad nagłówkiem pojawiał się pasek „Zaloguj jako” – `!top-[125px]`. Ten sam warunek powtarzał się w kilku plikach. Jeden pasek i tak chował się 11 px pod nagłówkiem.
 
-Teraz pasek „Zaloguj jako” jest częścią nagłówka, a nagłówek sam mierzy swoją wysokość i zapisuje ją w zmiennej CSS:
+Teraz pasek „Zaloguj jako” jest częścią nagłówka, a nagłówek sam mierzy swoją wysokość i zapisuje ją w zmiennej CSS na elemencie `<html>`:
 
 ```vue
 <script setup>
@@ -91,12 +110,12 @@ const { height } = useElementSize(header, undefined, { box: 'border-box' })
 
 // Wysokość nagłówka dla elementów, które leżą pod nim
 watch(height, (value) => {
-  document.documentElement.style.setProperty('--header-height', `${value || 72}px`)
+  document.documentElement.style.setProperty('--panel-header-height', `${value || 72}px`)
 }, { immediate: true })
 </script>
 ```
 
-Każdy element pod nagłówkiem ma teraz tę samą klasę `top-(--header-height)`. Nie musi wiedzieć, czy pasek „Zaloguj jako” jest widoczny, ani ile nagłówek ma wysokości na danym ekranie.
+Każdy element pod nagłówkiem ma teraz tę samą klasę `top-(--panel-header-height)`. Nie musi wiedzieć, czy pasek „Zaloguj jako” jest widoczny, ani ile nagłówek ma wysokości na danym ekranie.
 
 ![Nagłówek panelu – u góry przed zmianą (75 px), na dole po (72 px)](/blog/2026/naglowki-agrestapp/panel-header.webp){width="1440" height="122"}
 
@@ -119,6 +138,7 @@ W pasku strony jeden odstęp wymagał płynnej wartości. Między logo, menu i p
 
 - Jedna lista menu dla komputera i telefonu.
 - Jedna zasada rozmiaru (36 / 44 px) zamiast kilku przypadkowych.
+- Jeden kolor ikon w spoczynku i pełna ikona dla aktywnej strony.
 - Jedna zmienna z wysokością nagłówka zamiast liczb 75 i 125 w kilku plikach.
 - Menu, które działa myszą, dotykiem i klawiaturą.
 

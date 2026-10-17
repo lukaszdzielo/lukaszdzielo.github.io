@@ -19,8 +19,8 @@
 <g stroke="rgba(200,215,255,.55)" stroke-width="2" fill="none">
 <path d="M110 100v40"/><path d="m103 132 7 8 7-8"/>
 </g>
-<rect x="30" y="148" width="190" height="38" rx="19" fill="rgba(111,156,255,.3)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
-<text x="125" y="172" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff" text-anchor="middle">--header-height</text>
+<rect x="20" y="148" width="230" height="38" rx="19" fill="rgba(111,156,255,.3)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+<text x="135" y="172" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff" text-anchor="middle">--panel-header-height</text>
 <g stroke="rgba(200,215,255,.55)" stroke-width="2" fill="none">
 <path d="M90 190c0 26-30 26-30 50"/><path d="m53 232 7 8 7-8"/>
 <path d="M160 190c0 26 40 26 40 50"/><path d="m193 232 7 8 7-8"/>
