@@ -260,6 +260,8 @@ export default defineNuxtConfig({
     },
   },
   image: {
+    // @nuxt/image zostaje na 2.0.x: 2.1.0 (ipx 4 beta, sharp 0.35) w teście 17.10.2026 przerywał prerender w połowie
+    // bez żadnego błędu (kod wyjścia 0) – strona bez części podstron, sitemap.xml i critical CSS.
     // Source images live outside /public so the originals are never deployed;
     // only the optimised variants generated into /_ipx end up in the build.
     dir: 'assets/images',
