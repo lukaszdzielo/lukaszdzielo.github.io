@@ -5,7 +5,7 @@ description: How I built a Pokedex for more than 1,000 Pokémon in plain JavaScr
 tags:
 - javascript
 - pokeapi
-- projekt
+- project
 kind: post
 project: /projects/2024/pokedex
 art: /art/blog/pokedex.svg

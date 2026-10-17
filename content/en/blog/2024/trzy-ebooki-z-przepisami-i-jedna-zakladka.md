@@ -5,7 +5,7 @@ description: How I turned several coffee recipe ebooks into one page with search
 tags:
 - vue
 - typescript
-- projekt
+- project
 kind: post
 project: /projects/2024/coffee-recipes
 art: /art/blog/coffee-recipes.svg
