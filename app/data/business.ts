@@ -185,24 +185,25 @@ export const businessProcess = {
 }
 
 // Opinie pokazujemy dopiero po akceptacji klienta (`approved: true`). Bez zaakceptowanych sekcja się nie wyświetla.
+// Zgody na wszystkie trzy opinie: 16.10.2026.
 // Wersja angielska to tłumaczenie opinii – `approved` ustawiaj tak samo w obu językach.
 export const businessQuotes = {
   en: {
     title: 'A few words from clients',
     lead: 'Feedback from people I\'ve worked with – published with their permission.',
     items: [
-      { text: 'We asked for a website to showcase our car listings. We wanted something easy to edit, without high monthly costs – and that\'s exactly what we got.', name: 'Michał', company: 'Auto Moto Silesia', approved: false },
-      { text: 'Thank you so much for the new design! The site looks great, and our Google rankings jumped, which I\'m very grateful for.', name: 'Mateusz', company: 'ReblyX', approved: false },
-      { text: 'Łukasz designed and built the Monarca website from scratch. From the start he understood how we wanted to present the company, and he made changes quickly without unnecessary questions.', name: 'Mateusz', company: 'Monarca', approved: false },
+      { text: 'We asked for a website to showcase our car listings. We wanted something easy to edit, without high monthly costs – and that\'s exactly what we got.', name: 'Michał', company: 'Auto Moto Silesia', approved: true },
+      { text: 'Thank you so much for the new design! The site looks great, and our Google rankings jumped, which I\'m very grateful for.', name: 'Mateusz', company: 'ReblyX', approved: true },
+      { text: 'Łukasz designed and built the Monarca website from scratch. From the start he understood how we wanted to present the company, and he made changes quickly without unnecessary questions.', name: 'Mateusz', company: 'Monarca', approved: true },
     ],
   },
   pl: {
     title: 'Kilka słów od klientów',
     lead: 'Opinie osób, z którymi pracowałem – publikowane za ich zgodą.',
     items: [
-      { text: 'Prosiliśmy o stronę, na której będziemy prezentować nasze oferty samochodów. Chcieliśmy czegoś prostego w edycji, bez dużych kosztów miesięcznych – i dokładnie to dostaliśmy.', name: 'Michał', company: 'Auto Moto Silesia', approved: false },
-      { text: 'Bardzo dziękuję za nowy projekt! Strona wygląda świetnie, a wyniki w Google podskoczyły, za co jestem bardzo wdzięczny.', name: 'Mateusz', company: 'ReblyX', approved: false },
-      { text: 'Łukasz zaprojektował i wdrożył stronę Monarki od zera. Od początku rozumiał, jak chcemy pokazać firmę, a poprawki wprowadzał szybko i bez zbędnych pytań.', name: 'Mateusz', company: 'Monarca', approved: false },
+      { text: 'Prosiliśmy o stronę, na której będziemy prezentować nasze oferty samochodów. Chcieliśmy czegoś prostego w edycji, bez dużych kosztów miesięcznych – i dokładnie to dostaliśmy.', name: 'Michał', company: 'Auto Moto Silesia', approved: true },
+      { text: 'Bardzo dziękuję za nowy projekt! Strona wygląda świetnie, a wyniki w Google podskoczyły, za co jestem bardzo wdzięczny.', name: 'Mateusz', company: 'ReblyX', approved: true },
+      { text: 'Łukasz zaprojektował i wdrożył stronę Monarki od zera. Od początku rozumiał, jak chcemy pokazać firmę, a poprawki wprowadzał szybko i bez zbędnych pytań.', name: 'Mateusz', company: 'Monarca', approved: true },
     ],
   },
 }
