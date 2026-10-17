@@ -15,6 +15,17 @@ const SITE_URL = 'https://lukaszdzielo.github.io/'
 const OG_IMAGE = `${SITE_URL}og/home-en.jpg`
 const APPLE_TITLE = SITE_NAME
 
+// Dzisiejsza data w Polsce ('2026-10-17') – wpis z datą z przyszłości czeka na publikację.
+// GitHub Actions buduje stronę codziennie o 2:30 UTC, więc wpis pojawia się sam rano w dniu z pola `date`.
+const TODAY = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Warsaw' }).format(new Date())
+// Czy plik treści jest ukryty: `draft: true` albo (wpis) data publikacji jeszcze nie nadeszła
+const isHidden = (yaml: string, kind: 'projects' | 'blog') => {
+  if (/draft:\s*true/.test(yaml)) return true
+  if (kind !== 'blog') return false
+  const date = yaml.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})/m)?.[1]
+  return !!date && date > TODAY
+}
+
 // Prerender every project page (/projects/<year>/<slug>) and the paginated post list
 const getPrerenderRoutes = (): string[] => {
   const routes: string[] = [];
@@ -49,7 +60,7 @@ const getPrerenderRoutes = (): string[] => {
       const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
       if (match) {
         const yaml = match[1];
-        const draft = /draft:\s*true/.test(yaml);
+        const draft = isHidden(yaml, 'projects');
 
         if (!draft) {
           const lang = prefixes[file] === '/pl' ? 'pl' : 'en';
@@ -67,7 +78,7 @@ const getPrerenderRoutes = (): string[] => {
   for (const [lang, prefix] of [['en', ''], ['pl', '/pl']] as const) {
     const publishedPosts = getProjectFiles(path.resolve(process.cwd(), `content/${lang}/blog`)).filter((file) => {
       const match = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
-      return !(match && /draft:\s*true/.test(match[1]));
+      return !(match && isHidden(match[1], 'blog'));
     }).length;
     const blogPages = 1 + Math.ceil(Math.max(0, publishedPosts - 13) / 12);
     routes.push(`${prefix}/blog`);
@@ -97,7 +108,7 @@ const buildLlmsTxt = (): string => {
     return walk(dir).map((file) => {
       const raw = fs.readFileSync(file, 'utf-8').replace(/\r\n/g, '\n');
       const m = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-      if (!m || /draft:\s*true/.test(m[1])) return null;
+      if (!m || isHidden(m[1], kind)) return null;
       // projekt trafia do spisu tylko z własną podstroną (treść pod frontmatterem)
       if (kind === 'projects' && !m[2].trim()) return null;
       const rel = path.relative(dir, file).split(path.sep).join('/').replace(/\/index\.md$/, '').replace(/\.md$/, '');
@@ -280,6 +291,14 @@ export default defineNuxtConfig({
     '/polityka-prywatnosci': { redirect: { to: '/pl/polityka-prywatnosci/', statusCode: 301 } },
   },
   hooks: {
+    // Wpis z datą z przyszłości traktujemy jak szkic (draft) – nie ma go na liście, w sitemap ani pod adresem.
+    // Dzień publikacji: patrz TODAY wyżej.
+    'content:file:afterParse'(ctx) {
+      const content = ctx.content as { date?: string; draft?: boolean }
+      if (ctx.collection.name.startsWith('blog') && content.date && String(content.date).slice(0, 10) > TODAY) {
+        content.draft = true
+      }
+    },
     // @nuxt/image registers its source dir as a public asset dir, which would copy
     // every original into the build. Drop it for production builds - IPX still reads
     // the originals from disk while prerendering.
