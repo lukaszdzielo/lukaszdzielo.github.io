@@ -5,7 +5,7 @@ definePageMeta({ i18n: { paths: { en: '/business-websites', pl: '/strony-dla-fir
 // Strona dla firm: oferta stron na WordPressie. Treści – app/data/business.ts, ceny – app/data/pricing.ts.
 // Nagłówek i stopka przełączają się na wersję „dla firm” w app.vue (po adresie).
 import { businessFaq, businessOffer } from '~/data/business'
-import { prices, promoIsOn, price } from '~/data/pricing'
+import { price, priceValue, type PriceId } from '~/data/pricing'
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site'
 
 const { t, locale } = useI18n({ useScope: 'local' })
@@ -24,8 +24,8 @@ useSiteMeta({
 })
 
 // Dane strukturalne: usługa z cenami „od” (netto, ceny z app/data/pricing.ts) i pytania z FAQ – w języku strony
-const promoOn = promoIsOn()
-const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: keyof typeof prices) => price(id, lang, promoOn).now)
+const day = usePricingDay()
+const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: PriceId) => price(id, lang, day.value).now)
 // adres strony w bieżącym języku (/business-websites albo /pl/strony-dla-firm)
 const url = pageUrl(link('/strony-dla-firm'))
 useJsonLd('business', {
@@ -40,15 +40,15 @@ useJsonLd('business', {
       inLanguage: lang === 'pl' ? 'pl-PL' : 'en-US',
       provider: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
       offers: offer.value.plans.map(plan => {
-        const p = prices[plan.price]
+        const p = priceValue(plan.price, lang, day.value)
         return {
           '@type': 'Offer',
           name: plan.name,
           description: plan.text,
           priceSpecification: {
             '@type': 'PriceSpecification',
-            minPrice: promoOn && p.promo ? p.promo : p.regular,
-            priceCurrency: 'PLN',
+            minPrice: p.value,
+            priceCurrency: p.currency,
             valueAddedTaxIncluded: false,
           },
         }
