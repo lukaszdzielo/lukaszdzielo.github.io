@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { businessCare } from '~/data/business'
-import { price as priceIn, promoIsOn, type PriceId } from '~/data/pricing'
+import { price as priceIn, type PriceId } from '~/data/pricing'
 
 const { t, locale } = useI18n({ useScope: 'local' })
 const care = useLocalized(businessCare)
-const promoOn = promoIsOn()
-// cena w formacie języka strony („120 zł” / „120 PLN”)
-const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', promoOn)
+const day = usePricingDay()
+// cena w formacie języka strony („150 zł” / „€35 · £39”)
+const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', day.value)
 </script>
 
 <template>
@@ -33,6 +33,7 @@ const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', 
                 <template v-if="'price' in rule && rule.price">
                   <s v-if="price(rule.price).before" class="mr-1.5 font-normal opacity-55">{{ price(rule.price).before }}</s>
                   {{ price(rule.price).now }} {{ rule.suffix }}
+                  <small v-if="price(rule.price).lowest" class="block text-xs font-normal opacity-70">{{ t('lowest', { price: price(rule.price).lowest }) }}</small>
                 </template>
                 <template v-else>{{ 'value' in rule ? rule.value : '' }}</template>
               </dd>
@@ -47,7 +48,7 @@ const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', 
 
 <i18n lang="json">
 {
-  "en": { "monthly": "Every month", "rules": "Terms and prices" },
-  "pl": { "monthly": "W każdym miesiącu", "rules": "Zasady i ceny" }
+  "en": { "monthly": "Every month", "rules": "Terms and prices", "lowest": "Lowest in the 30 days before the sale: {price}" },
+  "pl": { "monthly": "W każdym miesiącu", "rules": "Zasady i ceny", "lowest": "Najniższa z 30 dni przed obniżką: {price}" }
 }
 </i18n>

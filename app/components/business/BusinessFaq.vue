@@ -1,13 +1,13 @@
 <script setup lang="ts">
 // Pytania i odpowiedzi. Ceny w odpowiedziach ({card}, {company}) biorą się z app/data/pricing.ts
-// (w formacie języka strony: „1 700 zł” albo „1,700 PLN”).
+// (w formacie języka strony: „2 500 zł” albo „€590 · £690”).
 import { businessFaq } from '~/data/business'
-import { price, promoIsOn, type PriceId } from '~/data/pricing'
+import { price, type PriceId } from '~/data/pricing'
 
 const { lang } = useContentLocale()
 const faq = useLocalized(businessFaq)
-const promoOn = promoIsOn()
-const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: PriceId) => price(id, lang.value, promoOn).now)
+const day = usePricingDay()
+const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: PriceId) => price(id, lang.value, day.value).now)
 </script>
 
 <template>

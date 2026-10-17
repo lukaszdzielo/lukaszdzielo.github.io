@@ -1,20 +1,21 @@
 <script setup lang="ts">
 // Trzy pakiety. Ceny z app/data/pricing.ts – w czasie promocji: przekreślona cena regularna,
-// cena promocyjna i etykieta z datą (liczone przy budowaniu strony).
+// cena promocyjna, najniższa cena z 30 dni i etykieta z datą (liczone przy budowaniu strony).
 import { businessOffer } from '~/data/business'
-import { price as priceIn, promo, promoIsOn, promoUntilLabel, type Lang, type PriceId } from '~/data/pricing'
+import { price as priceIn, promoLabel, type Lang, type PriceId } from '~/data/pricing'
 
 const { t, locale } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
 const offer = useLocalized(businessOffer)
 const lang = computed(() => (locale.value === 'pl' ? 'pl' : 'en') as Lang)
-const promoOn = promoIsOn()
-// cena w formacie języka strony („2 000 zł” / „2,000 PLN”)
-const price = (id: PriceId) => priceIn(id, lang.value, promoOn)
-// etykieta promocji, np. „Promocja do 30.11” / „Sale until Nov 30”
-const promoBadge = computed(() =>
-  promoOn ? t('promo', { label: promo.label[lang.value], date: promoUntilLabel(lang.value) }) : '',
-)
+const day = usePricingDay()
+// cena w formacie języka strony („2 500 zł” / „€590 · £690”)
+const price = (id: PriceId) => priceIn(id, lang.value, day.value)
+// etykieta promocji, np. „Black WEB do 30.11” / „Black WEB until Nov 30”
+const promoBadge = computed(() => {
+  const p = promoLabel(lang.value, day.value)
+  return p ? t('promo', p) : ''
+})
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const promoBadge = computed(() =>
             ? 'border-transparent bg-brand-900 text-white dark:bg-slate-100 dark:text-brand-950'
             : 'border-slate-900/10 bg-white text-slate-900 shadow-sm dark:border-white/10 dark:bg-brand-900 dark:text-brand-50'"
         >
-          <span v-if="promoOn" class="absolute top-6 right-6 rounded-full bg-amber-200 px-2.5 py-1 text-xs font-semibold text-amber-900">{{ promoBadge }}</span>
+          <span v-if="promoBadge" class="absolute top-6 right-6 rounded-full bg-amber-200 px-2.5 py-1 text-xs font-semibold text-amber-900">{{ promoBadge }}</span>
           <p class="text-xs font-semibold tracking-widest uppercase" :class="plan.highlight ? 'text-primary-400 dark:text-primary-500' : 'text-primary-500 dark:text-primary-400'">
             {{ plan.name }}
           </p>
@@ -50,6 +51,7 @@ const promoBadge = computed(() =>
             <b class="text-2xl font-semibold tracking-tight">{{ t('from', { price: price(plan.price).now }) }}</b>
             <span class="text-sm opacity-70">{{ plan.suffix }}</span>
             <NuxtLink v-if="plan.more" :to="plan.more" class="text-sm underline underline-offset-2 opacity-70 hover:opacity-100">{{ t('details') }}</NuxtLink>
+            <small v-if="price(plan.price).lowest" class="w-full text-xs opacity-70">{{ t('lowest', { price: price(plan.price).lowest }) }}</small>
           </p>
         </li>
       </ul>
@@ -59,13 +61,14 @@ const promoBadge = computed(() =>
         <span class="text-slate-600 dark:text-slate-300">{{ offer.other.text }}</span>
         <NuxtLink :to="link('/strony-dla-firm#contact')" class="shrink-0 font-medium text-primary-500 sm:ml-auto dark:text-primary-400">{{ t('ask') }}</NuxtLink>
       </div>
+      <p class="mt-3 text-xs/relaxed text-slate-600 dark:text-slate-400">{{ t('note') }}</p>
     </div>
   </section>
 </template>
 
 <i18n lang="json">
 {
-  "en": { "promo": "{label} until {date}", "from": "from {price}", "details": "details below", "ask": "Ask →" },
-  "pl": { "promo": "{label} do {date}", "from": "od {price}", "details": "szczegóły niżej", "ask": "Zapytaj →" }
+  "en": { "promo": "{label} until {date}", "from": "from {price}", "details": "details below", "ask": "Ask →", "lowest": "Lowest price in the 30 days before the sale: {price}", "note": "Prices in € and £ are fixed – I review them every quarter. You get the final price in your quote." },
+  "pl": { "promo": "{label} do {date}", "from": "od {price}", "details": "szczegóły niżej", "ask": "Zapytaj →", "lowest": "Najniższa cena z 30 dni przed obniżką: {price}", "note": "Dokładną kwotę dostajesz w wycenie." }
 }
 </i18n>
