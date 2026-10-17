@@ -36,10 +36,22 @@ if (post.value) {
         headline: post.value.title,
         description: post.value.description || undefined,
         datePublished: post.value.date || undefined,
+        // edycja po publikacji (pole `updated` we frontmatterze); bez niej data publikacji
+        dateModified: post.value.updated || post.value.date || undefined,
         inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
         mainEntityOfPage: pageUrl(route.path),
         image: post.value.ogImage ? `${SITE_URL}${post.value.ogImage}` : undefined,
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
+        publisher: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
+    });
+    // Okruszki jak w widocznej nawigacji: Strona główna → Wpisy → tytuł (ostatni element bez adresu)
+    useJsonLd('breadcrumb', {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: t('breadcrumb.home'), item: pageUrl(localLink('/')) },
+            { '@type': 'ListItem', position: 2, name: t('breadcrumb.blog'), item: pageUrl(localLink('/blog')) },
+            { '@type': 'ListItem', position: 3, name: post.value.title },
+        ],
     });
 }
 

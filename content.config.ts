@@ -30,6 +30,10 @@ const blogSchema = z.object({
   date: z.union([z.string(), z.date()]).transform((v) =>
     typeof v === 'string' ? v : v.toISOString().slice(0, 10)
   ),
+  // data ostatniej edycji po publikacji – dateModified w JSON-LD i <lastmod> w sitemap; bez niej liczy się date
+  updated: z.union([z.string(), z.date()]).transform((v) =>
+    typeof v === 'string' ? v : v.toISOString().slice(0, 10)
+  ).optional(),
   slug: z.string().optional(),
   description: z.string(),
   tags: z.array(z.string()),

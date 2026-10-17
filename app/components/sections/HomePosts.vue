@@ -2,12 +2,25 @@
 // Najnowsze wpisy na stronie głównej. Gdy nie ma żadnego opublikowanego wpisu
 // (wszystkie mają `draft: true`), sekcja zostaje, a w miejscu kart jest informacja o braku wpisów.
 const { col, lang } = useContentLocale()
+// transform: do payloadu strony trafiają tylko pola używane przez karty wpisów, nie pełne treści
 const { data: posts } = await useAsyncData(`home-posts-${lang.value}`, () =>
   queryCollection(col('blog'))
     .where('draft', '=', false)
     .order('date', 'DESC')
     .limit(6)
     .all(),
+  {
+    transform: (posts) => posts.map(p => ({
+      path: p.path,
+      title: p.title,
+      description: p.description,
+      date: p.date,
+      tags: p.tags,
+      kind: p.kind,
+      image: p.image,
+      art: p.art,
+    })),
+  },
 )
 const scroller = useTemplateRef<HTMLElement>('scroller')
 const { t } = useI18n({ useScope: 'local' })

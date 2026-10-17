@@ -23,10 +23,12 @@ const { t } = useI18n({ useScope: 'local' })
 const svg = computed(() => (props.mock ? mockups[props.mock] : ''))
 
 // Cały kafelek jest jednym linkiem (jak karta wpisu): strona projektu (to) albo działająca strona w nowej karcie (href).
-// Bez linku zostaje <article>. aria-label – krótka nazwa linku zamiast całej treści kafelka.
+// Bez linku zostaje <article>. Wariant `to` bez aria-label – nazwą linku jest treść kafelka
+// (etykieta z samym tytułem nie zawierała widocznego tekstu – Lighthouse: label-content-name-mismatch);
+// href dostaje etykietę z tytułem i dopiskiem o nowej karcie.
 const NuxtLink = resolveComponent('NuxtLink')
 const linkAttrs = computed(() => {
-  if (props.to) return { is: NuxtLink, to: props.to, 'aria-label': props.title }
+  if (props.to) return { is: NuxtLink, to: props.to }
   if (props.href)
     return { is: 'a', href: props.href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': props.hrefLabel ?? t('open', { title: props.title }) }
   return { is: 'article' }

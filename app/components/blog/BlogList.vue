@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PERSON_ID, pageUrl } from '~/data/site'
+import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site'
 // Lista wpisów (/blog i /blog/page/N). Strona 1: wyróżniony wpis na całą szerokość + 4 rzędy po 3,
 // kolejne strony: po 12 (app/utils/blogPaging.ts). Strona spoza zakresu → 404.
 const props = defineProps<{ page: number }>()
@@ -19,6 +19,7 @@ if (props.page < 1 || props.page > pages.value) {
   throw createError({ statusCode: 404, statusMessage: t('notFound'), fatal: true })
 }
 
+// transform: do payloadu strony trafiają tylko pola używane przez karty wpisów i JSON-LD, nie pełne treści
 const { data: posts } = await useAsyncData(`blog-page-${lang.value}-${props.page}`, () =>
   queryCollection(col('blog'))
     .where('draft', '=', false)
@@ -26,6 +27,18 @@ const { data: posts } = await useAsyncData(`blog-page-${lang.value}-${props.page
     .skip(blogSkip(props.page))
     .limit(blogLimit(props.page))
     .all(),
+  {
+    transform: (posts) => posts.map(p => ({
+      path: p.path,
+      title: p.title,
+      description: p.description,
+      date: p.date,
+      tags: p.tags,
+      kind: p.kind,
+      image: p.image,
+      art: p.art,
+    })),
+  },
 )
 
 const featured = computed(() => (props.page === 1 ? posts.value?.[0] : undefined))
@@ -39,7 +52,8 @@ useSiteMeta({
   description: t('meta.description'),
 })
 
-// Dane strukturalne: wpisy z tej strony listy (dla Google i wyszukiwarek AI)
+// Dane strukturalne: wpisy z tej strony listy (dla Google i wyszukiwarek AI).
+// Autor z name i url, nie samo @id – Google czyta JSON-LD osobno na każdej stronie
 const route = useRoute()
 useJsonLd('blog', {
   '@type': 'CollectionPage',
@@ -47,7 +61,7 @@ useJsonLd('blog', {
   description: t('meta.description'),
   url: pageUrl(route.path),
   inLanguage: lang.value === 'pl' ? 'pl-PL' : 'en-US',
-  author: { '@id': PERSON_ID },
+  author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: (posts.value ?? []).map((post, i) => ({
@@ -57,6 +71,21 @@ useJsonLd('blog', {
       url: pageUrl(post.path),
     })),
   },
+})
+
+// Okruszki jak w widocznej nawigacji: Strona główna → Wpisy, a na dalszych stronach jeszcze „Strona N”
+// (ostatni element bez adresu)
+useJsonLd('breadcrumb', {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('breadcrumb.home'), item: pageUrl(link('/')) },
+    ...(props.page === 1
+      ? [{ '@type': 'ListItem', position: 2, name: t('title') }]
+      : [
+          { '@type': 'ListItem', position: 2, name: t('title'), item: pageUrl(link('/blog')) },
+          { '@type': 'ListItem', position: 3, name: t('breadcrumb.page', { page: props.page }) },
+        ]),
+  ],
 })
 </script>
 
