@@ -63,17 +63,29 @@ useSiteMeta({
     ...(project.value && !hasOwnPage.value ? { robots: 'noindex, follow' } : {}),
 });
 
+// Słowa kluczowe: pełna lista technologii (stack), potem tagi. Tag pomijamy, gdy ta technologia jest już w stacku
+// (wielkość liter i wersja bez znaczenia: „vue” przy „Vue 3”, „tailwind” przy „Tailwind CSS v4”).
+function projectKeywords(stack: string[] = [], tags: string[] = []) {
+    // bez polskich i innych znaków diakrytycznych: „PokéAPI” = „pokeapi”
+    const plain = (word: string) => word.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+    const inStack = new Set(stack.map((item) => plain(item).split(/\s+/)[0]));
+    const extraTags = tags.map((tag) => tag.replace(/-/g, ' ')).filter((tag) => !inStack.has(plain(tag)));
+    return [...stack, ...extraTags].join(', ');
+}
+
 // Dane strukturalne – tylko dla projektów z własną podstroną (pozostałe mają noindex)
 if (project.value && hasOwnPage.value) {
     useJsonLd('project', {
         '@type': 'CreativeWork',
+        // @id – wpisy o projekcie wskazują na niego w polu about
+        '@id': `${pageUrl(route.path)}#project`,
         name: project.value.title,
         description: project.value.description || undefined,
         dateCreated: project.value.date || undefined,
-        keywords: project.value.tags?.join(', ') || undefined,
+        keywords: projectKeywords(project.value.stack, project.value.tags) || undefined,
         url: pageUrl(route.path),
         inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
-        author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME },
+        author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
         ...(project.value.links?.live ? { sameAs: project.value.links.live } : {}),
         ...(project.value.ogImage ? { image: SITE_URL + project.value.ogImage } : {}),
     });

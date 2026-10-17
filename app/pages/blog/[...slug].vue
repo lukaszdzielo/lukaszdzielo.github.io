@@ -38,8 +38,14 @@ if (post.value) {
         datePublished: post.value.date || undefined,
         // edycja po publikacji (pole `updated` we frontmatterze); bez niej data publikacji
         dateModified: post.value.updated || post.value.date || undefined,
+        // tematy z tagów (np. „tailwind”, „wordpress-blocks” → „wordpress blocks”)
+        keywords: post.value.tags?.map((tag) => tag.replace(/-/g, ' ')).join(', ') || undefined,
         inLanguage: locale.value === 'pl' ? 'pl-PL' : 'en-US',
         mainEntityOfPage: pageUrl(route.path),
+        // projekt, o którym jest wpis – to samo @id co w danych strony projektu
+        ...(relatedProject.value ? {
+            about: { '@type': 'CreativeWork', '@id': `${pageUrl(relatedProject.value.path)}#project`, name: relatedProject.value.title, url: pageUrl(relatedProject.value.path) },
+        } : {}),
         image: post.value.ogImage ? `${SITE_URL}${post.value.ogImage}` : undefined,
         author: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
         publisher: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
