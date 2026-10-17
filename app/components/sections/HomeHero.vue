@@ -61,7 +61,9 @@ const link = useLocalLink()
            Od lg wysokość jest ograniczona szerokością kolumny (160.6cqw = szerokość ÷ proporcja 820/1317),
            więc na węższych ekranach postać się zmniejsza zamiast wchodzić na tekst.
            Odstęp od góry (mt-4 / mt-6) – włosy nie dotykają przyklejonego menu.
-           Bez drop-shadow – cień wpadał w przezroczystą szczelinę między ręką a tułowiem. -->
+           Bez drop-shadow – cień wpadał w przezroczystą szczelinę między ręką a tułowiem.
+           sizes portretu (content/*/index.md) = wysokość kadru: 396 / 560 / 732 px (h-99 / sm:h-140 / lg:h-183).
+           Kwadratowy portret w object-cover ma szerokość równą wysokości kadru, więc większy plik nie jest potrzebny. -->
       <div class="@container relative order-first mt-4 h-99 motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:mt-6 sm:h-140 lg:order-none lg:mt-6 lg:h-183">
         <div
           class="absolute bottom-0 left-1/2 aspect-[820/1317] h-full -translate-x-1/2 lg:h-[min(100%,160.6cqw)] lg:right-0 lg:left-auto lg:translate-x-0 [&_img]:size-full [&_img]:object-cover [&_img]:mask-[linear-gradient(to_bottom,#000_72%,transparent_99%)]"
