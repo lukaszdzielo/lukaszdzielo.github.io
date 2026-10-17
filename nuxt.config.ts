@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import tailwindcss from "@tailwindcss/vite";
 import githubLight from 'shiki/themes/github-light.mjs';
+import githubDark from 'shiki/themes/github-dark.mjs';
 
 const SITE_NAME = 'Łukasz Dzieło'
 const SITE_ROLE = 'Front-End Developer'
@@ -186,16 +187,18 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
 // Adresy podstron z inną nazwą w każdym języku – mapa niżej (jak definePageMeta w pages/).
 const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m={'/business-websites':'/strony-dla-firm','/privacy-policy':'/polityka-prywatnosci'};var k=p.replace(/\\/+$/,'');location.replace('/pl'+(m[k]||k)+'/'+location.search+location.hash)}catch(e){}})();`
 
-// Motyw bloków kodu: github-light z ciemniejszym pomarańczowym (orange-700). Oryginalny #e36209 na białym tle
-// ma kontrast 3,5:1 (za mało dla WCAG AA). Nazwa motywu zostaje ta sama, więc klasy i style się nie zmieniają.
-const githubLightAA = JSON.parse(JSON.stringify(githubLight).replace(/#e36209/gi, '#c2410c'))
+// Motywy bloków kodu z kontrastem WCAG AA (min. 4,5:1). Nazwy motywów zostają te same, więc klasy i style się nie zmieniają.
+// Jasny: pomarańczowy #e36209 na białym tle ma 3,5:1 → orange-700 (#ca3500, 5,2:1).
+// Ciemny: komentarze #6a737d na tle slate-900 mają 3,7:1 → slate-400 (#90a1b9, 6,8:1).
+const githubLightAA = JSON.parse(JSON.stringify(githubLight).replace(/#e36209/gi, '#ca3500'))
+const githubDarkAA = JSON.parse(JSON.stringify(githubDark).replace(/#6a737d/gi, '#90a1b9'))
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
-        highlight: { theme: { default: githubLightAA, dark: 'github-dark' } },
+        highlight: { theme: { default: githubLightAA, dark: githubDarkAA } },
       },
     },
   },
