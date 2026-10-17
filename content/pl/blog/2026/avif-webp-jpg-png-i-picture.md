@@ -12,7 +12,7 @@ ogImage: /og/blog/formaty-obrazkow-pl.jpg
 draft: false
 ---
 
-`<picture>` używam praktycznie wszędzie – w WordPressie i w Vue. Chodzi mi o jedno: żeby telefon, tablet i komputer pobierały obrazek w takim rozmiarze, jakiego naprawdę potrzebują. Na co dzień zostaję przy WebP, ale chyba w przyszłości przejdę na AVIF. Żeby nie pisać z pamięci, zmierzyłem to na dwóch obrazkach z mojego portfolio.
+`<picture>` używam praktycznie wszędzie – w WordPressie i w Vue. Chodzi mi o jedno: żeby telefon, tablet i komputer pobierały obrazek w takim rozmiarze, jakiego naprawdę potrzebują. Coraz częściej wybieram AVIF. Na portfolio na razie zostałem przy WebP, bo AVIF generuje się dłużej, ale docelowo przejdę na AVIF. Żeby nie pisać z pamięci, zmierzyłem to na dwóch obrazkach z mojego portfolio.
 
 ## Pomiar
 

@@ -12,7 +12,7 @@ ogImage: /og/blog/formaty-obrazkow-en.jpg
 draft: false
 ---
 
-I use `<picture>` almost everywhere – in WordPress and in Vue. I want one thing: a phone, a tablet and a computer should each download an image in the size they really need. For now I stay with WebP, but I'll probably move to AVIF in the future. So that I don't write from memory, I measured it on two images from my portfolio.
+I use `<picture>` almost everywhere – in WordPress and in Vue. I want one thing: a phone, a tablet and a computer should each download an image in the size they really need. More and more often I choose AVIF. On my portfolio I stayed with WebP for now, because AVIF takes longer to generate, but in the end I'll move to AVIF. So that I don't write from memory, I measured it on two images from my portfolio.
 
 ## The test
 
