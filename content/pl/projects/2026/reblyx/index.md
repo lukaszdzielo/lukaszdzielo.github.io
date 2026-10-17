@@ -60,7 +60,7 @@ gallery:
     caption: Stara wersja (Divi) – usługi i formularz
 ---
 
-ReblyX to centrum obróbki stali – projektowanie 3D, cięcie laserowe, gięcie, spawanie, cynkowanie i lakierowanie proszkowe. Stara strona stała na Divi: lista usług i formularz. Zaprojektowałem i zbudowałem nową na blokach Gutenberga – klient sam zmienia treści w edytorze.
+ReblyX to centrum obróbki stali – projektowanie 3D, cięcie laserowe, gięcie, spawanie, cynkowanie i lakierowanie proszkowe. To kolejna strona, którą zrobiłem dla tego samego właściciela – wcześniej projektowałem dla niego stronę Monarki. Stara strona ReblyX stała na Divi: lista usług i formularz. Zaprojektowałem i zbudowałem nową na blokach Gutenberga, żeby właściciel mógł sam zmieniać treści w edytorze, bez proszenia mnie o każdą poprawkę.
 
 ## Co się zmieniło
 

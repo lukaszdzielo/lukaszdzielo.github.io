@@ -49,7 +49,7 @@ gallery:
     caption: Settings – theme, import and export of caught Pokémon, clearing the data
 ---
 
-An interactive Pokémon encyclopedia covering more than 1,000 creatures – written in vanilla JavaScript (ES6+, OOP patterns), with no frameworks, using the public PokéAPI.
+Pokedex was my first bigger project in JavaScript. I wrote it alongside a course and wanted to build something harder than another to-do list. The result is an interactive encyclopedia of more than 1,000 Pokémon – in vanilla JavaScript (ES6+, OOP patterns), with no frameworks, using the public PokéAPI. While working on it, I kept getting new ideas – caught Pokémon, export between browsers, themes – and I didn't always finish one before starting the next.
 
 ## Key features
 

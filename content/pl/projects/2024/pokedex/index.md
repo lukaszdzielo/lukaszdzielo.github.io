@@ -49,7 +49,7 @@ gallery:
     caption: Ustawienia – motyw, import i eksport złapanych pokemonów, czyszczenie danych
 ---
 
-Interaktywna encyklopedia pokemonów obsługująca ponad 1000 stworzeń – napisana w czystym JavaScript (ES6+, wzorce OOP), bez frameworków, w oparciu o publiczne PokéAPI.
+Pokedex to mój pierwszy większy projekt w JavaScripcie. Pisałem go równolegle z kursem i chciałem zrobić coś trudniejszego niż kolejną listę zadań. Wyszła interaktywna encyklopedia ponad 1000 pokemonów – w czystym JavaScripcie (ES6+, wzorce OOP), bez frameworków, na publicznym PokéAPI. W trakcie co chwilę wpadałem na nowe pomysły – złapane pokemony, eksport między przeglądarkami, motywy – i nie zawsze kończyłem jeden, zanim zacząłem następny.
 
 ## Najważniejsze cechy
 
