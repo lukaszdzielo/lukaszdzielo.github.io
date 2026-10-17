@@ -1,5 +1,5 @@
 ---
-date: 2026-10-16
+date: 2026-10-17
 title: 'AgrestApp headers: 36 px for a mouse, 44 px for a finger'
 description: How I rewrote the AgrestApp website and panel headers in one day – one sliding menu, sizes that depend on how you use the page, and the header height in a CSS variable instead of numbers written in several files.
 tags:
