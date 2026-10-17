@@ -60,7 +60,7 @@ gallery:
     caption: Old version (Divi) – services and a contact form
 ---
 
-ReblyX is a steel processing center – 3D design, laser cutting, bending, welding, galvanizing and powder coating. It's another website I made for the same owner – before that, I designed the Monarca website for him. The old ReblyX website was built with Divi: a list of services and a form. I designed and built a new one with Gutenberg blocks, so the owner can change the content in the editor himself, without asking me for every small fix.
+ReblyX is a steel processing center – 3D design, laser cutting, bending, welding, galvanizing and powder coating. I got this project through a recommendation – I like that kind of work, because it means my previous work did its job. The old ReblyX website was built with Divi: a list of services and a form. I designed and built a new one with Gutenberg blocks, so the owner can change the content in the editor himself, without asking me for every small fix.
 
 ## What changed
 

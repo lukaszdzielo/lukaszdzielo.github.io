@@ -49,7 +49,7 @@ gallery:
     caption: Settings – theme, import and export of caught Pokémon, clearing the data
 ---
 
-Pokedex was my first bigger project in JavaScript. I wrote it alongside a course and wanted to build something harder than another to-do list. The result is an interactive encyclopedia of more than 1,000 Pokémon – in vanilla JavaScript (ES6+, OOP patterns), with no frameworks, using the public PokéAPI. While working on it, I kept getting new ideas – caught Pokémon, export between browsers, themes – and I didn't always finish one before starting the next.
+Pokedex was my first bigger project in JavaScript. I wrote it alongside a course and wanted to build something harder than another to-do list. The result is an interactive encyclopedia of more than 1,000 Pokémon – in vanilla JavaScript (ES6+, OOP patterns), with no frameworks, using the public PokéAPI. While working on it, I kept getting new ideas – caught Pokémon, export between browsers, themes – and I didn't always finish one before starting the next. So I made a list and started adding changes in stages – every new idea went to a to-do list instead of pulling me away from what I was working on.
 
 ## Key features
 

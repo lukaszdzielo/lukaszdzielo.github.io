@@ -87,7 +87,7 @@ highlights:
     text: Konwencje refaktoru spisałem w jednym pliku w repozytorium – rozmiary, kolory, tłumaczenia, ikony i lista kontrolna WCAG dla każdej nowej strony.
 ---
 
-Strona liceum im. Melchiora Wańkowicza ma wersję polską i angielską oraz panel z ustawieniami dostępności: większy tekst, wysoki kontrast i czytelniejsze fonty. Przy tej stronie pracuję w zespole Pesi od października 2025, a od lipca 2026 piszę jej front-end od nowa. Refaktor robię na osobnej gałęzi, bo szkoła cały czas dosyła zmiany do obecnej wersji. Porównania poniżej pokazują kod i wygląd, które zastałem – stan z 14.10.2025.
+Strona liceum im. Melchiora Wańkowicza ma wersję polską i angielską oraz panel z ustawieniami dostępności: większy tekst, wysoki kontrast i czytelniejsze fonty. Przy tej stronie pracuję w zespole Pesi od października 2025, a od lipca 2026 piszę jej front-end od nowa. Refaktor robię na osobnej gałęzi, bo szkoła cały czas dosyła zmiany do obecnej wersji. Strona miała sporo do poprawy w wyglądzie i działaniu – na szerokich ekranach się rozjeżdżała, a wiele komponentów mogło być jednym. Żeby nie zakopać się w kodzie, przepisuję ją etapami, sekcja po sekcji. Zacząłem od palety kolorów opartej na logo, a przy każdej sekcji sprawdzam WCAG. W trybie wysokiego kontrastu zostaje czarne tło, bo tak ustaliliśmy, ale na żółto są tylko linki i przyciski, a reszta tekstu jest biała – tak, jak zalecają wytyczne dostępności. Chcę, żeby szkoła dostała stronę, o którą zadbałem najlepiej, jak potrafię. Porównania poniżej pokazują kod i wygląd, które zastałem – stan z 14.10.2025.
 
 ## Co zmieniam
 

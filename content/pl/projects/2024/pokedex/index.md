@@ -49,7 +49,7 @@ gallery:
     caption: Ustawienia – motyw, import i eksport złapanych pokemonów, czyszczenie danych
 ---
 
-Pokedex to mój pierwszy większy projekt w JavaScripcie. Pisałem go równolegle z kursem i chciałem zrobić coś trudniejszego niż kolejną listę zadań. Wyszła interaktywna encyklopedia ponad 1000 pokemonów – w czystym JavaScripcie (ES6+, wzorce OOP), bez frameworków, na publicznym PokéAPI. W trakcie co chwilę wpadałem na nowe pomysły – złapane pokemony, eksport między przeglądarkami, motywy – i nie zawsze kończyłem jeden, zanim zacząłem następny.
+Pokedex to mój pierwszy większy projekt w JavaScripcie. Pisałem go równolegle z kursem i chciałem zrobić coś trudniejszego niż kolejną listę zadań. Wyszła interaktywna encyklopedia ponad 1000 pokemonów – w czystym JavaScripcie (ES6+, wzorce OOP), bez frameworków, na publicznym PokéAPI. W trakcie co chwilę wpadałem na nowe pomysły – złapane pokemony, eksport między przeglądarkami, motywy – i nie zawsze kończyłem jeden, zanim zacząłem następny. Dlatego zrobiłem listę i zacząłem wdrażać zmiany etapami – każdy nowy pomysł trafiał na listę „do zrobienia”, zamiast odciągać mnie od tego, co akurat robiłem.
 
 ## Najważniejsze cechy
 

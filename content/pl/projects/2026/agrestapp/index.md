@@ -64,7 +64,7 @@ highlights:
     text: Zamiast zmieniać setki klas przywróciłem w konfiguracji trzy wartości z v3. Potem porównałem wynikowy CSS z poprzednią wersją, przejrzałem strony i poprawiłem regresje, których nie zgłosił build – m.in. okna, które po migracji chowały się pod własnym przyciemnieniem.
 ---
 
-AgrestApp to system zakupów dla firm z branży spożywczej: zamówienia i przetargi na surowce, monitoring cen, oferty dostawców i analityka oszczędności. Pracuję przy nim w zespole Pesi od października 2025. Front-end w Vue 3 i Inertia tworzy kilka osób, dlatego poniżej opisuję tylko części, przy których front-end jest mój.
+AgrestApp to system zakupów dla firm z branży spożywczej: zamówienia i przetargi na surowce, monitoring cen, oferty dostawców i analityka oszczędności. Pracuję przy nim w zespole Pesi od października 2025. Front-end w Vue 3 i Inertia tworzy kilka osób, dlatego poniżej opisuję tylko części, przy których front-end jest mój. Najbardziej cieszy mnie to, że wiele rzeczy mogę tu napisać po swojemu. Serwis zmieniam małymi etapami: tu nowa tabela, tam nowy przycisk, gdzie indziej nagłówek. Każdy nowy element zastępuje kilka starszych wersji, więc z czasem w projekcie jest coraz mniej zbędnych komponentów.
 
 ## Co zrobiłem
 

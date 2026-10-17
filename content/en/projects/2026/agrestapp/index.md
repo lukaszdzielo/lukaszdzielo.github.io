@@ -64,7 +64,7 @@ highlights:
     text: Instead of changing hundreds of classes, I brought back three v3 values in the config. Then I compared the output CSS with the previous version, went through the pages and fixed regressions the build didn't report – for example dialogs that hid under their own backdrop after the migration.
 ---
 
-AgrestApp is a purchasing system for food businesses: orders and tenders for raw materials, price monitoring, supplier offers and savings analytics. I've been working on it in the Pesi team since October 2025. Several people build the front-end in Vue 3 and Inertia, so below I only describe the parts where the front-end is mine.
+AgrestApp is a purchasing system for food businesses: orders and tenders for raw materials, price monitoring, supplier offers and savings analytics. I've been working on it in the Pesi team since October 2025. Several people build the front-end in Vue 3 and Inertia, so below I only describe the parts where the front-end is mine. What I like most is that I can write many things my own way. I change the app in small steps: a new table here, a new button there, a header somewhere else. Each new element replaces a few older versions, so over time the project has fewer and fewer unnecessary components.
 
 ## What I did
 

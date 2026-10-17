@@ -87,7 +87,7 @@ highlights:
     text: I wrote the refactor conventions in one file in the repository – sizes, colours, translations, icons and a WCAG checklist for every new page.
 ---
 
-The website of the Melchior Wańkowicz High School has a Polish and an English version and an accessibility panel: bigger text, high contrast and more readable fonts. I've worked on this website in the Pesi team since October 2025, and since July 2026 I've been rewriting its front-end. I do the refactor on a separate branch, because the school keeps sending changes for the current version. The comparisons below show the code and design I took over – the state from 14 Oct 2025.
+The website of the Melchior Wańkowicz High School has a Polish and an English version and an accessibility panel: bigger text, high contrast and more readable fonts. I've worked on this website in the Pesi team since October 2025, and since July 2026 I've been rewriting its front-end. I do the refactor on a separate branch, because the school keeps sending changes for the current version. The website had a lot to improve in how it looked and worked – it broke on wide screens, and many components could have been one. So that I don't get lost in the code, I rewrite it in stages, section by section. I started with a colour palette based on the logo, and I check WCAG in every section. In high-contrast mode the black background stays, as we agreed, but only links and buttons are yellow and the rest of the text is white – as accessibility guidelines recommend. I want the school to get a website I took care of as well as I can. The comparisons below show the code and design I took over – the state from 14 Oct 2025.
 
 ## What I'm changing
 
