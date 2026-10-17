@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",
-    "beasties": "^0.3.5"
+    "beasties": "^0.3.5",
+    "shiki": "^4.5.0"
   }
 }
