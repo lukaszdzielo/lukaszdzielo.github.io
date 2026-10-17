@@ -110,35 +110,6 @@ Right after high school I went straight to work and jumped into code – plain H
 I like analyzing problems and designing new solutions, hunting for bugs and for parts of the code that don't add up. I'm comfortable starting a project from scratch, and just as comfortable getting into code someone else started. TypeScript and tests are next on my list – I want to write front-end that is safe to change.
 ::
 
-<!-- Blog
-
-Contact -->
-
-<!-- ### Testimonials
-
-"It's not the first project that Łukasz is doing for us and for sure, not last. He perfectly meets all requirements. The websites leave us and our clients with under great impression. I think Łukasz is one of the best specialists on the job market. Much recommended!" - Mateusz / Szukaj Terminu
-
-We asked for a simple webpage. We had no experience in this field, so Łukasz was recommended to us. We let Him do the whole thing and we only asked to be able to edit content and photos if needed. We are very pleased with the project that has been presented to us!" - Mateusz / Monarca
-
-"Great cooperation, the project was quickly made according to our guidelines. We are very satisfied and we look forward to future cooperation :D" - Michał / Auto Moto Silesia -->
-
-<!-- I have been dealing with websites since 2012. Initially as a graphic designer, and until today as a Front-end. In my work Im guided by the code simplicity and consistency, always adjusting to the vision of my Client. Im working on upgrading my qualifications so prospectively I will learn JS to fulfill the expectations of my Clients.
-
-Move to [about](/about) page.
-
-## Manage your Contents
-
-Create new pages or modify the existing ones in `content/` directory.
-
-## Query & Render Pages
-
-You can find an example of querying contents and rendering them in a [catch-all page](https://github.com/nuxt/starter/blob/content/app/pages/%5B...slug%5D.vue)
-
-## Integrate Vue Component
-
-
-Checkout out the [documentation](https://content.nuxt.com/docs/getting-started) to learn more. -->
-
 ::sections-home-posts
 ::
 
