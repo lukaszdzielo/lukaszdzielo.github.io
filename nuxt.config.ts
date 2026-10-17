@@ -292,8 +292,9 @@ export default defineNuxtConfig({
   },
   hooks: {
     // Wpis z datą z przyszłości traktujemy jak szkic (draft) – nie ma go na liście, w sitemap ani pod adresem.
-    // Dzień publikacji: patrz TODAY wyżej.
+    // Dzień publikacji: patrz TODAY wyżej. W `npm run dev` wpis jest widoczny, żeby dało się go obejrzeć przed publikacją.
     'content:file:afterParse'(ctx) {
+      if (process.env.NODE_ENV === 'development') return
       const content = ctx.content as { date?: string; draft?: boolean }
       if (ctx.collection.name.startsWith('blog') && content.date && String(content.date).slice(0, 10) > TODAY) {
         content.draft = true
