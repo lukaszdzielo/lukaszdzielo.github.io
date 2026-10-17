@@ -1,75 +1,34 @@
-# Nuxt Content Starter
+# lukaszdzielo.github.io
 
-Look at the [Nuxt Content documentation](https://content.nuxt.com) to learn more.
+My portfolio and blog – front-end projects, case studies and posts about the code I write every day.
 
-## Setup
+**Live:** https://lukaszdzielo.github.io (English) · https://lukaszdzielo.github.io/pl/ (Polish)
 
-Make sure to install dependencies:
+## Stack
 
-```bash
-# npm
-npm install
+- [Nuxt 4](https://nuxt.com) – a static site (`nuxt generate`), hosted on GitHub Pages
+- [Nuxt Content 3](https://content.nuxt.com) – posts and projects written in Markdown
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [@nuxtjs/i18n](https://i18n.nuxtjs.org) – English under `/`, Polish under `/pl/`
+- [@nuxt/image](https://image.nuxt.com) – every image in a few widths, generated at build time
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Run it locally
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+npm ci
+npm run dev        # http://localhost:3000
+npm run generate   # static build in .output/public
 ```
 
-## Production
+## A few decisions
 
-Build the application for production:
+- **Critical CSS** – after the build, [Beasties](https://github.com/danielroe/beasties) puts the CSS for the first screen into every HTML file, so the page paints without waiting for the stylesheet.
+- **Scheduled posts** – a post with a future date stays hidden. GitHub Actions builds the site every night, so the post goes live on its date by itself.
+- **Prices** – the business page shows prices from a small log in `app/data/pricing.ts`. During a sale it also shows the lowest price from the 30 days before the discount.
+- **SEO** – JSON-LD (Person, BlogPosting, CreativeWork, Service, BreadcrumbList), `sitemap.xml` with `lastmod`, `hreflang` for both languages and `llms.txt`.
+- **No flash of the wrong theme** – a tiny inline script sets light or dark mode before the first paint.
+- **Analytics only after consent** – Google Analytics loads only when the visitor agrees.
 
-```bash
-# npm
-npm run build
+## Content
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The code is here so you can see how the site works. Texts, illustrations and screenshots are mine (or my clients') – please don't reuse them without asking.
