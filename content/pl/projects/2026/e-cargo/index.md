@@ -62,7 +62,7 @@ highlights:
     text: Podpowiedzi, menu i listy wyboru same wybierają stronę, po której się otworzą, i trzymają odstęp od krawędzi – także przy przewijaniu strony.
 ---
 
-e-cargo to platforma dla ośrodków szkolenia kierowców zawodowych: kursy online dla kursantów, harmonogram zajęć z instruktorami, pojazdami i salami oraz dokumenty. Pracowałem nad nią w zespole Pesi – główna część, do wydania na produkcję, trwała od grudnia 2025 do lipca 2026. W Vue 3 i Inertia zbudowałem dużą część widoków i komponenty, z których korzysta cały zespół. Najbardziej jestem zadowolony z biblioteki komponentów – tworzyłem ją od zera. Każdy nowy element projektowałem trochę dłużej, żeby przewidzieć, co może przestać działać, i przekonałem grafika, żeby projekt opierał się na powtarzalnych elementach. Wyszedł z tego fajny produkt 🙂
+e-cargo to platforma dla ośrodków szkolenia kierowców zawodowych: kursy online dla kursantów, harmonogram zajęć z instruktorami, pojazdami i salami oraz dokumenty. Pracowałem nad nią w zespole Pesi – główna część, do wydania na produkcję, trwała od grudnia 2025 do lipca 2026. W Vue 3 i Inertia zbudowałem dużą część widoków i komponenty, z których korzysta cały zespół. Najbardziej jestem zadowolony z biblioteki komponentów – tworzyłem ją od zera. Każdy nowy element projektowałem trochę dłużej, żeby przewidzieć, co może przestać działać. Przekonałem też grafika, żeby projekt opierał się na powtarzalnych elementach. Wyszedł z tego fajny produkt 🙂
 
 ## Najważniejsze cechy
 

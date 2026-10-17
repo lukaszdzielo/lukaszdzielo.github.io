@@ -62,7 +62,7 @@ highlights:
     text: Tooltips, menus and select lists choose the side they open on and keep a gap from the edge of the screen – also when you scroll the page.
 ---
 
-e-cargo is a platform for professional driver training centres: online courses for students, a class schedule with instructors, vehicles and rooms, and documents. I worked on it in the Pesi team – the main part, up to the production release, took from December 2025 to July 2026. In Vue 3 and Inertia I built a large part of the views and the components used by the whole team. I'm most happy with the component library – I built it from scratch. I spent a bit more time designing each new element to predict what could stop working, and I convinced the designer to base the design on repeatable elements. It turned out to be a nice product 🙂
+e-cargo is a platform for professional driver training centres: online courses for students, a class schedule with instructors, vehicles and rooms, and documents. I worked on it in the Pesi team – the main part, up to the production release, took from December 2025 to July 2026. In Vue 3 and Inertia I built a large part of the views and the components used by the whole team. I'm most happy with the component library – I built it from scratch. I spent a bit more time designing each new element to predict what could stop working. I also convinced the designer to base the design on repeatable elements. It turned out to be a nice product 🙂
 
 ## Main features
 
