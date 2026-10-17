@@ -6,7 +6,7 @@ stack: [Vue 3, Composition API, Inertia.js, Tailwind CSS, PrimeVue]
 ---
 
 #image
-:common-picture{src="/avatar/portrait.webp" sizes="xs:100vw md:70vw lg:55vw" width="1915" height="1915" alt="Ilustracja: Łukasz Dzieło" fetchpriority="high"}
+:common-picture{src="/avatar/portrait.webp" sizes="xs:396px sm:560px lg:732px" width="1915" height="1915" alt="Ilustracja: Łukasz Dzieło" fetchpriority="high"}
 
 #description
 Buduję przejrzyste, responsywne interfejsy w Vue 3 – komponenty wielokrotnego użytku, stan i integracje z API. Na co dzień piszę z Composition API, Inertia.js i Tailwindem.
