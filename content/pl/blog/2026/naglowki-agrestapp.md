@@ -1,5 +1,5 @@
 ---
-date: 2026-10-16
+date: 2026-10-17
 title: 'Nagłówki AgrestApp: 36 px dla myszy, 44 px dla palca'
 description: Jak w jeden dzień przepisałem nagłówek strony i panelu AgrestApp – jedno przesuwane menu, rozmiary zależne od sposobu obsługi i wysokość nagłówka w zmiennej CSS zamiast liczb wpisanych w kilku plikach.
 tags:
