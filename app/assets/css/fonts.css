@@ -1,46 +1,24 @@
-/* https://gwfh.mranftl.com/fonts/inter?subsets=latin,latin-ext */
+/* Inter jako font zmienny (Fontsource @fontsource-variable/inter 5.3.0, licencja OFL – public/fonts/LICENSE-inter.txt).
+   Jeden plik obsługuje wszystkie grubości (400–800) zamiast osobnego pliku na każdą: ok. 54 KB zamiast ok. 210 KB.
+   latin – pełny zestaw podstawowy; pl – tylko polskie litery spoza latin (ą ć ę ł ń ś ź ż i wielkie) wycięte
+   z latin-ext (pyftsubset), bo reszta latin-ext na stronie nie występuje.
+   Bez preloadu: w testach (16.10) preload fontów opóźniał zdjęcie w hero na stronie głównej (LCP 3,7 → 4,4 s).
+   font-display: optional – bez zamiany fontu w trakcie ładowania (brak skoku układu). */
 
-/* inter-regular - latin_latin-ext */
 @font-face {
   font-display: optional;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/inter-v20-latin_latin-ext-regular.woff2') format('woff2');
-}
-
-/* inter-600 - latin_latin-ext */
-@font-face {
-  font-display: optional;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  src: url('/fonts/inter-v20-latin_latin-ext-600.woff2') format('woff2');
-}
-
-/* inter-700 - latin_latin-ext */
-@font-face {
-  font-display: optional;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/fonts/inter-v20-latin_latin-ext-700.woff2') format('woff2');
-}
-
-/* inter-500 – latin-ext i latin (Fontsource), potrzebne do nagłówków font-medium */
-@font-face {
-  font-display: optional;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/inter-latin-ext-500-normal.woff2') format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-display: optional;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/inter-latin-500-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-wght.woff2') format('woff2');
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-display: optional;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/inter-pl-wght.woff2') format('woff2');
+  unicode-range: U+0104-0107,U+0118-0119,U+0141-0144,U+015A-015B,U+0160-0161,U+0179-017C;
 }
