@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import tailwindcss from "@tailwindcss/vite";
+import githubLight from 'shiki/themes/github-light.mjs';
 
 const SITE_NAME = 'Łukasz Dzieło'
 const SITE_ROLE = 'Front-End Developer'
@@ -185,8 +186,19 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
 // Adresy podstron z inną nazwą w każdym języku – mapa niżej (jak definePageMeta w pages/).
 const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m={'/business-websites':'/strony-dla-firm','/privacy-policy':'/polityka-prywatnosci'};var k=p.replace(/\\/+$/,'');location.replace('/pl'+(m[k]||k)+'/'+location.search+location.hash)}catch(e){}})();`
 
+// Motyw bloków kodu: github-light z ciemniejszym pomarańczowym (orange-700). Oryginalny #e36209 na białym tle
+// ma kontrast 3,5:1 (za mało dla WCAG AA). Nazwa motywu zostaje ta sama, więc klasy i style się nie zmieniają.
+const githubLightAA = JSON.parse(JSON.stringify(githubLight).replace(/#e36209/gi, '#c2410c'))
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  content: {
+    build: {
+      markdown: {
+        highlight: { theme: { default: githubLightAA, dark: 'github-dark' } },
+      },
+    },
+  },
   app: {
     head: {
       // lang i hreflang ustawia @nuxtjs/i18n (app.vue → useLocaleHead)
