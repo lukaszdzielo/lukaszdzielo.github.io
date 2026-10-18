@@ -6,7 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "dev:lan": "nuxt dev --host 0.0.0.0",
-    "generate": "nuxt generate",
+    "generate": "node -e \"require('node:fs').rmSync('.data/content',{recursive:true,force:true})\" && nuxt generate",
     "preview": "nuxt preview"
   },
   "dependencies": {

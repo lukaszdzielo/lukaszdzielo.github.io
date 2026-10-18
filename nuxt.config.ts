@@ -296,6 +296,8 @@ export default defineNuxtConfig({
   hooks: {
     // Wpis z datą z przyszłości traktujemy jak szkic (draft) – nie ma go na liście, w sitemap ani pod adresem.
     // Dzień publikacji: patrz TODAY wyżej. W `npm run dev` wpis jest widoczny, żeby dało się go obejrzeć przed publikacją.
+    // `npm run dev` zapisuje przetworzone treści w .data/content (z widocznym wpisem) – dlatego `npm run generate`
+    // najpierw czyści ten katalog, inaczej zaplanowany wpis trafiłby do lokalnego buildu. GitHub Actions buduje z czystego repo.
     'content:file:afterParse'(ctx) {
       if (process.env.NODE_ENV === 'development') return
       const content = ctx.content as { date?: string; draft?: boolean }
