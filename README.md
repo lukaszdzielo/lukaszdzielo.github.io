@@ -10,7 +10,7 @@ My portfolio and blog – front-end projects, case studies and posts about the c
 - [Nuxt Content 3](https://content.nuxt.com) – posts and projects written in Markdown
 - [Tailwind CSS 4](https://tailwindcss.com)
 - [@nuxtjs/i18n](https://i18n.nuxtjs.org) – English under `/`, Polish under `/pl/`
-- [@nuxt/image](https://image.nuxt.com) – every image in a few widths, generated at build time
+- [@nuxt/image](https://image.nuxt.com) – every image in a few widths, in AVIF with a WebP fallback, generated at build time
 
 ## Run it locally
 
