@@ -12,7 +12,7 @@ ogImage: /og/blog/tabela-jak-arkusz-pl.jpg
 draft: false
 ---
 
-W panelu AgrestApp jest dużo długich list: surowce, produkty, opakowania, ceny, powiadomienia. Przy takich listach najwięcej czasu zabiera klikanie wiersz po wierszu. Klient poprosił o dwa skróty, które każdy zna z arkusza kalkulacyjnego albo z poczty: Shift + klik zaznacza zakres wierszy, a Enter przenosi do tego samego pola w wierszu niżej. Chodziło o to, żeby zaznaczyć kilka pozycji i edytować je naraz, a nie produkt po produkcie, i żeby ceny aktualizować w jednej tabeli, jak w Excelu. Zrzuty poniżej są z lokalnej wersji na zmyślonych danych.
+W panelu AgrestApp jest dużo długich list: surowce, produkty, opakowania, ceny, powiadomienia. Przy takich listach najwięcej czasu zabiera klikanie wiersz po wierszu. Klient poprosił o dwa skróty, które każdy zna z arkusza kalkulacyjnego albo z poczty: Shift + klik zaznacza zakres wierszy, a Enter przenosi do tego samego pola w wierszu niżej. Chodziło o to, żeby zaznaczyć kilka pozycji i edytować je naraz, a nie produkt po produkcie, i żeby ceny aktualizować w jednej tabeli, jak w Excelu. Zrzuty poniżej są z lokalnej wersji na zmyślonych danych. Kod we wpisie to uproszczone przykłady napisane do tego tekstu, a nie kod z AgrestApp.
 
 ## Shift + klik: zaznaczanie zakresu
 
@@ -79,7 +79,7 @@ W „Zarządzaniu ofertą” dostawca ustawia ceny wszystkich swoich artykułów
 
 ![U góry po Enterze: kursor w tym samym polu wiersz niżej, a cena jest od razu zaznaczona. Na dole po Shift + Enter: kursor wraca wiersz wyżej](/blog/2026/tabela-jak-arkusz/enter.webp){width="1168" height="836"}
 
-Każde pole dostaje numer wiersza i nazwę kolumny w atrybutach `data-*`. Po Enterze szukam pola z tą samą kolumną i sąsiednim numerem:
+W przykładzie każde pole dostaje numer wiersza i nazwę kolumny w atrybutach `data-*`. Po Enterze funkcja szuka pola z tą samą kolumną i sąsiednim numerem:
 
 ```vue
 <script setup>
@@ -111,7 +111,7 @@ function moveOnEnter(event, row) {
 </template>
 ```
 
-Nazwa kolumny w atrybucie sprawia, że ta sama funkcja obsługuje każdą kolumnę i oba miejsca: tabelę i okno ceny indywidualnej. Na ostatnim wierszu Enter nic nie robi – pole niżej nie istnieje, więc kursor zostaje na miejscu.
+Dzięki nazwie kolumny w atrybucie jedna funkcja wystarczy dla każdej kolumny, a także dla tabeli i okna ceny indywidualnej. Na ostatnim wierszu Enter nic nie robi – pole niżej nie istnieje, więc kursor zostaje na miejscu.
 
 ## Co z tego zostało
 

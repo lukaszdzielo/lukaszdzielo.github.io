@@ -12,7 +12,7 @@ ogImage: /og/blog/tabela-jak-arkusz-en.jpg
 draft: false
 ---
 
-The AgrestApp panel has many long lists: raw materials, products, packaging, prices, notifications. With lists like these, clicking row by row takes the most time. The client asked for two shortcuts everyone knows from a spreadsheet or an email inbox: Shift-click selects a range of rows, and Enter moves to the same field in the row below. The idea was to select a few items and edit them at once instead of product by product, and to update prices in one table, like in Excel. The screenshots below come from a local version with made-up data.
+The AgrestApp panel has many long lists: raw materials, products, packaging, prices, notifications. With lists like these, clicking row by row takes the most time. The client asked for two shortcuts everyone knows from a spreadsheet or an email inbox: Shift-click selects a range of rows, and Enter moves to the same field in the row below. The idea was to select a few items and edit them at once instead of product by product, and to update prices in one table, like in Excel. The screenshots below come from a local version with made-up data. The code in this post shows simplified examples I wrote for this text – it isn't the code from AgrestApp.
 
 ## Shift-click: selecting a range
 
@@ -79,7 +79,7 @@ In "Offer management" a supplier sets the prices of all their items: the net bas
 
 ![Top: after Enter the cursor is in the same field one row down, and the price is already selected. Bottom: after Shift + Enter the cursor goes back one row up](/blog/2026/tabela-jak-arkusz/enter.webp){width="1168" height="836"}
 
-Each field gets a row number and a column name in `data-*` attributes. After Enter, I look for the field with the same column and the next row number:
+In the example, each field gets a row number and a column name in `data-*` attributes. After Enter, the function looks for the field with the same column and the next row number:
 
 ```vue
 <script setup>
@@ -111,7 +111,7 @@ function moveOnEnter(event, row) {
 </template>
 ```
 
-Thanks to the column name in the attribute, the same function handles every column and both places: the table and the individual price dialog. On the last row Enter does nothing – there's no field below, so the cursor stays where it is.
+Thanks to the column name in the attribute, one function is enough for every column, and for both the table and the individual price dialog. On the last row Enter does nothing – there's no field below, so the cursor stays where it is.
 
 ## What came out of it
 
