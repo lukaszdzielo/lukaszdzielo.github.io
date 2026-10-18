@@ -16,7 +16,8 @@ export const codeFragments = {
 export const visibleFeaturedProjects = () =>
   featuredProjects
     .filter(p => !p.hidden)
-    .sort((a, b) => String(b.date ?? '').localeCompare(String(a.date ?? '')))
+    .sort((a, b) => Number(!!b.pinned) - Number(!!a.pinned)
+      || String(b.date ?? '').localeCompare(String(a.date ?? '')))
 
 const projects = visibleFeaturedProjects()
 const scroller = useTemplateRef<HTMLElement>('scroller')`,
