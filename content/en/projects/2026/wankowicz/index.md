@@ -42,7 +42,8 @@ compare:
     - { label: View copies for the EN version, before: '31', after: '0' }
     - { label: Hard-coded colours, before: '23', after: '0' }
     - { label: 'Sizes hard-coded in px (e.g. text-[15px])', before: '353', after: '53' }
-  note: 'Numbers from the Blade views. Before – the code from 14 Oct 2025, the last state before my changes; after – the new version on a separate branch. Screenshots from local versions; news in the old version comes from today''s database.'
+    - { label: Vue components, before: '125', after: '1' }
+  note: 'Numbers from the Blade views and Vue components. Before – the code from 14 Oct 2025, the last state before my changes; after – the new version on a separate branch. Screenshots from local versions; news in the old version comes from today''s database.'
 ogImage: /og/projects/wankowicz-en.jpg
 galleryLead: Screenshots from local versions – the new version and the code from October 2025. Click a screenshot to enlarge it.
 gallery:
@@ -95,4 +96,5 @@ The website of the Melchior Wańkowicz High School has a Polish and an English v
 - **One view per page** instead of separate copies for English – texts, addresses and contact details in language files
 - **Colours through tokens** – no hard-coded colours, so the high contrast mode works on the whole website
 - **Sizes in rem**, self-hosted fonts and one icon component
+- **Alpine.js instead of a mix with Vue** – the old version used Alpine.js and Vue at the same time, often on the same page: the header, footer, forms and calendar were Vue components mounted in Blade views. I moved the interactions to Alpine.js and plain JavaScript, and Vue stayed in one section (125 → 1 Vue components). Pages without that section don't load Vue at all
 - **Tailwind CSS v4** with the config in CSS and a shared content width for Blade views and Vue components

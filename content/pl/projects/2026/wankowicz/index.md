@@ -42,7 +42,8 @@ compare:
     - { label: Kopie widoków dla wersji EN, before: '31', after: '0' }
     - { label: Kolory wpisane na sztywno, before: '23', after: '0' }
     - { label: 'Rozmiary wpisane w px (np. text-[15px])', before: '353', after: '53' }
-  note: 'Liczby z widoków Blade. Przed – kod z 14.10.2025, ostatni stan przed moimi zmianami; po – nowa wersja na osobnej gałęzi. Zrzuty z wersji lokalnych, aktualności w starej wersji pochodzą z dzisiejszej bazy.'
+    - { label: Komponenty Vue, before: '125', after: '1' }
+  note: 'Liczby z widoków Blade i komponentów Vue. Przed – kod z 14.10.2025, ostatni stan przed moimi zmianami; po – nowa wersja na osobnej gałęzi. Zrzuty z wersji lokalnych, aktualności w starej wersji pochodzą z dzisiejszej bazy.'
 ogImage: /og/projects/wankowicz-pl.jpg
 galleryLead: Zrzuty z wersji lokalnych – nowa wersja i kod z października 2025. Kliknij zrzut, żeby go powiększyć.
 gallery:
@@ -95,4 +96,5 @@ Strona liceum im. Melchiora Wańkowicza ma wersję polską i angielską oraz pan
 - **Jeden widok na stronę** zamiast osobnych kopii dla języka angielskiego – teksty, adresy i dane kontaktowe w plikach językowych
 - **Kolory przez tokeny** – zero kolorów wpisanych na sztywno, dzięki czemu tryb wysokiego kontrastu działa na całej stronie
 - **Rozmiary w rem**, własne fonty bez zewnętrznych serwerów i jeden komponent ikon
+- **Alpine.js zamiast mieszanki z Vue** – stara wersja używała naraz Alpine.js i Vue, często na tej samej stronie: nagłówek, stopka, formularze i kalendarz były komponentami Vue osadzanymi w widokach Blade. Interakcje przeniosłem do Alpine.js i zwykłego JavaScriptu, a Vue zostało w jednej sekcji (125 → 1 komponentów Vue). Strony bez tej sekcji w ogóle nie pobierają Vue
 - **Tailwind CSS v4** z konfiguracją w CSS i wspólna szerokość treści dla widoków Blade i komponentów Vue
