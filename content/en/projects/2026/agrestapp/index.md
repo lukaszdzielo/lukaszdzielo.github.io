@@ -57,7 +57,7 @@ highlights:
   - title: One date range in three places
     text: In analytics, the slider, the date fields and the page address show the same range. A change in one place updates the others right away, and the data reloads only a moment after the last change. The calendar won't let you set the start after the end, and the default range starts on the day the company registered.
   - title: A price table like a spreadsheet
-    text: In supplier offer management, Enter and the arrow keys move to the field in the next row, and its value is already selected, ready to overwrite. Shift-click selects a whole range of rows, like in an email inbox.
+    text: In supplier offer management, Enter moves to the same field in the row below, and Shift + Enter to the row above. The field's value is already selected, ready to overwrite. In 9 lists in the panel, Shift-click selects a whole range of rows, like in an email inbox.
   - title: An individual price without mistakes
     text: The individual price dialog checks the minimum net price, doesn't accept zero or an empty value, and suggests a default value for a single item. The price turns green when it's lower than or equal to the lowest price.
   - title: Tailwind v4 without rewriting templates
@@ -72,6 +72,7 @@ AgrestApp is a purchasing system for food businesses: orders and tenders for raw
 - **UI component set** – buttons, an accordion, tooltips, number fields and 69 icons as Vue components; moving the app's buttons to one component and a shared theme toggle
 - **Company website** – the "About the system" page, a set of sections used to build the pages for bakeries, confectioneries, ice cream shops and HoReCa, price tiles and a pricing page with a payment toggle
 - **Analytics** – the main chart, the date range picker with a compare mode, top suppliers, the savings summary and product profitability
-- **Supplier offer management** – extending an existing screen: the individual price dialog, adding items, keyboard work and range selection
+- **Supplier offer management** – extending an existing screen: the individual price dialog, adding items and moving between fields with Enter
+- **Range selection** – Shift-click in 9 lists in the panel (raw materials, products, prices, notifications and more)
 - **Shop** (now closed) – a basket with each supplier's minimum order, buying without an account, order history and complaints
 - **Migration to Tailwind CSS v4** for the whole project

@@ -57,7 +57,7 @@ highlights:
   - title: Zakres dat w trzech miejscach naraz
     text: W analityce suwak, pola dat i adres strony pokazują ten sam zakres. Zmiana w jednym miejscu od razu zmienia pozostałe, a dane odświeżają się dopiero chwilę po ostatniej zmianie. Kalendarz nie pozwala ustawić początku po końcu, a domyślny zakres zaczyna się w dniu rejestracji firmy.
   - title: Tabela cen jak arkusz
-    text: W zarządzaniu ofertą dostawcy Enter i strzałki przenoszą do pola w następnym wierszu, a jego zawartość jest od razu zaznaczona do nadpisania. Shift z kliknięciem zaznacza cały zakres wierszy, jak w poczcie.
+    text: W zarządzaniu ofertą dostawcy Enter przenosi do tego samego pola w wierszu niżej, a Shift + Enter – wyżej. Zawartość pola jest od razu zaznaczona do nadpisania. W 9 listach panelu Shift z kliknięciem zaznacza cały zakres wierszy, jak w poczcie.
   - title: Cena indywidualna bez pomyłek
     text: Okno ceny indywidualnej pilnuje minimalnej ceny netto, nie przyjmuje zera ani pustej wartości i podpowiada wartość domyślną dla pojedynczej pozycji. Cena podświetla się na zielono, gdy jest niższa lub równa najniższej cenie.
   - title: Tailwind v4 bez przepisywania szablonów
@@ -72,6 +72,7 @@ AgrestApp to system zakupów dla firm z branży spożywczej: zamówienia i przet
 - **Zestaw komponentów UI** – przyciski, akordeon, podpowiedzi, pola liczbowe i 69 ikon jako komponenty Vue; przeniesienie przycisków aplikacji na jeden komponent i wspólny przełącznik motywu
 - **Strona firmowa** – strona „O systemie”, zestaw sekcji, z których powstały strony dla piekarni, cukierni, lodziarni i HoReCa, kafelki cenowe i cennik z przełącznikiem płatności
 - **Analityka** – główny wykres, wybór zakresu dat z trybem porównania, najlepsi dostawcy, podsumowanie oszczędności i rentowność produktów
-- **Zarządzanie ofertą dostawcy** – rozbudowa istniejącego ekranu: okno ceny indywidualnej, dodawanie artykułów, praca z klawiatury i zaznaczanie zakresu
+- **Zarządzanie ofertą dostawcy** – rozbudowa istniejącego ekranu: okno ceny indywidualnej, dodawanie artykułów i przechodzenie Enterem między polami
+- **Zaznaczanie zakresu** – Shift + klik w 9 listach panelu (surowce, produkty, ceny, powiadomienia i inne)
 - **Sklep** (dziś zamknięty) – koszyk z minimum logistycznym każdego dostawcy, zakup bez konta, historia zamówień i reklamacje
 - **Migracja na Tailwind CSS v4** całego projektu
