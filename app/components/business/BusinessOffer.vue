@@ -34,10 +34,13 @@ const promoBadge = computed(() => {
             ? 'border-transparent bg-brand-900 text-white dark:bg-slate-100 dark:text-brand-950'
             : 'border-slate-900/10 bg-white text-slate-900 shadow-sm dark:border-white/10 dark:bg-brand-900 dark:text-brand-50'"
         >
-          <span v-if="promoBadge" class="absolute top-6 right-6 rounded-full bg-amber-200 px-2.5 py-1 text-xs font-semibold text-amber-900">{{ promoBadge }}</span>
-          <p class="text-xs font-semibold tracking-widest uppercase" :class="plan.highlight ? 'text-primary-400 dark:text-primary-500' : 'text-primary-500 dark:text-primary-400'">
-            {{ plan.name }}
-          </p>
+          <!-- Nazwa pakietu i etykieta promocji w jednym wierszu; gdy się nie mieszczą (np. 320 px), etykieta schodzi pod nazwę -->
+          <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+            <p class="text-xs font-semibold tracking-widest uppercase" :class="plan.highlight ? 'text-primary-400 dark:text-primary-500' : 'text-primary-500 dark:text-primary-400'">
+              {{ plan.name }}
+            </p>
+            <span v-if="promoBadge" class="rounded-full bg-amber-200 px-2.5 py-1 text-xs font-semibold text-amber-900">{{ promoBadge }}</span>
+          </div>
           <h3 class="mt-3 text-2xl font-medium tracking-tight">{{ plan.title }}</h3>
           <p class="mt-3 text-sm/relaxed opacity-75">{{ plan.text }}</p>
           <ul class="mt-6 space-y-3 text-sm/relaxed">
