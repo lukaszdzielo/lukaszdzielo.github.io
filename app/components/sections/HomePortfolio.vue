@@ -44,10 +44,10 @@ const pages = computed(() => {
   return map
 })
 
-// date/hidden służą tylko do sortowania i filtrowania – nie przekazujemy ich do kafelka
+// date/hidden/pinned służą tylko do sortowania i filtrowania – nie przekazujemy ich do kafelka
 // (computed – opisy przełączają się razem z językiem)
 const projects = computed(() =>
-  visibleFeaturedProjects(lang.value).map(({ date: _date, hidden: _hidden, ...tile }) => ({
+  visibleFeaturedProjects(lang.value).map(({ date: _date, hidden: _hidden, pinned: _pinned, ...tile }) => ({
     ...tile,
     to: tile.to ?? pages.value.get(tile.title.toLocaleLowerCase(lang.value)),
   })),

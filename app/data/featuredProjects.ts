@@ -1,5 +1,6 @@
 // Wyróżnione projekty – kafelki w stylu posta z Instagrama na stronie głównej i na /projects.
 // Kolejność nie ma znaczenia: kafelki układają się od najnowszego (`date`, RRRR-MM).
+// `pinned: true` stawia projekt na początku (przed najnowszymi) – na głównej to też kafelek „latający” z hero.
 // `hidden: true` chowa projekt (dane zostają), `href` – strona na produkcji (nowa karta).
 // Opis w dwóch językach; visibleFeaturedProjects(lang) zwraca już tekst w danym języku.
 export type FeaturedProject = {
@@ -14,6 +15,7 @@ export type FeaturedProject = {
   to?: string
   href?: string
   hidden?: boolean
+  pinned?: boolean
 }
 
 export const featuredProjects: FeaturedProject[] = [
@@ -51,6 +53,7 @@ export const featuredProjects: FeaturedProject[] = [
     chips: ['Vue 3', 'Inertia.js', 'Tailwind CSS'],
     url: 'e-cargo',
     image: '/projects/2026/e-cargo/dashboard.webp',
+    pinned: true, // najmocniejszy projekt w Vue – pierwszy na głównej (18.10)
   },
   // Nie cały serwis – moja część w Arris Agency: karuzele na Swiperze
   {
@@ -92,9 +95,9 @@ export const featuredProjects: FeaturedProject[] = [
   },
 ]
 
-// Widoczne projekty od najnowszego, z opisem w języku strony (lang: 'en' | 'pl')
+// Widoczne projekty: najpierw przypięte, potem od najnowszego, z opisem w języku strony (lang: 'en' | 'pl')
 export const visibleFeaturedProjects = (lang: 'en' | 'pl' = 'en') =>
   featuredProjects
     .filter(p => !p.hidden)
-    .sort((a, b) => String(b.date ?? '').localeCompare(String(a.date ?? '')))
+    .sort((a, b) => Number(!!b.pinned) - Number(!!a.pinned) || String(b.date ?? '').localeCompare(String(a.date ?? '')))
     .map(p => ({ ...p, description: p.description[lang] }))
