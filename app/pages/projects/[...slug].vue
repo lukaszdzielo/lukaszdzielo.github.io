@@ -25,11 +25,14 @@ const { data: relatedPosts } = await useAsyncData('project-posts-' + path, () =>
         .all()
 );
 
-// Case study najpierw (duża karta), potem pozostałe wpisy od najnowszego
+// Case study najpierw, potem pozostałe wpisy od najnowszego
 const orderedPosts = computed(() => [
     ...(relatedPosts.value ?? []).filter(post => post.kind === 'case-study'),
     ...(relatedPosts.value ?? []).filter(post => post.kind !== 'case-study'),
 ]);
+
+// Pasek wpisów przewijany w bok (tablet i telefon) – strzałki pod nim
+const postsScroller = useTemplateRef<HTMLElement>('postsScroller');
 
 // Technologie pod opisem: pole `stack`, a gdy go nie ma – tagi
 const stack = computed(() => project.value?.stack ?? project.value?.tags ?? []);
@@ -205,12 +208,25 @@ if (project.value && hasOwnPage.value) {
         <section v-if="relatedPosts?.length" class="pt-20 md:pt-28 lg:pt-32">
             <div class="container">
                 <CommonSectionHead :title="t('posts.title')" :lead="t('posts.lead')" />
-                <!-- Case study na całą szerokość (okładka obok tekstu, jak pierwszy wpis na /blog), pozostałe wpisy po trzy w rzędzie -->
-                <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:mt-10 lg:grid-cols-3">
-                    <li v-for="post in orderedPosts" :key="post.path" :class="post.kind === 'case-study' && 'md:col-span-2 lg:col-span-3'">
-                        <CommonPostCard :post="post" :featured="post.kind === 'case-study'" />
-                    </li>
-                </ul>
+                <!-- Jeden wpis – duża karta na całą szerokość (okładka obok tekstu, jak pierwszy wpis na /blog).
+                     Więcej wpisów – jak na głównej: na komputerze po 1/3 szerokości (także przy dwóch), na tablecie i telefonie pasek przewijany w bok;
+                     dwa wpisy mieszczą się na tablecie obok siebie, więc tam bez paska -->
+                <div v-if="orderedPosts.length === 1" class="mt-8 lg:mt-10">
+                    <CommonPostCard :post="orderedPosts[0]!" featured />
+                </div>
+                <template v-else>
+                    <ul
+                        ref="postsScroller"
+                        class="-mx-pad mt-8 grid snap-x snap-mandatory auto-cols-[84%] grid-flow-col gap-3.5 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-px-pad px-pad pb-2 [scrollbar-width:none] sm:auto-cols-[56%] md:auto-cols-[40%] lg:mx-0 lg:mt-10 lg:grid-flow-row lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0"
+                        :class="orderedPosts.length === 2 && 'md:mx-0 md:grid-flow-row md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0'"
+                    >
+                        <li v-for="post in orderedPosts" :key="post.path" class="snap-start">
+                            <CommonPostCard :post="post" />
+                        </li>
+                    </ul>
+                    <!-- Przy dwóch wpisach pasek i podpowiedź „Przesuń” tylko na telefonie -->
+                    <CommonScrollControls :target="postsScroller" :class="orderedPosts.length === 2 && 'md:hidden'" />
+                </template>
             </div>
         </section>
 
