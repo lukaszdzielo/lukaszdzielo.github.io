@@ -127,10 +127,11 @@ After compression, `<picture>` adds about 75 bytes to the page for each image. I
 |---|---|
 | Photos, illustrations, transparency, screenshots with text | AVIF, with WebP as a fallback in `<picture>` |
 | A pixel-perfect screenshot, with or without transparency (e.g. for documentation) | PNG or lossless WebP |
+| A preview for a client by email | JPG – you can't see the difference, and the file fits in an email |
 | Icons and logos | SVG |
 | Link preview image (OG) for social media | JPG |
 
-So AVIF is my default format. JPG stays only for link previews, because Facebook and LinkedIn don't always show AVIF.
+So AVIF is my default format. JPG stays for two things: link previews, because Facebook and LinkedIn don't always show AVIF, and previews I send to clients by email.
 
 ## What I got from it
 

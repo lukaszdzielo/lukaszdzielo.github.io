@@ -127,10 +127,11 @@ Po kompresji `<picture>` dodaje do strony ok. 75 bajtów na każdy obrazek. W za
 |---|---|
 | Zdjęcia, ilustracje, przezroczystość, zrzuty ekranu z tekstem | AVIF, a WebP jako zapas w `<picture>` |
 | Zrzut co do piksela, z przezroczystością lub bez (np. do dokumentacji) | PNG albo WebP bez strat |
+| Podgląd dla klienta w mailu | JPG – różnicy nie widać, a plik mieści się w mailu |
 | Ikony i logo | SVG |
 | Obrazek podglądu linku (OG) w social mediach | JPG |
 
-AVIF jest więc u mnie domyślnym formatem. JPG zostawiam tylko do podglądu linku, bo Facebook i LinkedIn nie zawsze pokazują AVIF.
+AVIF jest więc u mnie domyślnym formatem. JPG zostawiam do dwóch rzeczy: podglądu linku, bo Facebook i LinkedIn nie zawsze pokazują AVIF, i podglądów, które wysyłam klientom mailem.
 
 ## Co z tego zostało
 
