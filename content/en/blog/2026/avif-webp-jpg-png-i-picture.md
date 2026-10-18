@@ -40,7 +40,7 @@ What this shows:
 
 - **PNG** is more than ten times heavier than the other formats. It makes sense when an image must stay lossless – for example a small icon or a screenshot for documentation.
 - **JPG and WebP** are almost the same for the portrait, and for the screenshot with text WebP is about 20–25% lighter. WebP also supports transparency, which JPG doesn't – the portrait in JPG got a white background.
-- **AVIF** is the lightest: 1.7 to 2.7 times smaller than WebP.
+- **AVIF** is the lightest: 1.7 to 2.7 times smaller than WebP. It also supports transparency, and in the screenshot with text the letters in AVIF (quality 50) are as readable as in WebP (quality 80).
 
 ## The catch with AVIF: encoding time
 
@@ -125,14 +125,15 @@ After compression, `<picture>` adds about 75 bytes to the page for each image. I
 
 | What | Format |
 |---|---|
-| Photos and illustrations | AVIF + WebP in `<picture>` (WebP as a fallback) |
-| Transparency | WebP or AVIF instead of PNG |
+| Photos, illustrations, transparency, screenshots with text | AVIF, with WebP as a fallback in `<picture>` |
+| A screenshot that must be pixel-perfect (e.g. for documentation) | PNG |
 | Icons and logos | SVG |
-| Screenshots with text | WebP; PNG only when it must be lossless |
-| JPG | as a fallback in the `<img>` inside `<picture>`, for very old browsers |
+| Link preview image (OG) for social media | JPG |
+
+So AVIF is my default format. JPG stays only for link previews, because Facebook and LinkedIn don't always show AVIF.
 
 ## What I got from it
 
 - A good size (`srcset` and `sizes`) gives the most, the format comes second.
-- AVIF is the lightest, but it takes more than ten times longer to save – with many images you see it in the build time.
+- AVIF is the lightest and works for everything – photos, transparency and screenshots with text. But it takes more than ten times longer to save, so with many images you see it in the build time.
 - `<picture>` adds a few dozen bytes of HTML per image and saves a few dozen kilobytes. It's worth it when you have more than one format or a different crop for phones.

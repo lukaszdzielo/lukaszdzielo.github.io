@@ -40,7 +40,7 @@ Co z tego wynika:
 
 - **PNG** jest kilkanaście razy cięższy od pozostałych formatów. Ma sens tam, gdzie obrazek musi zostać bez strat – np. mała ikona albo zrzut do dokumentacji.
 - **JPG i WebP** przy portrecie wychodzą prawie tak samo, a przy zrzucie z tekstem WebP jest o ok. 20–25% lżejszy. WebP ma też przezroczystość, której JPG nie ma – portret w JPG dostał białe tło.
-- **AVIF** jest najlżejszy: od 1,7 do 2,7 raza mniejszy niż WebP.
+- **AVIF** jest najlżejszy: od 1,7 do 2,7 raza mniejszy niż WebP. Ma też przezroczystość, a na zrzucie z tekstem litery w AVIF (jakość 50) są tak samo czytelne jak w WebP (jakość 80).
 
 ## Haczyk AVIF: czas kodowania
 
@@ -125,14 +125,15 @@ Po kompresji `<picture>` dodaje do strony ok. 75 bajtów na każdy obrazek. W za
 
 | Co | Format |
 |---|---|
-| Zdjęcia i ilustracje | AVIF + WebP w `<picture>` (WebP jako zapas) |
-| Przezroczystość | WebP albo AVIF zamiast PNG |
+| Zdjęcia, ilustracje, przezroczystość, zrzuty ekranu z tekstem | AVIF, a WebP jako zapas w `<picture>` |
+| Zrzut, który musi być co do piksela (np. do dokumentacji) | PNG |
 | Ikony i logo | SVG |
-| Zrzuty ekranu z tekstem | WebP; PNG tylko wtedy, gdy musi być bez strat |
-| JPG | jako zapas w `<img>` wewnątrz `<picture>`, dla bardzo starych przeglądarek |
+| Obrazek podglądu linku (OG) w social mediach | JPG |
+
+AVIF jest więc u mnie domyślnym formatem. JPG zostawiam tylko do podglądu linku, bo Facebook i LinkedIn nie zawsze pokazują AVIF.
 
 ## Co z tego zostało
 
 - Najwięcej daje dobry rozmiar (`srcset` i `sizes`), dopiero potem format.
-- AVIF jest najlżejszy, ale zapisuje się kilkanaście razy dłużej – przy wielu obrazkach widać to w czasie budowania.
+- AVIF jest najlżejszy i nadaje się do wszystkiego – zdjęć, przezroczystości i zrzutów z tekstem. Zapisuje się jednak kilkanaście razy dłużej, więc przy wielu obrazkach widać to w czasie budowania.
 - `<picture>` dokłada kilkadziesiąt bajtów HTML na obrazek, a oszczędza kilkadziesiąt kilobajtów. Warto, gdy masz więcej niż jeden format albo inny kadr na telefon.
