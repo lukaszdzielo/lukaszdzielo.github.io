@@ -171,7 +171,7 @@ const shareUrl = computed(() => pageUrl(route.path));
         "caseStudy": "Case study",
         "aboutProject": "Project",
         "toc": "In this post",
-        "aiNote": "I write these posts with help from AI: I explain what I did and why, and AI helps me put it in order and translate it into English. The projects, decisions and experience are mine."
+        "aiNote": "AI helps me edit my posts: I explain what I did and why, and AI puts my thoughts in order, turns them into clear text and translates it into English. The projects, decisions and experience are mine."
     },
     "pl": {
         "meta": { "fallbackTitle": "Wpis – Łukasz Dzieło" },
@@ -179,7 +179,7 @@ const shareUrl = computed(() => pageUrl(route.path));
         "caseStudy": "Case study",
         "aboutProject": "Projekt",
         "toc": "W tym wpisie",
-        "aiNote": "Wpisy piszę z pomocą AI: opowiadam, co zrobiłem i dlaczego, a AI pomaga mi to uporządkować i przetłumaczyć na angielski. Projekty, decyzje i doświadczenia są moje."
+        "aiNote": "W obróbce tekstu pomaga mi AI: opowiadam, co zrobiłem i dlaczego, a AI porządkuje moje myśli, układa je w spójny tekst i tłumaczy na angielski. Projekty, decyzje i doświadczenia są moje."
     }
 }
 </i18n>
