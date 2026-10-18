@@ -103,7 +103,7 @@ hobbies: 'na półce fantasy i książki młodzieżowe, wieczorami z żoną plan
 O mnie
 
 #default
-Po liceum od razu poszedłem do pracy i wskoczyłem w kod – strony w czystym HTML z Bootstrapem i pierwszymi skryptami w jQuery, które backend developer podpinał pod własny CMS. Potem doszedł WordPress, a po drodze studia z grafiki – ale nawet na etacie UX/UI designera ciągle uciekałem do programowania, aż wróciłem do niego na dobre 🙂
+Po liceum od razu poszedłem do pracy i wskoczyłem w kod – strony w czystym HTML z Bootstrapem i pierwszymi skryptami w jQuery, które backend developer podpinał pod własny CMS. Od początku robiłem też strony na WordPressie – najpierw w builderach (Bridge, Enfold, potem Divi i Elementor), dziś piszę własne motywy. Po drodze były studia z grafiki – ale nawet na etacie UX/UI designera ciągle uciekałem do programowania, aż wróciłem do niego na dobre 🙂
 
 **Najbardziej lubię pisać w JavaScripcie.** Od roku robię to komercyjnie w Vue 3: komponenty wielokrotnego użytku, stan aplikacji i integracje z API w e-cargo, a obok tego wspólna biblioteka komponentów dla zespołu. Zależy mi na kodzie, który da się czytać i utrzymać – bez obejść, które za pół roku mszczą się na kimś innym.
 
