@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<!-- lista z checkboxami: zaznaczony zakres wierszy 2–5 -->
+<g stroke="rgba(200,215,255,.45)" stroke-width="1.2">
+<rect x="20" y="30" width="210" height="32" rx="8" fill="rgba(255,255,255,.08)"/>
+<rect x="20" y="70" width="210" height="32" rx="8" fill="rgba(111,156,255,.3)"/>
+<rect x="20" y="110" width="210" height="32" rx="8" fill="rgba(111,156,255,.3)"/>
+<rect x="20" y="150" width="210" height="32" rx="8" fill="rgba(111,156,255,.3)"/>
+<rect x="20" y="190" width="210" height="32" rx="8" fill="rgba(111,156,255,.3)"/>
+<rect x="20" y="230" width="210" height="32" rx="8" fill="rgba(255,255,255,.08)"/>
+</g>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round">
+<path d="M64 46h90M64 86h70M64 126h100M64 166h80M64 206h60M64 246h74"/>
+</g>
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5">
+<rect x="34" y="39" width="14" height="14" rx="3"/>
+<rect x="34" y="79" width="14" height="14" rx="3" fill="#2860ea" stroke="#2860ea"/>
+<rect x="34" y="119" width="14" height="14" rx="3" fill="rgba(160,185,255,.6)"/>
+<rect x="34" y="159" width="14" height="14" rx="3" fill="rgba(160,185,255,.6)"/>
+<rect x="34" y="199" width="14" height="14" rx="3" fill="rgba(160,185,255,.6)"/>
+<rect x="34" y="239" width="14" height="14" rx="3"/>
+</g>
+<text x="150" y="211" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff">shiftKey</text>
+<!-- pola cen: Enter w dół, Shift + Enter w górę -->
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5">
+<rect x="300" y="40" width="160" height="40" rx="12" fill="rgba(111,156,255,.16)"/>
+<rect x="300" y="130" width="160" height="40" rx="12" fill="rgba(111,156,255,.32)"/>
+<rect x="300" y="220" width="160" height="40" rx="12" fill="rgba(111,156,255,.16)"/>
+</g>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" fill="none">
+<path d="M340 86v36"/><path d="m333 114 7 8 7-8"/>
+<path d="M420 214v-36"/><path d="m413 186 7-8 7 8"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff">
+<text x="352" y="109">Enter</text>
+<text x="352" y="201" text-anchor="end">⇧ Enter</text>
+<text x="316" y="155">select()</text>
+</g>
+</svg>
