@@ -72,10 +72,15 @@ timeline:
   - period: paź 2025 – teraz
     company: Pesi
     role: Junior Front-End Developer
-    text: Vue 3, Inertia.js, Tailwind, PrimeVue; front-end aplikacji e-cargo i wspólne biblioteki komponentów.
+    text: Vue 3, Inertia.js, Tailwind, PrimeVue; front-end aplikacji e‑cargo i AgrestApp, nowa wersja strony liceum i wspólne biblioteki komponentów.
     projects:
       - title: e-cargo
         to: /projects/2026/e-cargo
+      - title: AgrestApp
+        to: /projects/2026/agrestapp
+      - title: Liceum Wańkowicza
+        to: /projects/2026/wankowicz
+    agencies: [Pesi]
   - period: sty 2023 – cze 2025
     company: Arris Agency
     role: Front-End Developer
@@ -83,6 +88,7 @@ timeline:
     projects:
       - title: superauto.pl
         to: /projects/2025/superauto
+    agencies: [Arris Agency]
   - period: lut – wrz 2022
     company: ValueAdd
     role: UX/UI Designer & HTML/CSS
@@ -91,6 +97,7 @@ timeline:
     company: b4b marketing & eConnect4u
     role: UI Developer
     text: Strony w HTML, Bootstrapie i jQuery oraz na WordPressie w builderach (Bridge, Enfold, Divi, Elementor), potem WordPress z ACF i integracje z CMS w PHP; współpraca i spotkania z zespołem z UK.
+    agencies: [b4b, eConnect4u]
 education: Akademia WSB – mgr informatyki, grafika komputerowa i multimedia (2019–2021) · WSTI Katowice – lic. grafika (2014–2018)
 hobbiesLabel: 'Poza kodem:'
 hobbies: 'na półce fantasy i książki młodzieżowe, wieczorami z żoną planszówki, Divinity: Original Sin 2 albo Tekken. Przebiegłem też Runmageddon – statuetka weterana i korona stoją teraz między książkami 🏅'

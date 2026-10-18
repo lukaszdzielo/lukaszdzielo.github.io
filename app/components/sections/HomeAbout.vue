@@ -3,8 +3,17 @@
 // Na desktopie wykształcenie i „Poza kodem” stoją pod ilustracją (lewa kolumna nie zostaje pusta),
 // na telefonie i tablecie – na końcu, pod osią czasu, na całą szerokość. Ilustracja jest tam wyśrodkowana.
 // projects – projekty z danego miejsca pracy; link prowadzi na stronę projektu w archiwum
-// (a nie do kafelków na górze, bo wyróżnione projekty z czasem się zmieniają)
-type TimelineItem = { period: string; company: string; role: string; text: string; projects?: { title: string; to: string }[] }
+// (a nie do kafelków na górze, bo wyróżnione projekty z czasem się zmieniają). Widać najwyżej 3.
+// agencies – nazwy z pola `agency` w projektach: reszta projektów z tych firm to jedna etykieta
+// „+N” (albo „37 projektów”, gdy żaden nie ma własnej strony), która otwiera archiwum z filtrem firm.
+type TimelineItem = {
+  period: string
+  company: string
+  role: string
+  text: string
+  projects?: { title: string; to: string }[]
+  agencies?: string[]
+}
 
 defineProps<{
   quote?: string
@@ -17,6 +26,31 @@ defineProps<{
 const { t } = useI18n({ useScope: 'local' })
 // project.to w treści to adres wersji polskiej bez /pl ('/#projects') – link() daje adres w bieżącym języku
 const link = useLocalLink()
+
+const MAX_PROJECTS = 3
+
+// Liczba opublikowanych projektów każdej firmy (pole `agency`) – do etykiety „+N”
+const { col, lang } = useContentLocale()
+const { data: agencyCounts } = await useAsyncData(`about-agency-counts-${lang.value}`, () =>
+  queryCollection(col('projects')).where('draft', '=', false).select('agency').all(),
+  {
+    transform: (projects) => {
+      const counts: Record<string, number> = {}
+      for (const p of projects) if (p.agency) counts[p.agency] = (counts[p.agency] ?? 0) + 1
+      return counts
+    },
+  },
+)
+
+const shown = (item: TimelineItem) => item.projects?.slice(0, MAX_PROJECTS) ?? []
+// Projekty z tych firm, których nie ma wśród etykiet z nazwą
+const more = (item: TimelineItem) => {
+  const total = (item.agencies ?? []).reduce((sum, a) => sum + (agencyCounts.value?.[a] ?? 0), 0)
+  return Math.max(0, total - shown(item).length)
+}
+const archiveLink = (item: TimelineItem) => link(`/projects?agency=${(item.agencies ?? []).join(',')}#archive`)
+// „1 projekt / 3 projekty / 37 projektów” – polska odmiana z i18n.config.ts
+const projectsCount = (n: number) => t('count', n)
 </script>
 
 <template>
@@ -60,13 +94,24 @@ const link = useLocalLink()
                 {{ item.company }} <span class="font-normal text-slate-600 dark:text-slate-400">· {{ item.role }}</span>
               </p>
               <p class="mt-1.5 text-sm text-slate-600 dark:text-slate-300">{{ item.text }}</p>
-              <ul v-if="item.projects?.length" class="mt-2.5 flex flex-wrap gap-1.5" :aria-label="t('projectsAt', { company: item.company })">
-                <li v-for="project in item.projects" :key="project.title">
+              <ul v-if="shown(item).length || more(item)" class="mt-2.5 flex flex-wrap gap-1.5" :aria-label="t('projectsAt', { company: item.company })">
+                <li v-for="project in shown(item)" :key="project.title">
                   <NuxtLink
                     :to="link(project.to)"
                     class="inline-flex h-7 items-center gap-1 rounded-full bg-primary-500/10 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20"
                   >
                     {{ project.title }}
+                    <Icon name="lucide:arrow-right" class="text-xs" aria-hidden="true" />
+                  </NuxtLink>
+                </li>
+                <li v-if="more(item)">
+                  <NuxtLink
+                    :to="archiveLink(item)"
+                    class="inline-flex h-7 items-center gap-1 rounded-full border border-primary-500/30 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/10 dark:border-primary-400/30 dark:text-primary-400 dark:hover:bg-primary-400/14"
+                  >
+                    <!-- widoczne „+3” albo „37 projektów”; czytnik ekranu dostaje resztę zdania -->
+                    {{ shown(item).length ? `+${more(item)}` : projectsCount(more(item)) }}
+                    <span class="sr-only">{{ t(shown(item).length ? 'srMore' : 'srAll', { company: item.company }) }}</span>
                     <Icon name="lucide:arrow-right" class="text-xs" aria-hidden="true" />
                   </NuxtLink>
                 </li>
@@ -103,7 +148,19 @@ const link = useLocalLink()
 
 <i18n lang="json">
 {
-  "en": { "education": "Education", "projectsAt": "Projects – {company}" },
-  "pl": { "education": "Wykształcenie", "projectsAt": "Projekty – {company}" }
+  "en": {
+    "education": "Education",
+    "projectsAt": "Projects – {company}",
+    "srMore": "– more projects from {company} in the archive",
+    "srAll": "from {company} in the archive",
+    "count": "{n} project | {n} projects"
+  },
+  "pl": {
+    "education": "Wykształcenie",
+    "projectsAt": "Projekty – {company}",
+    "srMore": "– kolejne projekty z {company} w archiwum",
+    "srAll": "z {company} w archiwum",
+    "count": "{n} projekt | {n} projekty | {n} projektów"
+  }
 }
 </i18n>
