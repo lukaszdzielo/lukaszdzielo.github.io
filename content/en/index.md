@@ -23,7 +23,7 @@ items:
   - value: Vue 3
     text: in production, every day at Pesi
   - value: React
-    text: learning now – TypeScript and testing next
+    text: learning now – TypeScript and Node.js next
 ---
 ::
 

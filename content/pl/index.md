@@ -23,7 +23,7 @@ items:
   - value: Vue 3
     text: na produkcji, codziennie w Pesi
   - value: React
-    text: w nauce – potem TypeScript i testy
+    text: w nauce – potem TypeScript i Node.js
 ---
 ::
 
