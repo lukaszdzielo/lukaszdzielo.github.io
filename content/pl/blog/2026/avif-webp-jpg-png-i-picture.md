@@ -126,7 +126,7 @@ Po kompresji `<picture>` dodaje do strony ok. 75 bajtów na każdy obrazek. W za
 | Co | Format |
 |---|---|
 | Zdjęcia, ilustracje, przezroczystość, zrzuty ekranu z tekstem | AVIF, a WebP jako zapas w `<picture>` |
-| Zrzut, który musi być co do piksela (np. do dokumentacji) | PNG |
+| Zrzut co do piksela, z przezroczystością lub bez (np. do dokumentacji) | PNG albo WebP bez strat |
 | Ikony i logo | SVG |
 | Obrazek podglądu linku (OG) w social mediach | JPG |
 

@@ -126,7 +126,7 @@ After compression, `<picture>` adds about 75 bytes to the page for each image. I
 | What | Format |
 |---|---|
 | Photos, illustrations, transparency, screenshots with text | AVIF, with WebP as a fallback in `<picture>` |
-| A screenshot that must be pixel-perfect (e.g. for documentation) | PNG |
+| A pixel-perfect screenshot, with or without transparency (e.g. for documentation) | PNG or lossless WebP |
 | Icons and logos | SVG |
 | Link preview image (OG) for social media | JPG |
 
