@@ -36,7 +36,11 @@ export const regular: { from: string; pln: Table; eur?: Table; gbp?: Table }[] =
 
 // Log promocji (od najstarszej). Przykład:
 // { preset: 'blackweb', from: '2026-11-23', until: '2026-11-30' }
-export const promos: { preset: PresetId; from: string; until: string }[] = []
+export const promos: { preset: PresetId; from: string; until: string }[] = [
+  // Bez Christmas CODE zaraz po Black WEB: obniżkę liczy się od najniższej ceny z 30 dni, a ta byłaby
+  // ceną z Black WEB – cena świąteczna nie byłaby już obniżką
+  { preset: 'blackweb', from: '2026-11-23', until: '2026-11-30' },
+]
 
 // Okres rozliczenia przy cenach miesięcznych
 export const period: Partial<Record<PriceId, Record<Lang, string>>> = {
