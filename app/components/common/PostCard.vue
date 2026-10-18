@@ -78,17 +78,14 @@ const date = computed(() =>
       </template>
     </div>
 
-    <!-- Wyróżniony wpis: duży tytuł, opis i „Czytaj wpis” obok okładki -->
+    <!-- Wyróżniony wpis: duży tytuł i opis obok okładki. Opis przycięty do 3 linii jak w zwykłych kartach,
+         bez osobnego „Czytaj wpis” – cała karta jest linkiem, tak samo jak pozostałe -->
     <div v-if="featured" class="flex flex-1 flex-col justify-center gap-3 p-5 sm:p-8 lg:p-10">
       <p class="text-sm text-slate-600 dark:text-slate-400">
         <time v-if="date" :datetime="post.date">{{ date }}</time>
       </p>
       <h2 class="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl dark:text-brand-50">{{ post.title }}</h2>
-      <p v-if="post.description" class="text-base/relaxed text-slate-600 dark:text-slate-300">{{ post.description }}</p>
-      <span class="mt-1 inline-flex items-center gap-2 font-medium text-primary-500 dark:text-primary-400">
-        {{ t('read') }}
-        <Icon name="lucide:arrow-right" class="transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
-      </span>
+      <p v-if="post.description" class="line-clamp-3 text-base/relaxed text-slate-600 dark:text-slate-300">{{ post.description }}</p>
     </div>
 
     <div v-else class="flex flex-1 flex-col px-4.5 pt-4 pb-4.5">
@@ -104,7 +101,7 @@ const date = computed(() =>
 
 <i18n lang="json">
 {
-  "en": { "caseStudy": "Case study", "read": "Read post" },
-  "pl": { "caseStudy": "Case study", "read": "Czytaj wpis" }
+  "en": { "caseStudy": "Case study" },
+  "pl": { "caseStudy": "Case study" }
 }
 </i18n>
