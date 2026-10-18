@@ -5,6 +5,8 @@
 // Filtr rodzaju działa tak samo (3 najnowsze lata z pasującymi projektami rozwinięte) – długa lista
 // nie rozwija się cała naraz. Przy wyszukiwaniu rozwijamy wszystko, żeby żaden wynik nie był ukryty.
 // Projekty z sekcji „Wyróżnione” mają na miniaturze odznakę.
+// ?agency=b4b,eConnect4u (link z osi czasu w „O mnie”) zawęża archiwum do projektów tych firm –
+// filtr widać nad listą jako etykietę z przyciskiem, który go usuwa.
 import { isProjectKind, projectKind, projectKindLabel, projectKindOrder, type ProjectKind } from '~/utils/projectKind'
 
 type ArchiveProject = {
@@ -32,6 +34,7 @@ const router = useRouter()
 // więc w HTML zawsze jest pełna lista (bez błędów hydracji).
 const kind = ref<ProjectKind | 'all'>('all')
 const query = ref('')
+const agencies = ref<string[]>([])
 // Lata, których stan użytkownik zmienił względem domyślnego (rozwinął starszy albo zwinął nowszy)
 const toggled = ref(new Set<string>())
 
@@ -45,7 +48,17 @@ const stripStep = (el: HTMLElement | null) => (el ? el.clientWidth * 0.6 : 200)
 onMounted(() => {
   const tech = route.query.tech
   if (isProjectKind(tech)) kind.value = tech
+  const agency = route.query.agency
+  if (typeof agency === 'string') agencies.value = agency.split(',').map(a => a.trim()).filter(Boolean)
 })
+
+function clearAgencies() {
+  agencies.value = []
+  toggled.value = new Set()
+  const q = { ...route.query }
+  delete q.agency
+  router.replace({ query: q, hash: route.hash })
+}
 
 function setKind(next: ProjectKind | 'all') {
   kind.value = next
@@ -57,11 +70,13 @@ function setKind(next: ProjectKind | 'all') {
 }
 
 const items = computed(() =>
-  props.projects.map(p => ({
-    ...p,
-    kind: projectKind(p.tags),
-    year: p.date.slice(0, 4),
-  })),
+  props.projects
+    .filter(p => !agencies.value.length || agencies.value.includes(p.agency ?? ''))
+    .map(p => ({
+      ...p,
+      kind: projectKind(p.tags),
+      year: p.date.slice(0, 4),
+    })),
 )
 
 const counts = computed(() => {
@@ -88,7 +103,7 @@ const years = computed(() => {
     .map(([year, list]) => ({ year, list: list.sort((a, b) => b.date.localeCompare(a.date)) }))
 })
 
-const narrowed = computed(() => query.value.trim() !== '')
+const narrowed = computed(() => query.value.trim() !== '' || agencies.value.length > 0)
 const isOpen = (year: string, index: number) => narrowed.value || (index < OPEN_YEARS) !== toggled.value.has(year)
 
 async function toggle(year: string, index: number) {
@@ -173,6 +188,20 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         <Icon name="lucide:chevron-right" class="text-base" aria-hidden="true" />
       </button>
     </div>
+
+    <!-- Filtr firm z adresu (?agency=…) – widoczny, żeby było jasne, czemu lista jest krótsza -->
+    <p v-if="agencies.length" class="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+      {{ t('agency.label') }}
+      <button
+        type="button"
+        :class="[chip, 'bg-primary-500/10 font-medium text-primary-500 hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20']"
+        @click="clearAgencies"
+      >
+        {{ agencies.join(', ') }}
+        <Icon name="lucide:x" class="text-base" aria-hidden="true" />
+        <span class="sr-only">{{ t('agency.clear') }}</span>
+      </button>
+    </p>
 
     <!-- Skok do roku -->
     <nav
@@ -329,6 +358,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
       "scrollLeft": "Scroll years left",
       "scrollRight": "Scroll years right"
     },
+    "agency": { "label": "Only projects from:", "clear": "– remove the filter and show all projects" },
     "noResults": "No projects match your search.",
     "count": "{n} project | {n} projects",
     "collapse": "Collapse",
@@ -355,6 +385,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
       "scrollLeft": "Przewiń lata w lewo",
       "scrollRight": "Przewiń lata w prawo"
     },
+    "agency": { "label": "Tylko projekty z:", "clear": "– usuń filtr i pokaż wszystkie projekty" },
     "noResults": "Brak projektów dla tego wyszukiwania.",
     "count": "{n} projekt | {n} projekty | {n} projektów",
     "collapse": "Zwiń",
