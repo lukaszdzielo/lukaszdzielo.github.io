@@ -113,7 +113,7 @@ What does it cost? I measured the HTML itself for four widths:
 | HTML | 250 B | 652 B |
 | HTML after compression (gzip) | 158 B | 232 B |
 
-The page grows by about 75 bytes per image after compression, while the 800 px portrait in AVIF instead of WebP is 20.5 KB instead of 45 KB. That's a good trade. The real cost is somewhere else: three times more files on the server and longer builds.
+After compression, `<picture>` adds about 75 bytes to the page for each image. In return, the browser downloads the 800 px portrait in AVIF (20.5 KB) instead of WebP (45 KB) – about 24 KB less. So those 75 bytes don't matter. The real cost is somewhere else: three times more files on the server (AVIF, WebP and JPG) and longer builds.
 
 **When `<picture>` doesn't make sense:**
 

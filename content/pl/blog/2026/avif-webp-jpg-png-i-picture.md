@@ -113,7 +113,7 @@ Ile to kosztuje? Zmierzyłem sam kod HTML dla czterech szerokości:
 | HTML | 250 B | 652 B |
 | HTML po kompresji (gzip) | 158 B | 232 B |
 
-Strona rośnie o ok. 75 bajtów na obrazek po kompresji, a portret 800 px w AVIF zamiast WebP to 20,5 KB zamiast 45 KB. To dobra wymiana. Prawdziwy koszt jest gdzie indziej: trzy razy więcej plików na serwerze i dłuższe budowanie.
+Po kompresji `<picture>` dodaje do strony ok. 75 bajtów na każdy obrazek. W zamian przeglądarka pobiera portret 800 px w AVIF (20,5 KB) zamiast w WebP (45 KB), czyli o ok. 24 KB mniej. Te 75 bajtów nie ma więc znaczenia. Prawdziwy koszt jest gdzie indziej: trzy razy więcej plików na serwerze (AVIF, WebP i JPG) i dłuższe budowanie.
 
 **Kiedy `<picture>` nie ma sensu:**
 
