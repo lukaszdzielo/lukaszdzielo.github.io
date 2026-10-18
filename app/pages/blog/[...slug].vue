@@ -127,6 +127,12 @@ const shareUrl = computed(() => pageUrl(route.path));
                         <ContentRenderer :value="post" />
                     </article>
 
+                    <!-- Dopisek o pisaniu wpisów z pomocą AI – na końcu każdego wpisu (PL i EN) -->
+                    <p id="ai-note" class="mt-12 flex gap-3 border-t border-slate-900/10 pt-6 text-sm/relaxed text-slate-600 dark:border-white/10 dark:text-slate-400">
+                        <Icon name="lucide:sparkles" class="mt-1 size-4 shrink-0 text-primary-500 dark:text-primary-400" aria-hidden="true" />
+                        <span>{{ t('aiNote') }}</span>
+                    </p>
+
                     <!-- Udostępnianie pod treścią – na telefonie i tablecie (od lg jest w kolumnie obok) -->
                     <BlogShare :url="shareUrl" :title="post.title" class="mt-12 border-t border-slate-900/10 pt-8 lg:hidden dark:border-white/10" />
                 </div>
@@ -164,14 +170,16 @@ const shareUrl = computed(() => pageUrl(route.path));
         "breadcrumb": { "label": "Breadcrumb", "home": "Home", "blog": "Posts" },
         "caseStudy": "Case study",
         "aboutProject": "Project",
-        "toc": "In this post"
+        "toc": "In this post",
+        "aiNote": "I write these posts with help from AI: I explain what I did and why, and AI helps me put it in order and translate it into English. The projects, decisions and experience are mine."
     },
     "pl": {
         "meta": { "fallbackTitle": "Wpis – Łukasz Dzieło" },
         "breadcrumb": { "label": "Okruszki", "home": "Strona główna", "blog": "Wpisy" },
         "caseStudy": "Case study",
         "aboutProject": "Projekt",
-        "toc": "W tym wpisie"
+        "toc": "W tym wpisie",
+        "aiNote": "Wpisy piszę z pomocą AI: opowiadam, co zrobiłem i dlaczego, a AI pomaga mi to uporządkować i przetłumaczyć na angielski. Projekty, decyzje i doświadczenia są moje."
     }
 }
 </i18n>
