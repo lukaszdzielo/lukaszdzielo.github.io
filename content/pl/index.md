@@ -90,7 +90,7 @@ timeline:
   - period: lip 2013 – lut 2022
     company: b4b marketing & eConnect4u
     role: UI Developer
-    text: Strony w HTML, Bootstrapie i jQuery, potem WordPress z ACF i integracje z CMS w PHP; współpraca i spotkania z zespołem z UK.
+    text: Strony w HTML, Bootstrapie i jQuery oraz na WordPressie w builderach (Bridge, Enfold, Divi, Elementor), potem WordPress z ACF i integracje z CMS w PHP; współpraca i spotkania z zespołem z UK.
 education: Akademia WSB – mgr informatyki, grafika komputerowa i multimedia (2019–2021) · WSTI Katowice – lic. grafika (2014–2018)
 hobbiesLabel: 'Poza kodem:'
 hobbies: 'na półce fantasy i książki młodzieżowe, wieczorami z żoną planszówki, Divinity: Original Sin 2 albo Tekken. Przebiegłem też Runmageddon – statuetka weterana i korona stoją teraz między książkami 🏅'
