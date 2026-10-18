@@ -207,6 +207,12 @@ const githubDarkAA = JSON.parse(JSON.stringify(githubDark).replace(/#6a737d/gi, 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   content: {
+    // Osobna pamięć podręczna treści dla `npm run dev` i dla buildu. Wpis z datą z przyszłości jest w dev widoczny,
+    // a w buildzie ukryty (hook content:file:afterParse niżej) – przy wspólnym pliku jedno przeciekało do drugiego.
+    _localDatabase: {
+      type: 'sqlite',
+      filename: process.env.NODE_ENV === 'development' ? '.data/content/dev.sqlite' : '.data/content/contents.sqlite',
+    },
     build: {
       markdown: {
         highlight: { theme: { default: githubLightAA, dark: githubDarkAA } },
@@ -296,10 +302,8 @@ export default defineNuxtConfig({
   hooks: {
     // Wpis z datą z przyszłości traktujemy jak szkic (draft) – nie ma go na liście, w sitemap ani pod adresem.
     // Dzień publikacji: patrz TODAY wyżej. W `npm run dev` wpis jest widoczny, żeby dało się go obejrzeć przed publikacją.
-    // Przetworzone treści zapisują się w .data/content i dev oraz generate korzystają z nich nawzajem (w dev wpis jest
-    // widoczny, w generate ukryty). Dlatego `npm run dev` i `npm run generate` najpierw czyszczą ten katalog
-    // (skrypt clean:content) – inaczej po generate wpis znika z dev, a po dev trafia do lokalnego buildu.
-    // GitHub Actions buduje z czystego repo.
+    // Dev i build mają osobne pliki z przetworzonymi treściami (content._localDatabase wyżej), więc wpis nie przecieka
+    // między nimi. GitHub Actions buduje i tak z czystego repo.
     'content:file:afterParse'(ctx) {
       if (process.env.NODE_ENV === 'development') return
       const content = ctx.content as { date?: string; draft?: boolean }

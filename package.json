@@ -4,11 +4,10 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "npm run clean:content && nuxt dev",
-    "dev:lan": "npm run clean:content && nuxt dev --host 0.0.0.0",
-    "generate": "npm run clean:content && nuxt generate",
-    "preview": "nuxt preview",
-    "clean:content": "node -e \"require('node:fs').rmSync('.data/content',{recursive:true,force:true})\""
+    "dev": "nuxt dev",
+    "dev:lan": "nuxt dev --host 0.0.0.0",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.142",
