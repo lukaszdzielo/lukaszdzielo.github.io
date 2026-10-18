@@ -12,7 +12,7 @@ ogImage: /og/blog/formaty-obrazkow-pl.jpg
 draft: false
 ---
 
-`<picture>` używam praktycznie wszędzie – w WordPressie i w Vue. Chodzi mi o jedno: żeby telefon, tablet i komputer pobierały obrazek w takim rozmiarze, jakiego naprawdę potrzebują. Coraz częściej wybieram AVIF. Na portfolio na razie zostałem przy WebP, bo AVIF generuje się dłużej, ale docelowo przejdę na AVIF. Żeby nie pisać z pamięci, zmierzyłem to na dwóch obrazkach z mojego portfolio.
+`<picture>` używam praktycznie wszędzie – w WordPressie i w Vue. Chodzi mi o jedno: żeby telefon, tablet i komputer pobierały obrazek w takim rozmiarze, jakiego naprawdę potrzebują. Coraz częściej wybieram AVIF – teraz także na tym portfolio, z WebP jako zapasem. Żeby nie pisać z pamięci, zmierzyłem to na dwóch obrazkach z mojego portfolio.
 
 ## Pomiar
 
@@ -48,7 +48,9 @@ Co z tego wynika:
 |---|---|---|---|---|
 | Czas zapisu | 247 ms | 267 ms | 360 ms | 5932 ms |
 
-AVIF zapisuje się kilkanaście razy dłużej niż pozostałe formaty. Na mojej stronie wyszło to w praktyce. Z AVIF i WebP budowanie trwało ok. 9,5 minuty, z samym WebP – ok. 1 minuty. Odwiedzający pobierał na pierwszym ekranie strony głównej 59 kB obrazków zamiast 120 kB, ale czas wczytania największego elementu (LCP) na telefonie różnił się o ok. 0,2 s. Dlatego na razie zostałem przy WebP. AVIF wróci, kiedy budowanie będzie szybsze.
+AVIF zapisuje się kilkanaście razy dłużej niż pozostałe formaty. Na mojej stronie wyszło to w praktyce. Przy budowaniu strony (`nuxt generate`) @nuxt/image tworzy wszystkie wersje obrazków – u mnie 876 plików w każdym formacie. Z AVIF i WebP trwało to ok. 12 minut, z samym WebP – ok. 1 minuty. Odwiedzający pobierał na pierwszym ekranie strony głównej 59 kB obrazków zamiast 120 kB, a czas wczytania największego elementu (LCP) na telefonie różnił się o ok. 0,2 s.
+
+Najpierw wyłączyłem AVIF i zostałem przy samym WebP. Potem do niego wróciłem: nowe wpisy dodaję rzadziej, a strona buduje się w nocy, więc dłuższe budowanie mi nie przeszkadza.
 
 Ze wsparciem w przeglądarkach nie ma już problemu: według caniuse.com (wrzesień 2026) WebP obsługuje ok. 97% użytkowników, a AVIF ok. 96%.
 
@@ -123,7 +125,7 @@ Strona rośnie o ok. 75 bajtów na obrazek po kompresji, a portret 800 px w AVIF
 
 | Co | Format |
 |---|---|
-| Zdjęcia i ilustracje | WebP; gdy budowanie pozwoli – AVIF + WebP w `<picture>` |
+| Zdjęcia i ilustracje | AVIF + WebP w `<picture>` (WebP jako zapas) |
 | Przezroczystość | WebP albo AVIF zamiast PNG |
 | Ikony i logo | SVG |
 | Zrzuty ekranu z tekstem | WebP; PNG tylko wtedy, gdy musi być bez strat |

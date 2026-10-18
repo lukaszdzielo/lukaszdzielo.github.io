@@ -12,7 +12,7 @@ ogImage: /og/blog/formaty-obrazkow-en.jpg
 draft: false
 ---
 
-I use `<picture>` almost everywhere – in WordPress and in Vue. I want one thing: a phone, a tablet and a computer should each download an image in the size they really need. More and more often I choose AVIF. On my portfolio I stayed with WebP for now, because AVIF takes longer to generate, but in the end I'll move to AVIF. So that I don't write from memory, I measured it on two images from my portfolio.
+I use `<picture>` almost everywhere – in WordPress and in Vue. I want one thing: a phone, a tablet and a computer should each download an image in the size they really need. More and more often I choose AVIF – now also on this portfolio, with WebP as a fallback. So that I don't write from memory, I measured it on two images from my portfolio.
 
 ## The test
 
@@ -48,7 +48,9 @@ What this shows:
 |---|---|---|---|---|
 | Time to save | 247 ms | 267 ms | 360 ms | 5932 ms |
 
-AVIF takes more than ten times longer to save than the other formats. I saw this on my own website. With AVIF and WebP the build took about 9.5 minutes, with WebP only – about 1 minute. A visitor downloaded 59 kB of images on the first screen of the home page instead of 120 kB, but the time to load the largest element (LCP) on a phone was only about 0.2 s different. That's why I stay with WebP for now. AVIF will come back when builds are faster.
+AVIF takes more than ten times longer to save than the other formats. I saw this on my own website. When the site builds (`nuxt generate`), @nuxt/image creates every version of every image – 876 files per format in my case. With AVIF and WebP this took about 12 minutes, with WebP only – about 1 minute. A visitor downloaded 59 kB of images on the first screen of the home page instead of 120 kB, and the time to load the largest element (LCP) on a phone was about 0.2 s different.
+
+First I turned AVIF off and stayed with WebP only. Then I brought it back: I add new posts less often now, and the site builds at night, so a longer build doesn't bother me.
 
 Browser support is no longer a problem: according to caniuse.com (September 2026), about 97% of users can see WebP and about 96% can see AVIF.
 
@@ -123,7 +125,7 @@ The page grows by about 75 bytes per image after compression, while the 800 px p
 
 | What | Format |
 |---|---|
-| Photos and illustrations | WebP; when builds allow it – AVIF + WebP in `<picture>` |
+| Photos and illustrations | AVIF + WebP in `<picture>` (WebP as a fallback) |
 | Transparency | WebP or AVIF instead of PNG |
 | Icons and logos | SVG |
 | Screenshots with text | WebP; PNG only when it must be lossless |
