@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<!-- czysty JS: ten sam kod w wielu miejscach -->
+<g stroke="rgba(200,215,255,.4)" stroke-width="1.2" fill="rgba(255,255,255,.07)">
+<rect x="24" y="44" width="150" height="34" rx="8"/><rect x="24" y="88" width="150" height="34" rx="8"/>
+<rect x="24" y="132" width="150" height="34" rx="8"/><rect x="24" y="176" width="150" height="34" rx="8"/>
+<rect x="24" y="220" width="150" height="34" rx="8"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#cfd9ff">
+<text x="36" y="66">createElement()</text><text x="36" y="110">createElement()</text>
+<text x="36" y="154">createElement()</text><text x="36" y="198">createElement()</text>
+<text x="36" y="242">render()</text>
+</g>
+<!-- strzałka -->
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round">
+<path d="M190 150h52"/><path d="m234 143 8 7-8 7"/>
+</g>
+<!-- Vue: jeden komponent i pętla -->
+<rect x="258" y="66" width="198" height="48" rx="24" fill="rgba(111,156,255,.32)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+<rect x="278" y="86" width="8" height="8" rx="4" fill="#2860ea"/>
+<text x="294" y="95" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff">&lt;Card /&gt;</text>
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round"><path d="M357 114v20"/></g>
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+<rect x="258" y="140" width="60" height="76" rx="10"/><rect x="327" y="140" width="60" height="76" rx="10"/><rect x="396" y="140" width="60" height="76" rx="10"/>
+</g>
+<text x="300" y="246" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff">v-for</text>
+</svg>
