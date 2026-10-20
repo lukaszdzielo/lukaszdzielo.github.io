@@ -2,10 +2,11 @@
 import { businessProcess } from '~/data/business'
 
 const data = useLocalized(businessProcess)
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="process" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('process')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="bizProcess" side="right" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="data.title" :lead="data.lead" />

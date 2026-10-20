@@ -2,7 +2,7 @@
 // Linki do podstron dopisuj dopiero, gdy strona istnieje – inaczej `nuxt generate` zgłosi błąd 404 przy prerenderingu.
 // Linki wewnętrzne to adresy wersji polskiej bez /pl ('/#projects', '/strony-dla-firm#offer') –
 // TheFooter przepuszcza je przez link() z useLocalLink, który zamienia je na adres w aktualnym języku.
-// Kotwice (#about-me itd.) są po angielsku w obu wersjach.
+// Kotwice (#about-me itd.) piszemy po angielsku – link() zamienia je w wersji polskiej (#o-mnie itd.).
 
 export type FooterLink = { label: string; to: string; external?: boolean }
 export type FooterColumn = { title: string; links: FooterLink[] }

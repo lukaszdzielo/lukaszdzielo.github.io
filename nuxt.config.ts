@@ -3,7 +3,7 @@ import path from 'node:path';
 import tailwindcss from "@tailwindcss/vite";
 import githubLight from 'shiki/themes/github-light.mjs';
 import githubDark from 'shiki/themes/github-dark.mjs';
-import { PL_SEGMENTS, toPlPath } from './app/utils/localeRoutes';
+import { PL_ANCHORS, PL_SEGMENTS, toPlPath } from './app/utils/localeRoutes';
 
 const SITE_NAME = 'Łukasz Dzieło'
 const SITE_ROLE = 'Front-End Developer'
@@ -199,7 +199,8 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
 // Pierwsza wizyta z przeglądarką po polsku (pierwszy język na liście) → ta sama strona w wersji /pl.
 // Nie przekierowuje, gdy jest ciasteczko `lang` (wybór z przełącznika języka) ani na stronach /pl.
 // Adresy podstron z inną nazwą w każdym języku – mapa `m` (jak definePageMeta w pages/), a części adresu
-// z polską nazwą (/projects → /projekty, /blog → /wpisy) – lista `s` z app/utils/localeRoutes.ts.
+// z polską nazwą (/projects → /projekty, /blog → /wpisy) – lista `s`, kotwice (#contact → #kontakt) – mapa `a`
+// (obie z app/utils/localeRoutes.ts).
 // Wpisy mają adres z tytułu w swoim języku – pary EN → PL po translationKey (bez wpisów ukrytych i z przyszłą datą).
 const getPostPairs = (): Record<string, string> => {
   const read = (lang: 'en' | 'pl') => {
@@ -227,7 +228,7 @@ const getPostPairs = (): Record<string, string> => {
   return pairs;
 };
 const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci', ...getPostPairs() };
-const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m=${JSON.stringify(LANG_PAGES)},s=${JSON.stringify(PL_SEGMENTS)};var k=p.replace(/\\/+$/,''),t=m[k];if(!t){t=k;for(var i=0;i<s.length;i++){var a=s[i][0];if(k===a||k.indexOf(a+'/')===0){t=s[i][1]+k.slice(a.length);break}}}location.replace('/pl'+t+'/'+location.search+location.hash)}catch(e){}})();`
+const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m=${JSON.stringify(LANG_PAGES)},s=${JSON.stringify(PL_SEGMENTS)};var k=p.replace(/\\/+$/,''),t=m[k];if(!t){t=k;for(var i=0;i<s.length;i++){var a=s[i][0];if(k===a||k.indexOf(a+'/')===0){t=s[i][1]+k.slice(a.length);break}}}var h=location.hash.slice(1),a=${JSON.stringify(PL_ANCHORS)};location.replace('/pl'+t+'/'+location.search+(h?'#'+(a[h]||h):''))}catch(e){}})();`
 
 // Motywy bloków kodu z kontrastem WCAG AA (min. 4,5:1). Nazwy motywów zostają te same, więc klasy i style się nie zmieniają.
 // Jasny: pomarańczowy #e36209 na białym tle ma 3,5:1 → orange-700 (#ca3500, 5,2:1).

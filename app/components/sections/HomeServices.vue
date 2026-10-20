@@ -8,10 +8,11 @@ defineProps<{ services?: Service[] }>()
 const { t } = useI18n({ useScope: 'local' })
 // service.to w treści to adres wersji polskiej bez /pl – link() zamienia go na adres w bieżącym języku
 const link = useLocalLink()
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="services" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('services')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="services" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="t('title')" :lead="t('lead')" />

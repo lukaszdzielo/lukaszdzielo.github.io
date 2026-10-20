@@ -51,10 +51,11 @@ const more = (item: TimelineItem) => {
 const archiveLink = (item: TimelineItem) => link(`/projects?agency=${(item.agencies ?? []).join(',')}#archive`)
 // „1 projekt / 3 projekty / 37 projektów” – polska odmiana z i18n.config.ts
 const projectsCount = (n: number) => t('count', n)
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="about-me" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('about-me')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="about" class="top-6" />
     <div class="container grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8">
       <figure

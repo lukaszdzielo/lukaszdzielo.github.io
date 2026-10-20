@@ -8,10 +8,11 @@ const { lang } = useContentLocale()
 const faq = useLocalized(businessFaq)
 const day = usePricingDay()
 const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: PriceId) => price(id, lang.value, day.value).now)
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="faq" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('faq')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="bizFaq" side="right" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="faq.title" />

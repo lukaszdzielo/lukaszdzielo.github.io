@@ -8,10 +8,11 @@ const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>()
 const business = computed(() => props.variant === 'business')
 const { t } = useI18n({ useScope: 'local' })
 const biz = useLocalized(businessContact)
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="contact" class="relative isolate pt-22 pb-18 md:pt-28 md:pb-22.5 lg:pt-37.5 lg:pb-27.5">
+  <section :id="anchor('contact')" class="relative isolate pt-22 pb-18 md:pt-28 md:pb-22.5 lg:pt-37.5 lg:pb-27.5">
     <CommonCodeBackdrop name="contact" class="top-6" />
     <div class="container">
       <div

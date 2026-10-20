@@ -83,6 +83,7 @@ useJsonLd('breadcrumb', {
     { '@type': 'ListItem', position: 2, name: t('title') },
   ],
 })
+const anchor = useAnchor()
 </script>
 
 <template>
@@ -130,7 +131,7 @@ useJsonLd('breadcrumb', {
       :backdrop="false"
     />
 
-    <section id="archive" class="relative isolate scroll-mt-4 pt-20 pb-22 md:pt-28 lg:pt-37.5 lg:pb-27.5">
+    <section :id="anchor('archive')" class="relative isolate scroll-mt-4 pt-20 pb-22 md:pt-28 lg:pt-37.5 lg:pb-27.5">
       <CommonCodeBackdrop name="services" class="top-6" />
       <div class="container">
         <CommonSectionHead

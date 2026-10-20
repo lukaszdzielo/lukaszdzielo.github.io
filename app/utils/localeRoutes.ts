@@ -23,3 +23,21 @@ export const toPlPath = (path: string) => swap(path, PL_SEGMENTS)
 
 // '/projekty/2025/superauto' → '/projects/2025/superauto' (adres po usunięciu /pl)
 export const fromPlPath = (path: string) => swap(path, PL_SEGMENTS.map(([en, pl]) => [pl, en] as const))
+
+// Kotwice sekcji EN → PL (po angielsku zostają jak w kodzie); np. /pl/strony-dla-firm#kontakt
+export const PL_ANCHORS: Readonly<Record<string, string>> = {
+  'about-me': 'o-mnie',
+  projects: 'projekty',
+  posts: 'wpisy',
+  contact: 'kontakt',
+  services: 'uslugi',
+  stack: 'technologie',
+  process: 'jak-pracuje',
+  offer: 'oferta',
+  care: 'opieka',
+  faq: 'pytania',
+  featured: 'wyroznione',
+  archive: 'archiwum',
+}
+
+export const toPlAnchor = (id: string) => PL_ANCHORS[id] ?? id

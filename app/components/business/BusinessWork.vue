@@ -41,10 +41,11 @@ const tiles = computed(() =>
     .filter(<T,>(x: T | null): x is T => x !== null),
 )
 const scroller = useTemplateRef<HTMLElement>('scroller')
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="projects" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('projects')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="bizWork" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="work.title" :lead="work.lead" />

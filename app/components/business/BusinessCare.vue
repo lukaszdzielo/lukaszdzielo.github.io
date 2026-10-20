@@ -7,10 +7,11 @@ const care = useLocalized(businessCare)
 const day = usePricingDay()
 // cena w formacie języka strony („150 zł” / „€35 · £39”)
 const price = (id: PriceId) => priceIn(id, locale.value === 'pl' ? 'pl' : 'en', day.value)
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="care" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('care')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="bizCare" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="care.title" :lead="care.lead" />

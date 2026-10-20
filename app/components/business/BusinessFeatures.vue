@@ -12,10 +12,11 @@ const icons: Record<string, string> = {
   server: 'lucide:server',
   chat: 'lucide:message-circle',
 }
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="offer" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('offer')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <div class="container">
       <CommonSectionHead :title="features.title" :lead="features.lead" />
       <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-6">

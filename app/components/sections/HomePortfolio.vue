@@ -63,10 +63,11 @@ const setFlyShadow = (el: unknown) => (flyShadow.value = el as HTMLElement | nul
 const setFlyTile = (el: unknown) => (flyTile.value = el as HTMLElement | null)
 const setFlyGhost = (el: unknown) => (flyGhost.value = el as HTMLElement | null)
 if (props.backdrop) useFlyTile({ tile: flyTile, ghost: flyGhost, shadow: flyShadow, grid: scroller })
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section :id="props.id" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor(props.id)" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop v-if="backdrop" name="projects" side="right" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="title ?? t('title')" :lead="lead ?? t('lead')">

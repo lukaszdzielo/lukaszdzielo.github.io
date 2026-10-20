@@ -16,6 +16,7 @@ const promoBadge = computed(() => {
   const p = promoLabel(lang.value, day.value)
   return p ? t('promo', p) : ''
 })
+const anchor = useAnchor()
 </script>
 
 <template>
@@ -53,7 +54,7 @@ const promoBadge = computed(() => {
             <s v-if="price(plan.price).before" class="text-base opacity-55">{{ price(plan.price).before }}</s>
             <b class="text-2xl font-semibold tracking-tight">{{ t('from', { price: price(plan.price).now }) }}</b>
             <span class="text-sm opacity-70">{{ plan.suffix }}</span>
-            <NuxtLink v-if="plan.more" :to="plan.more" class="text-sm underline underline-offset-2 opacity-70 hover:opacity-100">{{ t('details') }}</NuxtLink>
+            <NuxtLink v-if="plan.more" :to="`#${anchor(plan.more.slice(1))}`" class="text-sm underline underline-offset-2 opacity-70 hover:opacity-100">{{ t('details') }}</NuxtLink>
             <small v-if="price(plan.price).lowest" class="w-full text-xs opacity-70">{{ t('lowest', { price: price(plan.price).lowest }) }}</small>
           </p>
         </li>

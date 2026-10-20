@@ -25,10 +25,11 @@ const { data: posts } = await useAsyncData(`home-posts-${lang.value}`, () =>
 const scroller = useTemplateRef<HTMLElement>('scroller')
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
+const anchor = useAnchor()
 </script>
 
 <template>
-  <section id="posts" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
+  <section :id="anchor('posts')" class="relative isolate pt-22 md:pt-28 lg:pt-37.5">
     <CommonCodeBackdrop name="posts" side="right" class="top-6" />
     <div class="container">
       <CommonSectionHead :title="t('title')" :lead="t('lead')">
