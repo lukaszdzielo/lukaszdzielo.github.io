@@ -96,6 +96,9 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
         <h2 :class="h2">{{ t('hosting.title') }}</h2>
         <p :class="p">{{ t('hosting.text') }}</p>
 
+        <h2 :class="h2">{{ t('embeds.title') }}</h2>
+        <p :class="p">{{ t('embeds.text') }}</p>
+
         <h2 :class="h2">{{ t('storage.title') }}</h2>
         <p :class="p">{{ t('storage.text') }}</p>
 
@@ -153,6 +156,10 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
       "title": "Hosting",
       "text": "The site runs on GitHub Pages (GitHub, Inc.). Like any server, GitHub records technical data about visits – including your IP address and browser type – to keep the site running and secure. I don't have access to this data."
     },
+    "embeds": {
+      "title": "Code demos (CodePen)",
+      "text": "Some posts have a code demo from CodePen (codepen.io). It loads only when you click \"Run the demo\". Then your browser connects to codepen.io, which processes technical data, such as your IP address, and may store its own cookies – under CodePen's privacy policy. Without the click, the site doesn't connect to CodePen."
+    },
     "storage": {
       "title": "Browser storage",
       "text": "The site saves two things in your browser (localStorage): the theme you chose – light or dark – and your decision about statistics. It also keeps your language choice – English or Polish – in a small cookie called lang. This information isn't sent anywhere; you can delete it by clearing the site's data in your browser. Fonts and icons are hosted on the same server as the site – they aren't loaded from other companies."
@@ -209,6 +216,10 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
     "hosting": {
       "title": "Hosting",
       "text": "Strona działa na GitHub Pages (GitHub, Inc.). Jak każdy serwer, GitHub zapisuje techniczne dane o wizytach – m.in. adres IP i rodzaj przeglądarki – żeby strona działała i była bezpieczna. Nie mam do tych danych dostępu."
+    },
+    "embeds": {
+      "title": "Dema kodu (CodePen)",
+      "text": "Niektóre wpisy mają demo kodu z CodePena (codepen.io). Wczytuje się dopiero, gdy klikniesz „Uruchom demo”. Wtedy Twoja przeglądarka łączy się z codepen.io, który przetwarza dane techniczne, np. adres IP, i może zapisać swoje pliki cookies – według polityki prywatności CodePena. Bez kliknięcia strona nie łączy się z CodePenem."
     },
     "storage": {
       "title": "Pamięć przeglądarki",
