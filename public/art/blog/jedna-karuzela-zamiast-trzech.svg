@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<!-- trzy karuzele z osobnym kodem -->
+<g stroke="rgba(200,215,255,.45)" stroke-width="1.2">
+<rect x="20" y="60" width="128" height="40" rx="10" fill="rgba(255,255,255,.08)"/>
+<rect x="20" y="130" width="128" height="40" rx="10" fill="rgba(255,255,255,.08)"/>
+<rect x="20" y="200" width="128" height="40" rx="10" fill="rgba(255,255,255,.08)"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff">
+<text x="36" y="85">slider-a.js</text>
+<text x="36" y="155">slider-b.js</text>
+<text x="36" y="225">slider-c.js</text>
+</g>
+<!-- strzałki do jednego komponentu -->
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" fill="none">
+<path d="M156 80c24 0 30 70 52 70"/><path d="M156 150h52"/><path d="M156 220c24 0 30-70 52-70"/>
+<path d="m200 143 8 7-8 7"/>
+</g>
+<!-- jeden komponent na Swiperze -->
+<rect x="216" y="126" width="104" height="48" rx="24" fill="rgba(111,156,255,.32)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+<rect x="234" y="146" width="8" height="8" rx="4" fill="#2860ea"/>
+<text x="250" y="155" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff">Swiper</text>
+<!-- warianty -->
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" fill="none">
+<path d="M328 150h16"/><path d="M344 64v172"/>
+<path d="M344 64h12"/><path d="M344 121h12"/><path d="M344 179h12"/><path d="M344 236h12"/>
+</g>
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+<rect x="360" y="46" width="104" height="36" rx="10"/>
+<rect x="360" y="103" width="104" height="36" rx="10"/>
+<rect x="360" y="161" width="104" height="36" rx="10"/>
+<rect x="360" y="218" width="104" height="36" rx="10"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff">
+<text x="374" y="69">gallery</text>
+<text x="374" y="126">fullscreen</text>
+<text x="374" y="184">vehicles</text>
+<text x="374" y="241">offers</text>
+</g>
+</svg>
