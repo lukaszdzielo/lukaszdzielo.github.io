@@ -201,8 +201,10 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
 // Adresy podstron z inną nazwą w każdym języku – mapa `m` (jak definePageMeta w pages/), a części adresu
 // z polską nazwą (/projects → /projekty, /blog → /wpisy) – lista `s`, kotwice (#contact → #kontakt) – mapa `a`
 // (obie z app/utils/localeRoutes.ts).
-// Wpisy mają adres z tytułu w swoim języku – pary EN → PL po translationKey (bez wpisów ukrytych i z przyszłą datą).
+// Wpisy mają adres z tytułu w swoim języku – pary EN → PL po translationKey (w buildzie bez wpisów ukrytych
+// i z przyszłą datą; w `npm run dev` wszystkie, bo dev pokazuje też wpisy z przyszłą datą).
 const getPostPairs = (): Record<string, string> => {
+  const isDev = process.env.NODE_ENV === 'development';
   const read = (lang: 'en' | 'pl') => {
     const dir = path.resolve(process.cwd(), `content/${lang}/blog`);
     const walk = (d: string): string[] => !fs.existsSync(d) ? [] : fs.readdirSync(d).flatMap((f) => {
@@ -213,7 +215,7 @@ const getPostPairs = (): Record<string, string> => {
     for (const file of walk(dir)) {
       const yaml = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];
       const key = yaml?.match(/^translationKey:\s*(\S+)/m)?.[1];
-      if (!yaml || !key || isHidden(yaml, 'blog')) continue;
+      if (!yaml || !key || (!isDev && isHidden(yaml, 'blog'))) continue;
       byKey.set(key, '/blog/' + path.relative(dir, file).split(path.sep).join('/').replace(/\.md$/, ''));
     }
     return byKey;
@@ -227,7 +229,8 @@ const getPostPairs = (): Record<string, string> => {
   }
   return pairs;
 };
-const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci', ...getPostPairs() };
+const POST_PAIRS = getPostPairs();
+const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci', ...POST_PAIRS };
 const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m=${JSON.stringify(LANG_PAGES)},s=${JSON.stringify(PL_SEGMENTS)};var k=p.replace(/\\/+$/,''),t=m[k];if(!t){t=k;for(var i=0;i<s.length;i++){var a=s[i][0];if(k===a||k.indexOf(a+'/')===0){t=s[i][1]+k.slice(a.length);break}}}var h=location.hash.slice(1),a=${JSON.stringify(PL_ANCHORS)};location.replace('/pl'+t+'/'+location.search+(h?'#'+(a[h]||h):''))}catch(e){}})();`
 
 // Motywy bloków kodu z kontrastem WCAG AA (min. 4,5:1). Nazwy motywów zostają te same, więc klasy i style się nie zmieniają.
@@ -395,8 +398,6 @@ export default defineNuxtConfig({
     // Wykrywanie języka robi skrypt w <head> (LANG_REDIRECT niżej) – przed wyświetleniem strony,
     // bez mignięcia wersji angielskiej i bez błędów hydracji na stronie statycznej.
     detectBrowserLanguage: false,
-    // Przełącznik języka (SwitchLocalePathLink) z właściwym adresem drugiej wersji wpisu już w HTML ze strony statycznej
-    experimental: { switchLocalePathLinkSSR: true },
     vueI18n: './i18n.config.ts', // i18n/i18n.config.ts
   },
   icon: {
@@ -405,6 +406,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      // Pary adresów wpisów EN → PL (bez /pl) – przełącznik języka i hreflang (app/composables/useAlternatePath.ts)
+      postPairs: POST_PAIRS,
       // Disable the anchor <a> links that MDC wraps around headings (h2/h3/h4 by default)
       mdc: {
         headings: {

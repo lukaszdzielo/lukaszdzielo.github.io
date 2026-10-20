@@ -12,10 +12,10 @@ const business = computed(() => routeBaseName(route) === 'strony-dla-firm')
 // Adres kanoniczny i og:url każdej podstrony + wersje językowe (hreflang).
 // Adresy z ukośnikiem na końcu – tak serwuje je GitHub Pages (bez przekierowania).
 const locale = useNuxtApp().$i18n.locale
-const switchLocalePath = useSwitchLocalePath()
+const alternate = useAlternatePath()
 const bare = (path) => path.split(/[?#]/)[0] || '/'
 const url = computed(() => pageUrl(bare(route.path)))
-const alt = (code) => pageUrl(bare(switchLocalePath(code) || (code === 'en' ? '/' : '/pl')))
+const alt = (code) => pageUrl(bare(alternate(code) || (code === 'en' ? '/' : '/pl')))
 useHead(() => ({
   htmlAttrs: { lang: locale.value },
   link: [

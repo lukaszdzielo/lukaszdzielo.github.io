@@ -3,13 +3,13 @@
 // z kodem języka, na który przełącza. „segmented” – w otwartym menu na telefonie i tablecie: PL | EN.
 // Wybór zapisuje się w ciasteczku `lang` (rok), więc skrypt wykrywający język przeglądarki
 // (LANG_REDIRECT w nuxt.config.ts) już nie przekierowuje.
-// SwitchLocalePathLink zamiast NuxtLink: wpis ma w każdym języku inny adres (z tytułu), a strona wpisu ustawia go
-// przez setI18nParams już po wyrenderowaniu nagłówka – ten komponent podmienia adres w gotowym HTML.
+// Adres drugiej wersji – useAlternatePath (wpisy mają w każdym języku adres z tytułu).
 const props = withDefaults(defineProps<{ variant?: 'button' | 'segmented' }>(), { variant: 'button' })
 const emit = defineEmits<{ switched: [] }>()
 
 const { locale, t } = useI18n({ useScope: 'local' })
 const other = computed(() => (locale.value === 'pl' ? 'en' : 'pl'))
+const alternate = useAlternatePath()
 const codes = ['pl', 'en'] as const
 
 function remember(code: string) {
@@ -19,9 +19,9 @@ function remember(code: string) {
 </script>
 
 <template>
-  <SwitchLocalePathLink
+  <NuxtLink
     v-if="props.variant === 'button'"
-    :locale="other"
+    :to="alternate(other)"
     :lang="other"
     :hreflang="other"
     :aria-label="t('switchTo')"
@@ -29,15 +29,15 @@ function remember(code: string) {
     @click="remember(other)"
   >
     {{ other }}
-  </SwitchLocalePathLink>
+  </NuxtLink>
 
   <div v-else class="flex items-center justify-between gap-4 text-base text-slate-600 dark:text-slate-300">
     <span>{{ t('language') }}</span>
     <div class="flex gap-1 rounded-full border border-slate-900/16 p-1 dark:border-white/20">
-      <SwitchLocalePathLink
+      <NuxtLink
         v-for="code in codes"
         :key="code"
-        :locale="code"
+        :to="alternate(code)"
         :lang="code"
         :hreflang="code"
         :aria-current="code === locale ? 'true' : undefined"
@@ -46,7 +46,7 @@ function remember(code: string) {
         @click="remember(code)"
       >
         {{ code }}
-      </SwitchLocalePathLink>
+      </NuxtLink>
     </div>
   </div>
 </template>
