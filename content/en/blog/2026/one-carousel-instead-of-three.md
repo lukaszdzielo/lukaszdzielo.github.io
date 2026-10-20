@@ -10,6 +10,7 @@ kind: case-study
 project: /projects/2025/superauto
 art: /art/blog/jedna-karuzela-zamiast-trzech.svg
 ogImage: /og/blog/jedna-karuzela-zamiast-trzech-en.jpg
+translationKey: jedna-karuzela-zamiast-trzech
 draft: false
 ---
 

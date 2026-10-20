@@ -9,6 +9,7 @@ kind: case-study
 project: /projects/2026/agrestapp
 art: /art/blog/tabela-jak-arkusz.svg
 ogImage: /og/blog/tabela-jak-arkusz-en.jpg
+translationKey: tabela-jak-arkusz
 draft: false
 ---
 

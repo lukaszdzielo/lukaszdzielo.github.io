@@ -9,6 +9,7 @@ tags:
 kind: post
 art: /art/blog/formaty-obrazkow.svg
 ogImage: /og/blog/formaty-obrazkow-pl.jpg
+translationKey: avif-webp-jpg-png-i-picture
 draft: false
 ---
 

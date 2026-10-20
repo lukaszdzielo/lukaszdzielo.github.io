@@ -9,6 +9,7 @@ tags:
 kind: post
 art: /art/blog/osiem-ifow.svg
 ogImage: /og/blog/osiem-ifow-en.jpg
+translationKey: osiem-ifow-i-jedna-mapa
 draft: false
 ---
 

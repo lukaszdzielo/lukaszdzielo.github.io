@@ -10,6 +10,7 @@ kind: case-study
 project: /projects/2026/agrestapp
 art: /art/blog/naglowki-agrestapp.svg
 ogImage: /og/blog/naglowki-agrestapp-en.jpg
+translationKey: naglowki-agrestapp
 draft: false
 ---
 

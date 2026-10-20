@@ -9,6 +9,7 @@ kind: case-study
 project: /projects/2026/agrestapp
 art: /art/blog/migracja-na-tailwind-v4.svg
 ogImage: /og/blog/migracja-na-tailwind-v4-pl.jpg
+translationKey: migracja-na-tailwind-v4
 draft: false
 ---
 

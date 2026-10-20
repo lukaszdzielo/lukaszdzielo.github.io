@@ -17,6 +17,28 @@ const { data: post } = await useAsyncData('blog-' + path, () =>
         .first()
 );
 
+// Ten sam wpis w drugim języku (to samo `translationKey`) – adres może być inny, bo powstaje z tytułu.
+// Przełącznik języka i hreflang (switchLocalePath) dostają z setI18nParams właściwy adres drugiej wersji.
+const otherLang = locale.value === 'pl' ? 'en' : 'pl';
+const { data: translation } = await useAsyncData('blog-translation-' + path, () => {
+    const key = post.value?.translationKey;
+    if (!key) return Promise.resolve(null);
+    return queryCollection(otherLang === 'pl' ? 'blog_pl' : 'blog_en')
+        .where('draft', '=', false)
+        .where('translationKey', '=', key)
+        .select('path')
+        .first();
+});
+// części adresu po /blog albo /pl/wpisy, np. ['2026', 'tabela-jak-arkusz']
+const slugOf = (p: string) => p.replace(/^(\/pl)?\/(blog|wpisy)\//, '').split('/');
+const setI18nParams = useSetI18nParams();
+if (post.value && translation.value) {
+    setI18nParams({
+        [locale.value]: { slug: slugOf(post.value.path) },
+        [otherLang]: { slug: slugOf(translation.value.path) },
+    });
+}
+
 // Project this article was written about (via `project:` in frontmatter).
 const { data: relatedProject } = await useAsyncData('blog-project-' + path, () => {
     const projectPath = post.value?.project ? withLocale(post.value.project) : undefined;

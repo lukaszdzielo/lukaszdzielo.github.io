@@ -9,6 +9,7 @@ kind: case-study
 project: /projects/2026/agrestapp
 art: /art/blog/migracja-na-tailwind-v4.svg
 ogImage: /og/blog/migracja-na-tailwind-v4-en.jpg
+translationKey: migracja-na-tailwind-v4
 draft: false
 ---
 
@@ -125,4 +126,4 @@ Finally, I left a note for the team: after pulling the changes you have to run `
 - A migration without rewriting the templates – the old values in `@theme` and three changes that v4 needs.
 - A separate `app-base` layer for element rules, so the cascade works like in v3.
 - Comparing the final CSS instead of clicking through pages – it shows for sure that nothing went missing.
-- The project is ready for `pointer-coarse:`, which started it all – I used it e.g. in the [AgrestApp headers](/blog/2026/naglowki-agrestapp).
+- The project is ready for `pointer-coarse:`, which started it all – I used it e.g. in the [AgrestApp headers](/blog/2026/agrestapp-headers).

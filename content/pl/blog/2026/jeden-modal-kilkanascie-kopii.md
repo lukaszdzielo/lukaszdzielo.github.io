@@ -9,6 +9,7 @@ tags:
 kind: post
 art: /art/blog/jeden-modal.svg
 ogImage: /og/blog/jeden-modal-pl.jpg
+translationKey: jeden-modal-kilkanascie-kopii
 draft: false
 ---
 

@@ -10,6 +10,7 @@ kind: post
 project: /projects/2024/pokedex
 art: /art/blog/pokedex.svg
 ogImage: /og/blog/pokedex-pl.jpg
+translationKey: pokedex-kilkadziesiat-zapytan-zamiast-tysiaca
 draft: false
 ---
 

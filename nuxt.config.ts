@@ -200,7 +200,33 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
 // Nie przekierowuje, gdy jest ciasteczko `lang` (wybór z przełącznika języka) ani na stronach /pl.
 // Adresy podstron z inną nazwą w każdym języku – mapa `m` (jak definePageMeta w pages/), a części adresu
 // z polską nazwą (/projects → /projekty, /blog → /wpisy) – lista `s` z app/utils/localeRoutes.ts.
-const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci' };
+// Wpisy mają adres z tytułu w swoim języku – pary EN → PL po translationKey (bez wpisów ukrytych i z przyszłą datą).
+const getPostPairs = (): Record<string, string> => {
+  const read = (lang: 'en' | 'pl') => {
+    const dir = path.resolve(process.cwd(), `content/${lang}/blog`);
+    const walk = (d: string): string[] => !fs.existsSync(d) ? [] : fs.readdirSync(d).flatMap((f) => {
+      const full = path.join(d, f);
+      return fs.statSync(full).isDirectory() ? walk(full) : f.endsWith('.md') ? [full] : [];
+    });
+    const byKey = new Map<string, string>();
+    for (const file of walk(dir)) {
+      const yaml = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];
+      const key = yaml?.match(/^translationKey:\s*(\S+)/m)?.[1];
+      if (!yaml || !key || isHidden(yaml, 'blog')) continue;
+      byKey.set(key, '/blog/' + path.relative(dir, file).split(path.sep).join('/').replace(/\.md$/, ''));
+    }
+    return byKey;
+  };
+  const en = read('en');
+  const pl = read('pl');
+  const pairs: Record<string, string> = {};
+  for (const [key, enPath] of en) {
+    const plPath = pl.get(key);
+    if (plPath) pairs[enPath] = toPlPath(plPath);
+  }
+  return pairs;
+};
+const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci', ...getPostPairs() };
 const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m=${JSON.stringify(LANG_PAGES)},s=${JSON.stringify(PL_SEGMENTS)};var k=p.replace(/\\/+$/,''),t=m[k];if(!t){t=k;for(var i=0;i<s.length;i++){var a=s[i][0];if(k===a||k.indexOf(a+'/')===0){t=s[i][1]+k.slice(a.length);break}}}location.replace('/pl'+t+'/'+location.search+location.hash)}catch(e){}})();`
 
 // Motywy bloków kodu z kontrastem WCAG AA (min. 4,5:1). Nazwy motywów zostają te same, więc klasy i style się nie zmieniają.
@@ -368,6 +394,8 @@ export default defineNuxtConfig({
     // Wykrywanie języka robi skrypt w <head> (LANG_REDIRECT niżej) – przed wyświetleniem strony,
     // bez mignięcia wersji angielskiej i bez błędów hydracji na stronie statycznej.
     detectBrowserLanguage: false,
+    // Przełącznik języka (SwitchLocalePathLink) z właściwym adresem drugiej wersji wpisu już w HTML ze strony statycznej
+    experimental: { switchLocalePathLinkSSR: true },
     vueI18n: './i18n.config.ts', // i18n/i18n.config.ts
   },
   icon: {

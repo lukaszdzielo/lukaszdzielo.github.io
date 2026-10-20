@@ -36,6 +36,9 @@ const blogSchema = z.object({
     typeof v === 'string' ? v : v.toISOString().slice(0, 10)
   ).optional(),
   slug: z.string().optional(),
+  // ten sam wpis w obu językach ma to samo translationKey (polska nazwa pliku) – każda wersja ma adres z tytułu
+  // w swoim języku (np. /blog/2026/table-like-a-spreadsheet i /pl/wpisy/2026/tabela-jak-arkusz)
+  translationKey: z.string().optional(),
   description: z.string(),
   tags: z.array(z.string()),
   image: z.string().optional(),
