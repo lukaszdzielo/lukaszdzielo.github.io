@@ -132,7 +132,7 @@ const shareUrl = computed(() => pageUrl(route.path));
 
                     <!-- Dopisek o pisaniu wpisów z pomocą AI – na końcu każdego wpisu (PL i EN) -->
                     <p id="ai-note" class="mt-12 flex gap-3 border-t border-slate-900/10 pt-6 text-sm/relaxed text-slate-600 dark:border-white/10 dark:text-slate-400">
-                        <Icon name="lucide:sparkles" class="mt-1 size-4 shrink-0 text-primary-500 dark:text-primary-400" aria-hidden="true" />
+                        <Icon name="lucide:sparkles" class="mt-1 size-3.5 shrink-0 text-primary-500 dark:text-primary-400" aria-hidden="true" />
                         <span>{{ t('aiNote') }}</span>
                     </p>
 

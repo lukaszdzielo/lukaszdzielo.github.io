@@ -403,6 +403,9 @@ export default defineNuxtConfig({
   icon: {
     // Ikony użyte w kodzie trafiają do paczki – bez zapytań do api.iconify.design w przeglądarce.
     clientBundle: { scan: true },
+    // Styl modułu (ikona = wielkość tekstu) w warstwie base – inaczej w Tailwind v4 wygrywał z klasami size-*
+    // i ikony miały rozmiar tekstu zamiast rozmiaru z kodu (decyzja 20.10: wariant b).
+    cssLayer: 'base',
   },
   runtimeConfig: {
     public: {

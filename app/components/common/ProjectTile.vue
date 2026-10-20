@@ -70,7 +70,7 @@ const linkAttrs = computed(() => {
         >
           <Icon
             :name="to ? 'lucide:arrow-right' : 'lucide:arrow-up-right'"
-            class="size-4.5 transition-transform duration-300"
+            class="size-4 transition-transform duration-300"
             :class="to ? 'motion-safe:group-hover:translate-x-0.5' : 'motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5'"
           />
         </span>
