@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<!-- trzy wiersze akordeonu, środkowy otwarty -->
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5">
+<rect x="40" y="36" width="280" height="40" rx="10" fill="rgba(111,156,255,.16)"/>
+<rect x="40" y="86" width="280" height="128" rx="10" fill="rgba(111,156,255,.28)"/>
+<rect x="40" y="224" width="280" height="40" rx="10" fill="rgba(111,156,255,.16)"/>
+</g>
+<g stroke="#cfd9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="m292 52 6 6 6-6"/><path d="m292 108 6-6 6 6"/><path d="m292 240 6 6 6-6"/>
+</g>
+<g fill="rgba(200,215,255,.6)">
+<rect x="58" y="51" width="110" height="10" rx="5"/><rect x="58" y="100" width="130" height="10" rx="5"/><rect x="58" y="239" width="96" height="10" rx="5"/>
+</g>
+<!-- treść rozwiniętego wiersza -->
+<g fill="rgba(200,215,255,.3)">
+<rect x="58" y="132" width="230" height="8" rx="4"/><rect x="58" y="150" width="200" height="8" rx="4"/><rect x="58" y="168" width="216" height="8" rx="4"/><rect x="58" y="186" width="150" height="8" rx="4"/>
+</g>
+<!-- 0fr → 1fr -->
+<g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round">
+<path d="M336 96v108"/><path d="m330 102 6-6 6 6"/><path d="m330 198 6 6 6-6"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff">
+<text x="352" y="128">0fr</text>
+<text x="352" y="152">→ 1fr</text>
+<text x="352" y="196">&lt;details&gt;</text>
+</g>
+<rect x="352" y="168" width="8" height="8" rx="4" fill="#2860ea"/>
+</svg>
