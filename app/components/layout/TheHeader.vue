@@ -132,7 +132,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
         >
           {{ cta.label }}
           <span class="grid size-7.5 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
-            <Icon name="lucide:arrow-up-right" class="transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px" aria-hidden="true" />
+            <Icon name="lucide:arrow-up-right" class="size-4 transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px" aria-hidden="true" />
           </span>
         </NuxtLink>
 
@@ -185,7 +185,7 @@ const navLink = 'transition-colors hover:text-slate-900 dark:hover:text-brand-50
               @click="close()"
             >
               {{ item.label }}
-              <Icon name="lucide:arrow-right" class="text-xl text-primary-500 transition-transform motion-safe:group-hover:translate-x-1 dark:text-primary-400" aria-hidden="true" />
+              <Icon name="lucide:arrow-right" class="size-5 text-primary-500 transition-transform motion-safe:group-hover:translate-x-1 dark:text-primary-400" aria-hidden="true" />
             </NuxtLink>
           </li>
         </ul>

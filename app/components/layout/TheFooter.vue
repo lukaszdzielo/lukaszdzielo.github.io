@@ -40,7 +40,7 @@ const heading = 'mb-5 text-xs font-semibold uppercase tracking-widest text-slate
 const linkClass =
   'group inline-flex items-center gap-1 leading-8 text-slate-600 transition-colors hover:text-primary-500 focus-visible:text-primary-500 dark:text-slate-300 dark:hover:text-primary-400 dark:focus-visible:text-primary-400'
 const arrow =
-  'text-sm transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5'
+  'size-4 transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5'
 </script>
 
 <template>
@@ -125,7 +125,7 @@ const arrow =
           <span class="sr-only sm:not-sr-only">{{ t('toTop') }}</span>
           <Icon
             name="lucide:arrow-up"
-            class="text-base transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 sm:text-sm"
+            class="size-4 transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5"
             aria-hidden="true"
           />
         </button>

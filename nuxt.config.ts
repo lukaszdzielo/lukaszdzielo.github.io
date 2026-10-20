@@ -405,6 +405,7 @@ export default defineNuxtConfig({
     clientBundle: { scan: true },
     // Styl modułu (ikona = wielkość tekstu) w warstwie base – inaczej w Tailwind v4 wygrywał z klasami size-*
     // i ikony miały rozmiar tekstu zamiast rozmiaru z kodu (decyzja 20.10: wariant b).
+    // Każda ikona ma klasę size-3/4/5/6 – 12, 16, 20 albo 24 px (rozmiary podzielne przez 4).
     cssLayer: 'base',
   },
   runtimeConfig: {

@@ -20,7 +20,7 @@ const anchor = useAnchor()
           <h3 class="text-xl font-medium tracking-tight text-slate-900 dark:text-brand-50">{{ t('monthly') }}</h3>
           <ul class="mt-5 space-y-3 text-sm/relaxed text-slate-600 dark:text-slate-300">
             <li v-for="[bold, rest] in care.monthly" :key="bold" class="flex gap-2.5">
-              <Icon name="lucide:check" class="mt-0.5 shrink-0 text-base text-primary-500 dark:text-primary-400" aria-hidden="true" />
+              <Icon name="lucide:check" class="mt-0.5 shrink-0 size-4 text-primary-500 dark:text-primary-400" aria-hidden="true" />
               <span><b class="font-medium text-slate-900 dark:text-brand-50">{{ bold }}</b>{{ rest.startsWith(':') ? '' : ' ' }}{{ rest }}</span>
             </li>
           </ul>

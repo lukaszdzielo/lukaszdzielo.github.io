@@ -46,7 +46,7 @@ const anchor = useAnchor()
           <p class="mt-3 text-sm/relaxed opacity-75">{{ plan.text }}</p>
           <ul class="mt-6 space-y-3 text-sm/relaxed">
             <li v-for="item in plan.items" :key="item" class="flex gap-2.5">
-              <Icon name="lucide:check" class="mt-0.5 shrink-0 text-base text-primary-500 dark:text-primary-400" aria-hidden="true" />
+              <Icon name="lucide:check" class="mt-0.5 shrink-0 size-4 text-primary-500 dark:text-primary-400" aria-hidden="true" />
               <span>{{ item }}</span>
             </li>
           </ul>

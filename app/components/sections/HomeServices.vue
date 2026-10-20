@@ -56,7 +56,7 @@ const anchor = useAnchor()
           >
             {{ service.linkLabel }}
             <span class="grid size-8.5 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
-              <Icon name="lucide:arrow-right" class="transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+              <Icon name="lucide:arrow-right" class="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
             </span>
           </NuxtLink>
           <span
@@ -67,7 +67,7 @@ const anchor = useAnchor()
           >
             {{ service.linkLabel }}
             <span class="grid size-8.5 place-items-center rounded-full bg-slate-900/10 dark:bg-white/15">
-              <Icon name="lucide:arrow-right" aria-hidden="true" />
+              <Icon name="lucide:arrow-right" class="size-4" aria-hidden="true" />
             </span>
           </span>
         </article>

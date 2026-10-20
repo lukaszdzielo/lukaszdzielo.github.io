@@ -172,7 +172,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
 
         <label class="relative block shrink-0 sm:w-75">
           <span class="sr-only">{{ t('search.label') }}</span>
-          <Icon name="lucide:search" class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-base text-slate-400" aria-hidden="true" />
+          <Icon name="lucide:search" class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 size-4 text-slate-400" aria-hidden="true" />
           <input
             v-model="query"
             type="search"
@@ -182,10 +182,10 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         </label>
       </div>
       <button v-if="filtersEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2']" :aria-label="t('filters.scrollLeft')" @click="filtersEdges.go(-1, stripStep(filtersEl))">
-        <Icon name="lucide:chevron-left" class="text-base" aria-hidden="true" />
+        <Icon name="lucide:chevron-left" class="size-4" aria-hidden="true" />
       </button>
       <button v-if="filtersEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2']" :aria-label="t('filters.scrollRight')" @click="filtersEdges.go(1, stripStep(filtersEl))">
-        <Icon name="lucide:chevron-right" class="text-base" aria-hidden="true" />
+        <Icon name="lucide:chevron-right" class="size-4" aria-hidden="true" />
       </button>
     </div>
 
@@ -198,7 +198,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         @click="clearAgencies"
       >
         {{ agencies.join(', ') }}
-        <Icon name="lucide:x" class="text-base" aria-hidden="true" />
+        <Icon name="lucide:x" class="size-4" aria-hidden="true" />
         <span class="sr-only">{{ t('agency.clear') }}</span>
       </button>
     </p>
@@ -223,10 +223,10 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         >{{ y.year }}</a>
       </div>
       <button v-if="yearsEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2 sm:left-1.5']" :aria-label="t('years.scrollLeft')" @click="yearsEdges.go(-1, stripStep(yearsEl))">
-        <Icon name="lucide:chevron-left" class="text-base" aria-hidden="true" />
+        <Icon name="lucide:chevron-left" class="size-4" aria-hidden="true" />
       </button>
       <button v-if="yearsEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2 sm:right-1.5']" :aria-label="t('years.scrollRight')" @click="yearsEdges.go(1, stripStep(yearsEl))">
-        <Icon name="lucide:chevron-right" class="text-base" aria-hidden="true" />
+        <Icon name="lucide:chevron-right" class="size-4" aria-hidden="true" />
       </button>
     </nav>
 
@@ -261,7 +261,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
             @click="toggle(y.year, i)"
           >
             {{ t('collapse') }} <span class="sr-only">{{ t('yearSr', { year: y.year }) }}</span>
-            <Icon name="lucide:chevron-up" class="text-base" aria-hidden="true" />
+            <Icon name="lucide:chevron-up" class="size-4" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -280,7 +280,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">{{ t('expand', y.list.length) }}</b>
           <em class="truncate text-sm text-slate-600 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ` ${t('andMore')}` : '' }}</em>
         </span>
-        <Icon name="lucide:chevron-down" class="shrink-0 text-lg text-primary-500 dark:text-primary-400" aria-hidden="true" />
+        <Icon name="lucide:chevron-down" class="shrink-0 size-4 text-primary-500 dark:text-primary-400" aria-hidden="true" />
       </button>
 
       <!-- Projekty danego roku. v-show, a nie v-else: lista zwiniętego roku też musi być w HTML-u
@@ -321,7 +321,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
                 v-if="p.featured"
                 class="absolute top-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-primary-500 p-1 text-xs font-medium text-white shadow-sm sm:top-2.5 sm:left-2.5 sm:px-2.5 sm:py-1 dark:bg-primary-400 dark:text-brand-950"
               >
-                <Icon name="lucide:star" class="text-xs" aria-hidden="true" />
+                <Icon name="lucide:star" class="size-3" aria-hidden="true" />
                 <span class="max-sm:sr-only">{{ t('featured') }}</span>
               </span>
             </div>

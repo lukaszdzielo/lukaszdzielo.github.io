@@ -141,13 +141,13 @@ if (project.value && hasOwnPage.value) {
                                 class="group inline-flex h-14 items-center justify-between gap-3 rounded-full bg-brand-900 pr-2 pl-6 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950">
                                 {{ t('links.liveButton') }}
                                 <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
-                                    <Icon name="lucide:arrow-up-right" class="transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+                                    <Icon name="lucide:arrow-up-right" class="size-4 transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
                                 </span>
                             </a>
                             <a v-for="link in secondaryLinks" :key="link.label" :href="link.href" target="_blank" rel="noopener noreferrer"
                                 class="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-slate-900/16 px-6 font-medium text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400">
                                 {{ link.label }}
-                                <Icon name="lucide:arrow-up-right" aria-hidden="true" />
+                                <Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
                             </a>
                         </div>
                     </div>
@@ -257,7 +257,7 @@ if (project.value && hasOwnPage.value) {
                     <a :href="link.href" target="_blank" rel="noopener noreferrer"
                         class="inline-flex items-center gap-1 font-medium text-primary-600 dark:text-primary-400 hover:underline underline-offset-4">
                         {{ link.label }}
-                        <Icon name="lucide:arrow-up-right" aria-hidden="true" />
+                        <Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
                     </a>
                 </li>
             </ul>

@@ -69,18 +69,18 @@ const btn =
     <ul class="mt-4 flex flex-wrap gap-2">
       <li v-if="canShare">
         <button type="button" :class="btn" @click="share">
-          <Icon name="lucide:share-2" aria-hidden="true" />
+          <Icon name="lucide:share-2" class="size-4" aria-hidden="true" />
           {{ t('share') }}
         </button>
       </li>
       <li v-for="link in links" :key="link.label">
         <a :href="link.href" target="_blank" rel="noopener noreferrer" :class="btn" :aria-label="t('on', { name: link.label })">
-          <Icon :name="link.icon" aria-hidden="true" />
+          <Icon :name="link.icon" class="size-4" aria-hidden="true" />
         </a>
       </li>
       <li>
         <button type="button" :class="btn" @click="copy">
-          <Icon :name="copied ? 'lucide:check' : 'lucide:link'" aria-hidden="true" />
+          <Icon :name="copied ? 'lucide:check' : 'lucide:link'" class="size-4" aria-hidden="true" />
           {{ copied ? t('copied') : t('copy') }}
         </button>
       </li>

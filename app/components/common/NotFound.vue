@@ -125,7 +125,7 @@ useSiteMeta({
             class="group inline-flex h-14 items-center gap-3 rounded-full bg-brand-900 pr-6 pl-2 font-medium text-white transition-transform duration-300 motion-safe:hover:-translate-y-0.5 dark:bg-slate-100 dark:text-brand-950"
           >
             <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
-              <Icon :name="copy.primary.icon" class="transition-transform motion-safe:group-hover:-translate-x-0.5" aria-hidden="true" />
+              <Icon :name="copy.primary.icon" class="size-4 transition-transform motion-safe:group-hover:-translate-x-0.5" aria-hidden="true" />
             </span>
             {{ copy.primary.label }}
           </NuxtLink>

@@ -27,7 +27,7 @@ const anchor = useAnchor()
           class="grid grid-cols-[3rem_minmax(0,1fr)] gap-x-4 gap-y-1 rounded-2xl border border-slate-900/10 bg-white p-6 shadow-sm transition-[opacity,translate] duration-700 ease-out sm:block sm:p-7 dark:border-white/10 dark:bg-brand-900"
         >
           <span class="row-span-2 grid size-12 place-items-center rounded-xl bg-primary-500/10 text-xl text-primary-500 dark:bg-primary-400/14 dark:text-primary-400">
-            <Icon :name="icons[item.icon] ?? 'lucide:check'" aria-hidden="true" />
+            <Icon :name="icons[item.icon] ?? 'lucide:check'" class="size-5" aria-hidden="true" />
           </span>
           <h3 class="font-medium text-slate-900 sm:mt-6 sm:text-lg dark:text-brand-50">{{ item.title }}</h3>
           <p class="text-sm/relaxed text-slate-600 sm:mt-2 dark:text-slate-300">{{ item.text }}</p>

@@ -33,7 +33,7 @@ const NuxtLink = resolveComponent('NuxtLink')
       :class="[arrow, page > 1 ? '' : off]"
       :aria-disabled="page <= 1 || undefined"
     >
-      <Icon name="lucide:arrow-left" aria-hidden="true" />
+      <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
       <span class="max-sm:sr-only">{{ t('prev') }}</span>
     </component>
 
@@ -64,7 +64,7 @@ const NuxtLink = resolveComponent('NuxtLink')
       :aria-disabled="page >= pages || undefined"
     >
       <span class="max-sm:sr-only">{{ t('next') }}</span>
-      <Icon name="lucide:arrow-right" aria-hidden="true" />
+      <Icon name="lucide:arrow-right" class="size-4" aria-hidden="true" />
     </component>
   </nav>
 </template>

@@ -136,7 +136,7 @@ useJsonLd('breadcrumb', {
         class="flex flex-col items-center gap-3 rounded-3xl border border-dashed border-slate-900/15 px-6 py-14 text-center dark:border-white/15"
       >
         <span class="grid size-12 place-items-center rounded-full bg-primary-500/10 text-primary-500 dark:bg-primary-400/10 dark:text-primary-400">
-          <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
+          <Icon name="lucide:pen-line" class="size-5" aria-hidden="true" />
         </span>
         <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">{{ t('empty.title') }}</p>
         <p class="max-w-md text-base/relaxed text-slate-600 dark:text-slate-400">

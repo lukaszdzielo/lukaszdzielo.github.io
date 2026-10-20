@@ -41,7 +41,7 @@ const anchor = useAnchor()
             class="group inline-flex items-center gap-2 border-b border-slate-900/16 pb-1 text-sm whitespace-nowrap text-slate-900 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-white/20 dark:text-brand-50 dark:hover:border-primary-400 dark:hover:text-primary-400"
           >
             {{ t('all') }}
-            <Icon name="lucide:arrow-right" class="text-sm transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+            <Icon name="lucide:arrow-right" class="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
           </NuxtLink>
           <span
             v-else
@@ -50,7 +50,7 @@ const anchor = useAnchor()
             class="inline-flex cursor-not-allowed items-center gap-2 border-b border-slate-900/10 pb-1 text-sm whitespace-nowrap text-slate-400 dark:border-white/10 dark:text-slate-500"
           >
             {{ t('all') }}
-            <Icon name="lucide:arrow-right" class="text-sm" aria-hidden="true" />
+            <Icon name="lucide:arrow-right" class="size-4" aria-hidden="true" />
           </span>
         </template>
       </CommonSectionHead>
@@ -79,7 +79,7 @@ const anchor = useAnchor()
         class="mt-8 flex flex-col items-center gap-3 rounded-3xl border border-dashed border-slate-900/15 px-6 py-14 text-center transition-[opacity,translate] duration-700 ease-out lg:mt-10 dark:border-white/15"
       >
         <span class="grid size-12 place-items-center rounded-full bg-primary-500/10 text-primary-500 dark:bg-primary-400/10 dark:text-primary-400">
-          <Icon name="lucide:pen-line" class="text-xl" aria-hidden="true" />
+          <Icon name="lucide:pen-line" class="size-5" aria-hidden="true" />
         </span>
         <p class="text-lg font-semibold text-slate-900 dark:text-brand-50">{{ t('empty.title') }}</p>
         <p class="max-w-md text-base/relaxed text-slate-600 dark:text-slate-400">

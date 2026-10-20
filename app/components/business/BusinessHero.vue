@@ -34,7 +34,7 @@ const latest = computed(() =>
           >
             {{ t('cta') }}
             <span class="grid size-10 place-items-center rounded-full bg-primary-500 text-white dark:bg-primary-400 dark:text-brand-950">
-              <Icon name="lucide:arrow-up-right" class="transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px" aria-hidden="true" />
+              <Icon name="lucide:arrow-up-right" class="size-4 transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px" aria-hidden="true" />
             </span>
           </NuxtLink>
           <NuxtLink

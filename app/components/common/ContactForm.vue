@@ -116,7 +116,7 @@ const field =
         role="status"
       >
         <span class="grid size-12 place-items-center rounded-full bg-emerald-400/15 text-emerald-400 dark:text-emerald-600">
-          <Icon name="lucide:check" class="text-2xl" aria-hidden="true" />
+          <Icon name="lucide:check" class="size-6" aria-hidden="true" />
         </span>
         <p class="text-2xl font-semibold tracking-tight">{{ t('success.title') }}</p>
         <p class="opacity-75">{{ t('success.lead') }}</p>
@@ -158,7 +158,7 @@ const field =
             </select>
             <Icon
               name="lucide:chevron-down"
-              class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-lg opacity-70"
+              class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 size-4 opacity-70"
               aria-hidden="true"
             />
           </span>
@@ -200,13 +200,13 @@ const field =
               <Icon
                 v-if="status === 'sending'"
                 name="lucide:loader-circle"
-                class="text-lg motion-safe:animate-spin"
+                class="size-4 motion-safe:animate-spin"
                 aria-hidden="true"
               />
               <Icon
                 v-else
                 name="lucide:arrow-up-right"
-                class="text-lg transition-transform duration-300 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5"
+                class="size-4 transition-transform duration-300 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
             </span>
