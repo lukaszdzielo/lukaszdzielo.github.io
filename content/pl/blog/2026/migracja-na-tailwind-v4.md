@@ -125,4 +125,4 @@ Na koniec zostawiłem notatkę dla zespołu: po pobraniu zmian trzeba zrobić `n
 - Migracja bez przepisywania szablonów – stare wartości w `@theme` i trzy zmiany, których v4 wymaga.
 - Własna warstwa `app-base` na reguły elementów, żeby kaskada działała jak w v3.
 - Porównanie wynikowego CSS zamiast przeglądania stron – daje pewność, że nic nie zniknęło.
-- Projekt jest gotowy na `pointer-coarse:`, od którego wszystko się zaczęło – użyłem go m.in. w [nagłówkach AgrestApp](/pl/blog/2026/naglowki-agrestapp).
+- Projekt jest gotowy na `pointer-coarse:`, od którego wszystko się zaczęło – użyłem go m.in. w [nagłówkach AgrestApp](/pl/wpisy/2026/naglowki-agrestapp).

@@ -25,6 +25,7 @@ const createTestimonialSchema = () => z.object({
 })
 
 // Treści w dwóch językach: content/en/… (domyślny, adresy bez przedrostka) i content/pl/… (adresy /pl/…).
+// Polskie wpisy i projekty mają polskie adresy: /pl/wpisy/… i /pl/projekty/… (pliki zostają w pl/blog i pl/projects).
 // Każdy język ma własne kolekcje (content_en, blog_pl itd.) – zapytania wybierają je przez useLocaleCollection().
 const blogSchema = z.object({
   date: z.union([z.string(), z.date()]).transform((v) =>
@@ -110,12 +111,12 @@ const pages = (lang: 'en' | 'pl') => defineCollection({
 })
 const blog = (lang: 'en' | 'pl') => defineCollection({
   type: 'page',
-  source: { include: `${lang}/blog/**`, prefix: lang === 'en' ? '/blog' : '/pl/blog' },
+  source: { include: `${lang}/blog/**`, prefix: lang === 'en' ? '/blog' : '/pl/wpisy' },
   schema: blogSchema,
 })
 const projects = (lang: 'en' | 'pl') => defineCollection({
   type: 'page',
-  source: { include: `${lang}/projects/**`, prefix: lang === 'en' ? '/projects' : '/pl/projects' },
+  source: { include: `${lang}/projects/**`, prefix: lang === 'en' ? '/projects' : '/pl/projekty' },
   schema: projectSchema,
 })
 

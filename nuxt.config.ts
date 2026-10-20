@@ -3,6 +3,7 @@ import path from 'node:path';
 import tailwindcss from "@tailwindcss/vite";
 import githubLight from 'shiki/themes/github-light.mjs';
 import githubDark from 'shiki/themes/github-dark.mjs';
+import { PL_SEGMENTS, toPlPath } from './app/utils/localeRoutes';
 
 const SITE_NAME = 'Łukasz Dzieło'
 const SITE_ROLE = 'Front-End Developer'
@@ -46,7 +47,7 @@ const getPrerenderRoutes = (): string[] => {
     return results;
   };
 
-  // Treści po polsku i po angielsku: content/pl/… → /pl/…, content/en/… → /… (angielski domyślny, bez przedrostka)
+  // Treści po polsku i po angielsku: content/pl/… → /pl/… (polskie nazwy części adresu), content/en/… → /… (angielski domyślny)
   const files: string[] = [];
   const prefixes: Record<string, string> = {};
   for (const [lang, prefix] of [['en', ''], ['pl', '/pl']] as const) {
@@ -65,7 +66,8 @@ const getPrerenderRoutes = (): string[] => {
         if (!draft) {
           const lang = prefixes[file] === '/pl' ? 'pl' : 'en';
           const relative = path.relative(path.resolve(process.cwd(), `content/${lang}/projects`), file).split(path.sep).join('/');
-          const routePath = prefixes[file] + '/projects/' + relative.replace(/\/index\.md$/, '').replace(/\.md$/, '');
+          const enPath = '/projects/' + relative.replace(/\/index\.md$/, '').replace(/\.md$/, '');
+          const routePath = lang === 'pl' ? `/pl${toPlPath(enPath)}` : enPath;
           routes.push(routePath);
         }
       }
@@ -74,15 +76,16 @@ const getPrerenderRoutes = (): string[] => {
     }
   });
 
-  // Lista wpisów: /blog i /blog/page/2… (13 wpisów na pierwszej stronie, potem po 12 – app/utils/blogPaging.ts)
+  // Lista wpisów: /blog i /blog/page/2…, po polsku /pl/wpisy i /pl/wpisy/strona/2… (13 wpisów na pierwszej stronie, potem po 12 – app/utils/blogPaging.ts)
   for (const [lang, prefix] of [['en', ''], ['pl', '/pl']] as const) {
     const publishedPosts = getProjectFiles(path.resolve(process.cwd(), `content/${lang}/blog`)).filter((file) => {
       const match = fs.readFileSync(file, 'utf-8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
       return !(match && isHidden(match[1], 'blog'));
     }).length;
     const blogPages = 1 + Math.ceil(Math.max(0, publishedPosts - 13) / 12);
-    routes.push(`${prefix}/blog`);
-    for (let page = 2; page <= blogPages; page++) routes.push(`${prefix}/blog/page/${page}`);
+    const localized = (enPath: string) => (prefix ? `${prefix}${toPlPath(enPath)}` : enPath);
+    routes.push(localized('/blog'));
+    for (let page = 2; page <= blogPages; page++) routes.push(localized(`/blog/page/${page}`));
   }
   routes.push('/pl');
 
@@ -112,7 +115,7 @@ const buildLlmsTxt = (): string => {
       // projekt trafia do spisu tylko z własną podstroną (treść pod frontmatterem)
       if (kind === 'projects' && !m[2].trim()) return null;
       const rel = path.relative(dir, file).split(path.sep).join('/').replace(/\/index\.md$/, '').replace(/\.md$/, '');
-      const url = `${base}${lang === 'pl' ? '/pl' : ''}/${kind}/${rel}/`;
+      const url = `${base}${lang === 'pl' ? `/pl${toPlPath(`/${kind}/${rel}`)}` : `/${kind}/${rel}`}/`;
       return { date: field(m[1], 'date'), line: `- [${field(m[1], 'title')}](${url}): ${field(m[1], 'description')}` };
     }).filter((x): x is { date: string; line: string } => !!x).sort((a, b) => b.date.localeCompare(a.date)).map((x) => x.line);
   };
@@ -155,7 +158,7 @@ const getContentLastmod = (): Map<string, string> => {
         const date = field(match[1], 'updated') || field(match[1], 'date');
         if (!date) continue;
         const rel = path.relative(dir, file).split(path.sep).join('/').replace(/\/index\.md$/, '').replace(/\.md$/, '');
-        dates.set(`${prefix}/${kind}/${rel}/`, date);
+        dates.set(`${prefix}${prefix ? toPlPath(`/${kind}/${rel}`) : `/${kind}/${rel}`}/`, date);
       }
     }
   }
@@ -195,8 +198,10 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
 
 // Pierwsza wizyta z przeglądarką po polsku (pierwszy język na liście) → ta sama strona w wersji /pl.
 // Nie przekierowuje, gdy jest ciasteczko `lang` (wybór z przełącznika języka) ani na stronach /pl.
-// Adresy podstron z inną nazwą w każdym języku – mapa niżej (jak definePageMeta w pages/).
-const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m={'/business-websites':'/strony-dla-firm','/privacy-policy':'/polityka-prywatnosci'};var k=p.replace(/\\/+$/,'');location.replace('/pl'+(m[k]||k)+'/'+location.search+location.hash)}catch(e){}})();`
+// Adresy podstron z inną nazwą w każdym języku – mapa `m` (jak definePageMeta w pages/), a części adresu
+// z polską nazwą (/projects → /projekty, /blog → /wpisy) – lista `s` z app/utils/localeRoutes.ts.
+const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci' };
+const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m=${JSON.stringify(LANG_PAGES)},s=${JSON.stringify(PL_SEGMENTS)};var k=p.replace(/\\/+$/,''),t=m[k];if(!t){t=k;for(var i=0;i<s.length;i++){var a=s[i][0];if(k===a||k.indexOf(a+'/')===0){t=s[i][1]+k.slice(a.length);break}}}location.replace('/pl'+t+'/'+location.search+location.hash)}catch(e){}})();`
 
 // Motywy bloków kodu z kontrastem WCAG AA (min. 4,5:1). Nazwy motywów zostają te same, więc klasy i style się nie zmieniają.
 // Jasny: pomarańczowy #e36209 na białym tle ma 3,5:1 → orange-700 (#ca3500, 5,2:1).

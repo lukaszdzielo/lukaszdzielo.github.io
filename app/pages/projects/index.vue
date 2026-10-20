@@ -5,6 +5,9 @@ import { projectKind } from '~/utils/projectKind'
 import { visibleFeaturedProjects } from '~/data/featuredProjects'
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site'
 
+// Adres w każdym języku – po polsku polskie nazwy części adresu (app/utils/localeRoutes.ts)
+definePageMeta({ i18n: { paths: { en: '/projects', pl: '/projekty' } } })
+
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
 

@@ -26,7 +26,7 @@ const menu = computed(() => (business.value ? bizMenu.value : portfolioMenu.valu
 // Strony, które mają własny formularz na dole (strona projektu, wpisy) – „Kontakt” przewija do niego zamiast przenosić na główną
 const route = useRoute()
 const { withoutLocale } = useContentLocale()
-const ownContact = computed(() => /^(\/pl)?\/(blog(\/|$)|projects\/\d{4}\/)/.test(route.path))
+const ownContact = computed(() => /^\/(blog(\/|$)|projects\/\d{4}\/)/.test(withoutLocale(route.path)))
 const cta = computed(() =>
   business.value
     ? { label: t('cta.business'), to: '/strony-dla-firm#contact', mobile: t('cta.businessMobile') }

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site';
 
+// Adres w każdym języku – po polsku polskie nazwy części adresu (app/utils/localeRoutes.ts)
+definePageMeta({ i18n: { paths: { en: '/projects/[...slug]', pl: '/projekty/[...slug]' } } })
+
 const { t, locale } = useI18n({ useScope: 'local' });
 // localLink, bo `link` to już zmienna pętli po linkach zewnętrznych w szablonie
 const localLink = useLocalLink();

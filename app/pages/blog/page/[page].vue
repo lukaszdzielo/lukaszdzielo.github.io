@@ -1,5 +1,7 @@
 <script setup lang="ts">
-// /blog/page/2, /blog/page/3… – strona 1 to /blog (po polsku /pl/blog/page/2… i /pl/blog)
+// /blog/page/2, /blog/page/3… – strona 1 to /blog (po polsku /pl/wpisy/strona/2… i /pl/wpisy)
+definePageMeta({ i18n: { paths: { en: '/blog/page/[page]', pl: '/wpisy/strona/[page]' } } })
+
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
 const route = useRoute()

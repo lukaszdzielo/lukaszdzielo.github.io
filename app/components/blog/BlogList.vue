@@ -6,7 +6,7 @@ const props = defineProps<{ page: number }>()
 
 const { t } = useI18n({ useScope: 'local' })
 const link = useLocalLink()
-// Adres strony listy w języku strony: /blog/page/2 albo /pl/blog/page/2
+// Adres strony listy w języku strony: /blog/page/2 albo /pl/wpisy/strona/2
 const pagePath = (n: number) => link(blogPagePath(n))
 
 const { col, lang } = useContentLocale()

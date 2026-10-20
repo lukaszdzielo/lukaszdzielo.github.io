@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { PERSON_ID, SITE_NAME, SITE_URL, pageUrl } from '~/data/site';
 
+// Adres w każdym języku – po polsku polskie nazwy części adresu (app/utils/localeRoutes.ts)
+definePageMeta({ i18n: { paths: { en: '/blog/[...slug]', pl: '/wpisy/[...slug]' } } })
+
 const { t, locale } = useI18n({ useScope: 'local' });
 const localLink = useLocalLink();
 const route = useRoute();
