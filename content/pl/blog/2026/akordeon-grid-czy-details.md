@@ -115,7 +115,10 @@ Jest jedno „ale”: `interpolate-size` działa na razie tylko w Chrome i Edge.
 
 Dziś zacząłbym od `<details>`, a animację traktował jako dodatek, który pojawi się w kolejnych przeglądarkach. Grid wybrałbym tam, gdzie animacja musi działać wszędzie już teraz.
 
-Oba sposoby – wersję domyślną i wariant, w którym otwarty jest tylko jeden element – pokazałem w jednym widoku na [CodePenie](https://codepen.io/editor/LukaszDev/pen/01a15a92-8abc-7da6-9de0-30d95aa85954).
+Oba sposoby – wersję domyślną i wariant, w którym otwarty jest tylko jeden element – pokazałem w jednym widoku na CodePenie. Możesz je uruchomić tutaj:
+
+::code-pen{user="LukaszDev" slug="vExrgqy" url="https://codepen.io/editor/LukaszDev/pen/01a15a92-8abc-7da6-9de0-30d95aa85954" title="Akordeon – grid i details"}
+::
 
 ## Co z tego zostało
 

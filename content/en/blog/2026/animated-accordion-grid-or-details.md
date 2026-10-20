@@ -115,7 +115,10 @@ There's one "but": `interpolate-size` works only in Chrome and Edge for now. In 
 
 Today I would start with `<details>` and treat the animation as a bonus that will come to more browsers. I would choose grid where the animation has to work everywhere right now.
 
-I put both approaches – the default version and a variant where only one element can be open – in one view [on CodePen](https://codepen.io/editor/LukaszDev/pen/01a15a92-8abc-7da6-9de0-30d95aa85954).
+I put both approaches – the default version and a variant where only one element can be open – in one view on CodePen. You can run them here:
+
+::code-pen{user="LukaszDev" slug="vExrgqy" url="https://codepen.io/editor/LukaszDev/pen/01a15a92-8abc-7da6-9de0-30d95aa85954" title="Accordion – grid and details"}
+::
 
 ## What came out of it
 
