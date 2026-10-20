@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+<!-- assety: komponenty w bibliotece -->
+<g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+<rect x="28" y="40" width="120" height="220" rx="12"/>
+</g>
+<g stroke="rgba(160,185,255,.55)" stroke-width="1.2">
+<rect x="44" y="72" width="88" height="26" rx="13" fill="rgba(111,156,255,.4)"/>
+<rect x="44" y="110" width="88" height="26" rx="6" fill="rgba(255,255,255,.08)"/>
+<rect x="44" y="148" width="88" height="56" rx="8" fill="rgba(255,255,255,.08)"/>
+</g>
+<g fill="#2860ea"><circle cx="54" cy="226" r="7"/></g>
+<g fill="rgba(200,215,255,.45)"><circle cx="76" cy="226" r="7"/><circle cx="98" cy="226" r="7"/></g>
+<!-- ekran z elementami połączonymi z komponentami -->
+<rect x="196" y="40" width="256" height="220" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(200,215,255,.4)" stroke-width="1.2"/>
+<g stroke="rgba(160,185,255,.55)" stroke-width="1.2" fill="rgba(255,255,255,.08)">
+<rect x="216" y="64" width="100" height="70" rx="8"/><rect x="332" y="64" width="100" height="70" rx="8"/>
+</g>
+<rect x="216" y="208" width="92" height="28" rx="14" fill="rgba(111,156,255,.4)" stroke="rgba(160,185,255,.55)" stroke-width="1.2"/>
+<!-- odstępy -->
+<g stroke="#cfd9ff" stroke-width="1.5" stroke-linecap="round">
+<path d="M316 99h16"/><path d="M316 95v8M332 95v8"/>
+<path d="M266 134v74"/><path d="M262 134h8M262 208h8"/>
+</g>
+<g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#cfd9ff">
+<text x="318" y="90">16</text><text x="274" y="175">24</text>
+</g>
+<!-- połączenie z biblioteką -->
+<path d="M132 85c30 0 40 140 84 137" stroke="rgba(200,215,255,.5)" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="44" y="60" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff">assets</text>
+</svg>
