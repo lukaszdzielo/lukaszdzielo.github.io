@@ -19,10 +19,10 @@ const button =
     </p>
     <div class="hidden gap-2 pointer-fine:flex">
       <button type="button" :class="button" :disabled="!canPrev" :aria-label="t('prev')" @click="go(-1)">
-        <Icon name="lucide:arrow-left" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:arrow-left" class="size-5" aria-hidden="true" />
       </button>
       <button type="button" :class="button" :disabled="!canNext" :aria-label="t('next')" @click="go(1)">
-        <Icon name="lucide:arrow-right" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:arrow-right" class="size-5" aria-hidden="true" />
       </button>
     </div>
   </div>

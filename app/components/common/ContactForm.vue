@@ -158,7 +158,7 @@ const field =
             </select>
             <Icon
               name="lucide:chevron-down"
-              class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 size-4 opacity-70"
+              class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 size-5 opacity-70"
               aria-hidden="true"
             />
           </span>
@@ -200,13 +200,13 @@ const field =
               <Icon
                 v-if="status === 'sending'"
                 name="lucide:loader-circle"
-                class="size-4 motion-safe:animate-spin"
+                class="size-5 motion-safe:animate-spin"
                 aria-hidden="true"
               />
               <Icon
                 v-else
                 name="lucide:arrow-up-right"
-                class="size-4 transition-transform duration-300 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5"
+                class="size-5 transition-transform duration-300 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
             </span>

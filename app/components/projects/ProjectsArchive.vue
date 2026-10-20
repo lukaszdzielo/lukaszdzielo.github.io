@@ -280,7 +280,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           <b class="font-medium whitespace-nowrap text-slate-600 max-sm:text-sm max-sm:font-normal sm:text-slate-900 dark:text-slate-300 sm:dark:text-brand-50">{{ t('expand', y.list.length) }}</b>
           <em class="truncate text-sm text-slate-600 not-italic dark:text-slate-400">{{ y.list.slice(0, 3).map(p => p.title).join(', ') }}{{ y.list.length > 3 ? ` ${t('andMore')}` : '' }}</em>
         </span>
-        <Icon name="lucide:chevron-down" class="shrink-0 size-4 text-primary-500 dark:text-primary-400" aria-hidden="true" />
+        <Icon name="lucide:chevron-down" class="shrink-0 size-5 text-primary-500 dark:text-primary-400" aria-hidden="true" />
       </button>
 
       <!-- Projekty danego roku. v-show, a nie v-else: lista zwiniętego roku też musi być w HTML-u
