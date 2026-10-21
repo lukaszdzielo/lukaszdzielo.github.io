@@ -43,6 +43,8 @@ const errorKey = ref<'send' | 'offline'>('send')
 const errorMessage = computed(() => serverError.value || t(`errors.${errorKey.value}`))
 const formEl = ref<HTMLFormElement | null>(null)
 const link = useLocalLink()
+// W przerwie świątecznej komunikat po wysłaniu podaje dzień powrotu zamiast „72 godzin”
+const holiday = useHolidayBreak()
 
 // Po zmianie języka lista tematów może mieć inne wartości – wtedy wracamy do pierwszego tematu
 watch(topicList, (list) => {
@@ -122,7 +124,7 @@ const field =
           <Icon name="lucide:check" class="size-6" aria-hidden="true" />
         </span>
         <p class="text-2xl font-semibold tracking-tight">{{ t('success.title') }}</p>
-        <p class="opacity-75">{{ t('success.lead') }}</p>
+        <p class="opacity-75">{{ holiday.active.value ? t('success.holidayLead', holiday.dates.value) : t('success.lead') }}</p>
         <button
           type="button"
           class="mt-2 cursor-pointer text-sm font-semibold text-primary-400 underline-offset-4 hover:underline dark:text-primary-500"
@@ -239,6 +241,7 @@ const field =
     "success": {
       "title": "Thanks, your message is on its way!",
       "lead": "I'll reply to the address you gave within 72 hours.",
+      "holidayLead": "I'm on a holiday break from {from} to {to} – I'll reply to the address you gave after {back}.",
       "again": "Send another message"
     },
     "errors": {
@@ -263,6 +266,7 @@ const field =
     "success": {
       "title": "Dzięki, wiadomość wysłana!",
       "lead": "Odpiszę na podany adres w ciągu 72 godzin.",
+      "holidayLead": "Od {from} do {to} mam przerwę świąteczną – odpiszę na podany adres po {back}.",
       "again": "Napisz kolejną wiadomość"
     },
     "errors": {

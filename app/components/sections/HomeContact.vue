@@ -10,6 +10,8 @@ const business = computed(() => props.variant === 'business')
 const { t } = useI18n({ useScope: 'local' })
 const biz = useLocalized(businessContact)
 const anchor = useAnchor()
+// W przerwie świątecznej (app/data/holiday.ts) zamiast „72 godzin” – daty przerwy i dzień powrotu
+const holiday = useHolidayBreak()
 </script>
 
 <template>
@@ -31,11 +33,10 @@ const anchor = useAnchor()
             {{ business ? biz.title : t('title') }}
           </h2>
           <p class="mt-3.5 max-w-115 text-base/relaxed opacity-75">
-            {{ business ? biz.lead : t('lead') }}
+            {{ business ? biz.lead : holiday.active.value ? t('holiday.lead', holiday.dates.value) : t('lead') }}
           </p>
-          <p v-if="business" class="mt-8 inline-flex items-center gap-2.5 text-sm">
-            <span class="size-2 rounded-full bg-emerald-400" aria-hidden="true" />
-            {{ biz.response }}
+          <p v-if="business" class="mt-8 text-sm">
+            {{ holiday.active.value ? t('holiday.response', holiday.dates.value) : biz.response }}
           </p>
           <ul v-else class="mt-8 flex flex-wrap gap-2.5">
             <li v-for="social in contactSocials" :key="social.href">
@@ -72,11 +73,19 @@ const anchor = useAnchor()
   "en": {
     "title": "Got a project in mind?",
     "lead": "Or looking for someone to join your team? Write a few sentences – I'll reply within 72 hours.",
+    "holiday": {
+      "lead": "Or looking for someone to join your team? Write a few sentences. I'm on a holiday break from {from} to {to} – I'll reply after {back}.",
+      "response": "I'm on a holiday break from {from} to {to} – I'll reply after {back}."
+    },
     "business": { "topic": "What do you need?", "message": "A few words about your project" }
   },
   "pl": {
     "title": "Masz projekt do zrobienia?",
     "lead": "Albo szukasz kogoś do zespołu? Napisz kilka zdań – odpowiem w ciągu 72 godzin.",
+    "holiday": {
+      "lead": "Albo szukasz kogoś do zespołu? Napisz kilka zdań. Od {from} do {to} mam przerwę świąteczną – odpiszę po {back}.",
+      "response": "Od {from} do {to} mam przerwę świąteczną – odpiszę po {back}."
+    },
     "business": { "topic": "Czego potrzebujesz?", "message": "Kilka słów o projekcie" }
   }
 }

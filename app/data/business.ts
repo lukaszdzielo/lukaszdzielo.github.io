@@ -161,12 +161,13 @@ export const businessWork = {
   },
 }
 
+// reply: true – krok z czasem odpowiedzi; w przerwie świątecznej (app/data/holiday.ts) BusinessProcess pokazuje tam dzień powrotu
 export const businessProcess = {
   en: {
     title: 'From the first message to a finished website',
     lead: 'You always know what stage we\'re at and what comes next. No disappearing for a month, no surprises on the invoice.',
     steps: [
-      { title: 'Message', text: 'Use the form to tell me what your business does and what you need. I reply with questions and examples of sites that suit your industry.', time: 'reply within 72 h' },
+      { title: 'Message', text: 'Use the form to tell me what your business does and what you need. I reply with questions and examples of sites that suit your industry.', time: 'reply within 72 h', reply: true },
       { title: 'Quote and design', text: 'You get a specific price and deadline. Once you accept, I prepare a first design draft and we refine it until it\'s ready.', time: 'design in 3–4 days' },
       { title: 'Build', text: 'We set up the job on Useme or Freelancehunt, freelance platforms that handle the contract and invoice, and I build the site. Meanwhile, you set up hosting – with my list of questions for their support team.', time: 'deadline agreed at the start' },
       { title: 'Launch', text: 'Publishing, SSL certificate, testing on phones and a short editing guide. After that – if you want – the care plan.', time: 'launch day' },
@@ -176,7 +177,7 @@ export const businessProcess = {
     title: 'Od pierwszej wiadomości do gotowej strony',
     lead: 'Wiesz, na jakim etapie jesteśmy i co dzieje się dalej. Bez znikania na miesiąc i niespodzianek na fakturze.',
     steps: [
-      { title: 'Wiadomość', text: 'Piszesz przez formularz, czym się zajmujesz i czego potrzebujesz. Odpisuję z pytaniami i przykładami stron, które pasują do Twojej branży.', time: 'odpowiedź do 72 h' },
+      { title: 'Wiadomość', text: 'Piszesz przez formularz, czym się zajmujesz i czego potrzebujesz. Odpisuję z pytaniami i przykładami stron, które pasują do Twojej branży.', time: 'odpowiedź do 72 h', reply: true },
       { title: 'Wycena i projekt', text: 'Dostajesz konkretną kwotę i termin. Po akceptacji przygotowuję wstępny projekt graficzny i poprawiamy go, aż będzie gotowy.', time: 'projekt w 3–4 dni' },
       { title: 'Budowa', text: 'Zakładamy zlecenie przez Useme lub Freelancehunt i piszę stronę. Ty w tym czasie zakładasz hosting – z moją listą pytań do supportu.', time: 'termin ustalamy na starcie' },
       { title: 'Start', text: 'Publikacja, certyfikat SSL, test na telefonach i krótka instrukcja edycji. Potem – jeśli chcesz – opieka.', time: 'dzień publikacji' },
