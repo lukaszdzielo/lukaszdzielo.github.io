@@ -276,7 +276,7 @@ export const businessFaq = {
     items: [
       { q: 'Ile kosztuje strona?', a: 'Wizytówka od {card} netto, strona firmowa od {company} netto. Dokładna kwota zależy od liczby podstron i funkcji – po kilku wiadomościach dostajesz konkretną wycenę i termin.' },
       { q: 'Ile to trwa?', a: 'Pierwszy projekt graficzny w 3–4 dni. Termin całości ustalamy na starcie – zależy od zakresu i tego, jak szybko mamy treści.' },
-      { q: 'Kto płaci za hosting i domenę?', a: 'Ty – kupujesz je na siebie, więc strona zawsze należy do Ciebie. Ja potrzebuję tylko dostępu, żeby ją wdrożyć i się nią opiekować.' },
+      { q: 'Kto płaci za hosting i domenę?', a: 'Ty – kupujesz je na siebie, więc strona zawsze należy do Ciebie. Ja potrzebuję tylko dostępu, żeby ją wdrożyć i się nią opiekować. Jeśli nie masz jeszcze hostingu, przy współpracy dostaniesz ode mnie kod rabatowy na hosting, który polecam.' },
       { q: 'Czy sam zmienię treści?', a: 'Tak. Strona działa na edytorze bloków WordPressa – tekst, zdjęcia i wpisy zmieniasz bez kodowania.' },
       { q: 'Jak wygląda rozliczenie?', a: 'Przez Useme lub Freelancehunt – zlecenie zakładamy na platformie, a Ty dostajesz fakturę za wykonaną pracę.' },
       { q: 'Mam już stronę. Możesz ją poprawić?', a: 'Tak – mogę przejąć opiekę nad istniejącym WordPressem albo zaprojektować jego nową wersję.' },
