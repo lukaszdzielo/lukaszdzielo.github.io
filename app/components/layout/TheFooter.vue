@@ -84,13 +84,8 @@ const arrow =
         <!-- Aktualny status. Od sm: Strona, Profile i Teraz w jednym rzędzie (proporcje 2 : 2 : 3) -->
         <div v-reveal="240" class="col-span-2 sm:col-span-1" :class="reveal">
           <h2 :class="heading">{{ content.status.title }}</h2>
-          <p class="flex items-center gap-2 leading-8 text-slate-900 dark:text-brand-50">
-            <span class="relative flex size-2 shrink-0" aria-hidden="true">
-              <span class="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
-              <span class="relative inline-flex size-2 rounded-full bg-emerald-400" />
-            </span>
-            {{ content.status.now }}
-          </p>
+          <!-- Bez zielonej kropki „dostępności” – sugerowała, że odpowiadam od ręki, a nie zawsze tak jest -->
+          <p class="leading-8 text-slate-900 dark:text-brand-50">{{ content.status.now }}</p>
           <p v-for="line in content.status.lines" :key="line" class="leading-8">{{ line }}</p>
           <NuxtLink
             v-if="content.status.link"
