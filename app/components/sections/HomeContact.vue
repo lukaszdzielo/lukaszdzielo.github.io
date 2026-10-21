@@ -4,7 +4,8 @@
 import { businessContact } from '~/data/business'
 import { contactSocials } from '~/data/contact'
 
-const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business' }>(), { variant: 'portfolio' })
+// topic – temat wybrany na starcie w formularzu z portfolio (np. „Strona dla firmy” na stronach projektów WordPress)
+const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business'; topic?: string }>(), { variant: 'portfolio', topic: undefined })
 const business = computed(() => props.variant === 'business')
 const { t } = useI18n({ useScope: 'local' })
 const biz = useLocalized(businessContact)
@@ -60,7 +61,7 @@ const anchor = useAnchor()
           :message-placeholder="biz.placeholder"
           source="Strony dla firm"
         />
-        <CommonContactForm v-else class="relative" />
+        <CommonContactForm v-else class="relative" :default-topic="topic" />
       </div>
     </div>
   </section>

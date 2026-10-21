@@ -15,6 +15,7 @@ const props = withDefaults(
     messageLabel?: string
     messagePlaceholder?: string
     source?: string // trafia do tematu maila, np. „Portfolio” albo „Strony dla firm”
+    defaultTopic?: string // temat wybrany na starcie (wartość z listy), np. „Strona dla firmy” na stronach projektów WordPress
   }>(),
   {
     source: 'Portfolio',
@@ -24,7 +25,9 @@ const props = withDefaults(
 const { t, locale } = useI18n({ useScope: 'local' })
 const defaultTopics = useLocalized(contactTopics)
 const topicList = computed<readonly Topic[]>(() => props.topics ?? defaultTopics.value)
-const firstTopic = () => topicList.value[0]?.value ?? ''
+// Temat na starcie: podany w defaultTopic, jeśli jest na liście – inaczej pierwszy z listy
+const firstTopic = () =>
+  topicList.value.find(topic => topic.value === props.defaultTopic)?.value ?? topicList.value[0]?.value ?? ''
 
 const form = reactive({
   name: '',

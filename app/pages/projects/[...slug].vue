@@ -45,6 +45,16 @@ const stack = computed(() => project.value?.stack ?? project.value?.tags ?? []);
 // renders a noindex fallback.
 const hasOwnPage = computed(() => hasBody(project.value) || (relatedPosts.value?.length ?? 0) > 0);
 
+// Strony dla klientów (WordPress oraz strony z czasów b4b i eConnect4u) – kto je ogląda, raczej szuka strony dla siebie,
+// więc w formularzu od razu wybrany jest temat „Strona dla firmy” (wartość z app/data/contact.ts, ta sama w PL i EN).
+// Pozostałe projekty (Pesi, Arris, projekty własne) zostają przy pierwszym temacie – „Praca w zespole”.
+const CLIENT_SITE_AGENCIES = ['b4b', 'eConnect4u'];
+const contactTopic = computed(() => {
+    const isWordPress = project.value?.tags?.some((tag: string) => tag.toLowerCase() === 'wordpress');
+    const isClientSite = isWordPress || CLIENT_SITE_AGENCIES.includes(project.value?.agency ?? '');
+    return isClientSite ? 'Strona dla firmy' : undefined;
+});
+
 const externalLinks = computed(() => [
     { label: t('links.live'), href: project.value?.links?.live },
     { label: 'Behance', href: project.value?.links?.behance },
@@ -240,34 +250,39 @@ if (project.value && hasOwnPage.value) {
         </p>
 
         <!-- Formularz na końcu strony projektu – kto chce podobną stronę, pisze od razu, bez przechodzenia na główną -->
-        <SectionsHomeContact />
+        <SectionsHomeContact :topic="contactTopic" />
     </div>
 
     <!-- Project exists but only has basic info — no dedicated page -->
-    <section v-else-if="project" class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto py-15 sm:py-20 md:py-30">
-        <div class="flex flex-col gap-5 items-start">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold">
-                {{ project.title }}
-            </h1>
-            <p class="text-slate-600 dark:text-slate-400">
-                {{ t('noPage') }}
-            </p>
-            <ul v-if="externalLinks.length" class="flex flex-wrap gap-x-4 gap-y-1">
-                <li v-for="link in externalLinks" :key="link.label">
-                    <a :href="link.href" target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1 font-medium text-primary-600 dark:text-primary-400 hover:underline underline-offset-4">
-                        {{ link.label }}
-                        <Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
-                    </a>
-                </li>
-            </ul>
-            <div>
-                <NuxtLink :to="localLink('/projects#archive')" class="text-primary-500 underline underline-offset-4">
-                    {{ t('allProjects') }}
-                </NuxtLink>
+    <!-- Formularz także tutaj – „Kontakt” w menu prowadzi do #kontakt na tej stronie -->
+    <div v-else-if="project">
+        <section class="w-[calc(100%-40px)] sm:w-4/5 max-w-3xl mx-auto pt-15 sm:pt-20 md:pt-30">
+            <div class="flex flex-col gap-5 items-start">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold">
+                    {{ project.title }}
+                </h1>
+                <p class="text-slate-600 dark:text-slate-400">
+                    {{ t('noPage') }}
+                </p>
+                <ul v-if="externalLinks.length" class="flex flex-wrap gap-x-4 gap-y-1">
+                    <li v-for="link in externalLinks" :key="link.label">
+                        <a :href="link.href" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1 font-medium text-primary-600 dark:text-primary-400 hover:underline underline-offset-4">
+                            {{ link.label }}
+                            <Icon name="lucide:arrow-up-right" class="size-4" aria-hidden="true" />
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <NuxtLink :to="localLink('/projects#archive')" class="text-primary-500 underline underline-offset-4">
+                        {{ t('allProjects') }}
+                    </NuxtLink>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <SectionsHomeContact :topic="contactTopic" />
+    </div>
 
     <!-- Unknown path -->
     <CommonNotFound v-else variant="project" />
