@@ -274,6 +274,9 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#edf0f6', media: '(prefers-color-scheme: light)' },
         { name: 'theme-color', content: '#0a1227', media: '(prefers-color-scheme: dark)' },
         { name: 'color-scheme', content: 'light dark' },
+        // Google Search Console – potwierdzenie, że strona należy do Łukasza (usługa „Prefiks URL”, metoda „Tag HTML”).
+        // Musi zostać na stałe – Google co jakiś czas sprawdza, czy znacznik nadal jest na stronie głównej.
+        { name: 'google-site-verification', content: 'MptDcJ2d0NgTJ2qG_bwWJX0k0DrpBY6UZGxfSS_3xVo' },
 
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: SITE_NAME },
