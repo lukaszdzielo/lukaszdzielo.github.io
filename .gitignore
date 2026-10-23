@@ -30,8 +30,5 @@ public/cv/
 *.cv.pdf
 CV*.pdf
 
-# pliki wysyłane przez Claude do rozmowy (aplikacja zapisuje je w pierwszym podłączonym folderze)
-Claude outputs/
-
 # Pliki tylko na dysku – z danymi osobowymi (np. pełne zrzuty e-cargo z nazwiskami użytkowników)
 _private/
