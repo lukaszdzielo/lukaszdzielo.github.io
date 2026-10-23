@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <!-- panoramiczny ekran -->
+  <rect x="20" y="52" width="440" height="196" rx="12" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+  <!-- kontener z treścią na środku -->
+  <rect x="160" y="74" width="160" height="152" rx="10" fill="rgba(111,156,255,.3)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <!-- zdjęcie w kontenerze -->
+  <rect x="174" y="88" width="62" height="52" rx="8" fill="#2860ea"/>
+  <path d="M174 128 L194 112 L208 122 L222 108 L236 120 L236 132 Q236 140 228 140 L182 140 Q174 140 174 132 Z" fill="rgba(255,255,255,.28)"/>
+  <!-- linie tekstu (65ch) -->
+  <rect x="246" y="92" width="60" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+  <rect x="246" y="106" width="52" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+  <rect x="246" y="120" width="58" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+  <rect x="174" y="154" width="132" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+  <rect x="174" y="168" width="118" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+  <rect x="174" y="182" width="126" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+  <!-- strzałki: od krawędzi ekranu do krawędzi kontenera -->
+  <path d="M34 150 H148 M140 143 L148 150 L140 157" stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M446 150 H332 M340 143 L332 150 L340 157" stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- opisy z kodu -->
+  <text x="240" y="36" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14">max-width: 1440px</text>
+  <text x="240" y="212" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13">65ch</text>
+  <text x="240" y="272" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13">3440px</text>
+</svg>
