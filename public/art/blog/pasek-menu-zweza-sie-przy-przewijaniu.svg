@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <!-- okno przeglądarki -->
+  <rect x="40" y="62" width="400" height="200" rx="12" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+  <!-- duży pasek na górze strony -->
+  <rect x="56" y="78" width="168" height="56" rx="8" fill="rgba(111,156,255,.3)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <rect x="68" y="92" width="28" height="28" rx="6" fill="#2860ea"/>
+  <rect x="104" y="101" width="48" height="10" rx="5" fill="rgba(200,215,255,.6)"/>
+  <rect x="180" y="96" width="32" height="20" rx="4" fill="rgba(200,215,255,.3)"/>
+  <!-- zwężony pasek po przewinięciu -->
+  <rect x="256" y="78" width="168" height="34" rx="8" fill="rgba(111,156,255,.42)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <rect x="268" y="85" width="20" height="20" rx="5" fill="#2860ea"/>
+  <rect x="296" y="90" width="48" height="10" rx="5" fill="rgba(200,215,255,.6)"/>
+  <rect x="380" y="87" width="32" height="16" rx="4" fill="rgba(200,215,255,.3)"/>
+  <!-- strzałka: przewijanie zwęża pasek -->
+  <path d="M228 106 H250 M243 99 L250 106 L243 113" stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- treść strony pod paskami -->
+  <g fill="rgba(255,255,255,.12)">
+    <rect x="56" y="150" width="150" height="8" rx="4"/><rect x="56" y="166" width="130" height="8" rx="4"/><rect x="56" y="182" width="142" height="8" rx="4"/>
+    <rect x="256" y="128" width="150" height="8" rx="4"/><rect x="256" y="144" width="130" height="8" rx="4"/><rect x="256" y="160" width="142" height="8" rx="4"/>
+  </g>
+  <!-- postęp 0 → 1 -->
+  <path d="M56 236 H424" stroke="rgba(160,185,255,.5)" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M56 236 H300" stroke="#cfd9ff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="300" cy="236" r="6" fill="#2860ea" stroke="#cfd9ff" stroke-width="2"/>
+  <text x="56" y="224" fill="rgba(200,215,255,.7)" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12">0</text>
+  <text x="424" y="224" text-anchor="end" fill="rgba(200,215,255,.7)" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12">1</text>
+  <!-- opisy z kodu -->
+  <text x="240" y="38" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13">animation-timeline: scroll()</text>
+  <text x="240" y="224" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12">--header-progress</text>
+</svg>
