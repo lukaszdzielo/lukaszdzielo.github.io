@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <!-- pole wykresu: odstęp tekstu od krawędzi ekranu -->
+  <rect x="40" y="62" width="400" height="200" rx="12" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+  <path d="M68 86 V236 H414" stroke="rgba(160,185,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- .container: stałe szerokości na progach, więc odstęp skacze -->
+  <g stroke="rgba(200,215,255,.45)" stroke-width="2.5" stroke-linecap="round">
+    <path d="M76 226 H136"/>
+    <path d="M140 214 L196 140"/>
+    <path d="M202 218 L272 116"/>
+    <path d="M278 210 L336 132"/>
+    <path d="M342 204 L404 122"/>
+  </g>
+  <!-- clamp(): odstęp rośnie płynnie, bez progów -->
+  <path d="M76 222 H108 L404 150" stroke="#cfd9ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="404" cy="150" r="6" fill="#2860ea" stroke="#cfd9ff" stroke-width="2"/>
+  <!-- opisy z kodu -->
+  <text x="240" y="38" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13">clamp(16px, 9.24vw - 20px, 113px)</text>
+  <text x="128" y="108" fill="rgba(200,215,255,.7)" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13">.container</text>
+  <text x="216" y="217" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13">clamp()</text>
+</svg>
