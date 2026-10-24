@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <!-- przycisk z samą ikoną -->
+  <rect x="48" y="84" width="96" height="96" rx="20" fill="rgba(111,156,255,.3)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <g stroke="#cfd9ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="80" cy="132" r="9"/><circle cx="112" cy="112" r="9"/><circle cx="112" cy="152" r="9"/>
+    <path d="M88 128 L104 117 M88 136 L104 147"/>
+  </g>
+  <!-- strzałka: nazwa trafia do czytnika -->
+  <path d="M158 132 H190 M182 124 L190 132 L182 140" stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- dymek: co mówi czytnik ekranu -->
+  <path d="M206 92 Q206 80 218 80 H420 Q432 80 432 92 V164 Q432 176 420 176 H244 L226 194 L228 176 H218 Q206 176 206 164 Z" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+  <circle cx="232" cy="108" r="8" fill="#2860ea"/>
+  <g fill="rgba(200,215,255,.6)">
+    <rect x="250" y="103" width="150" height="10" rx="5"/>
+  </g>
+  <g fill="rgba(255,255,255,.14)">
+    <rect x="226" y="128" width="184" height="8" rx="4"/><rect x="226" y="146" width="140" height="8" rx="4"/>
+  </g>
+  <!-- inne atrybuty -->
+  <g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+    <rect x="48" y="222" width="122" height="30" rx="15"/>
+    <rect x="182" y="222" width="114" height="30" rx="15"/>
+    <rect x="308" y="222" width="124" height="30" rx="15"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#cfd9ff" text-anchor="middle">
+    <text x="109" y="241">aria-expanded</text>
+    <text x="239" y="241">aria-current</text>
+    <text x="370" y="241">aria-live</text>
+  </g>
+  <!-- opis z kodu -->
+  <text x="240" y="44" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14">aria-label=&quot;…&quot;</text>
+</svg>
