@@ -86,14 +86,14 @@ const label = computed(() => t(display.value));
 <i18n lang="json">
 {
   "en": {
-    "auto": "Theme: automatic (system) – click to switch to light",
-    "light": "Theme: light – click to switch to dark",
-    "dark": "Theme: dark – click to switch to automatic"
+    "auto": "Theme: automatic (system). Switch to light",
+    "light": "Theme: light. Switch to dark",
+    "dark": "Theme: dark. Switch to automatic"
   },
   "pl": {
-    "auto": "Motyw: automatyczny (systemowy) – kliknij, aby włączyć jasny",
-    "light": "Motyw: jasny – kliknij, aby włączyć ciemny",
-    "dark": "Motyw: ciemny – kliknij, aby włączyć automatyczny"
+    "auto": "Motyw: automatyczny (systemowy). Zmień na jasny",
+    "light": "Motyw: jasny. Zmień na ciemny",
+    "dark": "Motyw: ciemny. Zmień na automatyczny"
   }
 }
 </i18n>
