@@ -92,6 +92,11 @@
   @apply ring-1 ring-slate-200 dark:ring-white/10;
 }
 
+/* Przewijany blok kodu dostaje fokus (ProsePre) – obwódka jak przy linkach i przyciskach */
+.prose pre:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary-500 dark:outline-primary-400;
+}
+
 /* Bez `scroll-behavior: smooth` – płynność tylko przy kliknięciu kotwicy na tej samej stronie
    (app/router.options.ts i plugins/anchor-scroll.client.ts). Wejście z linku z #sekcja i odświeżenie
    ustawiają stronę od razu w sekcji. */
