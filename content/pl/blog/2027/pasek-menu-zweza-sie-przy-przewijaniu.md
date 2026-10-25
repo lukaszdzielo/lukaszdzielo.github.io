@@ -165,6 +165,13 @@ Uznałem, że bezpieczniej będzie przepisać pasek na `fixed` na wszystkich str
 
 Pasek się zmniejsza, a treść pod nim stoi w miejscu.
 
+## Demo
+
+Całe demo – pasek, panel menu i zapasowy skrypt – możesz uruchomić tutaj. W lewym dolnym rogu widać, kto liczy postęp: CSS czy zapasowy skrypt.
+
+::code-pen{user="LukaszDev" slug="xbqJQZj" url="https://codepen.io/editor/LukaszDev/pen/01a172ac-a2f1-7273-98a7-c65a7c3297a5" title="Pasek menu, który zwęża się przy przewijaniu"}
+::
+
 ## Co z tego zostało
 
 - Klasa z `transition` daje dwa stany – przy szybkim przewijaniu widać, jak pasek goni stronę.

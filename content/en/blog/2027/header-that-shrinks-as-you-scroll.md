@@ -165,6 +165,13 @@ I decided it would be safer to make the header `fixed` on all pages and leave an
 
 The header gets smaller, and the content under it stays in place.
 
+## Demo
+
+You can run the whole demo – the header, the menu panel and the fallback script – here. In the bottom left corner you can see what calculates the progress: CSS or the fallback script.
+
+::code-pen{user="LukaszDev" slug="xbqJQZj" url="https://codepen.io/editor/LukaszDev/pen/01a172ac-a2f1-7273-98a7-c65a7c3297a5" title="A header that shrinks as you scroll"}
+::
+
 ## What I took from it
 
 - A class with `transition` gives two states – when you scroll fast, you can see the header chasing the page.
