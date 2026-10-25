@@ -42,6 +42,7 @@ const serverError = ref('')
 const errorKey = ref<'send' | 'offline'>('send')
 const errorMessage = computed(() => serverError.value || t(`errors.${errorKey.value}`))
 const formEl = ref<HTMLFormElement | null>(null)
+const doneTitle = ref<HTMLElement | null>(null)
 const link = useLocalLink()
 // W przerwie świątecznej komunikat po wysłaniu podaje dzień powrotu zamiast „72 godzin”
 const holiday = useHolidayBreak()
@@ -93,6 +94,12 @@ async function submit() {
   }
 }
 
+// Po wysłaniu formularz znika, a na jego miejscu jest podziękowanie. Fokus przechodzi na jego nagłówek:
+// czytnik ekranu od razu je przeczyta, a fokus z klawiatury nie spada na początek strony.
+function onEntered() {
+  if (status.value === 'success') doneTitle.value?.focus()
+}
+
 function reset() {
   status.value = 'idle'
   // Formularz pojawia się po animacji wyjścia panelu podziękowania (Transition mode="out-in")
@@ -112,18 +119,18 @@ const field =
       enter-from-class="opacity-0 translate-y-2"
       leave-active-class="motion-safe:transition motion-safe:duration-200 ease-in"
       leave-to-class="opacity-0"
+      @after-enter="onEntered"
     >
       <!-- Podziękowanie po wysłaniu -->
       <div
         v-if="status === 'success'"
         key="done"
         class="flex min-h-80 flex-col items-start justify-center gap-4"
-        role="status"
       >
         <span class="grid size-12 place-items-center rounded-full bg-emerald-400/15 text-emerald-400 dark:text-emerald-600">
           <Icon name="lucide:check" class="size-6" aria-hidden="true" />
         </span>
-        <p class="text-2xl font-semibold tracking-tight">{{ t('success.title') }}</p>
+        <h3 ref="doneTitle" tabindex="-1" class="text-2xl font-semibold tracking-tight focus:outline-none">{{ t('success.title') }}</h3>
         <p class="opacity-75">{{ holiday.active.value ? t('success.holidayLead', holiday.dates.value) : t('success.lead') }}</p>
         <button
           type="button"
