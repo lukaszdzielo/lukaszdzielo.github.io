@@ -41,7 +41,7 @@ const code = 'rounded bg-white px-1.5 py-0.5 text-sm dark:bg-brand-900'
     <div class="container pt-12 pb-22 sm:pt-16 md:pb-28">
       <div class="max-w-3xl">
         <p class="text-sm text-slate-600 dark:text-slate-400">
-          <NuxtLink :to="link('/')" class="text-primary-500 dark:text-primary-400">{{ t('breadcrumb') }}</NuxtLink> / {{ t('title') }}
+          <NuxtLink :to="link('/')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb') }}</NuxtLink> / {{ t('title') }}
         </p>
         <h1 class="mt-5 text-4xl leading-none font-semibold tracking-tighter text-slate-900 sm:text-5xl lg:text-6xl dark:text-brand-50">
           {{ t('title') }}

@@ -97,7 +97,7 @@ useJsonLd('breadcrumb', {
 
       <div class="container pt-12 sm:pt-16">
         <p class="text-sm text-slate-600 dark:text-slate-400">
-          <NuxtLink :to="link('/')" class="text-primary-500 dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
+          <NuxtLink :to="link('/')" class="text-primary-500 underline underline-offset-4 dark:text-primary-400">{{ t('breadcrumb.home') }}</NuxtLink>
           <template v-if="page === 1"> / {{ t('title') }}</template>
           <template v-else> / <NuxtLink :to="link('/blog')" class="text-primary-500 dark:text-primary-400">{{ t('title') }}</NuxtLink> / {{ t('breadcrumb.page', { page }) }}</template>
         </p>
