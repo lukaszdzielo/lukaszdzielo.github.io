@@ -34,7 +34,7 @@ const anchor = useAnchor()
             :class="
               i === 0
                 ? 'bg-primary-400/18 text-primary-400 dark:bg-primary-500/12 dark:text-primary-600'
-                : 'bg-primary-500/10 text-primary-500 dark:bg-primary-400/14 dark:text-primary-400'
+                : 'bg-primary-500/10 text-primary-600 dark:bg-primary-400/14 dark:text-primary-400'
             "
           >
             {{ service.audience }}

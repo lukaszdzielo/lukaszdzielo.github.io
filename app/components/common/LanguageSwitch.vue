@@ -42,7 +42,7 @@ function remember(code: string) {
         :hreflang="code"
         :aria-current="code === locale ? 'true' : undefined"
         class="rounded-full px-3.5 py-1.5 text-sm font-semibold uppercase"
-        :class="code === locale ? 'bg-primary-500/10 text-primary-500 dark:bg-primary-400/12 dark:text-primary-400' : 'text-slate-600 dark:text-slate-300'"
+        :class="code === locale ? 'bg-primary-500/10 text-primary-600 dark:bg-primary-400/12 dark:text-primary-400' : 'text-slate-600 dark:text-slate-300'"
         @click="remember(code)"
       >
         {{ code }}

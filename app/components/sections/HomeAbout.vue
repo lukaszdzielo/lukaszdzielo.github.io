@@ -99,7 +99,7 @@ const anchor = useAnchor()
                 <li v-for="project in shown(item)" :key="project.title">
                   <NuxtLink
                     :to="link(project.to)"
-                    class="inline-flex h-7 items-center gap-1 rounded-full bg-primary-500/10 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20"
+                    class="inline-flex h-7 items-center gap-1 rounded-full bg-primary-500/10 px-3 text-xs font-medium text-primary-600 transition-colors hover:bg-primary-500/12 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20"
                   >
                     {{ project.title }}
                     <Icon name="lucide:arrow-right" class="size-3" aria-hidden="true" />
@@ -108,7 +108,7 @@ const anchor = useAnchor()
                 <li v-if="more(item)">
                   <NuxtLink
                     :to="archiveLink(item)"
-                    class="inline-flex h-7 items-center gap-1 rounded-full border border-primary-500/30 px-3 text-xs font-medium text-primary-500 transition-colors hover:bg-primary-500/10 dark:border-primary-400/30 dark:text-primary-400 dark:hover:bg-primary-400/14"
+                    class="inline-flex h-7 items-center gap-1 rounded-full border border-primary-500/30 px-3 text-xs font-medium text-primary-600 transition-colors hover:bg-primary-500/10 dark:border-primary-400/30 dark:text-primary-400 dark:hover:bg-primary-400/14"
                   >
                     <!-- widoczne „+3” albo „37 projektów”; czytnik ekranu dostaje resztę zdania -->
                     {{ shown(item).length ? `+${more(item)}` : projectsCount(more(item)) }}

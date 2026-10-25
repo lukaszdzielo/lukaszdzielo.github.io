@@ -194,7 +194,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
       {{ t('agency.label') }}
       <button
         type="button"
-        :class="[chip, 'bg-primary-500/10 font-medium text-primary-500 hover:bg-primary-500/16 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20']"
+        :class="[chip, 'bg-primary-500/10 font-medium text-primary-600 hover:bg-primary-500/12 dark:bg-primary-400/14 dark:text-primary-400 dark:hover:bg-primary-400/20']"
         @click="clearAgencies"
       >
         {{ agencies.join(', ') }}
@@ -218,7 +218,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
           :key="y.year"
           :href="`#y${y.year}`"
           class="shrink-0 rounded-full px-3.5 py-2 text-sm transition-colors"
-          :class="i === 0 ? 'bg-primary-500/10 font-medium text-primary-500 dark:bg-primary-400/14 dark:text-primary-400' : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-brand-50'"
+          :class="i === 0 ? 'bg-primary-500/10 font-medium text-primary-600 dark:bg-primary-400/14 dark:text-primary-400' : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-brand-50'"
           @click="open(y.year, i)"
         >{{ y.year }}</a>
       </div>
