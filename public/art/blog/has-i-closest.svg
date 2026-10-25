@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <!-- drzewo: rodzic .card → button → svg (kliknięty element) -->
+  <rect x="170" y="36" width="140" height="48" rx="12" fill="rgba(111,156,255,.3)" stroke="#2860ea" stroke-width="2"/>
+  <rect x="170" y="126" width="140" height="48" rx="12" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+  <rect x="170" y="216" width="140" height="48" rx="12" fill="rgba(255,255,255,.1)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round">
+    <path d="M240 84 V126 M240 174 V216"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="15" fill="#cfd9ff" text-anchor="middle">
+    <text x="240" y="65">.card</text>
+    <text x="240" y="155">button</text>
+    <text x="240" y="245">svg</text>
+  </g>
+  <!-- JS: closest() idzie od klikniętego elementu w górę -->
+  <g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M166 240 C112 240 112 60 160 60"/>
+    <path d="M152 52 L160 60 L152 68"/>
+  </g>
+  <!-- CSS: :has() – rodzic wybrany po dziecku -->
+  <g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M314 150 C368 150 368 60 320 60"/>
+    <path d="M328 52 L320 60 L328 68"/>
+  </g>
+  <g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+    <rect x="22" y="134" width="96" height="30" rx="15"/>
+    <rect x="362" y="134" width="96" height="30" rx="15"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff" text-anchor="middle">
+    <text x="70" y="153">closest()</text>
+    <text x="410" y="153">:has()</text>
+  </g>
+</svg>
