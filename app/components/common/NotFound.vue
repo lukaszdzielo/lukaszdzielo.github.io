@@ -115,7 +115,7 @@ useSiteMeta({
           v-if="variant !== 'error'"
           class="mt-6 flex max-w-full items-center gap-2.5 overflow-hidden rounded-full border border-slate-900/10 bg-white py-2 pr-4 pl-2 text-sm text-slate-600 dark:border-white/10 dark:bg-brand-900 dark:text-slate-400"
         >
-          <span class="shrink-0 rounded-full bg-red-500/10 px-2.5 py-0.5 text-xs font-semibold text-red-600 dark:bg-red-400/14 dark:text-red-300">404</span>
+          <span class="shrink-0 rounded-full bg-red-500/10 px-2.5 py-0.5 text-xs font-semibold text-red-700 dark:bg-red-400/14 dark:text-red-300">404</span>
           <code class="truncate font-mono text-xs sm:text-sm">lukaszdzielo.github.io{{ currentPath }}</code>
         </p>
 
