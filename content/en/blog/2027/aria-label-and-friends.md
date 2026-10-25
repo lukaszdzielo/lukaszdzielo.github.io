@@ -111,7 +111,7 @@ After you click "Copy link", the button text changes to "Link copied", but the s
 <p class="sr-only" aria-live="polite">{{ copied ? 'Link copied' : '' }}</p>
 ```
 
-The region is on the page from the start and it is empty at first – only its content changes. An element added to the page together with the message may be read wrongly or not at all. `polite` waits until the screen reader finishes talking. The "3 / 12" counter in the screenshot gallery and the message after sending the contact form work the same way.
+The region is on the page from the start and it is empty at first – only its content changes. An element added to the page together with the message may be read wrongly or not at all. `polite` waits until the screen reader finishes talking. The "3 / 12" counter in the screenshot gallery and the error message in the contact form work the same way. After the form is sent, it disappears, so there I move the focus to the thank-you heading – the screen reader reads it right away, and the keyboard focus doesn't fall back to the top of the page.
 
 ## `aria-labelledby` – a name that is already on the page
 

@@ -111,7 +111,7 @@ Po kliknięciu „Kopiuj link” tekst przycisku zmienia się na „Skopiowano l
 <p class="sr-only" aria-live="polite">{{ copied ? 'Skopiowano link' : '' }}</p>
 ```
 
-Region jest na stronie od początku i na starcie jest pusty – zmienia się tylko jego treść. Element dodany do strony razem z komunikatem może zostać przeczytany źle albo wcale. `polite` czeka, aż czytnik skończy mówić. Tak samo działa licznik „3 / 12” w galerii zrzutów i komunikat po wysłaniu formularza.
+Region jest na stronie od początku i na starcie jest pusty – zmienia się tylko jego treść. Element dodany do strony razem z komunikatem może zostać przeczytany źle albo wcale. `polite` czeka, aż czytnik skończy mówić. Tak samo działa licznik „3 / 12” w galerii zrzutów i komunikat o błędzie w formularzu kontaktowym. Po udanym wysłaniu formularz znika, więc tam przenoszę fokus na nagłówek podziękowania – czytnik od razu go przeczyta, a fokus z klawiatury nie spada na początek strony.
 
 ## `aria-labelledby` – nazwa, która już jest na stronie
 
