@@ -33,6 +33,12 @@ useSeoMeta({
 </script>
 
 <template>
+  <!-- Zgoda na statystyki – tylko w przeglądarce (decyzja jest w localStorage). Na ekranie jest na dole,
+       ale w kodzie na początku: klawiatura i czytnik ekranu trafiają na nią przed nagłówkiem. -->
+  <ClientOnly>
+    <CommonCookieConsent />
+  </ClientOnly>
+
   <TheHeader :variant="business ? 'business' : 'portfolio'" />
 
   <main>
@@ -40,9 +46,4 @@ useSeoMeta({
   </main>
 
   <TheFooter :variant="business ? 'business' : 'portfolio'" />
-
-  <!-- Zgoda na statystyki – tylko w przeglądarce (decyzja jest w localStorage) -->
-  <ClientOnly>
-    <CommonCookieConsent />
-  </ClientOnly>
 </template>
