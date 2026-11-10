@@ -17,6 +17,12 @@ const promoBadge = computed(() => {
   return p ? t('promo', p) : ''
 })
 const anchor = useAnchor()
+// Pasy pod pakietami: hosting i domena (z ceną z cennika) oraz inna technologia (z linkiem do formularza)
+const fill = (text: string) => text.replace(/\{(\w+)\}/g, (_, id: PriceId) => price(id).now)
+const notes = computed(() => [
+  { title: offer.value.hosting.title, text: fill(offer.value.hosting.text) },
+  { title: offer.value.other.title, text: offer.value.other.text, ask: true },
+])
 </script>
 
 <template>
@@ -60,10 +66,15 @@ const anchor = useAnchor()
         </li>
       </ul>
 
-      <div class="mt-4 flex flex-col gap-2 rounded-2xl border border-slate-900/10 bg-white/60 px-5 py-4 text-sm sm:flex-row sm:items-center sm:gap-4 lg:mt-6 dark:border-white/10 dark:bg-brand-900/60">
-        <b class="shrink-0 font-medium text-slate-900 dark:text-brand-50">{{ offer.other.title }}</b>
-        <span class="text-slate-600 dark:text-slate-300">{{ offer.other.text }}</span>
-        <NuxtLink :to="link('/strony-dla-firm#contact')" class="shrink-0 font-medium text-primary-500 sm:ml-auto dark:text-primary-400">{{ t('ask') }}</NuxtLink>
+      <div
+        v-for="(note, i) in notes"
+        :key="note.title"
+        class="flex flex-col gap-2 rounded-2xl border border-slate-900/10 bg-white/60 px-5 py-4 text-sm sm:flex-row sm:items-center sm:gap-4 dark:border-white/10 dark:bg-brand-900/60"
+        :class="i === 0 ? 'mt-4 lg:mt-6' : 'mt-3'"
+      >
+        <b class="shrink-0 font-medium text-slate-900 dark:text-brand-50">{{ note.title }}</b>
+        <span class="text-slate-600 dark:text-slate-300">{{ note.text }}</span>
+        <NuxtLink v-if="note.ask" :to="link('/strony-dla-firm#contact')" class="shrink-0 font-medium text-primary-500 sm:ml-auto dark:text-primary-400">{{ t('ask') }}</NuxtLink>
       </div>
       <p class="mt-3 text-xs/relaxed text-slate-600 dark:text-slate-400">{{ t('note') }}</p>
     </div>

@@ -84,6 +84,11 @@ export const businessOffer = {
         more: '#care',
       },
     ],
+    // {hosting} – cena z app/data/pricing.ts (wstawiana w komponencie)
+    hosting: {
+      title: 'Hosting and a domain',
+      text: 'I can buy and set them up for you: {hosting} + VAT, plus the provider\'s price for the first year – added to your quote. The account and domain are always in your name.',
+    },
     other: {
       title: 'A different technology?',
       text: 'I can also build a site in plain HTML, CSS and JS, or a WooCommerce store. For Shopify or PrestaShop, I\'m happy to help after a short consultation.',
@@ -120,6 +125,10 @@ export const businessOffer = {
         more: '#care',
       },
     ],
+    hosting: {
+      title: 'Hosting i domena',
+      text: 'Mogę je kupić i skonfigurować za Ciebie: {hosting} netto plus koszt pierwszego roku u dostawcy – doliczony do wyceny. Konto i domena są zawsze na Twoje dane.',
+    },
     other: {
       title: 'Inna technologia?',
       text: 'Stronę zrobię też w czystym HTML, CSS i JS, a sklep na WooCommerce. Przy Shopify czy PrestaShop chętnie pomogę po krótkiej konsultacji.',
@@ -259,14 +268,14 @@ export const businessCare = {
   },
 }
 
-// {card}, {company} – miejsca na ceny z app/data/pricing.ts (wstawiane w komponencie, w formacie danego języka)
+// {card}, {company}, {hosting} – miejsca na ceny z app/data/pricing.ts (wstawiane w komponencie, w formacie danego języka)
 export const businessFaq = {
   en: {
     title: 'Before you get in touch',
     items: [
       { q: 'How much does a website cost?', a: 'A one-page site starts at {card} + VAT, a business website at {company} + VAT. The exact price depends on the number of pages and features – after a few messages you get a specific quote and timeline.' },
       { q: 'How long does it take?', a: 'The first design draft takes 3–4 days. We agree on the full timeline at the start – it depends on the scope and how quickly the content is ready.' },
-      { q: 'Who pays for hosting and the domain?', a: 'You do – you buy them in your own name, so the site always belongs to you. I only need access to launch it and look after it.' },
+      { q: 'Who pays for hosting and the domain?', a: 'They\'re always in your name, so the site belongs to you. You can buy them yourself – then I only need access to launch the site and look after it. Or you can leave it to me: I\'ll buy and set everything up for {hosting} + VAT and add the provider\'s price for the first year to your quote. After that, you renew them directly with the provider.' },
       { q: 'Can I edit the content myself?', a: 'Yes. The site runs on the WordPress block editor – you change text, photos and posts without any coding.' },
       { q: 'How does payment work?', a: 'Through Useme or Freelancehunt – freelance platforms that handle the contract and invoice. We set up the job on the platform, and you get an invoice for the completed work.' },
       { q: 'I already have a website. Can you improve it?', a: 'Yes – I can take over the care of your existing WordPress site or design a new version of it.' },
@@ -277,7 +286,7 @@ export const businessFaq = {
     items: [
       { q: 'Ile kosztuje strona?', a: 'Wizytówka od {card} netto, strona firmowa od {company} netto. Dokładna kwota zależy od liczby podstron i funkcji – po kilku wiadomościach dostajesz konkretną wycenę i termin.' },
       { q: 'Ile to trwa?', a: 'Pierwszy projekt graficzny w 3–4 dni. Termin całości ustalamy na starcie – zależy od zakresu i tego, jak szybko mamy treści.' },
-      { q: 'Kto płaci za hosting i domenę?', a: 'Ty – kupujesz je na siebie, więc strona zawsze należy do Ciebie. Ja potrzebuję tylko dostępu, żeby ją wdrożyć i się nią opiekować. Jeśli nie masz jeszcze hostingu, przy współpracy dostaniesz ode mnie kod rabatowy na hosting, który polecam.' },
+      { q: 'Kto płaci za hosting i domenę?', a: 'Hosting i domena są zawsze na Twoje dane, więc strona należy do Ciebie. Możesz kupić je sam – wtedy potrzebuję tylko dostępu, żeby wdrożyć stronę i się nią opiekować, a ode mnie dostaniesz kod rabatowy na hosting, który polecam. Możesz też zlecić to mnie: kupię i skonfiguruję wszystko za {hosting} netto, a koszt pierwszego roku u dostawcy doliczę do wyceny. Kolejne lata opłacasz bezpośrednio u dostawcy.' },
       { q: 'Czy sam zmienię treści?', a: 'Tak. Strona działa na edytorze bloków WordPressa – tekst, zdjęcia i wpisy zmieniasz bez kodowania.' },
       { q: 'Jak wygląda rozliczenie?', a: 'Przez Useme lub Freelancehunt – zlecenie zakładamy na platformie, a Ty dostajesz fakturę za wykonaną pracę.' },
       { q: 'Mam już stronę. Możesz ją poprawić?', a: 'Tak – mogę przejąć opiekę nad istniejącym WordPressem albo zaprojektować jego nową wersję.' },

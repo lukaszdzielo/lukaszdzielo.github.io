@@ -9,10 +9,12 @@
 // Daty liczone w strefie czasowej Polski. Sprawdzamy je przy budowaniu na GitHubie, a nie na urządzeniu
 // odwiedzającego – zmiana daty w telefonie nic nie da.
 
-export type PriceId = 'card' | 'company' | 'care' | 'careHours' | 'hour'
+// hosting – zakup i konfiguracja hostingu i domeny na dane klienta (koszt u dostawcy doliczany osobno do wyceny)
+export type PriceId = 'card' | 'company' | 'care' | 'careHours' | 'hour' | 'hosting'
 export type Lang = 'en' | 'pl'
 export type Currency = 'pln' | 'eur' | 'gbp'
-type Table = Record<PriceId, number>
+// `hosting` jest w logu od 2026-11-10 – wcześniejsze wpisy go nie mają
+type Table = Omit<Record<PriceId, number>, 'hosting'> & { hosting?: number }
 
 // Rodzaje promocji: nazwa w każdym języku i rabat w %
 export const presets = {
@@ -34,9 +36,9 @@ export const regular: { from: string; pln: Table; eur?: Table; gbp?: Table }[] =
   },
   {
     from: '2026-11-10',
-    pln: { card: 1999, company: 3999, care: 149, careHours: 349, hour: 120 },
-    eur: { card: 469, company: 949, care: 35, careHours: 85, hour: 29 },
-    gbp: { card: 549, company: 1099, care: 39, careHours: 95, hour: 35 },
+    pln: { card: 1999, company: 3999, care: 149, careHours: 349, hour: 120, hosting: 199 },
+    eur: { card: 469, company: 949, care: 35, careHours: 85, hour: 29, hosting: 49 },
+    gbp: { card: 549, company: 1099, care: 39, careHours: 95, hour: 35, hosting: 59 },
   },
 ]
 
