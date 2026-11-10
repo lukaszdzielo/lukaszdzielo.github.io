@@ -32,6 +32,12 @@ export const regular: { from: string; pln: Table; eur?: Table; gbp?: Table }[] =
     eur: { card: 590, company: 1190, care: 35, careHours: 85, hour: 29 },
     gbp: { card: 690, company: 1390, care: 39, careHours: 95, hour: 35 },
   },
+  {
+    from: '2026-11-10',
+    pln: { card: 1999, company: 3999, care: 149, careHours: 349, hour: 120 },
+    eur: { card: 469, company: 949, care: 35, careHours: 85, hour: 29 },
+    gbp: { card: 549, company: 1099, care: 39, careHours: 95, hour: 35 },
+  },
 ]
 
 // Log promocji (od najstarszej). Przykład:
@@ -98,7 +104,7 @@ const lowest30 = (p: (typeof promos)[number], id: PriceId, cur: Currency) => {
 
 // ——— wyświetlanie ———
 
-// PL: „2 500 zł” (spacja co trzy cyfry także w kwotach czterocyfrowych), EN: „€590 · £690”.
+// PL: „1 999 zł” (spacja co trzy cyfry także w kwotach czterocyfrowych), EN: „€469 · £549”.
 // Twarda spacja ( ), żeby kwota się nie łamała.
 const group = (n: number, sep: string) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep)
 const money = (values: Partial<Record<Currency, number>>, lang: Lang) =>
@@ -116,7 +122,7 @@ const pick = (lang: Lang, f: (cur: Currency) => number | undefined) =>
 export const activePromo = (day = today()) => promoOn(day)
 
 // Cena do wyświetlenia:
-// bez promocji { now: '2 500 zł' }, w promocji { now: '2 100 zł', before: '2 500 zł', lowest: '2 500 zł' }
+// bez promocji { now: '1 999 zł' }, w promocji { now: '1 550 zł', before: '1 999 zł', lowest: '1 999 zł' }
 export function price(id: PriceId, lang: Lang, day = today()) {
   const p = promoOn(day)
   const reg = regularOn(day)

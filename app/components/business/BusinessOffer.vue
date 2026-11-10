@@ -9,7 +9,7 @@ const link = useLocalLink()
 const offer = useLocalized(businessOffer)
 const lang = computed(() => (locale.value === 'pl' ? 'pl' : 'en') as Lang)
 const day = usePricingDay()
-// cena w formacie języka strony („2 500 zł” / „€590 · £690”)
+// cena w formacie języka strony („1 999 zł” / „€469 · £549”)
 const price = (id: PriceId) => priceIn(id, lang.value, day.value)
 // etykieta promocji, np. „Black WEB do 30.11” / „Black WEB until Nov 30”
 const promoBadge = computed(() => {

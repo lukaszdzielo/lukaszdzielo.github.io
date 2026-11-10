@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Pytania i odpowiedzi. Ceny w odpowiedziach ({card}, {company}) biorą się z app/data/pricing.ts
-// (w formacie języka strony: „2 500 zł” albo „€590 · £690”).
+// (w formacie języka strony: „1 999 zł” albo „€469 · £549”).
 import { businessFaq } from '~/data/business'
 import { price, type PriceId } from '~/data/pricing'
 
