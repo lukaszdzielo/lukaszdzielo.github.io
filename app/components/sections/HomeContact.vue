@@ -3,12 +3,19 @@
 // informacja o czasie odpowiedzi, a w formularzu tematy dla firm.
 import { businessContact } from '~/data/business'
 import { contactSocials } from '~/data/contact'
+import { price } from '~/data/pricing'
 
 // topic – temat wybrany na starcie w formularzu z portfolio (np. „Strona dla firmy” na stronach projektów WordPress)
 const props = withDefaults(defineProps<{ variant?: 'portfolio' | 'business'; topic?: string }>(), { variant: 'portfolio', topic: undefined })
 const business = computed(() => props.variant === 'business')
 const { t } = useI18n({ useScope: 'local' })
 const biz = useLocalized(businessContact)
+// Opcje w formularzu dla firm – {hosting} w opisie to cena z app/data/pricing.ts w formacie języka strony
+const { lang } = useContentLocale()
+const day = usePricingDay()
+const bizOptions = computed(() =>
+  biz.value.options.map(option => ({ ...option, hint: option.hint.replace('{hosting}', price('hosting', lang.value, day.value).now) })),
+)
 const anchor = useAnchor()
 // W przerwie świątecznej (app/data/holiday.ts) zamiast „72 godzin” – daty przerwy i dzień powrotu
 const holiday = useHolidayBreak()
@@ -60,6 +67,8 @@ const holiday = useHolidayBreak()
           :topic-label="t('business.topic')"
           :message-label="t('business.message')"
           :message-placeholder="biz.placeholder"
+          :options="bizOptions"
+          :options-label="biz.optionsLabel"
           source="Strony dla firm"
         />
         <CommonContactForm v-else class="relative" :default-topic="topic" />

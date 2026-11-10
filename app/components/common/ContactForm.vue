@@ -5,6 +5,8 @@ import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT, contactTopics } from '~/data/
 
 type Status = 'idle' | 'sending' | 'success' | 'error'
 type Topic = { value: string; label: string }
+// Opcja do zaznaczenia (np. „Zajmij się hostingiem i domeną”): value trafia do maila, hint to krótki opis pod etykietą
+type Option = { value: string; label: string; hint?: string }
 
 // Domyślnie formularz z portfolio; strona dla firm podaje własne tematy, etykiety i źródło w temacie maila.
 // Bez podanych etykiet i tematów formularz bierze domyślne w aktualnym języku (blok <i18n> i contactTopics).
@@ -16,6 +18,8 @@ const props = withDefaults(
     messagePlaceholder?: string
     source?: string // trafia do tematu maila, np. „Portfolio” albo „Strony dla firm”
     defaultTopic?: string // temat wybrany na starcie (wartość z listy), np. „Strona dla firmy” na stronach projektów WordPress
+    options?: readonly Option[] // pola do zaznaczenia pod wiadomością (strona dla firm)
+    optionsLabel?: string // nagłówek grupy pól do zaznaczenia
   }>(),
   {
     source: 'Portfolio',
@@ -34,8 +38,10 @@ const form = reactive({
   email: '',
   topic: firstTopic(),
   message: '',
+  options: [] as string[], // zaznaczone opcje (wartości)
   botcheck: false, // pole-pułapka na boty – człowiek go nie widzi
 })
+const uid = useId()
 const status = ref<Status>('idle')
 // Błąd: komunikat z Web3Forms (gdy jest) albo nasz – zapisany jako klucz, żeby zmieniał się z językiem strony
 const serverError = ref('')
@@ -68,6 +74,8 @@ async function submit() {
     email: form.email,
     topic: form.topic, // dodatkowe pole – Web3Forms dołącza do maila każde pole bez konfiguracji
     message: form.message,
+    // Tylko w formularzu z opcjami (strona dla firm) – w mailu jako pole „extras”
+    ...(props.options?.length ? { extras: form.options.length ? form.options.join(', ') : 'brak' } : {}),
     botcheck: form.botcheck,
   }
 
@@ -81,7 +89,7 @@ async function submit() {
 
     if (res.ok && data.success) {
       status.value = 'success'
-      Object.assign(form, { name: '', email: '', topic: firstTopic(), message: '' })
+      Object.assign(form, { name: '', email: '', topic: firstTopic(), message: '', options: [] })
     } else {
       status.value = 'error'
       serverError.value = data.message || ''
@@ -187,6 +195,30 @@ const field =
             required
           />
         </label>
+
+        <!-- Opcje do zaznaczenia: etykieta i opis połączone z polem (for / aria-describedby) -->
+        <fieldset v-if="options?.length" class="sm:col-span-2">
+          <legend class="text-sm font-semibold">{{ optionsLabel }}</legend>
+          <div
+            v-for="(option, i) in options"
+            :key="option.value"
+            class="mt-1.5 flex items-start gap-3 rounded-xl border border-white/15 bg-white/8 p-3.5 dark:border-brand-950/15 dark:bg-brand-950/5"
+          >
+            <input
+              :id="`${uid}-option-${i}`"
+              v-model="form.options"
+              type="checkbox"
+              name="extras"
+              :value="option.value"
+              :aria-describedby="option.hint ? `${uid}-option-${i}-hint` : undefined"
+              class="mt-0.5 size-4 shrink-0 cursor-pointer accent-primary-400 dark:accent-primary-500"
+            >
+            <div class="text-sm">
+              <label :for="`${uid}-option-${i}`" class="cursor-pointer font-medium">{{ option.label }}</label>
+              <p v-if="option.hint" :id="`${uid}-option-${i}-hint`" class="mt-0.5 text-xs/relaxed opacity-70">{{ option.hint }}</p>
+            </div>
+          </div>
+        </fieldset>
 
         <!-- Pułapka na boty (honeypot) -->
         <input v-model="form.botcheck" type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">

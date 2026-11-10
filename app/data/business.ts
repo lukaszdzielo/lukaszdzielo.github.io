@@ -310,6 +310,11 @@ export const businessContact = {
       { value: 'Opieka', label: 'Care plan' },
       { value: 'Jeszcze nie wiem', label: 'Not sure yet' },
     ],
+    // {hosting} – cena z app/data/pricing.ts (wstawiana w HomeContact.vue)
+    optionsLabel: 'Optional',
+    options: [
+      { value: 'Hosting i domena – zakup i konfiguracja', label: 'Take care of hosting and the domain – add them to the quote', hint: 'I\'ll buy and set them up in your name: {hosting} + VAT, plus the provider\'s price for the first year.' },
+    ],
   },
   pl: {
     title: 'Napisz, czego potrzebujesz.',
@@ -323,6 +328,10 @@ export const businessContact = {
       { value: 'Sklep', label: 'Sklep' },
       { value: 'Opieka', label: 'Opieka' },
       { value: 'Jeszcze nie wiem', label: 'Jeszcze nie wiem' },
+    ],
+    optionsLabel: 'Dodatkowo',
+    options: [
+      { value: 'Hosting i domena – zakup i konfiguracja', label: 'Zajmij się hostingiem i domeną – dolicz je do wyceny', hint: 'Kupię i skonfiguruję je na Twoje dane: {hosting} netto plus koszt pierwszego roku u dostawcy.' },
     ],
   },
 }
