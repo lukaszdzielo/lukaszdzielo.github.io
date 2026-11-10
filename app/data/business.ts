@@ -87,7 +87,7 @@ export const businessOffer = {
     // {hosting} – cena z app/data/pricing.ts (wstawiana w komponencie)
     hosting: {
       title: 'Hosting and a domain',
-      text: 'I can buy and set them up for you: {hosting} + VAT, plus the provider\'s price for the first year – added to your quote. The account and domain are always in your name.',
+      text: 'I can buy and set them up for you for {hosting} + VAT. On top of that comes the cost of hosting and the domain for the first year – I add it to the invoice. It depends on how much server space you need; a basic hosting plan is enough for a typical WordPress site. The account and domain are always in your name.',
     },
     other: {
       title: 'A different technology?',
@@ -127,7 +127,7 @@ export const businessOffer = {
     ],
     hosting: {
       title: 'Hosting i domena',
-      text: 'Mogę je kupić i skonfigurować za Ciebie: {hosting} netto plus koszt pierwszego roku u dostawcy – doliczony do wyceny. Konto i domena są zawsze na Twoje dane.',
+      text: 'Mogę je kupić i skonfigurować za Ciebie za {hosting} netto. Do tego dochodzi koszt hostingu i domeny na pierwszy rok – doliczam go do faktury. Zależy od potrzebnego miejsca na serwerze; do typowej strony na WordPressie wystarcza podstawowy pakiet. Konto i domena są zawsze na Twoje dane.',
     },
     other: {
       title: 'Inna technologia?',
@@ -275,7 +275,7 @@ export const businessFaq = {
     items: [
       { q: 'How much does a website cost?', a: 'A one-page site starts at {card} + VAT, a business website at {company} + VAT. The exact price depends on the number of pages and features – after a few messages you get a specific quote and timeline.' },
       { q: 'How long does it take?', a: 'The first design draft takes 3–4 days. We agree on the full timeline at the start – it depends on the scope and how quickly the content is ready.' },
-      { q: 'Who pays for hosting and the domain?', a: 'They\'re always in your name, so the site belongs to you. You can buy them yourself – then I only need access to launch the site and look after it. Or you can leave it to me: I\'ll buy and set everything up for {hosting} + VAT and add the provider\'s price for the first year to your quote. After that, you renew them directly with the provider.' },
+      { q: 'Who pays for hosting and the domain?', a: 'They\'re always in your name, so the site belongs to you. You can buy them yourself – then I only need access to launch the site and look after it. Or you can leave it to me: you pay {hosting} + VAT for the purchase and setup, and I add the cost of hosting and the domain for the first year to the invoice. That cost depends on how much server space you need – a basic plan is enough for a typical WordPress site. After that, you renew them directly with the provider.' },
       { q: 'Can I edit the content myself?', a: 'Yes. The site runs on the WordPress block editor – you change text, photos and posts without any coding.' },
       { q: 'How does payment work?', a: 'Through Useme or Freelancehunt – freelance platforms that handle the contract and invoice. We set up the job on the platform, and you get an invoice for the completed work.' },
       { q: 'I already have a website. Can you improve it?', a: 'Yes – I can take over the care of your existing WordPress site or design a new version of it.' },
@@ -286,7 +286,7 @@ export const businessFaq = {
     items: [
       { q: 'Ile kosztuje strona?', a: 'Wizytówka od {card} netto, strona firmowa od {company} netto. Dokładna kwota zależy od liczby podstron i funkcji – po kilku wiadomościach dostajesz konkretną wycenę i termin.' },
       { q: 'Ile to trwa?', a: 'Pierwszy projekt graficzny w 3–4 dni. Termin całości ustalamy na starcie – zależy od zakresu i tego, jak szybko mamy treści.' },
-      { q: 'Kto płaci za hosting i domenę?', a: 'Hosting i domena są zawsze na Twoje dane, więc strona należy do Ciebie. Możesz kupić je sam – wtedy potrzebuję tylko dostępu, żeby wdrożyć stronę i się nią opiekować, a ode mnie dostaniesz kod rabatowy na hosting, który polecam. Możesz też zlecić to mnie: kupię i skonfiguruję wszystko za {hosting} netto, a koszt pierwszego roku u dostawcy doliczę do wyceny. Kolejne lata opłacasz bezpośrednio u dostawcy.' },
+      { q: 'Kto płaci za hosting i domenę?', a: 'Hosting i domena są zawsze na Twoje dane, więc strona należy do Ciebie. Możesz kupić je sam – wtedy potrzebuję tylko dostępu, żeby wdrożyć stronę i się nią opiekować, a ode mnie dostaniesz kod rabatowy na hosting, który polecam. Możesz też zlecić to mnie: za zakup i konfigurację płacisz {hosting} netto, a koszt hostingu i domeny na pierwszy rok doliczam do faktury. Ten koszt zależy od potrzebnego miejsca na serwerze – do typowej strony na WordPressie wystarcza podstawowy pakiet. Kolejne lata opłacasz bezpośrednio u dostawcy.' },
       { q: 'Czy sam zmienię treści?', a: 'Tak. Strona działa na edytorze bloków WordPressa – tekst, zdjęcia i wpisy zmieniasz bez kodowania.' },
       { q: 'Jak wygląda rozliczenie?', a: 'Przez Useme lub Freelancehunt – zlecenie zakładamy na platformie, a Ty dostajesz fakturę za wykonaną pracę.' },
       { q: 'Mam już stronę. Możesz ją poprawić?', a: 'Tak – mogę przejąć opiekę nad istniejącym WordPressem albo zaprojektować jego nową wersję.' },
@@ -313,7 +313,7 @@ export const businessContact = {
     // {hosting} – cena z app/data/pricing.ts (wstawiana w HomeContact.vue)
     optionsLabel: 'Optional',
     options: [
-      { value: 'Hosting i domena – zakup i konfiguracja', label: 'Take care of hosting and the domain – add them to the quote', hint: 'I\'ll buy and set them up in your name: {hosting} + VAT, plus the provider\'s price for the first year.' },
+      { value: 'Hosting i domena – zakup i konfiguracja', label: 'Take care of hosting and the domain – add them to the quote', hint: 'Purchase and setup: {hosting} + VAT. I add the cost of hosting and the domain for the first year to the invoice – it depends on the server space you need. The account and domain will be in your name.' },
     ],
   },
   pl: {
@@ -331,7 +331,7 @@ export const businessContact = {
     ],
     optionsLabel: 'Dodatkowo',
     options: [
-      { value: 'Hosting i domena – zakup i konfiguracja', label: 'Zajmij się hostingiem i domeną – dolicz je do wyceny', hint: 'Kupię i skonfiguruję je na Twoje dane: {hosting} netto plus koszt pierwszego roku u dostawcy.' },
+      { value: 'Hosting i domena – zakup i konfiguracja', label: 'Zajmij się hostingiem i domeną – dolicz je do wyceny', hint: 'Zakup i konfiguracja: {hosting} netto. Koszt hostingu i domeny na pierwszy rok doliczam do faktury – zależy od potrzebnego miejsca na serwerze. Konto i domena będą na Twoje dane.' },
     ],
   },
 }
