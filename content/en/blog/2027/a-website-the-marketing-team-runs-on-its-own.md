@@ -1,5 +1,5 @@
 ---
-date: 2027-04-06
+date: 2027-01-19
 title: 'A website the marketing team runs on its own – inside the pesi.pl block theme'
 description: On the new pesi.pl, editors build pages from ready-made blocks, create pop-up windows in the editor, and the cookie banner works with Google Consent Mode. I describe the custom blocks, icons, department colours, windows on <dialog> and a few small things that make the work easier.
 tags:
@@ -69,7 +69,7 @@ document.addEventListener('click', (event) => {
 })
 ```
 
-One listener on the whole document catches clicks on all links, including the ones editors add later. I wrote about `closest()` in the post [`:has()` and `closest()`](/blog/2027/has-and-closest), and about `<dialog>` itself in the post about the [screenshot gallery in my portfolio](/blog/2026/screenshot-gallery-on-dialog). Images in closed windows load only when they're needed.
+One listener on the whole document catches clicks on all links, including the ones editors add later. `closest()` looks for the nearest element up the tree that matches the selector – here a link, even if you clicked an icon inside it. I wrote about `<dialog>` itself in the post about the [screenshot gallery in my portfolio](/blog/2026/screenshot-gallery-on-dialog). Images in closed windows load only when they're needed.
 
 ## Cookie consent: a custom banner and Google Consent Mode
 

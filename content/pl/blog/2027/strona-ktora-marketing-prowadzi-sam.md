@@ -1,5 +1,5 @@
 ---
-date: 2027-04-06
+date: 2027-01-19
 title: 'Strona, którą marketing prowadzi sam – co jest w motywie blokowym pesi.pl'
 description: Na nowej pesi.pl redakcja układa strony z gotowych bloków, okna buduje w edytorze, a baner zgód działa z trybem zgód Google. Opisuję własne bloki, ikony, kolory działów, okna na <dialog> i kilka drobiazgów, które ułatwiają pracę.
 tags:
@@ -69,7 +69,7 @@ document.addEventListener('click', (event) => {
 })
 ```
 
-Jeden nasłuchiwacz na całym dokumencie łapie kliknięcia we wszystkie linki, także te, które redakcja doda później. `closest()` opisałem we wpisie [`:has()` i `closest()`](/pl/wpisy/2027/has-i-closest), a o samym `<dialog>` – przy [galerii zrzutów w moim portfolio](/pl/wpisy/2026/galeria-na-dialog). Obrazki w zamkniętych oknach ładują się dopiero wtedy, gdy są potrzebne.
+Jeden nasłuchiwacz na całym dokumencie łapie kliknięcia we wszystkie linki, także te, które redakcja doda później. `closest()` szuka najbliższego elementu w górę drzewa, który pasuje do selektora – tu linku, nawet jeśli kliknięto ikonę w jego środku. O samym `<dialog>` pisałem przy [galerii zrzutów w moim portfolio](/pl/wpisy/2026/galeria-na-dialog). Obrazki w zamkniętych oknach ładują się dopiero wtedy, gdy są potrzebne.
 
 ## Zgody na cookies: własny baner i tryb zgód Google
 
