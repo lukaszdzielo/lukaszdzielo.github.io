@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <!-- przed: skrypty ładowane od razu -->
+  <rect x="24" y="38" width="152" height="226" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <g stroke="rgba(160,185,255,.5)" stroke-width="1.5" fill="rgba(111,156,255,.16)">
+    <rect x="38" y="54" width="124" height="30" rx="15"/>
+    <rect x="38" y="96" width="124" height="30" rx="15"/>
+    <rect x="38" y="138" width="124" height="30" rx="15"/>
+    <rect x="38" y="180" width="124" height="30" rx="15"/>
+    <rect x="38" y="222" width="124" height="30" rx="15"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff" text-anchor="middle">
+    <text x="100" y="28">2 MB</text>
+    <text x="100" y="74">jquery.js</text>
+    <text x="100" y="116">alpine.js</text>
+    <text x="100" y="158">splide.js</text>
+    <text x="100" y="200">lottie</text>
+    <text x="100" y="242">recaptcha</text>
+  </g>
+  <!-- strzałka -->
+  <g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M186 151 H244"/>
+    <path d="M236 143 L244 151 L236 159"/>
+  </g>
+  <!-- po: przewijanie robi przeglądarka, skrypt tylko dodatki -->
+  <rect x="256" y="86" width="200" height="130" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <rect x="272" y="104" width="168" height="34" rx="17" fill="rgba(111,156,255,.3)" stroke="#2860ea" stroke-width="2"/>
+  <rect x="272" y="154" width="168" height="34" rx="17" fill="rgba(111,156,255,.16)" stroke="rgba(160,185,255,.5)" stroke-width="1.5"/>
+  <!-- reCAPTCHA później – przy fokusie w formularzu -->
+  <rect x="264" y="234" width="184" height="30" rx="15" stroke="rgba(160,185,255,.5)" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14" fill="#cfd9ff" text-anchor="middle">
+    <text x="356" y="126">scroll-snap</text>
+    <text x="356" y="176">carousel.js</text>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#cfd9ff" text-anchor="middle">
+    <text x="356" y="72">37 kB</text>
+    <text x="356" y="254">focusin → recaptcha</text>
+  </g>
+</svg>
