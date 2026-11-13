@@ -47,7 +47,7 @@ compare:
     - { label: Zapytania, before: '131', after: '47' }
     - { label: Total Blocking Time, before: '178 ms', after: '0 ms' }
     - { label: Wysokość strony (px), before: '14 553', after: '10 058' }
-  note: 'Strona główna na telefonie, mediany z 3 przebiegów Lighthouse. Przed – kopia starej strony z Internet Archive (17.07.2026), wagi bez skryptów archiwum, czasy i oceny orientacyjne. Nowa strona nie ma jeszcze narzędzi analitycznych – stara ładowała ich ok. 570 kB.'
+  note: 'Strona główna na telefonie, mediany z 3 przebiegów Lighthouse. Przed – kopia starej strony z Internet Archive (17.07.2026), wagi bez skryptów archiwum, czasy i oceny orientacyjne. Pomiary sprzed dodania analityki – z Google Tag Managerem strona główna ma w Lighthouse w Chrome 99 (ze zgodami) i 100 (bez zgód).'
 ogImage: /og/projects/pesi-pl-pl.jpg
 highlights:
   - title: Marketing publikuje sam

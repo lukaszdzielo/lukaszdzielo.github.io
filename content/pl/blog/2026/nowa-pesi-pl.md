@@ -174,7 +174,7 @@ Na komputerze (`--preset=desktop`) wydajność wzrosła z 96–98 do 100. Na wsz
 - **Kto i czym:** pomiary też zrobił Claude Code – Lighthouse 13, po 3 przebiegi na każdą stronę, w tabeli mediana.
 - **„Po”** to strona na produkcji.
 - **„Przed”** to kopie starej strony z Internet Archive (Wayback Machine), bo starej wersji nie da się już uruchomić. Archiwum ma inny serwer, dokleja swoje skrypty (ok. 160 kB) i nie ma części obrazków. Dlatego czasy i oceny „przed” traktuję orientacyjnie. Wagi w tabeli są policzone bez skryptów archiwum – są pewniejsze niż czasy.
-- **Analityka:** nowa strona nie ma jeszcze narzędzi analitycznych i marketingowych, a stara ładowała ich ok. 570 kB. Bez nich stara strona i tak ładowała ok. 1,5 MB JavaScriptu – ok. 40 razy więcej niż nowa. Gdy analityka wróci, zmierzę stronę jeszcze raz.
+- **Analityka:** pomiary w tabelach są sprzed dodania analityki – stara strona ładowała ok. 570 kB narzędzi analitycznych i marketingowych. Bez nich stara strona i tak ładowała ok. 1,5 MB JavaScriptu – ok. 40 razy więcej niż nowa. Teraz na nowej stronie są już Google Tag Manager i Google Analytics. Sprawdziłem stronę główną jeszcze raz w Lighthouse w Chrome (tryb mobilny, okno incognito): z zaakceptowanymi zgodami wydajność to 99, bez zgód – 100. PageSpeed Insights w jednym pomiarze pokazał 88 – głównie przez skrypty Google Tag Managera.
 - **Wysokość stron** pochodzi z pełnych zrzutów w raportach Lighthouse (telefon 412 × 823 px). Na kopiach z archiwum brakuje części obrazków, więc stare strony mogły być w rzeczywistości jeszcze dłuższe.
 - **Lighthouse** symuluje wolny telefon, więc liczby różnią się od PageSpeed Insights i od danych z prawdziwych urządzeń.
 

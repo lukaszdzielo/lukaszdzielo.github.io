@@ -47,7 +47,7 @@ compare:
     - { label: Requests, before: '131', after: '47' }
     - { label: Total Blocking Time, before: '178 ms', after: '0 ms' }
     - { label: Page height (px), before: '14,553', after: '10,058' }
-  note: 'Home page on mobile, medians from 3 Lighthouse runs. Before – a copy of the old site from the Internet Archive (17 July 2026), sizes without the archive''s scripts, times and scores approximate. The new site doesn''t have analytics tools yet – the old one loaded about 570 kB of them.'
+  note: 'Home page on mobile, medians from 3 Lighthouse runs. Before – a copy of the old site from the Internet Archive (17 July 2026), sizes without the archive''s scripts, times and scores approximate. Measured before analytics was added – with Google Tag Manager, the home page scores 99 (with consents) and 100 (without) in Lighthouse in Chrome.'
 ogImage: /og/projects/pesi-pl-en.jpg
 highlights:
   - title: Marketing publishes on their own
