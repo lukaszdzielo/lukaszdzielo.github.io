@@ -136,7 +136,8 @@ const field =
         class="flex min-h-80 flex-col items-start justify-center gap-4"
       >
         <span class="grid size-12 place-items-center rounded-full bg-emerald-400/15 text-emerald-400 dark:text-emerald-600">
-          <Icon name="lucide:check" class="size-6" aria-hidden="true" />
+          <!-- mode="svg" – ikona pojawia się dopiero po wysłaniu (powód w nuxt.config.ts, icon.cssLayer) -->
+          <Icon name="lucide:check" mode="svg" class="size-6" aria-hidden="true" />
         </span>
         <h3 ref="doneTitle" tabindex="-1" class="text-2xl font-semibold tracking-tight focus:outline-none">{{ t('success.title') }}</h3>
         <p class="opacity-75">{{ holiday.active.value ? t('success.holidayLead', holiday.dates.value) : t('success.lead') }}</p>
@@ -244,6 +245,7 @@ const field =
               <Icon
                 v-if="status === 'sending'"
                 name="lucide:loader-circle"
+                mode="svg"
                 class="size-5 motion-safe:animate-spin"
                 aria-hidden="true"
               />

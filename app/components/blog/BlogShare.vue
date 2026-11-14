@@ -69,7 +69,7 @@ const btn =
     <ul class="mt-4 flex flex-wrap gap-2">
       <li v-if="canShare">
         <button type="button" :class="btn" @click="share">
-          <Icon name="lucide:share-2" class="size-4" aria-hidden="true" />
+          <Icon name="lucide:share-2" mode="svg" class="size-4" aria-hidden="true" />
           {{ t('share') }}
         </button>
       </li>
@@ -80,7 +80,7 @@ const btn =
       </li>
       <li>
         <button type="button" :class="btn" @click="copy">
-          <Icon :name="copied ? 'lucide:check' : 'lucide:link'" class="size-4" aria-hidden="true" />
+          <Icon :name="copied ? 'lucide:check' : 'lucide:link'" mode="svg" class="size-4" aria-hidden="true" />
           {{ copied ? t('copied') : t('copy') }}
         </button>
       </li>

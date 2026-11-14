@@ -182,10 +182,10 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         </label>
       </div>
       <button v-if="filtersEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2']" :aria-label="t('filters.scrollLeft')" @click="filtersEdges.go(-1, stripStep(filtersEl))">
-        <Icon name="lucide:chevron-left" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:chevron-left" mode="svg" class="size-4" aria-hidden="true" />
       </button>
       <button v-if="filtersEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2']" :aria-label="t('filters.scrollRight')" @click="filtersEdges.go(1, stripStep(filtersEl))">
-        <Icon name="lucide:chevron-right" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:chevron-right" mode="svg" class="size-4" aria-hidden="true" />
       </button>
     </div>
 
@@ -198,7 +198,7 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         @click="clearAgencies"
       >
         {{ agencies.join(', ') }}
-        <Icon name="lucide:x" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:x" mode="svg" class="size-4" aria-hidden="true" />
         <span class="sr-only">{{ t('agency.clear') }}</span>
       </button>
     </p>
@@ -223,10 +223,10 @@ const chip = 'inline-flex h-10 shrink-0 cursor-pointer items-center gap-1.5 roun
         >{{ y.year }}</a>
       </div>
       <button v-if="yearsEdges.canPrev.value" type="button" tabindex="-1" :class="[arrow, 'left-2 sm:left-1.5']" :aria-label="t('years.scrollLeft')" @click="yearsEdges.go(-1, stripStep(yearsEl))">
-        <Icon name="lucide:chevron-left" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:chevron-left" mode="svg" class="size-4" aria-hidden="true" />
       </button>
       <button v-if="yearsEdges.canNext.value" type="button" tabindex="-1" :class="[arrow, 'right-2 sm:right-1.5']" :aria-label="t('years.scrollRight')" @click="yearsEdges.go(1, stripStep(yearsEl))">
-        <Icon name="lucide:chevron-right" class="size-4" aria-hidden="true" />
+        <Icon name="lucide:chevron-right" mode="svg" class="size-4" aria-hidden="true" />
       </button>
     </nav>
 

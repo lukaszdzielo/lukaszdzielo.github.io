@@ -110,7 +110,7 @@ onBeforeUnmount(() => lockScroll(false))
           :aria-label="t('close')"
           @click="close"
         >
-          <Icon name="lucide:x" class="size-5" aria-hidden="true" />
+          <Icon name="lucide:x" mode="svg" class="size-5" aria-hidden="true" />
         </button>
       </div>
 

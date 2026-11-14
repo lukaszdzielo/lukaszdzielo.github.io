@@ -409,6 +409,11 @@ export default defineNuxtConfig({
     // Styl modułu (ikona = wielkość tekstu) w warstwie base – inaczej w Tailwind v4 wygrywał z klasami size-*
     // i ikony miały rozmiar tekstu zamiast rozmiaru z kodu (decyzja 20.10: wariant b).
     // Każda ikona ma klasę size-3/4/5/6 – 12, 16, 20 albo 24 px (rozmiary podzielne przez 4).
+    // Ikona, której nie było w HTML z buildu, dostaje swój <style> z @layer base na początku <head>. Chrome przebudowuje
+    // wtedy wszystkie @font-face i pobiera Inter jeszcze raz – a przy font-display: optional tekst może w tej chwili
+    // zmienić krój z zapasowego na Inter i się przelać (np. po wysłaniu formularza). Dlatego ikony, które pojawiają się
+    // dopiero po kliknięciu albo w przeglądarce (podziękowanie, ładowanie, okno galerii, strzałki pasków, „Skopiowano”),
+    // mają mode="svg" – są wstawiane jako <svg> i nie dodają stylów.
     cssLayer: 'base',
   },
   runtimeConfig: {
