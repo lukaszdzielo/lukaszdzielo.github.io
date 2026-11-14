@@ -26,6 +26,10 @@ The theme has 10 custom blocks (in the editor they have Polish names): Icon, Log
 
 Reviews, projects and authors are separate content types in the admin. The blocks only display them – as a carousel or a grid, with a choice of specific items, categories and a limit. So a review is added once and shown on the home page, on the offer pages and wherever it's needed.
 
+These are the settings of the "Realizacje" (Projects) block: which projects to show (the order of the cards is the order in which you tick them), how many, and whether there are type filters above the cards.
+
+![The block editor: the selected "Realizacje" (Projects) block on the "UI/UX Design" page, with a list of projects to tick, the number of projects and type filters in the side panel; the client reviews below are blurred](/blog/2027/strona-ktora-marketing-prowadzi-sam/edytor-realizacje.webp){width="1440" height="1540"}
+
 ## Icons and department colours
 
 The "Icon" block has a library of 1,520 Phosphor icons and PESI's own icon graphics. An icon takes its colour from the text colour, so it fits the place where it is without a separate setting. In SVG, `currentColor` is all it takes:
@@ -40,6 +44,10 @@ The "Icon" block has a library of 1,520 Phosphor icons and PESI's own icon graph
 </p>
 ```
 
+In the editor, you pick an icon in the side panel: a library (PESI icon graphics, Phosphor or all of them), a search field and a grid of icons to click.
+
+![The block editor: the selected "Ikona" (Icon) block in the "Dlaczego warto?" (Why us?) section, with the library choice, a search field and a grid of icons in the side panel, and the accent colour below](/blog/2027/strona-ktora-marketing-prowadzi-sam/edytor-ikona.webp){width="1440" height="1000"}
+
 The department pages also get their own accent colour: Design – purple, Marketing – yellow, Development – blue. This happens automatically – editors don't set anything by hand.
 
 ![Services on the home page in three departments: tiles with icons, and a dot in the department's colour next to its name](/blog/2027/strona-ktora-marketing-prowadzi-sam/uslugi-ikony.webp){width="1280" height="1350"}
@@ -51,6 +59,10 @@ In the menu, the icons are animated – the theme has 16 Lottie animations, and 
 ## Windows that editors build in the editor
 
 A pop-up window (modal) is a normal group of blocks with the "Okno (modal)" (Window) style and an anchor, for example `#bezplatna-analiza`. On the page, the group turns into a `<dialog>`, and any link to that anchor opens it – in a button, in the menu or in the text. So editors build a window in the editor like any other content, without a developer.
+
+![The block editor: the selected group "Okno – Bezpłatna analiza" (Window – Free analysis) with the "Okno (modal)" style, and the HTML anchor bezplatna-analiza under "Zaawansowane" (Advanced) in the side panel](/blog/2027/strona-ktora-marketing-prowadzi-sam/edytor-okno-kotwica.webp){width="1440" height="1700"}
+
+On the page, it looks like this:
 
 ![The "Bezpłatna analiza Twojej strony" (Free website analysis) window with a form, opened by a link to its anchor](/blog/2027/strona-ktora-marketing-prowadzi-sam/okno-z-bloku.webp){width="920" height="880"}
 

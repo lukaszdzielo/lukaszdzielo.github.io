@@ -26,6 +26,10 @@ Motyw ma 10 własnych bloków: Ikona, Logo, Kropki PESI, Udogodnienia, Animacja 
 
 Opinie, realizacje i autorzy to osobne typy treści w panelu. Bloki tylko je wyświetlają – jako karuzelę albo siatkę, z wyborem konkretnych pozycji, kategorii i limitu. Opinię dodaje się więc raz, a pokazuje na stronie głównej, w ofercie i gdzie tylko trzeba.
 
+Tak wyglądają ustawienia bloku „Realizacje”: które realizacje pokazać (kolejność kart to kolejność zaznaczania), ile ich ma być i czy nad kartami mają być filtry rodzajów.
+
+![Edytor bloków: zaznaczony blok „Realizacje” na stronie „UI/UX Design”, w panelu bocznym lista realizacji do zaznaczenia, liczba realizacji i filtry rodzajów; opinie klientów niżej są rozmyte](/blog/2027/strona-ktora-marketing-prowadzi-sam/edytor-realizacje.webp){width="1440" height="1540"}
+
 ## Ikony i kolor działu
 
 Blok „Ikona” ma bibliotekę 1 520 ikon Phosphor i ikonografiki PESI. Ikona bierze kolor z koloru tekstu, więc pasuje do miejsca, w którym stoi, bez osobnego ustawienia. W SVG wystarczy do tego `currentColor`:
@@ -40,6 +44,10 @@ Blok „Ikona” ma bibliotekę 1 520 ikon Phosphor i ikonografiki PESI. Ikona b
 </p>
 ```
 
+W edytorze ikonę wybiera się w panelu bocznym: biblioteka (ikonografiki PESI, Phosphor albo wszystkie), wyszukiwarka i siatka ikon do kliknięcia.
+
+![Edytor bloków: zaznaczony blok „Ikona” w sekcji „Dlaczego warto?”, w panelu bocznym wybór biblioteki, wyszukiwarka i siatka ikon, niżej kolor akcentu](/blog/2027/strona-ktora-marketing-prowadzi-sam/edytor-ikona.webp){width="1440" height="1000"}
+
 Podstrony działów dostają też własny akcent: Design – fioletowy, Marketing – żółty, Development – niebieski. Dzieje się to automatycznie, redakcja niczego nie ustawia ręcznie.
 
 ![Usługi na stronie głównej w trzech działach: kafelki z ikonami, przy nazwie działu kropka w jego kolorze](/blog/2027/strona-ktora-marketing-prowadzi-sam/uslugi-ikony.webp){width="1280" height="1350"}
@@ -51,6 +59,10 @@ W menu ikony są animowane – motyw ma 16 animacji Lottie, a każda odtwarza si
 ## Okna, które redakcja buduje w edytorze
 
 Okno (modal) to zwykła grupa bloków ze stylem „Okno (modal)” i kotwicą, np. `#bezplatna-analiza`. Na stronie taka grupa zamienia się w `<dialog>`, a otwiera ją każdy link do tej kotwicy – w przycisku, w menu albo w tekście. Redakcja buduje więc okno w edytorze jak każdą inną treść i nie potrzebuje do tego programisty.
+
+![Edytor bloków: zaznaczona grupa „Okno – Bezpłatna analiza” ze stylem „Okno (modal)”, a w panelu bocznym w sekcji „Zaawansowane” kotwica HTML bezplatna-analiza](/blog/2027/strona-ktora-marketing-prowadzi-sam/edytor-okno-kotwica.webp){width="1440" height="1700"}
+
+Na stronie wygląda to tak:
 
 ![Okno „Bezpłatna analiza Twojej strony” z formularzem, otwarte linkiem do kotwicy](/blog/2027/strona-ktora-marketing-prowadzi-sam/okno-z-bloku.webp){width="920" height="880"}
 
