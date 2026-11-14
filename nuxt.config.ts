@@ -177,6 +177,8 @@ async function inlineCriticalCss(publicDir: string, clientDir: string) {
     preload: 'media',
     pruneSource: false,
     reduceInlineStyles: false,
+    // @font-face Intera zostaje tylko w pełnym pliku CSS – przy regułach w HTML font pobierał się od razu i Lighthouse
+    // na telefonie spadał z 80 do 77 (pomiar 14.11). Zapasowy font jest w <head> (INTER_FALLBACK).
     inlineFonts: false,
     // Ciemny motyw włącza skrypt w <head> (klasa .dark na <html>) – w HTML z buildu jej nie ma, więc reguły
     // ciemnego motywu zostawiamy zawsze, inaczej przy ciemnym motywie strona mignęłaby na jasno
@@ -231,6 +233,15 @@ const getPostPairs = (): Record<string, string> => {
 };
 const POST_PAIRS = getPostPairs();
 const LANG_PAGES = { '/business-websites': '/strony-dla-firm', '/privacy-policy': '/polityka-prywatnosci', ...POST_PAIRS };
+// Zapasowy font na czas pobierania Intera (font-display: swap w app/assets/css/fonts.css): Arial z systemu, przeskalowany
+// tak, żeby litery i wysokość linii zgadzały się z Interem – przy zamianie na Inter tekst się nie przesuwa.
+// Liczby z metryk plików fontów (fontTools, tekst strony PL i EN): Inter 400–500 do Ariala, Inter 600–800 do Ariala Bold.
+// W <head> od razu, a nie w pliku CSS – działa od pierwszego wyświetlenia, a local() niczego nie pobiera.
+const INTER_FALLBACK = [
+  '@font-face{font-family:"Inter Fallback";font-weight:100 550;src:local("Arial"),local("ArialMT"),local("Liberation Sans");size-adjust:107%;ascent-override:90.54%;descent-override:22.54%;line-gap-override:0%}',
+  '@font-face{font-family:"Inter Fallback";font-weight:551 900;src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold");size-adjust:101.5%;ascent-override:95.44%;descent-override:23.76%;line-gap-override:0%}',
+].join('')
+
 const LANG_REDIRECT = `(()=>{try{var p=location.pathname;if(/(^|;\\s*)lang=/.test(document.cookie)||p==='/pl'||p.indexOf('/pl/')===0)return;var l=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase();if(l.indexOf('pl')!==0)return;var m=${JSON.stringify(LANG_PAGES)},s=${JSON.stringify(PL_SEGMENTS)};var k=p.replace(/\\/+$/,''),t=m[k];if(!t){t=k;for(var i=0;i<s.length;i++){var a=s[i][0];if(k===a||k.indexOf(a+'/')===0){t=s[i][1]+k.slice(a.length);break}}}var h=location.hash.slice(1),a=${JSON.stringify(PL_ANCHORS)};location.replace('/pl'+t+'/'+location.search+(h?'#'+(a[h]||h):''))}catch(e){}})();`
 
 // Motywy bloków kodu z kontrastem WCAG AA (min. 4,5:1). Nazwy motywów zostają te same, więc klasy i style się nie zmieniają.
@@ -301,6 +312,7 @@ export default defineNuxtConfig({
         },
         // Google Analytics ładuje się dopiero po zgodzie – app/plugins/analytics.client.ts
       ],
+      style: [{ innerHTML: INTER_FALLBACK, tagPosition: 'head' }],
     },
   },
   image: {

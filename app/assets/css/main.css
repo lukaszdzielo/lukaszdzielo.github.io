@@ -103,7 +103,7 @@
 
 body {
   @apply min-h-svh;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Inter Fallback", sans-serif;
 }
 
 /* Zawijanie tekstu na całej stronie: nagłówki dzielą się na równe linie (balance),

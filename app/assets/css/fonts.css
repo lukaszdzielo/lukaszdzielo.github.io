@@ -3,10 +3,12 @@
    latin – pełny zestaw podstawowy; pl – tylko polskie litery spoza latin (ą ć ę ł ń ś ź ż i wielkie) wycięte
    z latin-ext (pyftsubset), bo reszta latin-ext na stronie nie występuje.
    Bez preloadu: w testach (16.10) preload fontów opóźniał zdjęcie w hero na stronie głównej (LCP 3,7 → 4,4 s).
-   font-display: optional – bez zamiany fontu w trakcie ładowania (brak skoku układu). */
+   font-display: swap – Inter zawsze się pokazuje: do czasu pobrania tekst ma Arial dopasowany rozmiarem do Intera
+   („Inter Fallback” w nuxt.config.ts, app.head.style), więc przy zamianie układ się nie przesuwa.
+   Przy optional strona bez zainstalowanego Intera prawie zawsze zostawała przy Arialu (pomiar 14.11). */
 
 @font-face {
-  font-display: optional;
+  font-display: swap;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
@@ -15,7 +17,7 @@
 }
 
 @font-face {
-  font-display: optional;
+  font-display: swap;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
