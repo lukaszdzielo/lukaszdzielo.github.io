@@ -49,6 +49,9 @@ const errorKey = ref<'send' | 'offline'>('send')
 const errorMessage = computed(() => serverError.value || t(`errors.${errorKey.value}`))
 const formEl = ref<HTMLFormElement | null>(null)
 const doneTitle = ref<HTMLElement | null>(null)
+// Wysokość formularza w chwili wysłania – podziękowanie ma co najmniej tyle samo, więc karta się nie skraca,
+// a to, co jest niżej, nie podskakuje. Mierzona przy każdym wysłaniu, bo zależy od szerokości ekranu i wariantu.
+const minHeight = ref<number>()
 const link = useLocalLink()
 // W przerwie świątecznej komunikat po wysłaniu podaje dzień powrotu zamiast „72 godzin”
 const holiday = useHolidayBreak()
@@ -88,6 +91,7 @@ async function submit() {
     const data = await res.json().catch(() => ({}))
 
     if (res.ok && data.success) {
+      minHeight.value = formEl.value?.offsetHeight
       status.value = 'success'
       Object.assign(form, { name: '', email: '', topic: firstTopic(), message: '', options: [] })
     } else {
@@ -106,6 +110,7 @@ async function submit() {
 // czytnik ekranu od razu je przeczyta, a fokus z klawiatury nie spada na początek strony.
 function onEntered() {
   if (status.value === 'success') doneTitle.value?.focus()
+  else minHeight.value = undefined // formularz wrócił – wysokość znów wynika z treści
 }
 
 function reset() {
@@ -120,7 +125,8 @@ const field =
 </script>
 
 <template>
-  <div class="relative min-w-0">
+  <!-- grid: podziękowanie rozciąga się na całą wysokość i ma treść na środku -->
+  <div class="relative grid min-w-0" :style="minHeight ? { minHeight: `${minHeight}px` } : undefined">
     <Transition
       mode="out-in"
       enter-active-class="motion-safe:transition motion-safe:duration-300 ease-out"
