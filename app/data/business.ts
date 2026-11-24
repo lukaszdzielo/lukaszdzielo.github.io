@@ -31,7 +31,7 @@ export const businessFeatures = {
     lead: 'No template bought in five minutes and no hundred plugins. Just what your business actually needs online.',
     items: [
       { icon: 'pen', title: 'Designed for your brand', text: 'Design first, code second. You see the site and request changes before it gets built.' },
-      { icon: 'blocks', title: 'WordPress block editor', text: 'You edit the content yourself in Gutenberg – no heavy page builder slowing the site down.' },
+      { icon: 'blocks', title: 'WordPress block editor', text: 'You edit the content yourself in Gutenberg – no heavy page builder slowing the site down. Rather not do it yourself? Choose the one-page site without an admin panel, and I make the changes.' },
       { icon: 'phone', title: 'Fast and mobile-friendly', text: 'I design for small screens from the start and don\'t add plugins the site doesn\'t need.' },
       { icon: 'search', title: 'SEO basics included', text: 'Proper headings, page descriptions, a sitemap and business details that Google can read correctly.' },
       { icon: 'server', title: 'Your hosting and domain stay yours', text: 'They\'re always in your name, and I only get access to build and maintain the site, so you don\'t depend on me. You buy them yourself with my help, or you leave the purchase and setup to me.' },
@@ -43,7 +43,7 @@ export const businessFeatures = {
     lead: 'Bez szablonu kupionego w pięć minut i bez stu wtyczek. Tylko to, czego Twoja firma faktycznie potrzebuje w sieci.',
     items: [
       { icon: 'pen', title: 'Projekt pod Twoją markę', text: 'Najpierw projekt graficzny, potem kod. Widzisz stronę i poprawiasz ją, zanim powstanie.' },
-      { icon: 'blocks', title: 'Edytor bloków WordPressa', text: 'Treści zmieniasz sam w Gutenbergu – bez ciężkiego page buildera, który spowalnia stronę.' },
+      { icon: 'blocks', title: 'Edytor bloków WordPressa', text: 'Treści zmieniasz sam w Gutenbergu – bez ciężkiego page buildera, który spowalnia stronę. Wolisz tego nie robić? Wybierz wizytówkę bez panelu – zmiany wprowadzę ja.' },
       { icon: 'phone', title: 'Szybka i dopasowana do telefonu', text: 'Projektuję od razu na małe ekrany i nie dokładam wtyczek, których strona nie potrzebuje.' },
       { icon: 'search', title: 'Podstawy SEO w cenie', text: 'Poprawne nagłówki, opisy stron, mapa witryny i dane firmy, które dobrze odczyta Google.' },
       { icon: 'server', title: 'Hosting i domena zostają Twoje', text: 'Zawsze są na Twoje dane, a ja dostaję tylko dostęp do wdrożenia i opieki, więc nie jesteś ode mnie uzależniony. Kupujesz je sam z moją pomocą albo zlecasz mi zakup i konfigurację.' },
@@ -64,6 +64,9 @@ export const businessOffer = {
         items: ['Sections: about, services, gallery, contact', 'Contact form and directions map', 'Mobile version and SEO basics'],
         price: 'card' as const,
         suffix: '+ VAT',
+        time: 'Ready in 1–2 weeks',
+        // tańszy wariant bez panelu – osobny wiersz pod ceną
+        alt: { name: 'Without an admin panel', text: 'I make the content changes for you', price: 'start' as const, suffix: '+ VAT', time: 'up to 5 working days' },
       },
       {
         name: 'Business website',
@@ -72,6 +75,7 @@ export const businessOffer = {
         items: ['Separate pages for services and team', 'Blog / news and custom blocks in the editor', 'Integrations: maps, bookings, social media'],
         price: 'company' as const,
         suffix: '+ VAT',
+        time: 'Ready in about 2 weeks',
         highlight: true,
       },
       {
@@ -90,8 +94,8 @@ export const businessOffer = {
       text: 'I can buy and set them up for you for {hosting} + VAT. On top of that comes the cost of hosting and the domain for the first year – I add it to the invoice. It depends on how much server space you need; a basic hosting plan is enough for a typical WordPress site. The account and domain are always in your name.',
     },
     other: {
-      title: 'A different technology?',
-      text: 'I can also build a site in plain HTML, CSS and JS, or a WooCommerce store. For Shopify or PrestaShop, I\'m happy to help after a short consultation.',
+      title: 'An online store or a different technology?',
+      text: 'I quote WooCommerce stores individually – a store usually takes 2–3 weeks. I can also build a site in plain HTML, CSS and JS, and for Shopify or PrestaShop I\'m happy to help after a short consultation.',
     },
   },
   pl: {
@@ -105,6 +109,9 @@ export const businessOffer = {
         items: ['Sekcje: o firmie, oferta, galeria, kontakt', 'Formularz kontaktowy i mapa dojazdu', 'Wersja na telefon i podstawy SEO'],
         price: 'card' as const,
         suffix: 'netto',
+        time: 'Realizacja: 1–2 tygodnie',
+        // tańszy wariant bez panelu – osobny wiersz pod ceną
+        alt: { name: 'Bez panelu', text: 'treści zmieniam ja', price: 'start' as const, suffix: 'netto', time: 'do 5 dni roboczych' },
       },
       {
         name: 'Strona firmowa',
@@ -113,6 +120,7 @@ export const businessOffer = {
         items: ['Osobne podstrony usług i zespołu', 'Blog / aktualności i własne bloki w edytorze', 'Integracje: mapy, rezerwacje, social media'],
         price: 'company' as const,
         suffix: 'netto',
+        time: 'Realizacja: ok. 2 tygodnie',
         highlight: true,
       },
       {
@@ -130,8 +138,8 @@ export const businessOffer = {
       text: 'Mogę je kupić i skonfigurować za Ciebie za {hosting} netto. Do tego dochodzi koszt hostingu i domeny na pierwszy rok – doliczam go do faktury. Zależy od potrzebnego miejsca na serwerze; do typowej strony na WordPressie wystarcza podstawowy pakiet. Konto i domena są zawsze na Twoje dane.',
     },
     other: {
-      title: 'Inna technologia?',
-      text: 'Stronę zrobię też w czystym HTML, CSS i JS, a sklep na WooCommerce. Przy Shopify czy PrestaShop chętnie pomogę po krótkiej konsultacji.',
+      title: 'Sklep albo inna technologia?',
+      text: 'Sklep na WooCommerce wyceniam indywidualnie – zwykle powstaje w 2–3 tygodnie. Stronę zrobię też w czystym HTML, CSS i JS, a przy Shopify czy PrestaShop chętnie pomogę po krótkiej konsultacji.',
     },
   },
 }
@@ -268,15 +276,15 @@ export const businessCare = {
   },
 }
 
-// {card}, {company}, {hosting} – miejsca na ceny z app/data/pricing.ts (wstawiane w komponencie, w formacie danego języka)
+// {start}, {card}, {company}, {hour}, {hosting} – miejsca na ceny z app/data/pricing.ts (wstawiane w komponencie, w formacie danego języka)
 export const businessFaq = {
   en: {
     title: 'Before you get in touch',
     items: [
-      { q: 'How much does a website cost?', a: 'A one-page site starts at {card} + VAT, a business website at {company} + VAT. The exact price depends on the number of pages and features – after a few messages you get a specific quote and timeline.' },
-      { q: 'How long does it take?', a: 'The first design draft takes 3–4 days. We agree on the full timeline at the start – it depends on the scope and how quickly the content is ready.' },
+      { q: 'How much does a website cost?', a: 'A one-page site without an admin panel starts at {start} + VAT, a one-page WordPress site at {card} + VAT and a business website at {company} + VAT. I quote WooCommerce stores individually. The exact price depends on the number of pages and features – after a few messages you get a specific quote and timeline.' },
+      { q: 'How long does it take?', a: 'The first design draft takes 3–4 days. Counting from the signed contract and the approved design: a one-page site without an admin panel takes up to 5 working days, a one-page WordPress site 1–2 weeks, a business website about 2 weeks and a store 2–3 weeks. It also depends on how quickly the content is ready.' },
       { q: 'Who pays for hosting and the domain?', a: 'They\'re always in your name, so the site belongs to you. You can buy them yourself – then I only need access to launch the site and look after it. Or you can leave it to me: you pay {hosting} + VAT for the purchase and setup, and I add the cost of hosting and the domain for the first year to the invoice. That cost depends on how much server space you need – a basic plan is enough for a typical WordPress site. After that, you renew them directly with the provider.' },
-      { q: 'Can I edit the content myself?', a: 'Yes. The site runs on the WordPress block editor – you change text, photos and posts without any coding.' },
+      { q: 'Can I edit the content myself?', a: 'Yes – the one-page WordPress site and the business website run on the WordPress block editor, so you change text, photos and posts without any coding. With the one-page site without an admin panel, I make the changes for you and bill them by the hour ({hour} + VAT).' },
       { q: 'How does payment work?', a: 'Through Useme or Freelancehunt – freelance platforms that handle the contract and invoice. We set up the job on the platform, and you get an invoice for the completed work.' },
       { q: 'I already have a website. Can you improve it?', a: 'Yes – I can take over the care of your existing WordPress site or design a new version of it.' },
     ],
@@ -284,10 +292,10 @@ export const businessFaq = {
   pl: {
     title: 'Zanim napiszesz',
     items: [
-      { q: 'Ile kosztuje strona?', a: 'Wizytówka od {card} netto, strona firmowa od {company} netto. Dokładna kwota zależy od liczby podstron i funkcji – po kilku wiadomościach dostajesz konkretną wycenę i termin.' },
-      { q: 'Ile to trwa?', a: 'Pierwszy projekt graficzny w 3–4 dni. Termin całości ustalamy na starcie – zależy od zakresu i tego, jak szybko mamy treści.' },
+      { q: 'Ile kosztuje strona?', a: 'Wizytówka bez panelu od {start} netto, wizytówka na WordPressie od {card} netto, strona firmowa od {company} netto, a sklep na WooCommerce wyceniam indywidualnie. Dokładna kwota zależy od liczby podstron i funkcji – po kilku wiadomościach dostajesz konkretną wycenę i termin.' },
+      { q: 'Ile to trwa?', a: 'Pierwszy projekt graficzny w 3–4 dni. Licząc od podpisania umowy i akceptacji projektu: wizytówka bez panelu – do 5 dni roboczych, wizytówka na WordPressie – 1–2 tygodnie, strona firmowa – ok. 2 tygodnie, sklep – 2–3 tygodnie. Termin zależy też od tego, jak szybko mamy treści.' },
       { q: 'Kto płaci za hosting i domenę?', a: 'Hosting i domena są zawsze na Twoje dane, więc strona należy do Ciebie. Możesz kupić je sam – wtedy potrzebuję tylko dostępu, żeby wdrożyć stronę i się nią opiekować, a ode mnie dostaniesz kod rabatowy na hosting, który polecam. Możesz też zlecić to mnie: za zakup i konfigurację płacisz {hosting} netto, a koszt hostingu i domeny na pierwszy rok doliczam do faktury. Ten koszt zależy od potrzebnego miejsca na serwerze – do typowej strony na WordPressie wystarcza podstawowy pakiet. Kolejne lata opłacasz bezpośrednio u dostawcy.' },
-      { q: 'Czy sam zmienię treści?', a: 'Tak. Strona działa na edytorze bloków WordPressa – tekst, zdjęcia i wpisy zmieniasz bez kodowania.' },
+      { q: 'Czy sam zmienię treści?', a: 'Tak – wizytówka na WordPressie i strona firmowa działają na edytorze bloków, więc tekst, zdjęcia i wpisy zmieniasz bez kodowania. W wizytówce bez panelu zmiany wprowadzam ja i rozliczam je godzinowo ({hour} netto za godzinę).' },
       { q: 'Jak wygląda rozliczenie?', a: 'Przez Useme lub Freelancehunt – zlecenie zakładamy na platformie, a Ty dostajesz fakturę za wykonaną pracę.' },
       { q: 'Mam już stronę. Możesz ją poprawić?', a: 'Tak – mogę przejąć opiekę nad istniejącym WordPressem albo zaprojektować jego nową wersję.' },
     ],

@@ -39,7 +39,8 @@ useJsonLd('business', {
       url,
       inLanguage: lang === 'pl' ? 'pl-PL' : 'en-US',
       provider: { '@type': 'Person', '@id': PERSON_ID, name: SITE_NAME, url: `${SITE_URL}/` },
-      offers: offer.value.plans.map(plan => {
+      // pakiety i wariant bez panelu przy wizytówce
+      offers: offer.value.plans.flatMap(plan => (plan.alt ? [plan, { ...plan.alt, name: `${plan.name} – ${plan.alt.name}` }] : [plan])).map(plan => {
         const p = priceValue(plan.price, lang, day.value)
         return {
           '@type': 'Offer',

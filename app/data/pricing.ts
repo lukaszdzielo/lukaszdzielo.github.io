@@ -10,11 +10,12 @@
 // odwiedzającego – zmiana daty w telefonie nic nie da.
 
 // hosting – zakup i konfiguracja hostingu i domeny na dane klienta (koszt u dostawcy doliczany osobno do wyceny)
-export type PriceId = 'card' | 'company' | 'care' | 'careHours' | 'hour' | 'hosting'
+// start – wizytówka bez panelu (treści zmienia Łukasz, rozliczenie godzinowe), od 2026-11-24
+export type PriceId = 'card' | 'company' | 'care' | 'careHours' | 'hour' | 'hosting' | 'start'
 export type Lang = 'en' | 'pl'
 export type Currency = 'pln' | 'eur' | 'gbp'
-// `hosting` jest w logu od 2026-11-10 – wcześniejsze wpisy go nie mają
-type Table = Omit<Record<PriceId, number>, 'hosting'> & { hosting?: number }
+// `hosting` jest w logu od 2026-11-10, a `start` od 2026-11-24 – wcześniejsze wpisy ich nie mają
+type Table = Omit<Record<PriceId, number>, 'hosting' | 'start'> & { hosting?: number; start?: number }
 
 // Rodzaje promocji: nazwa w każdym języku i rabat w %
 export const presets = {
@@ -39,6 +40,14 @@ export const regular: { from: string; pln: Table; eur?: Table; gbp?: Table }[] =
     pln: { card: 1999, company: 3999, care: 149, careHours: 349, hour: 120, hosting: 199 },
     eur: { card: 469, company: 949, care: 35, careHours: 85, hour: 29, hosting: 49 },
     gbp: { card: 549, company: 1099, care: 39, careHours: 95, hour: 35, hosting: 59 },
+  },
+  // 24.11.2026: niższe ceny wizytówki i strony firmowej (porównanie z ofertami podobnych freelancerów)
+  // i tańszy pakiet na wejście – wizytówka bez panelu
+  {
+    from: '2026-11-24',
+    pln: { card: 1299, company: 2999, care: 149, careHours: 349, hour: 120, hosting: 199, start: 899 },
+    eur: { card: 299, company: 699, care: 35, careHours: 85, hour: 29, hosting: 49, start: 209 },
+    gbp: { card: 349, company: 829, care: 39, careHours: 95, hour: 35, hosting: 59, start: 249 },
   },
 ]
 

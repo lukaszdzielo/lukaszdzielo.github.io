@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Trzy pakiety. Ceny z app/data/pricing.ts – w czasie promocji: przekreślona cena regularna,
+// Trzy pakiety (wizytówka z dodatkowym wierszem: wariant bez panelu) i czas realizacji. Ceny z app/data/pricing.ts – w czasie promocji: przekreślona cena regularna,
 // cena promocyjna, najniższa cena z 30 dni i etykieta z datą (liczone przy budowaniu strony).
 import { businessOffer } from '~/data/business'
 import { price as priceIn, promoLabel, type Lang, type PriceId } from '~/data/pricing'
@@ -62,6 +62,16 @@ const notes = computed(() => [
             <span class="text-sm opacity-70">{{ plan.suffix }}</span>
             <NuxtLink v-if="plan.more" :to="`#${anchor(plan.more.slice(1))}`" class="text-sm underline underline-offset-2 opacity-70 hover:opacity-100">{{ t('details') }}</NuxtLink>
             <small v-if="price(plan.price).lowest" class="w-full text-xs opacity-70">{{ t('lowest', { price: price(plan.price).lowest }) }}</small>
+            <small v-if="plan.time" class="w-full text-sm opacity-70">{{ plan.time }}</small>
+          </p>
+          <!-- Tańszy wariant (wizytówka bez panelu): nazwa, cena „od” i czas realizacji w jednym bloku pod ceną główną -->
+          <p v-if="plan.alt" class="mt-4 rounded-2xl px-4 py-3 text-sm/relaxed" :class="plan.highlight ? 'bg-white/8 dark:bg-brand-950/6' : 'bg-slate-900/4 dark:bg-white/6'">
+            <b class="font-semibold">{{ plan.alt.name }}</b>
+            <span class="opacity-75">{{ ` – ${plan.alt.text}` }}</span><br>
+            <s v-if="price(plan.alt.price).before" class="mr-1.5 opacity-55">{{ price(plan.alt.price).before }}</s>
+            <b class="font-semibold">{{ t('from', { price: price(plan.alt.price).now }) }}</b>
+            <span class="opacity-70">{{ ` ${plan.alt.suffix} · ${plan.alt.time}` }}</span>
+            <small v-if="price(plan.alt.price).lowest" class="block text-xs opacity-70">{{ t('lowest', { price: price(plan.alt.price).lowest }) }}</small>
           </p>
         </li>
       </ul>
@@ -83,7 +93,7 @@ const notes = computed(() => [
 
 <i18n lang="json">
 {
-  "en": { "promo": "{label} until {date}", "from": "from {price}", "details": "details below", "ask": "Ask →", "lowest": "Lowest price in the 30 days before the sale: {price}", "note": "Prices in € and £ are fixed – I review them every quarter. You get the final price in your quote." },
-  "pl": { "promo": "{label} do {date}", "from": "od {price}", "details": "szczegóły niżej", "ask": "Zapytaj →", "lowest": "Najniższa cena z 30 dni przed obniżką: {price}", "note": "Dokładną kwotę dostajesz w wycenie." }
+  "en": { "promo": "{label} until {date}", "from": "from {price}", "details": "details below", "ask": "Ask →", "lowest": "Lowest price in the 30 days before the sale: {price}", "note": "Prices in € and £ are fixed – I review them every quarter. You get the final price in your quote. Timelines start when the contract is signed and the design is approved." },
+  "pl": { "promo": "{label} do {date}", "from": "od {price}", "details": "szczegóły niżej", "ask": "Zapytaj →", "lowest": "Najniższa cena z 30 dni przed obniżką: {price}", "note": "Dokładną kwotę dostajesz w wycenie. Czas realizacji liczę od podpisania umowy i akceptacji projektu." }
 }
 </i18n>
