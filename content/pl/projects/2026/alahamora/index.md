@@ -11,14 +11,14 @@ links:
 stack: [Next.js, React, CSS, View Transitions, SVG]
 note: Koncept zrobiony z własnej inicjatywy – kawiarnia go nie zamawiała. Zdjęcia pochodzą z ich strony, a logo przerysowałem do wektora z ich pliku PNG. Rezerwacje i pozostałe podstrony czekają na decyzję lokalu.
 facts:
-  - value: '3'
-    text: widoki – wybór lokalu, Gliwice i Katowice (do tego strona 404)
-  - value: '99'
-    text: wydajność w Lighthouse na telefonie (PageSpeed Insights)
+  - value: '10'
+    text: dni od pierwszego szkicu do gotowego podglądu (16–25.11.2026)
+  - value: '123'
+    text: commity w repo – od ekranu wyboru po optymalizację zdjęć
   - value: '7'
     text: moich rysunków przerysowanych do SVG – od sowy po zamek w stopce
-  - value: '2'
-    text: klimaty – zieleń ze srebrem w Gliwicach, granat ze złotem w Katowicach
+  - value: '99'
+    text: wydajność w Lighthouse na telefonie (PageSpeed Insights)
 cover:
   desktop: /projects/2026/alahamora/first-screen.webp
   phone: /projects/2026/alahamora/phone-gliwice.webp
@@ -31,6 +31,10 @@ motion:
     poster: /video/projects/2026/alahamora/alahamora-wejscie-poster.webp
     title: Wejście w obraz
     text: Po kliknięciu rama przybliża się, a zdjęcie płynnie przechodzi w górę strony lokalu – bez mrugnięcia i przeskoku.
+  - src: /video/projects/2026/alahamora/alahamora-miasta.mp4
+    poster: /video/projects/2026/alahamora/alahamora-miasta-poster.webp
+    title: Dwie magie obok siebie
+    text: Po lewej Katowice – świetlik zapala latarnię. Po prawej Gliwice – światło różdżki odsłania kapelusz.
   - src: /video/projects/2026/alahamora/alahamora-latarnie.mp4
     poster: /video/projects/2026/alahamora/alahamora-latarnie-poster.webp
     title: Latarnie w Katowicach
@@ -51,6 +55,10 @@ motion:
     poster: /video/projects/2026/alahamora/alahamora-lustra-poster.webp
     title: Lustra z karuzelą
     text: Zdjęcie w lustrze przesuwa się za kursorem, a strzałki przewijają karuzelę.
+  - src: /video/projects/2026/alahamora/alahamora-telefony.mp4
+    poster: /video/projects/2026/alahamora/alahamora-telefony-poster.webp
+    title: Na telefonie
+    text: Bez kursora latarnie zapalają się przy przewijaniu, a rysunki jaśnieją, gdy dojeżdżają do środka ekranu.
 galleryLead: Zrzuty z działającego projektu – kliknij zrzut, żeby go powiększyć.
 gallery:
   - src: /projects/2026/alahamora/page-gliwice.webp
@@ -90,14 +98,19 @@ highlights:
     text: Efekty po najechaniu działają tylko z myszą, więc na telefonie po stuknięciu nic nie zostaje podświetlone. Kursora-różdżki nie ma na ekranach dotykowych i przy ograniczeniu ruchu.
 ---
 
-Alahamora to magiczna kawiarnia z dwoma lokalami – w Gliwicach i w Katowicach. Ten projekt zrobiłem z własnej inicjatywy: chciałem pokazać, jak mogłaby wyglądać ich strona, gdyby oddawała klimat lokalu – antyki, portrety w złotych ramach i odrobinę magii. Każde miasto ma własny charakter. Gliwice są zielono-srebrne i mają w tle ukryte rysunki, które odsłania kursor-różdżka. Katowice są granatowo-złote, z latarniami, które zapalają się przy przewijaniu.
+Alahamora to magiczna kawiarnia z dwoma lokalami – w Gliwicach i w Katowicach. Ten projekt zrobiłem z własnej inicjatywy: chciałem pokazać, jak mogłaby wyglądać ich strona, gdyby oddawała klimat lokalu – antyki, portrety w złotych ramach i odrobinę magii. Każde miasto ma własne kolory i własną magię.
 
 Uczę się Reacta, więc stronę zbudowałem w Next.js – jako stronę statyczną na GitHub Pages.
 
-## Najważniejsze cechy
+## Katowice i Gliwice – dwie różne magie
 
-- Ekran wyboru lokalu – po kliknięciu rama przybliża się i płynnie przechodzi w zdjęcie u góry strony lokalu
-- Kursor-różdżka ze światłem i iskrami
-- Moje rysunki – sowa, kapelusz, kociołek z chochlikami i księga ze skarpetą – ukryte w Gliwicach w pustych miejscach między sekcjami
-- Mapa z OpenStreetMap w kolorach pergaminu, z lakową pieczęcią w miejscu lokalu – bez skryptów i ciasteczek Google
-- Wersja na telefon od 320 px, z menu w osobnym panelu
+- Katowice (granat i złoto): przy nagłówkach wiszą latarnie. Przy przewijaniu świetlik leci łukiem do kolejnej latarni i ją zapala – pomysł wziął się z wygaszacza, którym Dumbledore w „Harrym Potterze” gasił i zapalał latarnie.
+- Gliwice (zieleń i srebro): w pustych miejscach przy sekcjach ukryłem moje rysunki – kapelusz, kociołek z chochlikami, sowę i księgę ze skarpetą. Widać je dopiero w świetle różdżki, jak po zaklęciu Revelio.
+- Wspólne: ekran wyboru z wejściem w obraz, kursor-różdżka, galeria w ramach, proporce z ofertą i mapa z OpenStreetMap w kolorach pergaminu, z lakową pieczęcią – bez skryptów i ciasteczek Google.
+
+## Komputer i telefon
+
+- Na komputerze kursor to różdżka ze światłem i iskrami, a proporce, ramy i przyciski reagują na najechanie.
+- Na telefonie nie ma kursora: rysunki w Gliwicach jaśnieją, gdy są blisko środka ekranu, i pod palcem, latarnie w Katowicach wiszą nad nagłówkami, a efekty po najechaniu są wyłączone.
+- Przy ograniczeniu ruchu animacje się zatrzymują, a latarnie po prostu świecą.
+- Strona działa od 320 px, z menu w osobnym panelu.
