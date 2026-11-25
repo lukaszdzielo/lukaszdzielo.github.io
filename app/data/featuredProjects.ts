@@ -19,6 +19,16 @@ export type FeaturedProject = {
 }
 
 export const featuredProjects: FeaturedProject[] = [
+  // Koncept z własnej inicjatywy dla kawiarni Alahamora (Katowice, Gliwice) – na głównej zamiast Pokedexa (25.11)
+  {
+    title: 'Alahamora',
+    date: '2026-11',
+    description: { en: 'Concept website for a magic café in Gliwice and Katowice – lanterns, a step into a painting and a wand cursor.', pl: 'Koncept strony magicznej kawiarni w Gliwicach i Katowicach – latarnie, wejście w obraz i kursor-różdżka.' },
+    chips: ['Next.js', 'React', 'CSS'],
+    url: 'alahamora',
+    href: 'https://lukaszdzielo.github.io/alahamora/',
+    image: '/projects/2026/alahamora/featured.webp',
+  },
   {
     title: 'Emotion Karting',
     date: '2026-10',
@@ -73,6 +83,7 @@ export const featuredProjects: FeaturedProject[] = [
     url: 'pokedex',
     href: 'https://lukaszdzielo.github.io/pokedex/',
     image: '/projects/2024/pokedex/featured.webp',
+    hidden: true, // na głównej zastąpiony przez Alahamorę (25.11) – zostaje w archiwum projektów
   },
   {
     title: 'Coffee Recipes',
