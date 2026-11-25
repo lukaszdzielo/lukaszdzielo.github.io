@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" fill="none">
+  <defs>
+    <radialGradient id="lumos" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="rgba(111,156,255,.32)"/>
+      <stop offset="1" stop-color="rgba(111,156,255,0)"/>
+    </radialGradient>
+  </defs>
+  <!-- latarnie na łańcuchach: dwie zgaszone, trzecia zapalona (akcent) -->
+  <g stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-linecap="round">
+    <path d="M50 20v58"/><path d="M118 20v28"/><path d="M186 20v58"/>
+  </g>
+  <g stroke="rgba(160,185,255,.5)" stroke-width="1.5">
+    <rect x="36" y="78" width="28" height="40" rx="8" fill="rgba(111,156,255,.16)"/>
+    <rect x="104" y="48" width="28" height="40" rx="8" fill="rgba(111,156,255,.16)"/>
+  </g>
+  <circle cx="200" cy="98" r="34" fill="url(#lumos)"/>
+  <rect x="172" y="78" width="28" height="40" rx="8" fill="#2860ea" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <!-- lot świetlika łukiem od pierwszej latarni do trzeciej -->
+  <path d="M64 112 Q118 196 170 108" stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+  <g fill="#cfd9ff"><circle cx="150" cy="134" r="5"/><circle cx="139" cy="143" r="3"/><circle cx="130" cy="149" r="2"/></g>
+  <!-- linia 82% wysokości ekranu -->
+  <path d="M24 214h200" stroke="rgba(200,215,255,.55)" stroke-width="2" stroke-dasharray="6 6"/>
+  <rect x="36" y="232" width="176" height="30" rx="15" fill="rgba(255,255,255,.08)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <text x="124" y="252" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14">innerHeight * .82</text>
+  <!-- światło różdżki odsłania rysunek (kapelusz) -->
+  <circle cx="352" cy="118" r="92" fill="url(#lumos)"/>
+  <path d="M300 156c26-4 76-4 104 0M318 154l30-84c4-10 10-10 14 0l18 84" stroke="#cfd9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M426 222l-50-64" stroke="rgba(200,215,255,.55)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="374" cy="155" r="5" fill="#cfd9ff"/>
+  <rect x="268" y="232" width="176" height="30" rx="15" fill="rgba(255,255,255,.08)" stroke="rgba(200,215,255,.45)" stroke-width="1.5"/>
+  <text x="356" y="252" text-anchor="middle" fill="#cfd9ff" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="14">mask-image</text>
+</svg>
