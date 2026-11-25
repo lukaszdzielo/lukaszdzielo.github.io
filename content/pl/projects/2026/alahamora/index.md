@@ -63,16 +63,12 @@ galleryLead: Zrzuty z działającego projektu – kliknij zrzut, żeby go powię
 gallery:
   - src: /projects/2026/alahamora/page-gliwice.webp
     full: true
-    alt: Alahamora Gliwice – cała strona
-    caption: Gliwice – cała strona, od wejścia do stopki z zamkiem
-  - src: /projects/2026/alahamora/page-gliwice-revealed.webp
-    full: true
     alt: Alahamora Gliwice – cała strona z odsłoniętymi rysunkami
-    caption: Gliwice z odsłoniętymi rysunkami – zwykle widać je tylko w świetle różdżki
+    caption: Gliwice – cała strona z wszystkimi rysunkami naraz. Na stronie widać je w świetle różdżki
   - src: /projects/2026/alahamora/page-katowice.webp
     full: true
-    alt: Alahamora Katowice – cała strona
-    caption: Katowice – cała strona w granacie i złocie
+    alt: Alahamora Katowice – cała strona z zapalonymi latarniami
+    caption: Katowice – cała strona z wszystkimi latarniami zapalonymi naraz. Na stronie świeci ta, do której doleciał świetlik
   - src: /projects/2026/alahamora/phone-katowice.webp
     device: phone
     alt: Alahamora Katowice na telefonie

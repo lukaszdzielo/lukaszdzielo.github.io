@@ -63,16 +63,12 @@ galleryLead: Screenshots of the live project – click one to see it bigger.
 gallery:
   - src: /projects/2026/alahamora/page-gliwice.webp
     full: true
-    alt: Alahamora Gliwice – the whole page
-    caption: Gliwice – the whole page, from the entrance to the footer with the castle
-  - src: /projects/2026/alahamora/page-gliwice-revealed.webp
-    full: true
     alt: Alahamora Gliwice – the whole page with the drawings revealed
-    caption: Gliwice with the drawings revealed – usually you see them only in the light of the wand
+    caption: Gliwice – the whole page with all the drawings at once. On the website, you see them in the light of the wand
   - src: /projects/2026/alahamora/page-katowice.webp
     full: true
-    alt: Alahamora Katowice – the whole page
-    caption: Katowice – the whole page in navy and gold
+    alt: Alahamora Katowice – the whole page with the lanterns lit
+    caption: Katowice – the whole page with all the lanterns lit at once. On the website, the one the firefly has reached is lit
   - src: /projects/2026/alahamora/phone-katowice.webp
     device: phone
     alt: Alahamora Katowice on a phone
