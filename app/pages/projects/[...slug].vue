@@ -118,7 +118,7 @@ if (project.value && hasOwnPage.value) {
 </script>
 
 <template>
-    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), „Przed i po”, galeria, case study i wpisy -->
+    <!-- Strona projektu: hero ze zrzutem, pasek faktów, „Co zbudowałem” (treść pliku md), „Przed i po”, „W ruchu” (wideo), galeria, case study i wpisy -->
     <div v-if="project && hasOwnPage">
         <header class="relative isolate pt-14 sm:pt-22">
             <div class="hero-glow pointer-events-none absolute inset-x-0 -top-18.25 -z-10 h-375" aria-hidden="true" />
@@ -194,6 +194,14 @@ if (project.value && hasOwnPage.value) {
             <div class="container">
                 <CommonSectionHead :title="t('compare.title')" :lead="t('compare.lead')" />
                 <ProjectsCompare v-bind="project.compare" :address="address" class="mt-8 lg:mt-10" />
+            </div>
+        </section>
+
+        <!-- W ruchu: pętle wideo z polem motion (animacje i efekty po najechaniu, których nie widać na zrzutach) -->
+        <section v-if="project.motion?.length" class="pt-20 md:pt-28 lg:pt-32">
+            <div class="container">
+                <CommonSectionHead :title="t('motion.title')" :lead="project.motionLead || t('motion.lead')" />
+                <ProjectsMotion :items="project.motion" class="mt-8 lg:mt-10" />
             </div>
         </section>
 
@@ -298,6 +306,7 @@ if (project.value && hasOwnPage.value) {
         "about": { "title": "What I built" },
         "gallery": { "title": "How it looks", "lead": "Screenshots of the live project – click one to see it bigger." },
         "compare": { "title": "Before and after", "lead": "Drag the slider – the old site is on the left, the new one on the right." },
+        "motion": { "title": "In motion", "lead": "Animations and hover effects recorded from the live project. The videos have no sound." },
         "highlights": { "title": "Solutions in detail", "lead": "Things from the code that show best how I work." },
         "posts": { "title": "Case study and posts", "lead": "How it was made, what went wrong and what I learned." },
         "allProjects": "← All projects",
@@ -311,6 +320,7 @@ if (project.value && hasOwnPage.value) {
         "about": { "title": "Co zbudowałem" },
         "gallery": { "title": "Jak to wygląda", "lead": "Zrzuty z działającego projektu – kliknij zrzut, żeby go powiększyć." },
         "compare": { "title": "Przed i po", "lead": "Przeciągnij suwak – po lewej stara strona, po prawej nowa." },
+        "motion": { "title": "W ruchu", "lead": "Animacje i efekty po najechaniu nagrane z działającego projektu. Filmy są bez dźwięku." },
         "highlights": { "title": "Rozwiązania w szczegółach", "lead": "Rzeczy z kodu, które najlepiej pokazują, jak pracuję." },
         "posts": { "title": "Case study i wpisy", "lead": "Jak to powstało, co poszło nie tak i czego się nauczyłem." },
         "allProjects": "← Wszystkie projekty",

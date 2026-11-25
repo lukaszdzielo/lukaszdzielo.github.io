@@ -101,6 +101,15 @@ const projectSchema = z.object({
   note: z.string().optional(),
   galleryLead: z.string().optional(),
   highlights: z.array(z.object({ title: z.string(), text: z.string() })).optional(),
+  // „W ruchu”: krótkie pętle wideo bez dźwięku (animacje, efekty po najechaniu) – pliki MP4 i plakaty w /public,
+  // bo @nuxt/image nie obsługuje wideo; motionLead – własny opis nad filmami
+  motion: z.array(z.object({
+    src: z.string(),
+    poster: z.string(),
+    title: z.string(),
+    text: z.string().optional(),
+  })).optional(),
+  motionLead: z.string().optional(),
   links: z.object({
     behance: z.string().optional(),
     github: z.string().optional(),
