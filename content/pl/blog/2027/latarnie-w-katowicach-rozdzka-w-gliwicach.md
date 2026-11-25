@@ -107,6 +107,6 @@ Kiedy ktoś ma w systemie włączone ograniczenie ruchu, animacje się wyłącza
 
 ## Czy to nie spowalnia strony?
 
-Rysunki poza ekranem wczytują się dopiero przy przewijaniu, a światło liczę tylko dla tych, które są blisko ekranu. Strona Gliwic ma w PageSpeed Insights na telefonie 99 punktów wydajności.
+Rysunki poza ekranem wczytują się dopiero przy przewijaniu, a światło liczę tylko dla tych, które są blisko ekranu. Na telefonie strona Gliwic ma w PageSpeed Insights 99 punktów wydajności, a strona Katowic w Lighthouse w Chrome – 92, i po 100 za dostępność, dobre praktyki i SEO.
 
-Od pierwszego szkicu do gotowego podglądu minęło 10 dni (16–25.11.2026). Najpierw projektowałem kolory obu miast, latarnie i rysunki, potem przeniosłem wszystko do kodu w Next.js – w repo jest 123 commity. Podgląd działa na [lukaszdzielo.github.io/alahamora](https://lukaszdzielo.github.io/alahamora/), a zrzuty i pozostałe animacje są na [stronie projektu](/pl/projekty/2026/alahamora).
+Od pierwszego szkicu do gotowego podglądu minęło 10 dni (16–25.11.2026). Najpierw przez tydzień projektowałem kolory obu miast, latarnie i rysunki. Potem kod w Next.js pisał Claude Code, a ja decydowałem o każdej animacji i sprawdzałem każdy widok – w repo jest 123 commity, a samo przejście z ekranu wyboru do strony miasta przerabiałem pięć razy. Podgląd działa na [lukaszdzielo.github.io/alahamora](https://lukaszdzielo.github.io/alahamora/), a zrzuty i pozostałe animacje są na [stronie projektu](/pl/projekty/2026/alahamora).

@@ -9,7 +9,7 @@ links:
   live: https://lukaszdzielo.github.io/alahamora/
   github: https://github.com/lukaszdzielo/alahamora
 stack: [Next.js, React, CSS, View Transitions, SVG]
-note: A concept I made on my own initiative – the café did not order it. The photos come from their website, and I redrew the logo as a vector from their PNG file. Booking and the other subpages wait for the café's decision.
+note: A concept I made on my own initiative – the café did not order it. Claude Code wrote the code – I designed the whole thing, drew the drawings, decided on the animations and checked every view. The photos come from their website, and I redrew the logo as a vector from their PNG file. Booking and the other subpages wait for the café's decision.
 facts:
   - value: '10'
     text: days from the first sketch to the finished preview (16–25 Nov 2026)
@@ -17,8 +17,8 @@ facts:
     text: commits in the repository – from the first screen to image optimisation
   - value: '7'
     text: of my drawings redrawn as SVG – from an owl to the castle in the footer
-  - value: '99'
-    text: performance in Lighthouse on a phone (PageSpeed Insights)
+  - value: '92–99'
+    text: performance in Lighthouse on a phone, and 100 for accessibility, best practices and SEO
 cover:
   desktop: /projects/2026/alahamora/first-screen.webp
   phone: /projects/2026/alahamora/phone-gliwice.webp
@@ -100,7 +100,9 @@ highlights:
 
 Alahamora is a magic café with two places – in Gliwice and in Katowice. I made this project on my own initiative: I wanted to show what their website could look like if it had the mood of the café – antiques, portraits in golden frames and a bit of magic. Each city has its own colours and its own magic.
 
-I am learning React, so I built the website in Next.js – as a static site on GitHub Pages.
+I am learning React, so I built the website in Next.js – as a static site on GitHub Pages. Claude Code wrote the code, but it did not come from a single prompt. First, I spent a week designing both versions: the colours of the cities, the first screen, the lanterns, my drawings and the places where I hid them. Then there were many changes in the code – I reworked the step from the first screen into a city page five times, and I adjusted the wizard's footprints in Gliwice several times for different screen widths.
+
+Lighthouse results on a phone: Katowice (Lighthouse in Chrome) – 92 for performance and 100 for accessibility, best practices and SEO. Gliwice (PageSpeed Insights) – 99 for performance.
 
 ## Katowice and Gliwice – two kinds of magic
 

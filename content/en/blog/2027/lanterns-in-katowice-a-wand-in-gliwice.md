@@ -107,6 +107,6 @@ When someone has reduced motion turned on in their system, the animations stop. 
 
 ## Doesn't it slow the website down?
 
-Drawings off screen load only when you scroll to them, and I calculate the light only for the ones close to the screen. The Gliwice page gets 99 for performance in PageSpeed Insights on a phone.
+Drawings off screen load only when you scroll to them, and I calculate the light only for the ones close to the screen. On a phone, the Gliwice page gets 99 for performance in PageSpeed Insights, and the Katowice page gets 92 in Lighthouse in Chrome, with 100 for accessibility, best practices and SEO.
 
-It took 10 days from the first sketch to the finished preview (16–25 November 2026). First, I designed the colours of both cities, the lanterns and the drawings, and then I moved everything to code in Next.js – the repository has 123 commits. The preview runs at [lukaszdzielo.github.io/alahamora](https://lukaszdzielo.github.io/alahamora/), and the screenshots and the other animations are on the [project page](/projects/2026/alahamora).
+It took 10 days from the first sketch to the finished preview (16–25 November 2026). First, I spent a week designing the colours of both cities, the lanterns and the drawings. Then Claude Code wrote the code in Next.js, and I decided on every animation and checked every view – the repository has 123 commits, and I reworked the step from the first screen into a city page five times. The preview runs at [lukaszdzielo.github.io/alahamora](https://lukaszdzielo.github.io/alahamora/), and the screenshots and the other animations are on the [project page](/projects/2026/alahamora).

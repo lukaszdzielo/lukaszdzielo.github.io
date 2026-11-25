@@ -9,7 +9,7 @@ links:
   live: https://lukaszdzielo.github.io/alahamora/
   github: https://github.com/lukaszdzielo/alahamora
 stack: [Next.js, React, CSS, View Transitions, SVG]
-note: Koncept zrobiony z własnej inicjatywy – kawiarnia go nie zamawiała. Zdjęcia pochodzą z ich strony, a logo przerysowałem do wektora z ich pliku PNG. Rezerwacje i pozostałe podstrony czekają na decyzję lokalu.
+note: Koncept zrobiony z własnej inicjatywy – kawiarnia go nie zamawiała. Kod napisał Claude Code – ja zaprojektowałem całość, narysowałem rysunki, decydowałem o animacjach i sprawdzałem każdy widok. Zdjęcia pochodzą z ich strony, a logo przerysowałem do wektora z ich pliku PNG. Rezerwacje i pozostałe podstrony czekają na decyzję lokalu.
 facts:
   - value: '10'
     text: dni od pierwszego szkicu do gotowego podglądu (16–25.11.2026)
@@ -17,8 +17,8 @@ facts:
     text: commity w repo – od ekranu wyboru po optymalizację zdjęć
   - value: '7'
     text: moich rysunków przerysowanych do SVG – od sowy po zamek w stopce
-  - value: '99'
-    text: wydajność w Lighthouse na telefonie (PageSpeed Insights)
+  - value: '92–99'
+    text: wydajność w Lighthouse na telefonie, a dostępność, dobre praktyki i SEO – 100
 cover:
   desktop: /projects/2026/alahamora/first-screen.webp
   phone: /projects/2026/alahamora/phone-gliwice.webp
@@ -100,7 +100,9 @@ highlights:
 
 Alahamora to magiczna kawiarnia z dwoma lokalami – w Gliwicach i w Katowicach. Ten projekt zrobiłem z własnej inicjatywy: chciałem pokazać, jak mogłaby wyglądać ich strona, gdyby oddawała klimat lokalu – antyki, portrety w złotych ramach i odrobinę magii. Każde miasto ma własne kolory i własną magię.
 
-Uczę się Reacta, więc stronę zbudowałem w Next.js – jako stronę statyczną na GitHub Pages.
+Uczę się Reacta, więc stronę zbudowałem w Next.js – jako stronę statyczną na GitHub Pages. Kod napisał Claude Code, ale nie powstał od jednego polecenia. Najpierw przez tydzień projektowałem obie wersje: kolory miast, ekran wyboru, latarnie, moje rysunki i miejsca, w których je schowałem. Potem w kodzie było dużo zmian – przejście z ekranu wyboru do strony miasta przerabiałem pięć razy, a ślady czarodzieja w Gliwicach kilka razy dopasowywałem do kolejnych szerokości ekranu.
+
+Wyniki w Lighthouse na telefonie: Katowice (Lighthouse w Chrome) – wydajność 92, a dostępność, dobre praktyki i SEO – 100. Gliwice (PageSpeed Insights) – wydajność 99.
 
 ## Katowice i Gliwice – dwie różne magie
 
