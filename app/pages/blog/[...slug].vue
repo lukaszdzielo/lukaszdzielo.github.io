@@ -96,8 +96,8 @@ const shareUrl = computed(() => pageUrl(route.path));
                     <div class="relative grid items-center gap-2 lg:grid-cols-12 lg:gap-10">
                         <!-- Rysunek: do lg nad tekstem – wchodzi z prawego górnego rogu, przycięty krawędzią banera (jak na kartach wpisów).
                              Od lg w prawej kolumnie (kolumny 8–12), zawsze od jej lewej krawędzi: szerokość kolumny, ale co najmniej 440 px –
-                             na węższych ekranach wychodzi tylko w prawo, za krawędź banera -->
-                        <img v-if="post.art" :src="post.art" alt="" width="480" height="300"
+                             na węższych ekranach wychodzi tylko w prawo, za krawędź banera. Rysuje się raz po wejściu (BlogArt) -->
+                        <BlogArt v-if="post.art" :src="post.art"
                             class="pointer-events-none -mt-15 -mr-9 -mb-5 w-64 max-w-none justify-self-end opacity-60 sm:-mt-24 sm:-mr-16 sm:w-80 lg:order-last lg:col-span-5 lg:m-0 lg:w-full lg:min-w-110 lg:justify-self-start lg:opacity-100" />
                         <div :class="post.art ? 'lg:col-span-7' : 'lg:col-span-10'">
                             <p v-if="kicker" class="text-xs font-semibold tracking-widest text-primary-300 uppercase">{{ kicker }}</p>

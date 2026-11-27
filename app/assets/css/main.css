@@ -168,6 +168,34 @@ body {
   --glow-3: transparent;
 }
 
+/* Rysunek w banerze wpisu rysuje się raz po wejściu (BlogArt + app/utils/drawArt.ts), od lewej do prawej:
+   --d to położenie kształtu w poziomie (0–1), więc kształty po prawej startują do 0,7 s później.
+   .l – kreska rysuje się w 0,7 s, a wypełnienie wchodzi pod koniec; .f – linie przerywane i tekst tylko się pojawiają.
+   Animacje mają tylko stan początkowy (backwards), więc po końcu rysunek wygląda dokładnie jak plik SVG.
+   Przy ograniczeniu ruchu nic się nie rusza – rysunek jest od razu gotowy. */
+@media (prefers-reduced-motion: no-preference) {
+  .art-draw .l {
+    animation:
+      art-line 0.7s cubic-bezier(0.65, 0, 0.35, 1) calc(var(--d) * 0.7s) backwards,
+      art-fill 0.4s ease-out calc(var(--d) * 0.7s + 0.4s) backwards;
+  }
+  .art-draw .f {
+    animation: art-fade 0.5s ease-out calc(var(--d) * 0.7s + 0.3s) backwards;
+  }
+}
+/* Kreska 1 i przerwa 2 (pathLength="1"), przesunięcie trochę ponad 1 – na starcie nie widać nawet kropki
+   z zaokrąglonego końca linii */
+@keyframes art-line {
+  from { stroke-dasharray: 1 2; stroke-dashoffset: 1.01; }
+  to { stroke-dasharray: 1 2; stroke-dashoffset: 0; }
+}
+@keyframes art-fill {
+  from { fill-opacity: 0; }
+}
+@keyframes art-fade {
+  from { opacity: 0; }
+}
+
 /* Strona projektu – „Co zbudowałem” z treścią z pliku md. Od lg siatka 5 kolumn: nagłówek po lewej (2),
    opis po prawej (3), a podtytuł z md („Co się zmieniło”) i lista pod spodem na całą szerokość;
    lista od sm w dwóch kolumnach (CSS columns). ContentRenderer owija treść w <div> – display: contents wyciąga
